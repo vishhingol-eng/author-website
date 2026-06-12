@@ -185,6 +185,18 @@ input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
     <input type="url" id="authorUrl">
   </div>
 
+  <!-- ============ IMPORT FROM KDP ============ -->
+  <div class="card hidden" id="importCard">
+    <h2>Import from KDP</h2>
+    <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank" rel="noopener">KDP Bookshelf</a>, select-all and copy the page, then paste it below and click Scan. New live titles get added to your library below (with empty subtitle/description/tags for you to fill in) — review, then click Publish as usual.</p>
+    <label>Paste KDP bookshelf text</label>
+    <textarea id="kdpPaste" placeholder="Paste your KDP bookshelf text here…" style="min-height:140px"></textarea>
+    <div style="margin-top:14px">
+      <button class="btn btn-gold btn-sm" id="kdpScanBtn">Scan for Books</button>
+    </div>
+    <div id="kdpResults" style="margin-top:20px"></div>
+  </div>
+
   <!-- ============ BOOK LIST ============ -->
   <div class="hidden" id="libraryWrap">
     <div class="toolbar">
@@ -303,6 +315,7 @@ async function connect(saveCfg){
 function enterDashboard(){
   $('setupCard').classList.add('hidden');
   $('authorCard').classList.remove('hidden');
+  $('importCard').classList.remove('hidden');
   $('libraryWrap').classList.remove('hidden');
   $('connPill').classList.remove('hidden');
   $('viewSite').classList.remove('hidden');
@@ -345,6 +358,162 @@ function renderList(){
 function markDirty(){
   dirty = true;
   $('dirtyHint').textContent = 'You have unsaved changes — click Publish to update the live site.';
+}
+
+/* ---------- KDP import ---------- */
+function parseKDPPaste(text){
+  const lines = text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  const byIdxs = [];
+  for(let j=0;j<lines.length;j++){
+    if(/^by\s+\S/.test(lines[j]) && lines[j].length < 60) byIdxs.push(j);
+  }
+  const items = [];
+  for(let k=0;k<byIdxs.length;k++){
+    const byIdx = byIdxs[k];
+    if(byIdx===0) continue;
+    const title = lines[byIdx-1];
+    const blockEnd = (k+1<byIdxs.length) ? byIdxs[k+1]-1 : lines.length;
+    const block = lines.slice(byIdx+1, blockEnd);
+    const formats = {};
+    let current = null;
+    block.forEach(line=>{
+      if(/^Kindle eBook$/i.test(line) || /^Paperback$/i.test(line) || /^Hardcover$/i.test(line)){
+        current = line;
+        formats[current] = formats[current] || {status:null, asin:null, submitted:null};
+        return;
+      }
+      if(!current) return;
+      if(/^Live$/i.test(line)) formats[current].status = 'Live';
+      else if(/^Publishing$/i.test(line)) formats[current].status = formats[current].status || 'Publishing';
+      else if(/^\+ Create/i.test(line)) formats[current].status = formats[current].status || 'NotCreated';
+      const sub = line.match(/^Submitted on\s+(.+)$/i);
+      if(sub) formats[current].submitted = sub[1];
+      const asin = line.match(/^ASIN:\s*([A-Z0-9]{6,})/i);
+      if(asin) formats[current].asin = asin[1];
+    });
+    items.push({title, formats});
+  }
+  return items;
+}
+
+function kdpChoose(formats){
+  for(const f of ['Paperback','Kindle eBook','Hardcover']){
+    const fmt = formats[f];
+    if(fmt && fmt.status==='Live' && fmt.asin) return {format:f, ...fmt};
+  }
+  return null;
+}
+
+function kdpDateToISO(str){
+  if(!str) return new Date().toISOString().slice(0,10);
+  const d = new Date(str);
+  if(isNaN(d.getTime())) return new Date().toISOString().slice(0,10);
+  return d.toISOString().slice(0,10);
+}
+
+const kdpMainTitle = t => t.split(':')[0].trim().toLowerCase();
+
+let kdpScan = [];
+
+$('kdpScanBtn').onclick = ()=>{
+  const text = $('kdpPaste').value;
+  if(!text.trim()){ toast('Paste your KDP bookshelf text first','err'); return; }
+  const items = parseKDPPaste(text);
+  if(!items.length){ toast('No books detected — check the pasted text','err'); return; }
+
+  kdpScan = items.map(item=>{
+    const chosen = kdpChoose(item.formats);
+    const existingIdx = db.books.findIndex(b=> kdpMainTitle(b.title) === kdpMainTitle(item.title));
+    return {
+      title: item.title,
+      chosen,
+      existingIdx,
+      include: existingIdx===-1 && !!chosen,
+      updateLink: false
+    };
+  });
+  renderKDPResults();
+};
+
+function renderKDPResults(){
+  const box = $('kdpResults');
+  if(!kdpScan.length){ box.innerHTML=''; return; }
+
+  const checkboxStyle = 'display:flex;align-items:center;gap:6px;font-size:12px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--paper);white-space:nowrap';
+
+  box.innerHTML = kdpScan.map((r,i)=>{
+    if(!r.chosen){
+      return `<div class="bitem" style="opacity:.55;grid-template-columns:1fr">
+        <div class="bmeta"><h3>${esc(r.title)}</h3>
+        <p>Not live yet on Amazon — skipped. Run the scan again once a format goes live.</p></div>
+      </div>`;
+    }
+    const link = `https://www.amazon.in/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1){
+      const cur = db.books[r.existingIdx].amazonUrl;
+      return `<div class="bitem" style="grid-template-columns:1fr auto">
+        <div class="bmeta"><h3>${esc(r.title)}</h3>
+        <p>Already in your library as "${esc(db.books[r.existingIdx].title)}" · ${esc(r.chosen.format)} link found: <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p>
+        <p style="font-size:11px">Current link: ${esc(cur)}</p></div>
+        <div class="bactions">
+          <label style="${checkboxStyle}">
+            <input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked">
+            Update link
+          </label>
+        </div>
+      </div>`;
+    }
+    return `<div class="bitem" style="grid-template-columns:1fr auto">
+      <div class="bmeta"><h3>${esc(r.title)}</h3>
+      <p>New · ${esc(r.chosen.format)} · published ${esc(kdpDateToISO(r.chosen.submitted))} · <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p></div>
+      <div class="bactions">
+        <label style="${checkboxStyle}">
+          <input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked">
+          Add to library
+        </label>
+      </div>
+    </div>`;
+  }).join('') + `
+    <div style="margin-top:18px">
+      <button class="btn btn-gold btn-sm" id="kdpApplyBtn">Apply to Library</button>
+    </div>`;
+
+  $('kdpApplyBtn').onclick = applyKDPScan;
+}
+
+function applyKDPScan(){
+  let added=0, updated=0;
+  kdpScan.forEach(r=>{
+    if(!r.chosen) return;
+    const link = `https://www.amazon.in/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1){
+      if(r.updateLink){
+        db.books[r.existingIdx].amazonUrl = link;
+        updated++;
+      }
+    } else if(r.include){
+      const hasSubtitle = r.title.includes(':');
+      db.books.unshift({
+        id: slug(r.title.split(':')[0]),
+        title: r.title.split(':')[0].trim(),
+        subtitle: hasSubtitle ? r.title.split(':').slice(1).join(':').trim() : '',
+        description: '',
+        tags: [],
+        amazonUrl: link,
+        coverImage: '',
+        published: kdpDateToISO(r.chosen.submitted),
+        hue: Math.floor(Math.random()*360)
+      });
+      added++;
+    }
+  });
+  if(added||updated){
+    renderList(); markDirty();
+    toast(`Added ${added} new book(s)${updated?`, updated ${updated} link(s)`:''} — fill in details, then Publish`);
+    kdpScan = []; $('kdpResults').innerHTML=''; $('kdpPaste').value='';
+  } else {
+    toast('Nothing selected to apply','err');
+  }
 }
 
 /* ---------- add / edit modal ---------- */
