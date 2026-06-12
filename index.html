@@ -538,6 +538,7 @@ footer a:hover{text-decoration:underline}
   <span>All purchases are completed securely on <a class="amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a>.</span>
 </footer>
 
+<script src="covers.js"></script>
 <script>
 /* ================= load database & render bookshelf ================= */
 (async function(){
@@ -578,6 +579,10 @@ footer a:hover{text-decoration:underline}
   // self-healing image: tries every plausible location, falls back to generated art
   function coverHTML(b){
     const hue = +b.hue||35;
+    // 1) embedded cover (guaranteed, no file needed)
+    if(window.COVERS && window.COVERS[b.id]){
+      return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)}">`;
+    }
     const cands = [];
     if(b.coverImage){
       const base = b.coverImage.replace(/^covers\//,'');
