@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Homepage -->
   <url>
-    <loc>https://vishhingol-eng.github.io/author-website/</loc>
+    <loc>https://vishalhingol.com</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- New Book Page: Zara and the Divine Signal -->
+  <url>
+    <loc>https://vishalhingol.comzara-divine-signal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Book Page: The Divine 3-6-9 Method -->
+  <url>
+    <loc>https://vishalhingol.com369-manifestation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Book Page: The Signal 21-Day Protocol -->
+  <url>
+    <loc>https://vishalhingol.comthe-signal/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
