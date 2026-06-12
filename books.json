@@ -1,134 +1,139 @@
+<!-- START OF HIGH-UTILITY SEO FIX FOR USA MARKET -->
+<!-- Primary Meta Tags for Browser Search Indexing -->
+<title>Vishal Hingol | Official Mindset & Transformation Author Website</title>
+<meta name="description" content="Official website of author Vishal Hingol. Discover transformative books and 90-day guided journals to break self-sabotage, reclaim focus, and design your mindset.">
+<meta name="keywords" content="Vishal Hingol, Why You Keep Holding Yourself Back, The Universe is Whispering to You, The Unconditioned Mind, The Run-Your-Business-On-AI Playbook, Your Mind Is the Blueprint, The Divine 3-6-9 Manifestation Method, The Quiet Revolution, Lucky Girl Evidence Journal, The AI-First Competitor, self-sabotage book, focus protocol, mindset transformation USA">
+
+<!-- Structured Schema Data to Force Google to Index All JSON Books -->
+<script type="application/ld+json">
 {
-  "author": {
-    "name": "Vishal Hingol",
-    "amazonAuthorPage": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37"
-  },
-  "books": [
+  "@context": "https://schema.org",
+  "@type": "Author",
+  "name": "Vishal Hingol",
+  "url": "https://github.io",
+  "sameAs": [
+    "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37"
+  ],
+  "description": "Author specializing in mindset reprogramming, digital focus frameworks, business AI workflows, and personal transformation.",
+  "workExample": [
     {
-      "id": "why-you-keep-holding-yourself-back",
-      "title": "Why You Keep Holding Yourself Back",
-      "subtitle": "Break self-sabotage, rewire your mind, and finally move forward",
-      "description": "You know what to do — yet you keep ending up in the same place. This isn't laziness; it's subconscious patterns, old conditioning and comfort-zone loops quietly steering your decisions. A practical, science-backed guide to understanding the real roots of self-sabotage and breaking the pattern for good.",
-      "tags": [
-        "Self-Help",
-        "Mindset"
-      ],
-      "amazonUrl": "https://www.amazon.com/dp/B0H363BTBG",
-      "coverImage": "",
-      "published": "2026-04-20",
-      "hue": 10
+      "@type": "Book",
+      "name": "Why You Keep Holding Yourself Back",
+      "alternativeHeadline": "Break self-sabotage, rewire your mind, and finally move forward",
+      "description": "A practical, science-backed guide to understanding the real roots of self-sabotage and breaking the pattern for good.",
+      "datePublished": "2026-04-20",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.com/dp/B0H363BTBG",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "the-universe-is-whispering-to-you",
-      "title": "The Universe is Whispering to You",
-      "subtitle": "Recognize signs, decode synchronicities, and listen to messages from the other side",
-      "description": "For everyone who has experienced something they can't explain — and can't tell anyone about. A guide to noticing the signs and synchronicities woven through everyday life, and learning to trust what they're telling you.",
-      "tags": [
-        "Spirituality",
-        "Signs & Synchronicity"
-      ],
-      "amazonUrl": "https://www.amazon.com/dp/B0H2PSYFDY",
-      "coverImage": "",
-      "published": "2026-04-10",
-      "hue": 255
+      "@type": "Book",
+      "name": "The Universe is Whispering to You",
+      "alternativeHeadline": "Recognize signs, decode synchronicities, and listen to messages from the other side",
+      "description": "A guide to noticing the signs and synchronicities woven through everyday life, and learning to trust what they're telling you.",
+      "datePublished": "2026-04-10",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.com/dp/B0H2PSYFDY",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "the-unconditioned-mind",
-      "title": "The Unconditioned Mind",
-      "subtitle": "Dissolve modern traps, reclaim your focus, and awaken your true potential",
-      "description": "Your attention is being farmed, your habits engineered, your thinking conditioned. This book shows you how to step out of the modern traps — distraction, comparison, autopilot living — and recover a clear, focused, self-directed mind.",
-      "tags": [
-        "Self-Help",
-        "Focus & Clarity"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0H2WV8SS7",
-      "coverImage": "",
-      "published": "2026-03-28",
-      "hue": 180
+      "@type": "Book",
+      "name": "The Unconditioned Mind",
+      "alternativeHeadline": "Dissolve modern traps, reclaim your focus, and awaken your true potential",
+      "description": "This book shows you how to step out of the modern traps — distraction, comparison, autopilot living — and recover a clear, focused, self-directed mind.",
+      "datePublished": "2026-03-28",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0H2WV8SS7",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "run-your-business-on-ai-playbook",
-      "title": "The Run-Your-Business-On-AI Playbook",
-      "subtitle": "How small business owners use ChatGPT, Claude, and Canva to reclaim 20 hours a week",
-      "description": "No theory, no future predictions — every page answers one question: how do I get AI to do this specific business task for me, right now, today? A hands-on playbook for owners who want their time back.",
-      "tags": [
-        "Business",
-        "AI Tools"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0H2HSTBK3",
-      "coverImage": "",
-      "published": "2026-03-15",
-      "hue": 150
+      "@type": "Book",
+      "name": "The Run-Your-Business-On-AI Playbook",
+      "alternativeHeadline": "How small business owners use ChatGPT, Claude, and Canva to reclaim 20 hours a week",
+      "description": "A hands-on playbook for owners who want their time back using actionable AI tools.",
+      "datePublished": "2026-03-15",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0H2HSTBK3",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "your-mind-is-the-blueprint",
-      "title": "Your Mind Is the Blueprint",
-      "subtitle": "Rewire your thinking, break hidden patterns, and design the life you actually want",
-      "description": "Most people try to change their life by changing what they do — and fail. This book targets the one factor that shapes every decision, habit and outcome: your thinking patterns. A structured, practical system to reshape them step by step.",
-      "tags": [
-        "Self-Help",
-        "Thinking Patterns"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0H29HNRKY",
-      "coverImage": "",
-      "published": "2026-03-01",
-      "hue": 215
+      "@type": "Book",
+      "name": "Your Mind Is the Blueprint",
+      "alternativeHeadline": "Rewire your thinking, break hidden patterns, and design the life you actually want",
+      "description": "A structured, practical system to reshape your thinking patterns step by step.",
+      "datePublished": "2026-03-01",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0H29HNRKY",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "the-divine-369-manifestation-method",
-      "title": "The Divine 3-6-9 Manifestation Method",
-      "subtitle": "A practical guide to attract love, money, self-love, and abundance using the 369 technique",
-      "description": "A complete, structured guide to the 369 writing practice — 3 times in the morning, 6 in the afternoon, 9 at night — grounded in how repetition actually rewires belief. Covers love, money, self-love and abundance with a clear daily method you can start today.",
-      "tags": [
-        "Manifestation",
-        "Law of Attraction"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0H25SQD3P",
-      "coverImage": "",
-      "published": "2026-02-15",
-      "hue": 280
+      "@type": "Book",
+      "name": "The Divine 3-6-9 Manifestation Method",
+      "alternativeHeadline": "A practical guide to attract love, money, self-love, and abundance using the 369 technique",
+      "description": "A complete, structured guide to the 369 writing practice grounded in how repetition actually rewires belief.",
+      "datePublished": "2026-02-15",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0H25SQD3P",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "the-quiet-revolution",
-      "title": "The Quiet Revolution",
-      "subtitle": "How to manifest the life you want without lying to yourself",
-      "description": "A radically honest approach to transformation — no fake positivity, no magical thinking, no spiritual performance. Blending psychology, neuroscience and daily action, this book replaces fantasy manifestation with something stronger: becoming someone new through small, consistent, honest actions. Not a shortcut. A foundation.",
-      "tags": [
-        "Self-Help",
-        "Honest Manifestation"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0H25M2Z3W",
-      "coverImage": "",
-      "published": "2026-02-01",
-      "hue": 35
+      "@type": "Book",
+      "name": "The Quiet Revolution",
+      "alternativeHeadline": "How to manifest the life you want without lying to yourself",
+      "description": "Blending psychology, neuroscience and daily action, this book replaces fantasy manifestation with something stronger.",
+      "datePublished": "2026-02-01",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0H25M2Z3W",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "lucky-girl-evidence-journal",
-      "title": "Lucky Girl Evidence Journal",
-      "subtitle": "A 90-day guided program to rewire your brain, track your wins, and attract lasting abundance",
-      "description": "Luck is a lens — and this journal trains it. For 90 days you collect daily evidence that things work out for you: small wins, near-misses, perfect timing. By the end, your brain stops arguing and starts expecting good things.",
-      "tags": [
-        "Guided Journal",
-        "90-Day Program"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0GZHY4H5M",
-      "coverImage": "",
-      "published": "2026-01-15",
-      "hue": 340
+      "@type": "Book",
+      "name": "Lucky Girl Evidence Journal",
+      "alternativeHeadline": "A 90-day guided program to rewire your brain, track your wins, and attract lasting abundance",
+      "description": "A 90-day guided program to collect daily evidence that things work out for you.",
+      "datePublished": "2026-01-15",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0GZHY4H5M",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     },
     {
-      "id": "the-ai-first-competitor",
-      "title": "The AI-First Competitor",
-      "subtitle": "How local businesses and solo founders use next-gen AI workflows to reclaim time and outpace competitors",
-      "description": "The businesses winning today aren't working harder — they're running smarter systems. Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.",
-      "tags": [
-        "Business",
-        "AI Workflows"
-      ],
-      "amazonUrl": "https://www.amazon.in/dp/B0GYQ9WXPZ",
-      "coverImage": "",
-      "published": "2026-01-05",
-      "hue": 195
+      "@type": "Book",
+      "name": "The AI-First Competitor",
+      "alternativeHeadline": "How local businesses and solo founders use next-gen AI workflows to reclaim time and outpace competitors",
+      "description": "Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.",
+      "datePublished": "2026-01-05",
+      "bookFormat": "https://schema.org",
+      "url": "https://www.amazon.in/dp/B0GYQ9WXPZ",
+      "author": {
+        "@type": "Person",
+        "name": "Vishal Hingol"
+      }
     }
   ]
 }
+</script>
+<!-- END OF SEO FIX -->
