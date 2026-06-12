@@ -227,7 +227,7 @@ input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
         <label>Tags (comma separated)</label>
         <input type="text" id="fTags" placeholder="Guided Journal, 90-Day Program">
         <div class="row">
-          <div><label>Amazon buy link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.in/dp/…"></div>
+          <div><label>Amazon buy link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
           <div><label>Publish date</label><input type="date" id="fDate"></div>
         </div>
         <label>Cover image URL (optional)</label>
@@ -448,7 +448,7 @@ function renderKDPResults(){
         <p>Not live yet on Amazon — skipped. Run the scan again once a format goes live.</p></div>
       </div>`;
     }
-    const link = `https://www.amazon.in/dp/${r.chosen.asin}`;
+    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
     if(r.existingIdx>-1){
       const cur = db.books[r.existingIdx].amazonUrl;
       return `<div class="bitem" style="grid-template-columns:1fr auto">
@@ -485,7 +485,7 @@ function applyKDPScan(){
   let added=0, updated=0;
   kdpScan.forEach(r=>{
     if(!r.chosen) return;
-    const link = `https://www.amazon.in/dp/${r.chosen.asin}`;
+    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
     if(r.existingIdx>-1){
       if(r.updateLink){
         db.books[r.existingIdx].amazonUrl = link;
