@@ -14,7 +14,7 @@
         "Mindset"
       ],
       "amazonUrl": "https://www.amazon.com/dp/B0H363BTBG",
-      "coverImage": "",
+      "coverImage": "covers/why-you-keep-holding-yourself-back.jpg",
       "published": "2026-04-20",
       "hue": 10
     },
@@ -28,7 +28,7 @@
         "Signs & Synchronicity"
       ],
       "amazonUrl": "https://www.amazon.com/dp/B0H2PSYFDY",
-      "coverImage": "",
+      "coverImage": "covers/the-universe-is-whispering-to-you.jpg",
       "published": "2026-04-10",
       "hue": 255
     },
@@ -42,7 +42,7 @@
         "Focus & Clarity"
       ],
       "amazonUrl": "https://www.amazon.in/dp/B0H2WV8SS7",
-      "coverImage": "",
+      "coverImage": "covers/the-unconditioned-mind.jpg",
       "published": "2026-03-28",
       "hue": 180
     },
@@ -84,7 +84,7 @@
         "Law of Attraction"
       ],
       "amazonUrl": "https://www.amazon.in/dp/B0H25SQD3P",
-      "coverImage": "",
+      "coverImage": "covers/the-divine-369-manifestation-method.jpg",
       "published": "2026-02-15",
       "hue": 280
     },
@@ -98,7 +98,7 @@
         "Honest Manifestation"
       ],
       "amazonUrl": "https://www.amazon.in/dp/B0H25M2Z3W",
-      "coverImage": "",
+      "coverImage": "covers/the-quiet-revolution.jpg",
       "published": "2026-02-01",
       "hue": 35
     },
@@ -112,7 +112,7 @@
         "90-Day Program"
       ],
       "amazonUrl": "https://www.amazon.in/dp/B0GZHY4H5M",
-      "coverImage": "",
+      "coverImage": "covers/lucky-girl-evidence-journal.jpg",
       "published": "2026-01-15",
       "hue": 340
     },
@@ -129,6 +129,147 @@
       "coverImage": "",
       "published": "2026-01-05",
       "hue": 195
+    },
+    {
+      "id": "zara-and-the-divine-signal",
+      "title": "Zara and the Divine Signal",
+      "subtitle": "When the Universe Chooses a Child to Change the World",
+      "description": "Vishal's most ambitious work to date: a complete human journey told through one person over twenty-three years — a girl, an old radio, and a signal that should not exist. Not instruction, but lived experience: how the signal works, what the noise costs, and what becomes possible when you choose, consistently and without apology, to transmit what you actually are.",
+      "tags": [
+        "Visionary Fiction",
+        "Narrative"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/zara-and-the-divine-signal.jpg",
+      "published": "2026-06-12",
+      "hue": 45,
+      "featured": true
+    },
+    {
+      "id": "your-life-is-trying-to-tell-you-something",
+      "title": "Your Life Is Trying To Tell You Something",
+      "subtitle": "How to Hear It in a World That Never Stops Shouting",
+      "description": "The patterns repeating in your life are not coincidences — they are messages. This book teaches you to decode the signals hiding inside your frustrations, cravings and quiet discontent, and turn them into a map for what to do next — even in a world that never stops shouting.",
+      "tags": [
+        "Self-Help",
+        "Clarity"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/your-life-is-trying-to-tell-you-something.jpg",
+      "published": "2026-06-08",
+      "hue": 38
+    },
+    {
+      "id": "the-signal",
+      "title": "The Signal",
+      "subtitle": "A 21-Day Protocol for Rewiring Your Attention and Tuning Into the Frequency of Everything You Want",
+      "description": "Cut through the noise. Tune into what matters. A focused 21-day protocol for rewiring your attention, reclaiming your mind, and locking onto the frequency of the life you actually want.",
+      "tags": [
+        "Self-Help",
+        "21-Day Protocol"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/the-signal.jpg",
+      "published": "2026-06-05",
+      "hue": 48
+    },
+    {
+      "id": "the-real-frequency-of-origins",
+      "title": "The Real Frequency of Origins",
+      "subtitle": "A Novel — When the Universe Starts Talking Back",
+      "description": "NO SIGNAL. RETRYING… In a city drowning in noise, one woman starts receiving answers to questions she never asked aloud. A novel about origins, signals, and what happens when the universe finally talks back.",
+      "tags": [
+        "Visionary Fiction",
+        "Novel"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/the-real-frequency-of-origins.jpg",
+      "published": "2026-06-01",
+      "hue": 220
+    },
+    {
+      "id": "the-real-architect-of-echoes",
+      "title": "The Real Architect of Echoes",
+      "subtitle": "The Story of Changing Your Frequency",
+      "description": "Reality is not random — it’s responding. A story about the echoes we send into the world, the ones that return, and the moment a man realizes he has been the architect of both all along.",
+      "tags": [
+        "Visionary Fiction",
+        "Narrative"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/the-real-architect-of-echoes.jpg",
+      "published": "2026-05-25",
+      "hue": 230
+    },
+    {
+      "id": "your-life-is-speaking",
+      "title": "Your Life Is Speaking — Are You Listening?",
+      "subtitle": "How to Hear the Signals, Break the Patterns, and Live with Clarity",
+      "description": "Your life is already speaking — through repetition, resistance, and the things you keep avoiding. A practical guide to hearing the signals, breaking the patterns, and finally living with clarity.",
+      "tags": [
+        "Self-Help",
+        "Awareness"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/your-life-is-speaking.jpg",
+      "published": "2026-05-18",
+      "hue": 30
+    },
+    {
+      "id": "the-great-alignment-principle",
+      "title": "The Great Alignment Principle",
+      "subtitle": "How to Stop Forcing Life and Start Aligning With the Natural Flow of Success, Peace, and Abundance",
+      "description": "Forcing creates friction; alignment creates flow. This book shows you how to stop white-knuckling your way through life and start moving with the natural current of success, peace, and abundance.",
+      "tags": [
+        "Self-Help",
+        "Alignment"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/the-great-alignment-principle.jpg",
+      "published": "2026-05-10",
+      "hue": 42
+    },
+    {
+      "id": "the-uncontaminated-mind",
+      "title": "The Uncontaminated Mind",
+      "subtitle": "Overcoming Digital Burnout, Reclaiming Focus, and Moving from Stress to Action",
+      "description": "Your attention is the most valuable asset you will ever own — and everything is trying to steal it. A practical path out of digital burnout: reclaim your focus, clear the noise, and move from stress to action.",
+      "tags": [
+        "Self-Help",
+        "Digital Wellness"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/the-uncontaminated-mind.jpg",
+      "published": "2026-05-03",
+      "hue": 200
+    },
+    {
+      "id": "unshackled",
+      "title": "Unshackled",
+      "subtitle": "12 Hidden Habits Keeping Modern Men Stagnant, Lonely, and Broke — and How to Break Free",
+      "description": "The habits that saved you then are silently destroying you now. Twelve hidden patterns keeping modern men stagnant, lonely, and broke — named, explained, and dismantled. This is not motivation. This is rewiring.",
+      "tags": [
+        "Self-Help",
+        "Men’s Growth"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/unshackled.jpg",
+      "published": "2026-04-25",
+      "hue": 25
+    },
+    {
+      "id": "activate-your-silent-mind",
+      "title": "Activate Your Silent Mind",
+      "subtitle": "Clearing the interference between you and the life the signal is offering",
+      "description": "Beneath the noise of thought, comparison and constant input, there is a silent mind — clear, steady, already tuned. This book is about activating it: quieting the interference so the signal you were born with can finally come through.",
+      "tags": [
+        "Self-Help",
+        "Inner Stillness"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "",
+      "published": "2026-04-18",
+      "hue": 265
     }
   ]
 }

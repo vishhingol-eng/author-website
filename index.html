@@ -359,6 +359,42 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .btn-buy svg{width:14px;height:14px}
 .buy-note{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.08em;text-transform:uppercase}
 
+
+/* ---------- featured spotlight ---------- */
+.spotlight{
+  position:relative;display:grid;grid-template-columns:300px 1fr;gap:clamp(28px,5vw,64px);
+  align-items:center;background:var(--glass);backdrop-filter:blur(18px);
+  border-radius:28px;padding:clamp(28px,4.5vw,56px);margin-bottom:clamp(48px,7vw,84px);
+  overflow:visible;
+}
+.spotlight::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+  background:linear-gradient(135deg,rgba(232,187,107,.85),rgba(125,230,255,.35) 40%,rgba(157,123,255,.7) 75%,rgba(232,187,107,.5));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  animation:spotglow 4s ease-in-out infinite;
+}
+@keyframes spotglow{0%,100%{opacity:.7}50%{opacity:1}}
+@media(max-width:760px){.spotlight{grid-template-columns:1fr;text-align:center}.spot-cover{margin:0 auto}.spot-info .book-tags,.spot-cta{justify-content:center}}
+.spot-cover{
+  width:min(300px,80vw);aspect-ratio:2/3;border-radius:8px 16px 16px 8px;overflow:hidden;position:relative;
+  box-shadow:0 0 60px rgba(232,187,107,.25),20px 26px 60px rgba(0,0,0,.6);
+  transform:rotate(-2deg);transition:transform .4s;
+}
+.spotlight:hover .spot-cover{transform:rotate(0deg) scale(1.02)}
+.spot-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.spot-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);
+  padding:8px 18px;border-radius:100px;margin-bottom:20px;
+  box-shadow:0 0 24px rgba(232,187,107,.5);
+}
+.spot-info h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.06;letter-spacing:-.01em}
+.spot-info .book-sub{font-size:clamp(16px,2vw,20px);margin-top:10px}
+.spot-info .book-desc{font-size:clamp(15px,1.8vw,16.5px);max-width:60ch}
+.spot-cta{display:flex;gap:16px;align-items:center;margin-top:26px;flex-wrap:wrap}
+
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:center}
 @media(max-width:840px){.about-grid{grid-template-columns:1fr}}
@@ -468,6 +504,7 @@ footer a:hover{text-decoration:underline}
       <span class="sec-eyebrow">// The Library</span>
       <h2>Every book is a door.<br><em>Pick yours.</em></h2>
     </div>
+    <div id="spotlightBox"></div>
     <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
   </section>
 
@@ -476,10 +513,11 @@ footer a:hover{text-decoration:underline}
       <div class="monogram reveal"><span>VH</span></div>
       <div class="about-text reveal">
         <span class="sec-eyebrow">// About the Author</span>
-        <h2>Hi, I'm <em>Vishal.</em></h2>
-        <p>I write <strong>self-help books and structured guided journals</strong> for readers across India and the world. My work sits at the meeting point of practical psychology and quiet daily ritual — less hype, more pages that actually get filled in.</p>
-        <p>Every journal I publish is built around one belief: <strong>change doesn't come from motivation, it comes from evidence.</strong> Write the proof down every day, and the mind has no choice but to follow.</p>
-        <p>All of my books are available worldwide on Amazon, in Kindle and paperback editions.</p>
+        <h2>The signal has always been <em>transmitting.</em></h2>
+        <p>Vishal Hingol writes at the intersection of <strong>human psychology, personal transformation,</strong> and the mechanics by which people build lives of genuine meaning and abundance.</p>
+        <p>His work is grounded in a single sustained conviction: the gap between where most people are and where they are capable of being is not a gap of effort, intelligence or opportunity. <strong>It is a gap of frequency</strong> — and frequency can be learned.</p>
+        <p><strong>Zara and the Divine Signal</strong> is his most ambitious work to date: a complete human journey, told through one person over twenty-three years, showing through lived experience how the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.</p>
+        <p>Every person alive is carrying a signal the world needs. The work is not to acquire a new one — it is to <strong>clear the interference from the one you were born with.</strong> This work is an invitation to receive it.</p>
         <p class="signature">— Vishal</p>
       </div>
     </div>
@@ -522,8 +560,31 @@ footer a:hover{text-decoration:underline}
     document.querySelectorAll('.amzn-link, #navAmzn').forEach(a=>a.href = data.author.amazonAuthorPage);
   }
 
-  const books = (data.books||[]).slice().sort((a,b)=> new Date(b.published) - new Date(a.published));
+  const all = (data.books||[]).slice().sort((a,b)=> new Date(b.published) - new Date(a.published));
+  const feat = all.find(b=>b.featured) || all[0];
+  const books = all.filter(b=>b!==feat);
   shelf.innerHTML = '';
+
+  // featured spotlight
+  if(feat){
+    const fCover = feat.coverImage
+      ? `<img src="${esc(feat.coverImage)}" alt="Cover of ${esc(feat.title)}">`
+      : `<div class="cover-gen" style="background:linear-gradient(170deg,hsl(${+feat.hue||35} 42% 26%),hsl(${((+feat.hue||35)+40)%360} 38% 14%))"><div class="cover-frame"></div><div class="cover-star">✦ ✦ ✦</div><div class="cover-title">${esc(feat.title)}</div><div class="cover-author">Vishal Hingol</div></div>`;
+    document.getElementById('spotlightBox').innerHTML = `
+      <div class="spotlight reveal">
+        <div class="spot-cover">${fCover}</div>
+        <div class="spot-info">
+          <span class="spot-eyebrow">✦ Featured Release</span>
+          <h3>${esc(feat.title)}</h3>
+          <p class="book-sub">${esc(feat.subtitle)}</p>
+          <p class="book-desc">${esc(feat.description)}</p>
+          <div class="spot-cta">
+            <a class="btn btn-gold" href="${esc(feat.amazonUrl)}" target="_blank" rel="noopener">Get the Book</a>
+            <span class="buy-note">Kindle · Paperback</span>
+          </div>
+        </div>
+      </div>`;
+  }
 
   books.forEach((b,i)=>{
     const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
