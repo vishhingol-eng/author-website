@@ -1,0 +1,52 @@
+{
+  "author": {
+    "name": "Vishal Hingol",
+    "amazonAuthorPage": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37"
+  },
+  "books": [
+    {
+      "id": "your-life-is-trying",
+      "title": "Your Life Is Trying To Tell You Something",
+      "subtitle": "How to read the signals you keep ignoring",
+      "description": "The patterns repeating in your life are not coincidences — they are messages. This book teaches you to decode the signals hiding inside your frustrations, your cravings and your quiet discontent, and turn them into a map for what to do next.",
+      "tags": ["Self-Help", "Personal Growth"],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "",
+      "published": "2026-06-01",
+      "hue": 35
+    },
+    {
+      "id": "lucky-girl-evidence-journal",
+      "title": "Lucky Girl Evidence Journal",
+      "subtitle": "A 90-day guided program to prove your luck to yourself",
+      "description": "Luck is a lens, and this journal trains it. For 90 days you collect daily evidence that things work out for you — small wins, near-misses, perfect timing — until your brain stops arguing and starts expecting good things.",
+      "tags": ["Guided Journal", "90-Day Program"],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "",
+      "published": "2026-04-15",
+      "hue": 340
+    },
+    {
+      "id": "369-manifestation-journal",
+      "title": "369 Manifestation Journal",
+      "subtitle": "90 days of the writing method that rewires belief",
+      "description": "Write it 3 times in the morning, 6 times in the afternoon, 9 times at night. A complete 90-day guided journal built around the 369 method — with daily prompts, alignment checks and weekly reviews that keep you consistent until it works.",
+      "tags": ["Guided Journal", "Law of Attraction"],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "",
+      "published": "2026-03-02",
+      "hue": 270
+    },
+    {
+      "id": "the-quiet-revolution",
+      "title": "The Quiet Revolution",
+      "subtitle": "Changing your life without announcing it",
+      "description": "The loudest transformations are the ones nobody sees coming. A book about disappearing into your work, upgrading in silence, and letting results make the announcement for you.",
+      "tags": ["Self-Help", "Discipline"],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "",
+      "published": "2026-01-20",
+      "hue": 200
+    }
+  ]
+}
