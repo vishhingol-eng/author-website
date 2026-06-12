@@ -36,7 +36,7 @@ body::before{
   mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
   -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
 }
-header,.wrap,#toast{position:relative;z-index:1}
+header,.wrap,#toast,.overlay{position:relative;z-index:1}
 
 header{
   display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
@@ -62,128 +62,651 @@ header{
 }
 .card h2{font-family:var(--display);font-weight:500;font-size:24px;margin-bottom:6px}
 .card .hint{color:var(--mist);font-size:14px;margin-bottom:22px}
+.card .hint a{color:var(--gold)}
 
 label{display:block;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:16px 0 7px}
-input[type=text],input[type=date],input[type=url],textarea{
+input[type=text],input[type=password],input[type=date],input[type=url],textarea{
   width:100%;background:rgba(7,10,24,.7);border:1px solid var(--line);border-radius:12px;
   color:var(--paper);font-family:var(--body);font-size:15px;padding:13px 15px;outline:none;
   transition:border-color .2s,box-shadow .2s;
 }
 input:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(125,230,255,.14),0 0 18px rgba(125,230,255,.12)}
-textarea{min-height:90px;resize:vertical}
+textarea{min-height:110px;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
 @media(max-width:640px){.row{grid-template-columns:1fr}}
 
 .btn{
   display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;
   font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  padding:13px 24px;border-radius:100px;transition:transform .2s,box-shadow .2s;
+  padding:13px 24px;border-radius:100px;transition:transform .2s,box-shadow .2s,opacity .2s;
 }
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-gold{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
-.btn-gold:hover{transform:translateY(-1px);box-shadow:0 0 28px rgba(232,187,107,.4)}
+.btn-gold:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 28px rgba(232,187,107,.5)}
 .btn-ghost{background:rgba(125,230,255,.05);color:var(--cyan);border:1px solid rgba(125,230,255,.3)}
-.btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(125,230,255,.2)}
+.btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(125,230,255,.25)}
 .btn-danger{background:transparent;color:var(--red);border:1px solid rgba(232,138,138,.35)}
-.btn-danger:hover{background:rgba(232,138,138,.1);box-shadow:0 0 18px rgba(232,138,138,.2)}
-.btn-sm{padding:8px 14px;font-size:10px}
+.btn-danger:hover{background:rgba(232,138,138,.12);box-shadow:0 0 18px rgba(232,138,138,.2)}
+.btn-sm{padding:9px 16px;font-size:10.5px}
 
 .connected-pill{
   display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:1px solid rgba(126,217,167,.35);
   background:rgba(126,217,167,.06);padding:7px 14px;border-radius:100px;
 }
-.connected-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.connected-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:blink 2.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
 
+/* book list */
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:34px 0 18px}
 .toolbar h2{font-family:var(--display);font-weight:500;font-size:28px}
+.toolbar h2 span{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .blist{display:flex;flex-direction:column;gap:14px}
 .bitem{
-  position:relative;display:grid;grid-template-columns:50px 1fr auto;gap:18px;align-items:center;
-  background:var(--glass);backdrop-filter:blur(14px);border-radius:16px;padding:16px 18px;
+  position:relative;display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+  background:var(--glass);backdrop-filter:blur(14px);
+  border-radius:16px;padding:16px 18px;transition:box-shadow .25s;
 }
-@media(max-width:560px){.bitem{grid-template-columns:1fr;text-align:center}.bactions{justify-content:center}}
-.bthumb{width:50px;aspect-ratio:2/3;border-radius:6px;overflow:hidden;position:relative;box-shadow:0 6px 14px rgba(0,0,0,.35)}
-.bthumb img{width:100%;height:100%;object-fit:cover}
-.bthumb .gen{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:9px;color:#fff}
-.bmeta h3{font-family:var(--display);font-size:18px;font-weight:500}
-.bmeta p{color:var(--mist);font-size:13px}
+.bitem::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,rgba(232,187,107,.35),rgba(125,230,255,.12) 45%,rgba(157,123,255,.3));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;
+}
+.bitem:hover{box-shadow:0 0 30px rgba(125,230,255,.08),0 14px 40px rgba(0,0,0,.4)}
+@media(max-width:560px){.bitem{grid-template-columns:50px 1fr}.bitem .bactions{grid-column:1/-1;justify-content:flex-end}}
+.bthumb{
+  width:64px;aspect-ratio:2/3;border-radius:4px 7px 7px 4px;overflow:hidden;position:relative;
+  box-shadow:5px 7px 18px rgba(0,0,0,.45);
+}
+.bthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.bthumb .gen{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--display);font-size:8.5px;line-height:1.3;color:#FBF7EE;padding:5px;
+}
+.bmeta h3{font-family:var(--display);font-weight:500;font-size:18px;line-height:1.2}
+.bmeta p{color:var(--mist);font-size:13px;margin-top:3px}
+.bmeta .new{
+  font-family:var(--tech);font-weight:700;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;
+  background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;
+}
 .bactions{display:flex;gap:8px}
 
-#jsonOutput{font-family:var(--tech);background:#040610;color:var(--green);border:1px solid var(--line);padding:18px;border-radius:12px;width:100%;min-height:220px;font-size:13px}
+/* modal */
+.overlay{
+  position:fixed;inset:0;background:rgba(4,6,16,.8);backdrop-filter:blur(10px);
+  display:none;align-items:flex-start;justify-content:center;z-index:50;
+  padding:5vh 16px;overflow-y:auto;
+}
+.overlay.open{display:flex}
+.modal{
+  position:relative;width:100%;max-width:880px;background:linear-gradient(165deg,rgba(23,32,82,.85),rgba(11,16,38,.92));
+  backdrop-filter:blur(22px);border-radius:24px;padding:clamp(22px,3.4vw,38px);
+}
+.modal::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.2) 40%,rgba(157,123,255,.5));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.modal-grid{display:grid;grid-template-columns:1fr 220px;gap:30px}
+@media(max-width:760px){.modal-grid{grid-template-columns:1fr}.pv-col{order:-1;display:flex;justify-content:center}}
+.modal h2{font-family:var(--display);font-weight:500;font-size:26px;margin-bottom:4px}
+.modal .hint{color:var(--mist);font-size:13.5px}
+.modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:28px;flex-wrap:wrap}
+
+/* cover preview */
+.pv{
+  width:200px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;
+  box-shadow:12px 16px 36px rgba(0,0,0,.55),0 0 24px rgba(125,230,255,.08);margin-top:16px;
+}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.pv .gen{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;
+  justify-content:space-between;text-align:center;padding:16px 12px;
+}
+.pv .gen::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.12) 60%,transparent)}
+.pv .frame{position:absolute;inset:7px;border:1px solid rgba(244,238,226,.4);border-radius:3px;pointer-events:none}
+.pv .stars{font-size:13px;color:rgba(244,238,226,.85);letter-spacing:5px;margin-top:6px}
+.pv .t{font-family:var(--display);font-weight:500;font-size:14.5px;line-height:1.25;color:#FBF7EE}
+.pv .a{font-size:7.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(251,247,238,.8);margin-bottom:5px}
+input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
+
+/* toast */
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);
+  background:rgba(23,32,82,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:100px;
+  padding:13px 26px;font-size:14px;font-weight:600;z-index:99;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:90vw;text-align:center;
+}
+#toast.show{transform:translate(-50%,0)}
+#toast.ok{border-color:rgba(126,217,167,.5);color:var(--green);box-shadow:0 0 26px rgba(126,217,167,.2)}
+#toast.err{border-color:rgba(232,138,138,.5);color:var(--red);box-shadow:0 0 26px rgba(232,138,138,.2)}
+
+.hidden{display:none!important}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--night);border-top-color:transparent;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-2px}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 
-<div class="aurora"><i></i><i></i><i></i></div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <header>
-  <div class="brand">Dashboard <em>— Vishal Hingol</em><small>Database Control</small></div>
+  <div class="brand">Vishal <em>Hingol</em><small>Author Dashboard</small></div>
   <div class="head-actions">
-    <div class="connected-pill">Local Engine Connected</div>
+    <span class="connected-pill hidden" id="connPill">Connected</span>
+    <a class="btn btn-ghost btn-sm hidden" id="viewSite" href="index.html" target="_blank">View Live Site ↗</a>
+    <button class="btn btn-ghost btn-sm hidden" id="logoutBtn">Disconnect</button>
   </div>
 </header>
 
 <div class="wrap">
-  <!-- Author Profile Form -->
-  <div class="card">
-    <h2>Author Settings</h2>
-    <p class="hint">Adjust the baseline author values stored inside your data directory file.</p>
+
+  <!-- ============ SETUP / LOGIN ============ -->
+  <div class="card" id="setupCard">
+    <h2>Connect your website</h2>
+    <p class="hint">One-time setup. Your token is saved <strong>only in this browser</strong> — it never touches any other server. Create a fine-grained token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> → select <strong>only your website repository</strong> → Repository permissions → <strong>Contents: Read and write</strong>.</p>
     <div class="row">
-      <div>
-        <label>Author Name</label>
-        <input type="text" id="authName" value="Vishal Hingol">
-      </div>
-      <div>
-        <label>Amazon Author Page</label>
-        <input type="url" id="authAmazon" value="https://amazon.in">
-      </div>
+      <div><label>GitHub username</label><input type="text" id="cfgOwner" placeholder="e.g. vishhingol-eng"></div>
+      <div><label>Repository name</label><input type="text" id="cfgRepo" placeholder="e.g. author-website"></div>
+    </div>
+    <div class="row">
+      <div><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
+      <div><label>Personal access token</label><input type="password" id="cfgToken" placeholder="github_pat_…"></div>
+    </div>
+    <div style="margin-top:24px">
+      <button class="btn btn-gold" id="connectBtn">Connect Dashboard</button>
     </div>
   </div>
 
-  <!-- Book Editing / Entry Form -->
-  <div class="card">
-    <h2 id="formTitle">Add a New Book</h2>
-    <p class="hint">Fill out the variables below. Click "Save Book to Array" to update the current environment cache matrix.</p>
-    <input type="hidden" id="editIdx" value="">
-    
-    <div class="row">
+  <!-- ============ AUTHOR SETTINGS ============ -->
+  <div class="card hidden" id="authorCard">
+    <h2>Author settings</h2>
+    <p class="hint">This link is used by every "Follow on Amazon" button across the site.</p>
+    <label>Amazon author page URL</label>
+    <input type="url" id="authorUrl">
+  </div>
+
+  <!-- ============ IMPORT FROM KDP ============ -->
+  <div class="card hidden" id="importCard">
+    <h2>Import from KDP</h2>
+    <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank" rel="noopener">KDP Bookshelf</a>, select-all and copy the page, then paste it below and click Scan. New live titles get added to your library below (with empty subtitle/description/tags for you to fill in) — review, then click Publish as usual.</p>
+    <label>Paste KDP bookshelf text</label>
+    <textarea id="kdpPaste" placeholder="Paste your KDP bookshelf text here…" style="min-height:140px"></textarea>
+    <div style="margin-top:14px">
+      <button class="btn btn-gold btn-sm" id="kdpScanBtn">Scan for Books</button>
+    </div>
+    <div id="kdpResults" style="margin-top:20px"></div>
+  </div>
+
+  <!-- ============ BOOK LIST ============ -->
+  <div class="hidden" id="libraryWrap">
+    <div class="toolbar">
+      <h2>Your <span>Library</span> <span id="bookCount"></span></h2>
+      <button class="btn btn-gold" id="addBtn">+ Add New Book</button>
+    </div>
+    <div class="blist" id="blist"></div>
+    <div style="margin-top:30px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button class="btn btn-gold" id="publishBtn">Publish Changes to Live Site</button>
+      <span class="hint" id="dirtyHint" style="color:var(--mist);font-size:13.5px"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADD / EDIT MODAL ============ -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2 id="modalTitle">Add a book</h2>
+    <p class="hint">Fill the details exactly as you want them shown on the website.</p>
+    <div class="modal-grid">
       <div>
-        <label>Unique Book ID (Kebab-case slug format)</label>
-        <input type="text" id="bookId" placeholder="e.g. your-mind-is-the-blueprint">
+        <label>Title *</label>
+        <input type="text" id="fTitle" placeholder="e.g. 369 Manifestation Journal">
+        <label>Subtitle / tagline</label>
+        <input type="text" id="fSubtitle" placeholder="One catchy line under the title">
+        <label>Description</label>
+        <textarea id="fDesc" placeholder="2–4 sentences that sell the book"></textarea>
+        <label>Tags (comma separated)</label>
+        <input type="text" id="fTags" placeholder="Guided Journal, 90-Day Program">
+        <div class="row">
+          <div><label>Amazon buy link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
+          <div><label>Publish date</label><input type="date" id="fDate"></div>
+        </div>
+        <label>Cover image URL (optional)</label>
+        <input type="url" id="fCover" placeholder="Right-click cover on Amazon → Copy image address">
       </div>
-      <div>
-        <label>Book Title</label>
-        <input type="text" id="bookTitle" placeholder="e.g. Your Mind Is the Blueprint">
+      <div class="pv-col">
+        <div>
+          <label>Cover preview</label>
+          <div class="pv" id="pv"></div>
+          <label>Cover colour</label>
+          <input type="range" id="fHue" min="0" max="360" value="35">
+        </div>
       </div>
     </div>
-
-    <label>Subtitle / Hook Text</label>
-    <input type="text" id="bookSubtitle" placeholder="Short hook text displayed immediately below the book title">
-
-    <label>Description Paragraph</label>
-    <textarea id="bookDesc" placeholder="Full descriptive promotional content paragraph explaining summary milestones..."></textarea>
-
-    <div class="row">
-      <div>
-        <label>Tags (Comma separated values)</label>
-        <input type="text" id="bookTags" placeholder="Self-Help, Mindset, Focus">
-      </div>
-      <div>
-        <label>Amazon Retail Link URL</label>
-        <input type="url" id="bookUrl" placeholder="https://amazon.com...">
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
+      <button class="btn btn-gold" id="saveBookBtn">Save Book</button>
     </div>
+  </div>
+</div>
 
-    <div class="row">
-      <div>
-        <label>Cover Image Path (Optional)</label>
-        <input type="text" id="bookCover" placeholder="assets/covers/book-slug.png">
-      </div>
-      <div>
-        <label>Publication Date</label>
-        <input type="date" id="bookPublished">
-      </div>
-    </div>
+<div id="toast"></div>
 
-    <div class="row" style="grid-template-columns:1fr">
-      <div>
+<script>
+/* ====================================================================
+   ADMIN ENGINE — GitHub is the backend.
+   Reads/writes books.json in your repo via the GitHub Contents API.
+==================================================================== */
+const $ = id => document.getElementById(id);
+const LSKEY = 'vh_admin_cfg';
+const FILE = 'books.json';
+
+let cfg = null;        // {owner, repo, branch, token}
+let db = null;         // parsed books.json
+let sha = null;        // current file sha (needed to commit)
+let dirty = false;
+let editingIndex = -1; // -1 = adding new
+
+/* ---------- helpers ---------- */
+function toast(msg, type='ok'){
+  const t = $('toast');
+  t.textContent = msg; t.className = 'show ' + type;
+  clearTimeout(t._h); t._h = setTimeout(()=>t.className='',3500);
+}
+const b64encode = s => btoa(unescape(encodeURIComponent(s)));
+const b64decode = s => decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
+const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60) || ('book-'+Date.now());
+
+function api(path, opts={}){
+  return fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/${path}`, {
+    ...opts,
+    headers:{
+      'Authorization':'Bearer '+cfg.token,
+      'Accept':'application/vnd.github+json',
+      'X-GitHub-Api-Version':'2022-11-28',
+      ...(opts.headers||{})
+    }
+  });
+}
+
+/* ---------- connect / load ---------- */
+async function connect(saveCfg){
+  const btn = $('connectBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Connecting…';
+  try{
+    const res = await api(`contents/${FILE}?ref=${encodeURIComponent(cfg.branch)}`);
+    if(res.status === 401) throw new Error('Token rejected — check it has Contents: Read & write on this repo.');
+    if(res.status === 404) throw new Error('books.json not found — check username, repo name and branch.');
+    if(!res.ok) throw new Error('GitHub error '+res.status);
+    const j = await res.json();
+    sha = j.sha;
+    db = JSON.parse(b64decode(j.content));
+    if(!Array.isArray(db.books)) db.books = [];
+    if(saveCfg) localStorage.setItem(LSKEY, JSON.stringify(cfg));
+    enterDashboard();
+    toast('Connected — library loaded');
+  }catch(e){
+    toast(e.message,'err');
+  }finally{
+    btn.disabled = false; btn.textContent = 'Connect Dashboard';
+  }
+}
+
+function enterDashboard(){
+  $('setupCard').classList.add('hidden');
+  $('authorCard').classList.remove('hidden');
+  $('importCard').classList.remove('hidden');
+  $('libraryWrap').classList.remove('hidden');
+  $('connPill').classList.remove('hidden');
+  $('viewSite').classList.remove('hidden');
+  $('logoutBtn').classList.remove('hidden');
+  $('viewSite').href = `https://${cfg.owner}.github.io/${cfg.repo}/`;
+  $('authorUrl').value = db.author?.amazonAuthorPage || '';
+  renderList();
+}
+
+/* ---------- list ---------- */
+function renderList(){
+  const list = $('blist');
+  const books = db.books;
+  $('bookCount').textContent = `(${books.length})`;
+  if(!books.length){
+    list.innerHTML = '<div class="card" style="text-align:center;color:var(--mist)">No books yet — add your first one.</div>';
+    return;
+  }
+  const now = Date.now();
+  list.innerHTML = books.map((b,i)=>{
+    const isNew = (now - new Date(b.published).getTime()) < 45*864e5;
+    const thumb = b.coverImage
+      ? `<img src="${esc(b.coverImage)}" alt="">`
+      : `<div class="gen" style="background:linear-gradient(170deg,hsl(${+b.hue||35} 42% 26%),hsl(${((+b.hue||35)+40)%360} 38% 14%))">${esc(b.title)}</div>`;
+    return `
+    <div class="bitem">
+      <div class="bthumb">${thumb}</div>
+      <div class="bmeta">
+        <h3>${esc(b.title)}${isNew?'<span class="new">New</span>':''}</h3>
+        <p>${esc(b.subtitle||'')} · published ${esc(b.published||'—')}</p>
+      </div>
+      <div class="bactions">
+        <button class="btn btn-ghost btn-sm" onclick="openEdit(${i})">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="removeBook(${i})">Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function markDirty(){
+  dirty = true;
+  $('dirtyHint').textContent = 'You have unsaved changes — click Publish to update the live site.';
+}
+
+/* ---------- KDP import ---------- */
+function parseKDPPaste(text){
+  const lines = text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  const byIdxs = [];
+  for(let j=0;j<lines.length;j++){
+    if(/^by\s+\S/.test(lines[j]) && lines[j].length < 60) byIdxs.push(j);
+  }
+  const items = [];
+  for(let k=0;k<byIdxs.length;k++){
+    const byIdx = byIdxs[k];
+    if(byIdx===0) continue;
+    const title = lines[byIdx-1];
+    const blockEnd = (k+1<byIdxs.length) ? byIdxs[k+1]-1 : lines.length;
+    const block = lines.slice(byIdx+1, blockEnd);
+    const formats = {};
+    let current = null;
+    block.forEach(line=>{
+      if(/^Kindle eBook$/i.test(line) || /^Paperback$/i.test(line) || /^Hardcover$/i.test(line)){
+        current = line;
+        formats[current] = formats[current] || {status:null, asin:null, submitted:null};
+        return;
+      }
+      if(!current) return;
+      if(/^Live$/i.test(line)) formats[current].status = 'Live';
+      else if(/^Publishing$/i.test(line)) formats[current].status = formats[current].status || 'Publishing';
+      else if(/^\+ Create/i.test(line)) formats[current].status = formats[current].status || 'NotCreated';
+      const sub = line.match(/^Submitted on\s+(.+)$/i);
+      if(sub) formats[current].submitted = sub[1];
+      const asin = line.match(/^ASIN:\s*([A-Z0-9]{6,})/i);
+      if(asin) formats[current].asin = asin[1];
+    });
+    items.push({title, formats});
+  }
+  return items;
+}
+
+function kdpChoose(formats){
+  for(const f of ['Paperback','Kindle eBook','Hardcover']){
+    const fmt = formats[f];
+    if(fmt && fmt.status==='Live' && fmt.asin) return {format:f, ...fmt};
+  }
+  return null;
+}
+
+function kdpDateToISO(str){
+  if(!str) return new Date().toISOString().slice(0,10);
+  const d = new Date(str);
+  if(isNaN(d.getTime())) return new Date().toISOString().slice(0,10);
+  return d.toISOString().slice(0,10);
+}
+
+const kdpMainTitle = t => t.split(':')[0].trim().toLowerCase();
+
+let kdpScan = [];
+
+$('kdpScanBtn').onclick = ()=>{
+  const text = $('kdpPaste').value;
+  if(!text.trim()){ toast('Paste your KDP bookshelf text first','err'); return; }
+  const items = parseKDPPaste(text);
+  if(!items.length){ toast('No books detected — check the pasted text','err'); return; }
+
+  kdpScan = items.map(item=>{
+    const chosen = kdpChoose(item.formats);
+    const existingIdx = db.books.findIndex(b=> kdpMainTitle(b.title) === kdpMainTitle(item.title));
+    return {
+      title: item.title,
+      chosen,
+      existingIdx,
+      include: existingIdx===-1 && !!chosen,
+      updateLink: false
+    };
+  });
+  renderKDPResults();
+};
+
+function renderKDPResults(){
+  const box = $('kdpResults');
+  if(!kdpScan.length){ box.innerHTML=''; return; }
+
+  const checkboxStyle = 'display:flex;align-items:center;gap:6px;font-size:12px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--paper);white-space:nowrap';
+
+  box.innerHTML = kdpScan.map((r,i)=>{
+    if(!r.chosen){
+      return `<div class="bitem" style="opacity:.55;grid-template-columns:1fr">
+        <div class="bmeta"><h3>${esc(r.title)}</h3>
+        <p>Not live yet on Amazon — skipped. Run the scan again once a format goes live.</p></div>
+      </div>`;
+    }
+    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1){
+      const cur = db.books[r.existingIdx].amazonUrl;
+      return `<div class="bitem" style="grid-template-columns:1fr auto">
+        <div class="bmeta"><h3>${esc(r.title)}</h3>
+        <p>Already in your library as "${esc(db.books[r.existingIdx].title)}" · ${esc(r.chosen.format)} link found: <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p>
+        <p style="font-size:11px">Current link: ${esc(cur)}</p></div>
+        <div class="bactions">
+          <label style="${checkboxStyle}">
+            <input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked">
+            Update link
+          </label>
+        </div>
+      </div>`;
+    }
+    return `<div class="bitem" style="grid-template-columns:1fr auto">
+      <div class="bmeta"><h3>${esc(r.title)}</h3>
+      <p>New · ${esc(r.chosen.format)} · published ${esc(kdpDateToISO(r.chosen.submitted))} · <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p></div>
+      <div class="bactions">
+        <label style="${checkboxStyle}">
+          <input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked">
+          Add to library
+        </label>
+      </div>
+    </div>`;
+  }).join('') + `
+    <div style="margin-top:18px">
+      <button class="btn btn-gold btn-sm" id="kdpApplyBtn">Apply to Library</button>
+    </div>`;
+
+  $('kdpApplyBtn').onclick = applyKDPScan;
+}
+
+function applyKDPScan(){
+  let added=0, updated=0;
+  kdpScan.forEach(r=>{
+    if(!r.chosen) return;
+    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1){
+      if(r.updateLink){
+        db.books[r.existingIdx].amazonUrl = link;
+        updated++;
+      }
+    } else if(r.include){
+      const hasSubtitle = r.title.includes(':');
+      db.books.unshift({
+        id: slug(r.title.split(':')[0]),
+        title: r.title.split(':')[0].trim(),
+        subtitle: hasSubtitle ? r.title.split(':').slice(1).join(':').trim() : '',
+        description: '',
+        tags: [],
+        amazonUrl: link,
+        coverImage: '',
+        published: kdpDateToISO(r.chosen.submitted),
+        hue: Math.floor(Math.random()*360)
+      });
+      added++;
+    }
+  });
+  if(added||updated){
+    renderList(); markDirty();
+    toast(`Added ${added} new book(s)${updated?`, updated ${updated} link(s)`:''} — fill in details, then Publish`);
+    kdpScan = []; $('kdpResults').innerHTML=''; $('kdpPaste').value='';
+  } else {
+    toast('Nothing selected to apply','err');
+  }
+}
+
+/* ---------- add / edit modal ---------- */
+function openModal(){ $('overlay').classList.add('open'); }
+function closeModal(){ $('overlay').classList.remove('open'); }
+
+window.openEdit = function(i){
+  editingIndex = i;
+  const b = db.books[i];
+  $('modalTitle').textContent = 'Edit book';
+  $('fTitle').value = b.title||'';
+  $('fSubtitle').value = b.subtitle||'';
+  $('fDesc').value = b.description||'';
+  $('fTags').value = (b.tags||[]).join(', ');
+  $('fUrl').value = b.amazonUrl||'';
+  $('fDate').value = b.published||'';
+  $('fCover').value = b.coverImage||'';
+  $('fHue').value = b.hue ?? 35;
+  updatePreview(); openModal();
+};
+
+window.removeBook = function(i){
+  const b = db.books[i];
+  if(!confirm(`Delete "${b.title}" from the website?\n\n(It will only disappear from the live site after you click Publish.)`)) return;
+  db.books.splice(i,1);
+  renderList(); markDirty();
+};
+
+$('addBtn').onclick = ()=>{
+  editingIndex = -1;
+  $('modalTitle').textContent = 'Add a book';
+  ['fTitle','fSubtitle','fDesc','fTags','fUrl','fCover'].forEach(id=>$(id).value='');
+  $('fDate').value = new Date().toISOString().slice(0,10);
+  $('fHue').value = Math.floor(Math.random()*360);
+  updatePreview(); openModal();
+};
+$('cancelBtn').onclick = closeModal;
+$('overlay').addEventListener('click', e=>{ if(e.target===$('overlay')) closeModal(); });
+
+$('saveBookBtn').onclick = ()=>{
+  const title = $('fTitle').value.trim();
+  const url = $('fUrl').value.trim();
+  if(!title){ toast('Title is required','err'); return; }
+  if(!url){ toast('Amazon buy link is required','err'); return; }
+  const book = {
+    id: editingIndex>=0 ? db.books[editingIndex].id : slug(title),
+    title,
+    subtitle: $('fSubtitle').value.trim(),
+    description: $('fDesc').value.trim(),
+    tags: $('fTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    amazonUrl: url,
+    coverImage: $('fCover').value.trim(),
+    published: $('fDate').value || new Date().toISOString().slice(0,10),
+    hue: +$('fHue').value
+  };
+  if(editingIndex>=0) db.books[editingIndex] = book;
+  else db.books.unshift(book);
+  closeModal(); renderList(); markDirty();
+  toast(editingIndex>=0 ? 'Book updated — now click Publish' : 'Book added — now click Publish');
+};
+
+/* ---------- live cover preview ---------- */
+function updatePreview(){
+  const pv = $('pv');
+  const cover = $('fCover').value.trim();
+  if(cover){
+    pv.innerHTML = `<img src="${esc(cover)}" alt="" onerror="this.parentNode.innerHTML='<div class=gen style=padding:12px;color:#E88A8A;font-size:11px;display:flex;align-items:center;justify-content:center;height:100%>Image failed to load — check the URL</div>'">`;
+    return;
+  }
+  const h = +$('fHue').value;
+  pv.innerHTML = `
+    <div class="gen" style="background:
+        radial-gradient(circle at 50% 0%, hsl(${h} 48% 38% / .9), transparent 70%),
+        linear-gradient(170deg, hsl(${h} 42% 26%), hsl(${(h+40)%360} 38% 14%))">
+      <div class="frame"></div>
+      <div class="stars">✦ ✦ ✦</div>
+      <div class="t">${esc($('fTitle').value || 'Book Title')}</div>
+      <div class="a">Vishal Hingol</div>
+    </div>`;
+}
+['fTitle','fCover'].forEach(id=>$(id).addEventListener('input',updatePreview));
+$('fHue').addEventListener('input',updatePreview);
+
+/* ---------- publish (commit to GitHub) ---------- */
+$('publishBtn').onclick = async ()=>{
+  const btn = $('publishBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Publishing…';
+  try{
+    db.author = db.author || {};
+    db.author.name = db.author.name || 'Vishal Hingol';
+    db.author.amazonAuthorPage = $('authorUrl').value.trim() || db.author.amazonAuthorPage;
+
+    const body = {
+      message: `Update library — ${db.books.length} book(s) · via dashboard`,
+      content: b64encode(JSON.stringify(db, null, 2)),
+      branch: cfg.branch,
+      sha
+    };
+    const res = await api(`contents/${FILE}`, {method:'PUT', body: JSON.stringify(body)});
+    if(res.status === 409){ // sha conflict — refetch and ask to retry
+      const fres = await api(`contents/${FILE}?ref=${encodeURIComponent(cfg.branch)}`);
+      const fj = await fres.json(); sha = fj.sha;
+      throw new Error('The file changed elsewhere — sync refreshed, click Publish again.');
+    }
+    if(!res.ok) throw new Error('GitHub error '+res.status);
+    const j = await res.json();
+    sha = j.content.sha;
+    dirty = false; $('dirtyHint').textContent = '';
+    toast('Published! Live site updates in ~30–60 seconds.');
+  }catch(e){
+    toast(e.message,'err');
+  }finally{
+    btn.disabled = false; btn.textContent = 'Publish Changes to Live Site';
+  }
+};
+
+$('authorUrl').addEventListener('input', markDirty);
+
+/* ---------- session ---------- */
+$('connectBtn').onclick = ()=>{
+  cfg = {
+    owner: $('cfgOwner').value.trim(),
+    repo: $('cfgRepo').value.trim(),
+    branch: $('cfgBranch').value.trim() || 'main',
+    token: $('cfgToken').value.trim()
+  };
+  if(!cfg.owner || !cfg.repo || !cfg.token){ toast('Fill in username, repo and token','err'); return; }
+  connect(true);
+};
+
+$('logoutBtn').onclick = ()=>{
+  if(dirty && !confirm('You have unpublished changes. Disconnect anyway?')) return;
+  localStorage.removeItem(LSKEY);
+  location.reload();
+};
+
+window.addEventListener('beforeunload', e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
+
+// auto-reconnect if saved
+(function(){
+  const saved = localStorage.getItem(LSKEY);
+  if(saved){
+    cfg = JSON.parse(saved);
+    $('cfgOwner').value = cfg.owner; $('cfgRepo').value = cfg.repo;
+    $('cfgBranch').value = cfg.branch; $('cfgToken').value = cfg.token;
+    connect(false);
+  }
+})();
+</script>
+</body>
+</html>
