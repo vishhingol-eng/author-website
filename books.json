@@ -1,0 +1,134 @@
+{
+  "author": {
+    "name": "Vishal Hingol",
+    "amazonAuthorPage": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37"
+  },
+  "books": [
+    {
+      "id": "why-you-keep-holding-yourself-back",
+      "title": "Why You Keep Holding Yourself Back",
+      "subtitle": "Break self-sabotage, rewire your mind, and finally move forward",
+      "description": "You know what to do — yet you keep ending up in the same place. This isn't laziness; it's subconscious patterns, old conditioning and comfort-zone loops quietly steering your decisions. A practical, science-backed guide to understanding the real roots of self-sabotage and breaking the pattern for good.",
+      "tags": [
+        "Self-Help",
+        "Mindset"
+      ],
+      "amazonUrl": "https://www.amazon.com/dp/B0H363BTBG",
+      "coverImage": "",
+      "published": "2026-04-20",
+      "hue": 10
+    },
+    {
+      "id": "the-universe-is-whispering-to-you",
+      "title": "The Universe is Whispering to You",
+      "subtitle": "Recognize signs, decode synchronicities, and listen to messages from the other side",
+      "description": "For everyone who has experienced something they can't explain — and can't tell anyone about. A guide to noticing the signs and synchronicities woven through everyday life, and learning to trust what they're telling you.",
+      "tags": [
+        "Spirituality",
+        "Signs & Synchronicity"
+      ],
+      "amazonUrl": "https://www.amazon.com/dp/B0H2PSYFDY",
+      "coverImage": "",
+      "published": "2026-04-10",
+      "hue": 255
+    },
+    {
+      "id": "the-unconditioned-mind",
+      "title": "The Unconditioned Mind",
+      "subtitle": "Dissolve modern traps, reclaim your focus, and awaken your true potential",
+      "description": "Your attention is being farmed, your habits engineered, your thinking conditioned. This book shows you how to step out of the modern traps — distraction, comparison, autopilot living — and recover a clear, focused, self-directed mind.",
+      "tags": [
+        "Self-Help",
+        "Focus & Clarity"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0H2WV8SS7",
+      "coverImage": "",
+      "published": "2026-03-28",
+      "hue": 180
+    },
+    {
+      "id": "run-your-business-on-ai-playbook",
+      "title": "The Run-Your-Business-On-AI Playbook",
+      "subtitle": "How small business owners use ChatGPT, Claude, and Canva to reclaim 20 hours a week",
+      "description": "No theory, no future predictions — every page answers one question: how do I get AI to do this specific business task for me, right now, today? A hands-on playbook for owners who want their time back.",
+      "tags": [
+        "Business",
+        "AI Tools"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0H2HSTBK3",
+      "coverImage": "",
+      "published": "2026-03-15",
+      "hue": 150
+    },
+    {
+      "id": "your-mind-is-the-blueprint",
+      "title": "Your Mind Is the Blueprint",
+      "subtitle": "Rewire your thinking, break hidden patterns, and design the life you actually want",
+      "description": "Most people try to change their life by changing what they do — and fail. This book targets the one factor that shapes every decision, habit and outcome: your thinking patterns. A structured, practical system to reshape them step by step.",
+      "tags": [
+        "Self-Help",
+        "Thinking Patterns"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0H29HNRKY",
+      "coverImage": "",
+      "published": "2026-03-01",
+      "hue": 215
+    },
+    {
+      "id": "the-divine-369-manifestation-method",
+      "title": "The Divine 3-6-9 Manifestation Method",
+      "subtitle": "A practical guide to attract love, money, self-love, and abundance using the 369 technique",
+      "description": "A complete, structured guide to the 369 writing practice — 3 times in the morning, 6 in the afternoon, 9 at night — grounded in how repetition actually rewires belief. Covers love, money, self-love and abundance with a clear daily method you can start today.",
+      "tags": [
+        "Manifestation",
+        "Law of Attraction"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0H25SQD3P",
+      "coverImage": "",
+      "published": "2026-02-15",
+      "hue": 280
+    },
+    {
+      "id": "the-quiet-revolution",
+      "title": "The Quiet Revolution",
+      "subtitle": "How to manifest the life you want without lying to yourself",
+      "description": "A radically honest approach to transformation — no fake positivity, no magical thinking, no spiritual performance. Blending psychology, neuroscience and daily action, this book replaces fantasy manifestation with something stronger: becoming someone new through small, consistent, honest actions. Not a shortcut. A foundation.",
+      "tags": [
+        "Self-Help",
+        "Honest Manifestation"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0H25M2Z3W",
+      "coverImage": "",
+      "published": "2026-02-01",
+      "hue": 35
+    },
+    {
+      "id": "lucky-girl-evidence-journal",
+      "title": "Lucky Girl Evidence Journal",
+      "subtitle": "A 90-day guided program to rewire your brain, track your wins, and attract lasting abundance",
+      "description": "Luck is a lens — and this journal trains it. For 90 days you collect daily evidence that things work out for you: small wins, near-misses, perfect timing. By the end, your brain stops arguing and starts expecting good things.",
+      "tags": [
+        "Guided Journal",
+        "90-Day Program"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0GZHY4H5M",
+      "coverImage": "",
+      "published": "2026-01-15",
+      "hue": 340
+    },
+    {
+      "id": "the-ai-first-competitor",
+      "title": "The AI-First Competitor",
+      "subtitle": "How local businesses and solo founders use next-gen AI workflows to reclaim time and outpace competitors",
+      "description": "The businesses winning today aren't working harder — they're running smarter systems. Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.",
+      "tags": [
+        "Business",
+        "AI Workflows"
+      ],
+      "amazonUrl": "https://www.amazon.in/dp/B0GYQ9WXPZ",
+      "coverImage": "",
+      "published": "2026-01-05",
+      "hue": 195
+    }
+  ]
+}
