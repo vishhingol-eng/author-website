@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal & Mind — Blog by Vishal Hingol | Mindset, Manifestation & Focus</title>
+<meta name="description" content="Insights on mindset, manifestation, self-sabotage, digital sovereignty and the mechanics of meaningful change — by author Vishal Hingol.">
+<link rel="canonical" href="https://vishalhingolauthor.com/blog.html">
+<meta property="og:title" content="Signal & Mind — Blog by Vishal Hingol">
+<meta property="og:description" content="Insights on mindset, manifestation, focus and the mechanics of meaningful change.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vishalhingolauthor.com/blog.html">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Blog",
+  "name":"Signal & Mind",
+  "description":"Insights on mindset, manifestation, self-sabotage, digital sovereignty and the mechanics of meaningful change",
+  "url":"https://vishalhingolauthor.com/blog.html",
+  "author":{"@type":"Person","name":"Vishal Hingol","url":"https://vishalhingolauthor.com"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Albert+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#070A18;--night-2:#0B1026;--ink:#121A3E;
+  --glass:rgba(18,26,62,.55);--line:rgba(244,238,226,.10);
+  --gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9ECF;
+  --paper:#F4EEE2;--mist:#9AA1C7;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Albert Sans',system-ui,sans-serif;
+  --tech:'Space Grotesk',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--night)}
+
+/* aurora */
+.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.4}
+.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
+.aurora i:nth-child(1){width:50vw;height:50vw;left:-10%;top:-10%;background:radial-gradient(circle,rgba(157,123,255,.45),transparent 65%);animation:a1 28s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:44vw;height:44vw;right:-8%;top:25%;background:radial-gradient(circle,rgba(125,230,255,.3),transparent 65%);animation:a2 34s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:55vw;height:55vw;left:20%;bottom:-20%;background:radial-gradient(circle,rgba(232,187,107,.25),transparent 65%);animation:a3 40s ease-in-out infinite alternate}
+@keyframes a1{to{transform:translate(8vw,6vh) scale(1.12)}}
+@keyframes a2{to{transform:translate(-7vw,9vh) scale(.9)}}
+@keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,4vw,60px);background:rgba(7,10,24,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
+.brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-amzn{color:var(--night)!important;background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px;letter-spacing:.08em!important}
+@media(max-width:600px){.nav-links a:not(.nav-amzn){display:none}}
+
+/* page */
+.page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
+
+/* hero */
+.blog-hero{text-align:center;margin-bottom:clamp(48px,7vw,80px)}
+.blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
+.blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
+.blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
+@keyframes sheen{to{background-position:200% center}}
+.blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
+
+/* filter bar */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.fcat{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:100px;cursor:pointer;transition:all .2s}
+.fcat:hover{border-color:var(--cyan);color:var(--cyan)}
+.fcat.active{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border-color:transparent}
+
+/* post grid */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:clamp(18px,3vw,28px)}
+
+/* post card */
+.pcard{
+  position:relative;background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:20px;padding:28px;display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s;cursor:pointer;
+}
+.pcard::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.5),rgba(125,230,255,.15) 40%,rgba(157,123,255,.4) 75%,rgba(232,187,107,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.65;transition:opacity .3s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.pcard:hover::before{opacity:1}
+.pcard-cat{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.pcard h2{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.4vw,22px);line-height:1.22;letter-spacing:-.01em;margin-bottom:12px}
+.pcard h2 a:hover{background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pcard-excerpt{color:var(--mist);font-size:14.5px;line-height:1.65;flex:1;margin-bottom:20px}
+.pcard-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pcard-date{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
+.pcard-read{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
+.pcard:hover .pcard-read{gap:10px}
+
+/* related book chip */
+.book-chip{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;background:rgba(232,187,107,.08);border:1px solid rgba(232,187,107,.25);border-radius:100px;font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;transition:background .2s}
+.book-chip:hover{background:rgba(232,187,107,.16)}
+.book-chip span{font-size:10px;opacity:.75}
+
+.empty{text-align:center;color:var(--mist);padding:60px 20px;grid-column:1/-1}
+.empty b{font-family:var(--display);font-size:22px;display:block;color:var(--paper);margin-bottom:8px}
+
+/* footer */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:30px clamp(18px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--mist);font-size:13px}
+footer a{color:var(--gold)}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="aurora"><i></i><i></i><i></i></div>
+
+<nav>
+  <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="store.html">Books</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a class="nav-amzn" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="blog-hero">
+    <p class="blog-eyebrow">Signal &amp; Mind</p>
+    <h1>Ideas worth<br>reading slowly.</h1>
+    <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
+  </div>
+  <div class="filter-bar" id="filters"></div>
+  <div class="posts" id="posts"><p style="color:var(--mist)">Loading articles…</p></div>
+</main>
+
+<footer>
+  <span>© <span id="yr"></span> Vishal Hingol</span>
+  <span><a href="index.html">Home</a> · <a href="store.html">Books</a> · <a href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a></span>
+</footer>
+
+<script>
+(async function(){
+  const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  let data, activecat = 'All';
+  try{
+    const res = await fetch('blog.json?v='+Date.now(),{cache:'no-store'});
+    data = await res.json();
+  }catch(e){
+    document.getElementById('posts').innerHTML='<div class="empty"><b>Articles unavailable</b>Please check back soon.</div>';
+    return;
+  }
+  const posts = (data.posts||[]).slice().sort((a,b)=>new Date(b.published)-new Date(a.published));
+  const cats = ['All', ...new Set(posts.map(p=>p.category))];
+
+  // filters
+  const fb = document.getElementById('filters');
+  fb.innerHTML = cats.map(c=>`<button class="fcat${c==='All'?' active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  fb.addEventListener('click',e=>{
+    const btn=e.target.closest('.fcat'); if(!btn) return;
+    activecat=btn.dataset.cat;
+    fb.querySelectorAll('.fcat').forEach(x=>x.classList.toggle('active',x===btn));
+    render();
+  });
+
+  function formatDate(d){ return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
+
+  function render(){
+    const filtered = activecat==='All' ? posts : posts.filter(p=>p.category===activecat);
+    if(!filtered.length){
+      document.getElementById('posts').innerHTML='<div class="empty"><b>No articles yet in this category</b>Check back soon.</div>';
+      return;
+    }
+    document.getElementById('posts').innerHTML = filtered.map(p=>`
+    <article class="pcard" onclick="location.href='article.html?id=${esc(p.id)}'">
+      <div class="pcard-cat">${esc(p.category)}</div>
+      <h2><a href="article.html?id=${esc(p.id)}" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
+      <p class="pcard-excerpt">${esc(p.excerpt)}</p>
+      <div class="pcard-meta">
+        <span class="pcard-date">${formatDate(p.published)} · ${p.readingTime} min read</span>
+        <span class="pcard-read">Read article →</span>
+      </div>
+    </article>`).join('');
+  }
+  render();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

@@ -19,9 +19,10 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
 ::selection{background:var(--gold);color:var(--night)}
+a{color:inherit;text-decoration:none}
 
-/* aurora layer */
-.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.45}
+/* aurora */
+.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.35}
 .aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
 .aurora i:nth-child(1){width:55vw;height:55vw;left:-12%;top:-12%;background:radial-gradient(circle,rgba(157,123,255,.5),transparent 65%);animation:auro1 28s ease-in-out infinite alternate}
 .aurora i:nth-child(2){width:46vw;height:46vw;right:-10%;top:30%;background:radial-gradient(circle,rgba(125,230,255,.32),transparent 65%);animation:auro2 34s ease-in-out infinite alternate}
@@ -30,7 +31,7 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 @keyframes auro2{to{transform:translate(-8vw,10vh) scale(.9)}}
 @keyframes auro3{to{transform:translate(-6vw,-9vh) scale(1.12)}}
 body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
   background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);
   background-size:72px 72px;
   mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
@@ -38,18 +39,37 @@ body::before{
 }
 header,.wrap,#toast,.overlay{position:relative;z-index:1}
 
+/* header */
 header{
   display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:22px clamp(18px,4vw,48px);border-bottom:1px solid var(--line);
-  background:rgba(7,10,24,.7);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20;
+  padding:18px clamp(18px,4vw,48px);border-bottom:1px solid var(--line);
+  background:rgba(7,10,24,.8);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20;
 }
 .brand{font-family:var(--display);font-size:20px;font-weight:500}
 .brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand small{display:block;font-family:var(--tech);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--cyan)}
 .head-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
+/* tab bar */
+.tabbar{
+  display:flex;gap:4px;padding:0 clamp(18px,4vw,48px);
+  background:rgba(7,10,24,.6);border-bottom:1px solid var(--line);
+  overflow-x:auto;scrollbar-width:none;position:sticky;top:69px;z-index:19;
+}
+.tabbar::-webkit-scrollbar{display:none}
+.tab{
+  font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mist);padding:14px 18px;border:none;background:transparent;cursor:pointer;
+  border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--paper)}
+.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+/* panels */
+.panel{display:none}.panel.active{display:block}
 .wrap{max-width:1080px;margin:0 auto;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px) 90px}
 
+/* card */
 .card{
   position:relative;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
   border-radius:20px;padding:clamp(20px,3vw,32px);margin-bottom:24px;
@@ -60,21 +80,25 @@ header{
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.75;
 }
-.card h2{font-family:var(--display);font-weight:500;font-size:24px;margin-bottom:6px}
-.card .hint{color:var(--mist);font-size:14px;margin-bottom:22px}
+.card h2{font-family:var(--display);font-weight:500;font-size:22px;margin-bottom:6px}
+.card .hint{color:var(--mist);font-size:14px;margin-bottom:20px}
 .card .hint a{color:var(--gold)}
 
+/* forms */
 label{display:block;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:16px 0 7px}
-input[type=text],input[type=password],input[type=date],input[type=url],textarea{
+input[type=text],input[type=password],input[type=date],input[type=url],input[type=number],select,textarea{
   width:100%;background:rgba(7,10,24,.7);border:1px solid var(--line);border-radius:12px;
   color:var(--paper);font-family:var(--body);font-size:15px;padding:13px 15px;outline:none;
   transition:border-color .2s,box-shadow .2s;
 }
-input:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(125,230,255,.14),0 0 18px rgba(125,230,255,.12)}
-textarea{min-height:110px;resize:vertical}
+select{cursor:pointer}
+input:focus,textarea:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(125,230,255,.14)}
+textarea{min-height:120px;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
-@media(max-width:640px){.row{grid-template-columns:1fr}}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 18px}
+@media(max-width:640px){.row,.row3{grid-template-columns:1fr}}
 
+/* buttons */
 .btn{
   display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;
   font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
@@ -84,11 +108,12 @@ textarea{min-height:110px;resize:vertical}
 .btn-gold{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
 .btn-gold:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 28px rgba(232,187,107,.5)}
 .btn-ghost{background:rgba(125,230,255,.05);color:var(--cyan);border:1px solid rgba(125,230,255,.3)}
-.btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(125,230,255,.25)}
+.btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(125,230,255,.2)}
 .btn-danger{background:transparent;color:var(--red);border:1px solid rgba(232,138,138,.35)}
 .btn-danger:hover{background:rgba(232,138,138,.12);box-shadow:0 0 18px rgba(232,138,138,.2)}
-.btn-sm{padding:9px 16px;font-size:10.5px}
+.btn-sm{padding:8px 14px;font-size:10px}
 
+/* status pill */
 .connected-pill{
   display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:1px solid rgba(126,217,167,.35);
@@ -97,88 +122,74 @@ textarea{min-height:110px;resize:vertical}
 .connected-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:blink 2.2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
 
-/* book list */
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:34px 0 18px}
-.toolbar h2{font-family:var(--display);font-weight:500;font-size:28px}
+/* list items */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 16px}
+.toolbar h2{font-family:var(--display);font-weight:500;font-size:26px}
 .toolbar h2 span{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
-.blist{display:flex;flex-direction:column;gap:14px}
-.bitem{
-  position:relative;display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+.ilist{display:flex;flex-direction:column;gap:12px}
+.iitem{
+  position:relative;display:grid;gap:16px;align-items:center;
   background:var(--glass);backdrop-filter:blur(14px);
-  border-radius:16px;padding:16px 18px;transition:box-shadow .25s;
+  border-radius:16px;padding:16px 18px;
 }
-.bitem::before{
+.iitem.books-item{grid-template-columns:56px 1fr auto}
+.iitem.blog-item{grid-template-columns:1fr auto}
+.iitem::before{
   content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(135deg,rgba(232,187,107,.35),rgba(125,230,255,.12) 45%,rgba(157,123,255,.3));
+  background:linear-gradient(135deg,rgba(232,187,107,.3),rgba(125,230,255,.1),rgba(157,123,255,.25));
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;
 }
-.bitem:hover{box-shadow:0 0 30px rgba(125,230,255,.08),0 14px 40px rgba(0,0,0,.4)}
-@media(max-width:560px){.bitem{grid-template-columns:50px 1fr}.bitem .bactions{grid-column:1/-1;justify-content:flex-end}}
-.bthumb{
-  width:64px;aspect-ratio:2/3;border-radius:4px 7px 7px 4px;overflow:hidden;position:relative;
-  box-shadow:5px 7px 18px rgba(0,0,0,.45);
-}
-.bthumb img{width:100%;height:100%;object-fit:cover;display:block}
-.bthumb .gen{
-  width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;
-  font-family:var(--display);font-size:8.5px;line-height:1.3;color:#FBF7EE;padding:5px;
-}
-.bmeta h3{font-family:var(--display);font-weight:500;font-size:18px;line-height:1.2}
-.bmeta p{color:var(--mist);font-size:13px;margin-top:3px}
-.bmeta .new{
-  font-family:var(--tech);font-weight:700;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;
-  background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.bactions{display:flex;gap:8px}
+.iitem:hover{box-shadow:0 0 28px rgba(125,230,255,.07),0 12px 36px rgba(0,0,0,.4)}
+@media(max-width:560px){.iitem.books-item{grid-template-columns:44px 1fr}.iactions{grid-column:1/-1;justify-content:flex-end}}
+.ithumb{width:56px;aspect-ratio:2/3;border-radius:4px 7px 7px 4px;overflow:hidden;box-shadow:4px 6px 16px rgba(0,0,0,.45)}
+.ithumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ithumb .gen{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-size:8px;line-height:1.3;color:#FBF7EE;padding:4px}
+.imeta h3{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2}
+.imeta p{color:var(--mist);font-size:13px;margin-top:2px}
+.imeta .inew{font-family:var(--tech);font-weight:700;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.iactions{display:flex;gap:8px}
+.cat-badge{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(125,230,255,.3);padding:3px 10px;border-radius:100px;margin-right:8px}
+.publish-row{margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.dirty-hint{color:var(--mist);font-size:13.5px}
 
-/* modal */
-.overlay{
-  position:fixed;inset:0;background:rgba(4,6,16,.8);backdrop-filter:blur(10px);
-  display:none;align-items:flex-start;justify-content:center;z-index:50;
-  padding:5vh 16px;overflow-y:auto;
-}
-.overlay.open{display:flex}
-.modal{
-  position:relative;width:100%;max-width:880px;background:linear-gradient(165deg,rgba(23,32,82,.85),rgba(11,16,38,.92));
-  backdrop-filter:blur(22px);border-radius:24px;padding:clamp(22px,3.4vw,38px);
-}
-.modal::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.2) 40%,rgba(157,123,255,.5));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
-}
-.modal-grid{display:grid;grid-template-columns:1fr 220px;gap:30px}
-@media(max-width:760px){.modal-grid{grid-template-columns:1fr}.pv-col{order:-1;display:flex;justify-content:center}}
-.modal h2{font-family:var(--display);font-weight:500;font-size:26px;margin-bottom:4px}
-.modal .hint{color:var(--mist);font-size:13.5px}
-.modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:28px;flex-wrap:wrap}
-
-/* cover preview */
-.pv{
-  width:200px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;
-  box-shadow:12px 16px 36px rgba(0,0,0,.55),0 0 24px rgba(125,230,255,.08);margin-top:16px;
-}
+/* book cover preview */
+.pv{width:180px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;box-shadow:12px 16px 36px rgba(0,0,0,.55);margin-top:16px}
 .pv img{width:100%;height:100%;object-fit:cover;display:block}
-.pv .gen{
-  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;
-  justify-content:space-between;text-align:center;padding:16px 12px;
-}
+.pv .gen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14px 10px}
 .pv .gen::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.12) 60%,transparent)}
 .pv .frame{position:absolute;inset:7px;border:1px solid rgba(244,238,226,.4);border-radius:3px;pointer-events:none}
 .pv .stars{font-size:13px;color:rgba(244,238,226,.85);letter-spacing:5px;margin-top:6px}
-.pv .t{font-family:var(--display);font-weight:500;font-size:14.5px;line-height:1.25;color:#FBF7EE}
-.pv .a{font-size:7.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(251,247,238,.8);margin-bottom:5px}
+.pv .t{font-family:var(--display);font-weight:500;font-size:13px;line-height:1.25;color:#FBF7EE}
+.pv .a{font-size:7px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(251,247,238,.8);margin-bottom:5px}
 input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
+.modal-grid{display:grid;grid-template-columns:1fr 200px;gap:28px}
+@media(max-width:720px){.modal-grid{grid-template-columns:1fr}.pv-col{order:-1;display:flex;justify-content:center}}
+
+/* blog article editor */
+.art-editor{position:relative}
+.char-count{font-family:var(--tech);font-size:11px;color:var(--mist);text-align:right;margin-top:4px}
+.art-body-area{min-height:280px;font-family:'Albert Sans',monospace;font-size:14px;line-height:1.7}
+.md-hint{font-family:var(--tech);font-size:11px;color:var(--mist);margin-top:6px}
+.md-hint code{background:rgba(125,230,255,.1);color:var(--cyan);padding:2px 6px;border-radius:4px;font-size:10px}
+
+/* modal */
+.overlay{position:fixed;inset:0;background:rgba(4,6,16,.82);backdrop-filter:blur(10px);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:4vh 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{
+  position:relative;width:100%;max-width:900px;background:linear-gradient(165deg,rgba(23,32,82,.9),rgba(11,16,38,.95));
+  backdrop-filter:blur(22px);border-radius:24px;padding:clamp(22px,3.4vw,38px);
+}
+.modal::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.2) 40%,rgba(157,123,255,.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.modal h2{font-family:var(--display);font-weight:500;font-size:24px;margin-bottom:4px}
+.modal .hint{color:var(--mist);font-size:13.5px;margin-bottom:0}
+.modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+
+/* KDP results */
+.kdp-result-item{background:var(--glass);border-radius:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--line)}
 
 /* toast */
-#toast{
-  position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);
-  background:rgba(23,32,82,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:100px;
-  padding:13px 26px;font-size:14px;font-weight:600;z-index:99;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:90vw;text-align:center;
-}
+#toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:rgba(23,32,82,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:100px;padding:13px 26px;font-size:14px;font-weight:600;z-index:99;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:90vw;text-align:center}
 #toast.show{transform:translate(-50%,0)}
 #toast.ok{border-color:rgba(126,217,167,.5);color:var(--green);box-shadow:0 0 26px rgba(126,217,167,.2)}
 #toast.err{border-color:rgba(232,138,138,.5);color:var(--red);box-shadow:0 0 26px rgba(232,138,138,.2)}
@@ -186,110 +197,199 @@ input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
 .hidden{display:none!important}
 .spin{display:inline-block;width:14px;height:14px;border:2px solid var(--night);border-top-color:transparent;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-2px}
 @keyframes rot{to{transform:rotate(360deg)}}
-
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.section-divider{border:none;border-top:1px solid var(--line);margin:28px 0}
 </style>
 </head>
 <body>
 
-<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="aurora"><i></i><i></i><i></i></div>
 
 <header>
   <div class="brand">Vishal <em>Hingol</em><small>Author Dashboard</small></div>
   <div class="head-actions">
     <span class="connected-pill hidden" id="connPill">Connected</span>
-    <a class="btn btn-ghost btn-sm hidden" id="viewSite" href="index.html" target="_blank">View Live Site ↗</a>
+    <a class="btn btn-ghost btn-sm hidden" id="viewSite" href="index.html" target="_blank">View Site ↗</a>
     <button class="btn btn-ghost btn-sm hidden" id="logoutBtn">Disconnect</button>
   </div>
 </header>
 
+<!-- Tab bar (shown after connect) -->
+<div class="tabbar hidden" id="tabbar">
+  <button class="tab active" data-tab="books">📚 Books</button>
+  <button class="tab" data-tab="blog">✍️ Blog</button>
+  <button class="tab" data-tab="settings">⚙️ Settings</button>
+  <button class="tab" data-tab="kdp">📥 KDP Import</button>
+</div>
+
 <div class="wrap">
 
-  <!-- ============ SETUP / LOGIN ============ -->
-  <div class="card" id="setupCard">
-    <h2>Connect your website</h2>
-    <p class="hint">One-time setup. Your token is saved <strong>only in this browser</strong> — it never touches any other server. Create a fine-grained token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> → select <strong>only your website repository</strong> → Repository permissions → <strong>Contents: Read and write</strong>.</p>
-    <div class="row">
-      <div><label>GitHub username</label><input type="text" id="cfgOwner" placeholder="e.g. vishhingol-eng"></div>
-      <div><label>Repository name</label><input type="text" id="cfgRepo" placeholder="e.g. author-website"></div>
-    </div>
-    <div class="row">
-      <div><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
-      <div><label>Personal access token</label><input type="password" id="cfgToken" placeholder="github_pat_…"></div>
-    </div>
-    <div style="margin-top:24px">
-      <button class="btn btn-gold" id="connectBtn">Connect Dashboard</button>
+  <!-- ===== CONNECT PANEL ===== -->
+  <div id="connectPanel">
+    <div class="card">
+      <h2>Connect your website</h2>
+      <p class="hint">One-time setup. Your token is saved <strong>only in this browser</strong>. Create a fine-grained token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/tokens</a> → select your repo → Contents: <strong>Read and write</strong>.</p>
+      <div class="row">
+        <div><label>GitHub Username</label><input type="text" id="cfgOwner" placeholder="e.g. vishhingol-eng"></div>
+        <div><label>Repository Name</label><input type="text" id="cfgRepo" placeholder="e.g. author-website"></div>
+      </div>
+      <div class="row">
+        <div><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
+        <div><label>Personal Access Token</label><input type="password" id="cfgToken" placeholder="github_pat_…"></div>
+      </div>
+      <div style="margin-top:24px">
+        <button class="btn btn-gold" id="connectBtn">Connect Dashboard</button>
+      </div>
     </div>
   </div>
 
-  <!-- ============ AUTHOR SETTINGS ============ -->
-  <div class="card hidden" id="authorCard">
-    <h2>Author settings</h2>
-    <p class="hint">This link is used by every "Follow on Amazon" button across the site.</p>
-    <label>Amazon author page URL</label>
-    <input type="url" id="authorUrl">
-  </div>
-
-  <!-- ============ IMPORT FROM KDP ============ -->
-  <div class="card hidden" id="importCard">
-    <h2>Import from KDP</h2>
-    <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank" rel="noopener">KDP Bookshelf</a>, select-all and copy the page, then paste it below and click Scan. New live titles get added to your library below (with empty subtitle/description/tags for you to fill in) — review, then click Publish as usual.</p>
-    <label>Paste KDP bookshelf text</label>
-    <textarea id="kdpPaste" placeholder="Paste your KDP bookshelf text here…" style="min-height:140px"></textarea>
-    <div style="margin-top:14px">
-      <button class="btn btn-gold btn-sm" id="kdpScanBtn">Scan for Books</button>
-    </div>
-    <div id="kdpResults" style="margin-top:20px"></div>
-  </div>
-
-  <!-- ============ BOOK LIST ============ -->
-  <div class="hidden" id="libraryWrap">
+  <!-- ===== BOOKS PANEL ===== -->
+  <div class="panel" id="panel-books">
     <div class="toolbar">
-      <h2>Your <span>Library</span> <span id="bookCount"></span></h2>
-      <button class="btn btn-gold" id="addBtn">+ Add New Book</button>
+      <h2>Books <span id="bookCount"></span></h2>
+      <button class="btn btn-gold" id="addBookBtn">+ Add Book</button>
     </div>
-    <div class="blist" id="blist"></div>
-    <div style="margin-top:30px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-      <button class="btn btn-gold" id="publishBtn">Publish Changes to Live Site</button>
-      <span class="hint" id="dirtyHint" style="color:var(--mist);font-size:13.5px"></span>
+    <div class="ilist" id="blist"></div>
+    <div class="publish-row">
+      <button class="btn btn-gold" id="publishBooksBtn">Publish Books to Live Site</button>
+      <span class="dirty-hint" id="booksDirtyHint"></span>
+    </div>
+  </div>
+
+  <!-- ===== BLOG PANEL ===== -->
+  <div class="panel" id="panel-blog">
+    <div class="toolbar">
+      <h2>Blog <span id="postCount"></span></h2>
+      <button class="btn btn-gold" id="addPostBtn">+ New Article</button>
+    </div>
+    <div class="ilist" id="plist"></div>
+    <div class="publish-row">
+      <button class="btn btn-gold" id="publishBlogBtn">Publish Blog to Live Site</button>
+      <span class="dirty-hint" id="blogDirtyHint"></span>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS PANEL ===== -->
+  <div class="panel" id="panel-settings">
+    <div class="card">
+      <h2>Author Settings</h2>
+      <p class="hint">Used by every "Follow on Amazon" button across the site.</p>
+      <label>Amazon Author Page URL</label>
+      <input type="url" id="authorUrl">
+      <label>Author Name</label>
+      <input type="text" id="authorName">
+    </div>
+    <div class="card">
+      <h2>Blog Settings</h2>
+      <div class="row">
+        <div><label>Blog Title</label><input type="text" id="blogTitle"></div>
+        <div><label>Blog Tagline</label><input type="text" id="blogTagline"></div>
+      </div>
+    </div>
+    <div class="publish-row">
+      <button class="btn btn-gold" id="publishSettingsBtn">Save & Publish Settings</button>
+    </div>
+  </div>
+
+  <!-- ===== KDP IMPORT PANEL ===== -->
+  <div class="panel" id="panel-kdp">
+    <div class="card">
+      <h2>Import from KDP</h2>
+      <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank" rel="noopener">KDP Bookshelf</a>, select-all, copy the page, paste below and click Scan. New live titles get added to your Books library.</p>
+      <label>Paste KDP Bookshelf Text</label>
+      <textarea id="kdpPaste" style="min-height:160px" placeholder="Ctrl+A, Ctrl+C on your KDP bookshelf page, then paste here…"></textarea>
+      <div style="margin-top:14px">
+        <button class="btn btn-gold btn-sm" id="kdpScanBtn">Scan for Books</button>
+      </div>
+      <div id="kdpResults" style="margin-top:20px"></div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ===== BOOK MODAL ===== -->
+<div class="overlay" id="bookOverlay">
+  <div class="modal">
+    <h2 id="bookModalTitle">Add a Book</h2>
+    <p class="hint">Fill the details as you want them shown on the website.</p>
+    <div class="modal-grid" style="margin-top:20px">
+      <div>
+        <div class="row">
+          <div><label>Title *</label><input type="text" id="fTitle" placeholder="e.g. The Signal"></div>
+          <div><label>Publish Date</label><input type="date" id="fDate"></div>
+        </div>
+        <label>Subtitle / Tagline</label>
+        <input type="text" id="fSubtitle" placeholder="One catchy line under the title">
+        <label>Description</label>
+        <textarea id="fDesc" placeholder="2–4 sentences that sell the book" style="min-height:100px"></textarea>
+        <div class="row">
+          <div><label>Amazon Buy Link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
+          <div><label>Tags (comma separated)</label><input type="text" id="fTags" placeholder="Self-Help, Mindset"></div>
+        </div>
+        <label>Cover Image URL (optional)</label>
+        <input type="url" id="fCover" placeholder="Paste Amazon image URL or leave blank for generated cover">
+        <div class="row" style="margin-top:4px">
+          <div>
+            <label>Featured Book?</label>
+            <select id="fFeatured"><option value="false">No</option><option value="true">Yes — show in spotlight</option></select>
+          </div>
+          <div>
+            <label>Cover Colour (if no image)</label>
+            <input type="range" id="fHue" min="0" max="360" value="35">
+          </div>
+        </div>
+      </div>
+      <div class="pv-col">
+        <label>Cover Preview</label>
+        <div class="pv" id="bookPv"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="cancelBookBtn">Cancel</button>
+      <button class="btn btn-gold" id="saveBookBtn">Save Book</button>
     </div>
   </div>
 </div>
 
-<!-- ============ ADD / EDIT MODAL ============ -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <h2 id="modalTitle">Add a book</h2>
-    <p class="hint">Fill the details exactly as you want them shown on the website.</p>
-    <div class="modal-grid">
-      <div>
-        <label>Title *</label>
-        <input type="text" id="fTitle" placeholder="e.g. 369 Manifestation Journal">
-        <label>Subtitle / tagline</label>
-        <input type="text" id="fSubtitle" placeholder="One catchy line under the title">
-        <label>Description</label>
-        <textarea id="fDesc" placeholder="2–4 sentences that sell the book"></textarea>
-        <label>Tags (comma separated)</label>
-        <input type="text" id="fTags" placeholder="Guided Journal, 90-Day Program">
-        <div class="row">
-          <div><label>Amazon buy link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
-          <div><label>Publish date</label><input type="date" id="fDate"></div>
-        </div>
-        <label>Cover image URL (optional)</label>
-        <input type="url" id="fCover" placeholder="Right-click cover on Amazon → Copy image address">
+<!-- ===== BLOG POST MODAL ===== -->
+<div class="overlay" id="blogOverlay">
+  <div class="modal" style="max-width:960px">
+    <h2 id="blogModalTitle">New Article</h2>
+    <p class="hint">Write your article below. Markdown supported: ## Heading, **bold**, *italic*</p>
+    <div style="margin-top:18px">
+      <label>Article Title *</label>
+      <input type="text" id="pTitle" placeholder="e.g. How the 369 Method Actually Works">
+      <div class="row">
+        <div><label>Category</label><input type="text" id="pCategory" placeholder="e.g. Manifestation, Mindset, Spirituality"></div>
+        <div><label>Tags (comma separated)</label><input type="text" id="pTags" placeholder="369 Method, Law of Attraction"></div>
       </div>
-      <div class="pv-col">
+      <label>Excerpt (shown on blog index)</label>
+      <textarea id="pExcerpt" style="min-height:80px" placeholder="2–3 sentences that make people want to read the full article…"></textarea>
+      <label>Article Body *</label>
+      <p class="md-hint">Use <code>## Heading</code> for sections · <code>**bold**</code> · <code>*italic*</code> · blank line between paragraphs</p>
+      <textarea class="art-body-area" id="pContent" placeholder="Write your full article here…&#10;&#10;## First Section&#10;&#10;Your content here…&#10;&#10;## Second Section&#10;&#10;More content…"></textarea>
+      <div class="char-count" id="pCharCount">0 words</div>
+      <div class="row3">
         <div>
-          <label>Cover preview</label>
-          <div class="pv" id="pv"></div>
-          <label>Cover colour</label>
-          <input type="range" id="fHue" min="0" max="360" value="35">
+          <label>Publish Date</label>
+          <input type="date" id="pDate">
+        </div>
+        <div>
+          <label>Reading Time (minutes)</label>
+          <input type="number" id="pReadTime" value="5" min="1" max="60">
+        </div>
+        <div>
+          <label>Related Book (ID)</label>
+          <input type="text" id="pBook" placeholder="e.g. the-divine-369-manifestation-method">
         </div>
       </div>
+      <label>SEO Title (leave blank to use article title)</label>
+      <input type="text" id="pSeoTitle" placeholder="Optional: custom title for Google results">
+      <label>SEO Description (leave blank to use excerpt)</label>
+      <textarea id="pSeoDesc" style="min-height:70px" placeholder="Optional: description shown under your link in Google — aim for 150–160 characters"></textarea>
     </div>
     <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
-      <button class="btn btn-gold" id="saveBookBtn">Save Book</button>
+      <button class="btn btn-ghost" id="cancelBlogBtn">Cancel</button>
+      <button class="btn btn-gold" id="saveBlogBtn">Save Article</button>
     </div>
   </div>
 </div>
@@ -297,413 +397,400 @@ input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
 <div id="toast"></div>
 
 <script>
-/* ====================================================================
-   ADMIN ENGINE — GitHub is the backend.
-   Reads/writes books.json in your repo via the GitHub Contents API.
-==================================================================== */
+/* ============================================================
+   DASHBOARD ENGINE
+   • Books  → reads/writes books.json
+   • Blog   → reads/writes blog.json
+   Both use the GitHub Contents API as the backend.
+============================================================ */
 const $ = id => document.getElementById(id);
-const LSKEY = 'vh_admin_cfg';
-const FILE = 'books.json';
+const LSKEY = 'vh_admin_cfg_v2';
 
-let cfg = null;        // {owner, repo, branch, token}
-let db = null;         // parsed books.json
-let sha = null;        // current file sha (needed to commit)
-let dirty = false;
-let editingIndex = -1; // -1 = adding new
+let cfg = null;
+let booksDB = null, booksSha = null, booksDirty = false;
+let blogDB = null, blogSha = null, blogDirty = false;
+let editingBookIdx = -1, editingPostIdx = -1;
 
-/* ---------- helpers ---------- */
+/* -------- helpers -------- */
 function toast(msg, type='ok'){
-  const t = $('toast');
-  t.textContent = msg; t.className = 'show ' + type;
-  clearTimeout(t._h); t._h = setTimeout(()=>t.className='',3500);
+  const t=$('toast'); t.textContent=msg; t.className='show '+type;
+  clearTimeout(t._h); t._h=setTimeout(()=>t.className='',3800);
 }
-const b64encode = s => btoa(unescape(encodeURIComponent(s)));
-const b64decode = s => decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
+const b64enc = s => btoa(unescape(encodeURIComponent(s)));
+const b64dec = s => decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
 const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60) || ('book-'+Date.now());
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'post-'+Date.now();
 
 function api(path, opts={}){
-  return fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/${path}`, {
+  return fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/${path}`,{
     ...opts,
-    headers:{
-      'Authorization':'Bearer '+cfg.token,
-      'Accept':'application/vnd.github+json',
-      'X-GitHub-Api-Version':'2022-11-28',
-      ...(opts.headers||{})
-    }
+    headers:{'Authorization':'Bearer '+cfg.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(opts.headers||{})}
   });
 }
+async function ghGet(file){ return api(`contents/${file}?ref=${encodeURIComponent(cfg.branch)}`); }
+async function ghPut(file, content, sha, message){
+  return api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message,content:b64enc(JSON.stringify(content,null,2)),branch:cfg.branch,sha})});
+}
 
-/* ---------- connect / load ---------- */
-async function connect(saveCfg){
-  const btn = $('connectBtn');
-  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Connecting…';
+/* -------- connect -------- */
+$('connectBtn').onclick = () => {
+  cfg = {
+    owner: $('cfgOwner').value.trim(),
+    repo:  $('cfgRepo').value.trim(),
+    branch:$('cfgBranch').value.trim()||'main',
+    token: $('cfgToken').value.trim()
+  };
+  if(!cfg.owner||!cfg.repo||!cfg.token){toast('Fill in username, repo and token','err');return;}
+  connect(true);
+};
+
+async function connect(save){
+  const btn=$('connectBtn');
+  btn.disabled=true; btn.innerHTML='<span class="spin"></span> Connecting…';
   try{
-    const res = await api(`contents/${FILE}?ref=${encodeURIComponent(cfg.branch)}`);
-    if(res.status === 401) throw new Error('Token rejected — check it has Contents: Read & write on this repo.');
-    if(res.status === 404) throw new Error('books.json not found — check username, repo name and branch.');
-    if(!res.ok) throw new Error('GitHub error '+res.status);
-    const j = await res.json();
-    sha = j.sha;
-    db = JSON.parse(b64decode(j.content));
-    if(!Array.isArray(db.books)) db.books = [];
-    if(saveCfg) localStorage.setItem(LSKEY, JSON.stringify(cfg));
+    // Load books.json
+    const br = await ghGet('books.json');
+    if(br.status===401) throw new Error('Token rejected — check Contents: Read & write permission.');
+    if(br.status===404) throw new Error('books.json not found. Check repo name and branch.');
+    if(!br.ok) throw new Error('GitHub error '+br.status);
+    const bj = await br.json(); booksSha=bj.sha; booksDB=JSON.parse(b64dec(bj.content));
+    if(!Array.isArray(booksDB.books)) booksDB.books=[];
+
+    // Load blog.json (create if missing)
+    const pr = await ghGet('blog.json');
+    if(pr.ok){
+      const pj=await pr.json(); blogSha=pj.sha; blogDB=JSON.parse(b64dec(pj.content));
+      if(!Array.isArray(blogDB.posts)) blogDB.posts=[];
+    } else {
+      blogDB={blog:{title:'Signal & Mind',tagline:'Insights on mindset and meaningful change',siteUrl:'https://vishalhingolauthor.com'},posts:[]};
+      blogSha=null;
+    }
+
+    if(save) localStorage.setItem(LSKEY,JSON.stringify(cfg));
     enterDashboard();
-    toast('Connected — library loaded');
+    toast('Connected — books & blog loaded ✓');
   }catch(e){
     toast(e.message,'err');
   }finally{
-    btn.disabled = false; btn.textContent = 'Connect Dashboard';
+    btn.disabled=false; btn.textContent='Connect Dashboard';
   }
 }
 
 function enterDashboard(){
-  $('setupCard').classList.add('hidden');
-  $('authorCard').classList.remove('hidden');
-  $('importCard').classList.remove('hidden');
-  $('libraryWrap').classList.remove('hidden');
+  $('connectPanel').classList.add('hidden');
+  $('tabbar').classList.remove('hidden');
   $('connPill').classList.remove('hidden');
   $('viewSite').classList.remove('hidden');
   $('logoutBtn').classList.remove('hidden');
-  $('viewSite').href = `https://${cfg.owner}.github.io/${cfg.repo}/`;
-  $('authorUrl').value = db.author?.amazonAuthorPage || '';
-  renderList();
+  $('viewSite').href=`https://${cfg.owner}.github.io/${cfg.repo}/`;
+  // activate first panel
+  switchTab('books');
+  // populate settings
+  $('authorUrl').value=booksDB.author?.amazonAuthorPage||'';
+  $('authorName').value=booksDB.author?.name||'Vishal Hingol';
+  $('blogTitle').value=blogDB.blog?.title||'Signal & Mind';
+  $('blogTagline').value=blogDB.blog?.tagline||'';
 }
 
-/* ---------- list ---------- */
-function renderList(){
-  const list = $('blist');
-  const books = db.books;
-  $('bookCount').textContent = `(${books.length})`;
-  if(!books.length){
-    list.innerHTML = '<div class="card" style="text-align:center;color:var(--mist)">No books yet — add your first one.</div>';
-    return;
-  }
-  const now = Date.now();
-  list.innerHTML = books.map((b,i)=>{
-    const isNew = (now - new Date(b.published).getTime()) < 45*864e5;
-    const thumb = b.coverImage
-      ? `<img src="${esc(b.coverImage)}" alt="">`
-      : `<div class="gen" style="background:linear-gradient(170deg,hsl(${+b.hue||35} 42% 26%),hsl(${((+b.hue||35)+40)%360} 38% 14%))">${esc(b.title)}</div>`;
-    return `
-    <div class="bitem">
-      <div class="bthumb">${thumb}</div>
-      <div class="bmeta">
-        <h3>${esc(b.title)}${isNew?'<span class="new">New</span>':''}</h3>
-        <p>${esc(b.subtitle||'')} · published ${esc(b.published||'—')}</p>
+/* -------- tabs -------- */
+document.getElementById('tabbar').addEventListener('click',e=>{
+  const t=e.target.closest('.tab'); if(!t) return;
+  switchTab(t.dataset.tab);
+});
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+name));
+  if(name==='books') renderBooks();
+  if(name==='blog') renderPosts();
+}
+
+/* ============ BOOKS ============ */
+function renderBooks(){
+  const list=$('blist'), books=booksDB.books;
+  $('bookCount').textContent=`(${books.length})`;
+  if(!books.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No books yet.</div>';return;}
+  const now=Date.now();
+  list.innerHTML=books.map((b,i)=>{
+    const isNew=(now-new Date(b.published).getTime())<45*864e5;
+    const thumb=b.coverImage
+      ?`<img src="${esc(b.coverImage)}" alt="">`
+      :`<div class="gen" style="background:linear-gradient(170deg,hsl(${+b.hue||35} 42% 26%),hsl(${((+b.hue||35)+40)%360} 38% 14%))">${esc(b.title)}</div>`;
+    return `<div class="iitem books-item">
+      <div class="ithumb">${thumb}</div>
+      <div class="imeta">
+        <h3>${esc(b.title)}${b.featured?'<span class="inew">★ Featured</span>':''}${isNew?'<span class="inew">New</span>':''}</h3>
+        <p>${esc(b.subtitle||'—')} · ${esc(b.published||'')}</p>
       </div>
-      <div class="bactions">
-        <button class="btn btn-ghost btn-sm" onclick="openEdit(${i})">Edit</button>
+      <div class="iactions">
+        <button class="btn btn-ghost btn-sm" onclick="openEditBook(${i})">Edit</button>
         <button class="btn btn-danger btn-sm" onclick="removeBook(${i})">Delete</button>
       </div>
     </div>`;
   }).join('');
 }
 
-function markDirty(){
-  dirty = true;
-  $('dirtyHint').textContent = 'You have unsaved changes — click Publish to update the live site.';
+$('addBookBtn').onclick=()=>{
+  editingBookIdx=-1; $('bookModalTitle').textContent='Add a Book';
+  ['fTitle','fSubtitle','fDesc','fTags','fUrl','fCover'].forEach(id=>$(id).value='');
+  $('fDate').value=new Date().toISOString().slice(0,10);
+  $('fHue').value=Math.floor(Math.random()*360);
+  $('fFeatured').value='false';
+  updateBookPreview(); openModal('bookOverlay');
+};
+window.openEditBook=function(i){
+  editingBookIdx=i; const b=booksDB.books[i];
+  $('bookModalTitle').textContent='Edit Book';
+  $('fTitle').value=b.title||''; $('fSubtitle').value=b.subtitle||'';
+  $('fDesc').value=b.description||''; $('fTags').value=(b.tags||[]).join(', ');
+  $('fUrl').value=b.amazonUrl||''; $('fCover').value=b.coverImage||'';
+  $('fDate').value=b.published||''; $('fHue').value=b.hue??35;
+  $('fFeatured').value=b.featured?'true':'false';
+  updateBookPreview(); openModal('bookOverlay');
+};
+window.removeBook=function(i){
+  if(!confirm(`Delete "${booksDB.books[i].title}"?`)) return;
+  booksDB.books.splice(i,1); renderBooks(); markDirty('books');
+};
+$('saveBookBtn').onclick=()=>{
+  const title=$('fTitle').value.trim(), url=$('fUrl').value.trim();
+  if(!title){toast('Title is required','err');return;}
+  if(!url){toast('Amazon link is required','err');return;}
+  const book={
+    id:editingBookIdx>=0?booksDB.books[editingBookIdx].id:slug(title),
+    title, subtitle:$('fSubtitle').value.trim(),
+    description:$('fDesc').value.trim(),
+    tags:$('fTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    amazonUrl:url, coverImage:$('fCover').value.trim(),
+    published:$('fDate').value||new Date().toISOString().slice(0,10),
+    hue:+$('fHue').value, featured:$('fFeatured').value==='true'
+  };
+  if(editingBookIdx>=0) booksDB.books[editingBookIdx]=book;
+  else booksDB.books.unshift(book);
+  closeModal('bookOverlay'); renderBooks(); markDirty('books');
+  toast(editingBookIdx>=0?'Book updated — click Publish':'Book added — click Publish');
+};
+$('cancelBookBtn').onclick=()=>closeModal('bookOverlay');
+
+function updateBookPreview(){
+  const pv=$('bookPv'), cover=$('fCover').value.trim(), h=+$('fHue').value;
+  if(cover){
+    pv.innerHTML=`<img src="${esc(cover)}" alt="" onerror="this.outerHTML='<div class=gen style=padding:10px;color:#E88A8A;font-size:11px;display:flex;align-items:center;justify-content:center;height:100%>Bad URL</div>'">`;
+    return;
+  }
+  pv.innerHTML=`<div class="gen" style="background:radial-gradient(circle at 50% 0%, hsl(${h} 48% 38% / .9), transparent 70%),linear-gradient(170deg, hsl(${h} 42% 26%), hsl(${(h+40)%360} 38% 14%))">
+    <div class="frame"></div><div class="stars">✦ ✦ ✦</div>
+    <div class="t">${esc($('fTitle').value||'Book Title')}</div>
+    <div class="a">Vishal Hingol</div></div>`;
+}
+['fTitle','fCover'].forEach(id=>$(id).addEventListener('input',updateBookPreview));
+$('fHue').addEventListener('input',updateBookPreview);
+
+$('publishBooksBtn').onclick=()=>publish('books');
+
+/* ============ BLOG ============ */
+function renderPosts(){
+  const list=$('plist'), posts=blogDB.posts;
+  $('postCount').textContent=`(${posts.length})`;
+  if(!posts.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No articles yet — write your first one.</div>';return;}
+  const sorted=[...posts].sort((a,b)=>new Date(b.published)-new Date(a.published));
+  list.innerHTML=sorted.map((p,i)=>{
+    const origIdx=posts.indexOf(p);
+    const wc=p.content?p.content.split(/\s+/).length:0;
+    return `<div class="iitem blog-item">
+      <div class="imeta">
+        <h3><span class="cat-badge">${esc(p.category||'General')}</span>${esc(p.title)}</h3>
+        <p>${esc(p.published||'—')} · ${p.readingTime||Math.ceil(wc/200)} min read · ${wc.toLocaleString()} words</p>
+      </div>
+      <div class="iactions">
+        <button class="btn btn-ghost btn-sm" onclick="openEditPost(${origIdx})">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="removePost(${origIdx})">Delete</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-/* ---------- KDP import ---------- */
+$('addPostBtn').onclick=()=>{
+  editingPostIdx=-1; $('blogModalTitle').textContent='New Article';
+  ['pTitle','pCategory','pTags','pExcerpt','pContent','pBook','pSeoTitle','pSeoDesc'].forEach(id=>$(id).value='');
+  $('pDate').value=new Date().toISOString().slice(0,10);
+  $('pReadTime').value=5; updateWordCount();
+  openModal('blogOverlay');
+};
+window.openEditPost=function(i){
+  editingPostIdx=i; const p=blogDB.posts[i];
+  $('blogModalTitle').textContent='Edit Article';
+  $('pTitle').value=p.title||''; $('pCategory').value=p.category||'';
+  $('pTags').value=(p.tags||[]).join(', '); $('pExcerpt').value=p.excerpt||'';
+  $('pContent').value=p.content||''; $('pDate').value=p.published||'';
+  $('pReadTime').value=p.readingTime||5; $('pBook').value=p.relatedBook||'';
+  $('pSeoTitle').value=p.seoTitle||''; $('pSeoDesc').value=p.seoDescription||'';
+  updateWordCount(); openModal('blogOverlay');
+};
+window.removePost=function(i){
+  if(!confirm(`Delete article "${blogDB.posts[i].title}"?`)) return;
+  blogDB.posts.splice(i,1); renderPosts(); markDirty('blog');
+};
+$('saveBlogBtn').onclick=()=>{
+  const title=$('pTitle').value.trim(), content=$('pContent').value.trim();
+  if(!title){toast('Title is required','err');return;}
+  if(!content||content.length<100){toast('Article body too short (min 100 characters)','err');return;}
+  const wc=content.split(/\s+/).length;
+  const post={
+    id:editingPostIdx>=0?blogDB.posts[editingPostIdx].id:slug(title),
+    title, slug:slug(title),
+    category:$('pCategory').value.trim()||'General',
+    tags:$('pTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    excerpt:$('pExcerpt').value.trim()||content.slice(0,200).replace(/\n/g,' ')+'…',
+    content, author:'Vishal Hingol',
+    published:$('pDate').value||new Date().toISOString().slice(0,10),
+    readingTime:+$('pReadTime').value||Math.max(1,Math.ceil(wc/200)),
+    relatedBook:$('pBook').value.trim()||null,
+    seoTitle:$('pSeoTitle').value.trim()||null,
+    seoDescription:$('pSeoDesc').value.trim()||null
+  };
+  if(editingPostIdx>=0) blogDB.posts[editingPostIdx]=post;
+  else blogDB.posts.unshift(post);
+  closeModal('blogOverlay'); renderPosts(); markDirty('blog');
+  toast(editingPostIdx>=0?'Article updated — click Publish':'Article added — click Publish');
+};
+$('cancelBlogBtn').onclick=()=>closeModal('blogOverlay');
+$('pContent').addEventListener('input',updateWordCount);
+function updateWordCount(){
+  const v=$('pContent').value, wc=v.trim()?v.trim().split(/\s+/).length:0;
+  $('pCharCount').textContent=`${wc.toLocaleString()} words · ~${Math.max(1,Math.ceil(wc/200))} min read`;
+}
+
+$('publishBlogBtn').onclick=()=>publish('blog');
+
+/* ============ SETTINGS ============ */
+$('publishSettingsBtn').onclick=async()=>{
+  booksDB.author=booksDB.author||{};
+  booksDB.author.name=$('authorName').value.trim()||'Vishal Hingol';
+  booksDB.author.amazonAuthorPage=$('authorUrl').value.trim()||booksDB.author.amazonAuthorPage;
+  blogDB.blog=blogDB.blog||{};
+  blogDB.blog.title=$('blogTitle').value.trim()||'Signal & Mind';
+  blogDB.blog.tagline=$('blogTagline').value.trim();
+  await publish('books');
+  await publish('blog');
+};
+
+/* ============ KDP IMPORT ============ */
 function parseKDPPaste(text){
-  const lines = text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
-  const byIdxs = [];
-  for(let j=0;j<lines.length;j++){
-    if(/^by\s+\S/.test(lines[j]) && lines[j].length < 60) byIdxs.push(j);
-  }
-  const items = [];
+  const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  const byIdxs=[];
+  for(let j=0;j<lines.length;j++){if(/^by\s+\S/.test(lines[j])&&lines[j].length<60)byIdxs.push(j);}
+  const items=[];
   for(let k=0;k<byIdxs.length;k++){
-    const byIdx = byIdxs[k];
-    if(byIdx===0) continue;
-    const title = lines[byIdx-1];
-    const blockEnd = (k+1<byIdxs.length) ? byIdxs[k+1]-1 : lines.length;
-    const block = lines.slice(byIdx+1, blockEnd);
-    const formats = {};
-    let current = null;
+    const byIdx=byIdxs[k]; if(byIdx===0)continue;
+    const title=lines[byIdx-1];
+    const blockEnd=(k+1<byIdxs.length)?byIdxs[k+1]-1:lines.length;
+    const block=lines.slice(byIdx+1,blockEnd);
+    const formats={};let current=null;
     block.forEach(line=>{
-      if(/^Kindle eBook$/i.test(line) || /^Paperback$/i.test(line) || /^Hardcover$/i.test(line)){
-        current = line;
-        formats[current] = formats[current] || {status:null, asin:null, submitted:null};
-        return;
-      }
-      if(!current) return;
-      if(/^Live$/i.test(line)) formats[current].status = 'Live';
-      else if(/^Publishing$/i.test(line)) formats[current].status = formats[current].status || 'Publishing';
-      else if(/^\+ Create/i.test(line)) formats[current].status = formats[current].status || 'NotCreated';
-      const sub = line.match(/^Submitted on\s+(.+)$/i);
-      if(sub) formats[current].submitted = sub[1];
-      const asin = line.match(/^ASIN:\s*([A-Z0-9]{6,})/i);
-      if(asin) formats[current].asin = asin[1];
+      if(/^Kindle eBook$/i.test(line)||/^Paperback$/i.test(line)||/^Hardcover$/i.test(line)){current=line;formats[current]=formats[current]||{status:null,asin:null,submitted:null};return;}
+      if(!current)return;
+      if(/^Live$/i.test(line))formats[current].status='Live';
+      else if(/^Publishing$/i.test(line))formats[current].status=formats[current].status||'Publishing';
+      const sub=line.match(/^Submitted on\s+(.+)$/i);if(sub)formats[current].submitted=sub[1];
+      const asin=line.match(/^ASIN:\s*([A-Z0-9]{6,})/i);if(asin)formats[current].asin=asin[1];
     });
-    items.push({title, formats});
+    items.push({title,formats});
   }
   return items;
 }
-
-function kdpChoose(formats){
-  for(const f of ['Paperback','Kindle eBook','Hardcover']){
-    const fmt = formats[f];
-    if(fmt && fmt.status==='Live' && fmt.asin) return {format:f, ...fmt};
-  }
-  return null;
-}
-
-function kdpDateToISO(str){
-  if(!str) return new Date().toISOString().slice(0,10);
-  const d = new Date(str);
-  if(isNaN(d.getTime())) return new Date().toISOString().slice(0,10);
-  return d.toISOString().slice(0,10);
-}
-
-const kdpMainTitle = t => t.split(':')[0].trim().toLowerCase();
-
-let kdpScan = [];
-
-$('kdpScanBtn').onclick = ()=>{
-  const text = $('kdpPaste').value;
-  if(!text.trim()){ toast('Paste your KDP bookshelf text first','err'); return; }
-  const items = parseKDPPaste(text);
-  if(!items.length){ toast('No books detected — check the pasted text','err'); return; }
-
-  kdpScan = items.map(item=>{
-    const chosen = kdpChoose(item.formats);
-    const existingIdx = db.books.findIndex(b=> kdpMainTitle(b.title) === kdpMainTitle(item.title));
-    return {
-      title: item.title,
-      chosen,
-      existingIdx,
-      include: existingIdx===-1 && !!chosen,
-      updateLink: false
-    };
+function kdpChoose(formats){for(const f of['Paperback','Kindle eBook','Hardcover']){const fmt=formats[f];if(fmt&&fmt.status==='Live'&&fmt.asin)return{format:f,...fmt};}return null;}
+function kdpDateToISO(str){if(!str)return new Date().toISOString().slice(0,10);const d=new Date(str);return isNaN(d)?new Date().toISOString().slice(0,10):d.toISOString().slice(0,10);}
+const kdpMainTitle=t=>t.split(':')[0].trim().toLowerCase();
+let kdpScan=[];
+$('kdpScanBtn').onclick=()=>{
+  const text=$('kdpPaste').value;if(!text.trim()){toast('Paste your KDP bookshelf text first','err');return;}
+  const items=parseKDPPaste(text);if(!items.length){toast('No books detected','err');return;}
+  kdpScan=items.map(item=>{
+    const chosen=kdpChoose(item.formats);
+    const existingIdx=booksDB.books.findIndex(b=>kdpMainTitle(b.title)===kdpMainTitle(item.title));
+    return{title:item.title,chosen,existingIdx,include:existingIdx===-1&&!!chosen,updateLink:false};
   });
   renderKDPResults();
 };
-
 function renderKDPResults(){
-  const box = $('kdpResults');
-  if(!kdpScan.length){ box.innerHTML=''; return; }
-
-  const checkboxStyle = 'display:flex;align-items:center;gap:6px;font-size:12px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--paper);white-space:nowrap';
-
-  box.innerHTML = kdpScan.map((r,i)=>{
-    if(!r.chosen){
-      return `<div class="bitem" style="opacity:.55;grid-template-columns:1fr">
-        <div class="bmeta"><h3>${esc(r.title)}</h3>
-        <p>Not live yet on Amazon — skipped. Run the scan again once a format goes live.</p></div>
-      </div>`;
-    }
-    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
-    if(r.existingIdx>-1){
-      const cur = db.books[r.existingIdx].amazonUrl;
-      return `<div class="bitem" style="grid-template-columns:1fr auto">
-        <div class="bmeta"><h3>${esc(r.title)}</h3>
-        <p>Already in your library as "${esc(db.books[r.existingIdx].title)}" · ${esc(r.chosen.format)} link found: <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p>
-        <p style="font-size:11px">Current link: ${esc(cur)}</p></div>
-        <div class="bactions">
-          <label style="${checkboxStyle}">
-            <input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked">
-            Update link
-          </label>
-        </div>
-      </div>`;
-    }
-    return `<div class="bitem" style="grid-template-columns:1fr auto">
-      <div class="bmeta"><h3>${esc(r.title)}</h3>
-      <p>New · ${esc(r.chosen.format)} · published ${esc(kdpDateToISO(r.chosen.submitted))} · <a href="${link}" target="_blank" style="color:var(--gold)">${link}</a></p></div>
-      <div class="bactions">
-        <label style="${checkboxStyle}">
-          <input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked">
-          Add to library
-        </label>
-      </div>
-    </div>`;
-  }).join('') + `
-    <div style="margin-top:18px">
-      <button class="btn btn-gold btn-sm" id="kdpApplyBtn">Apply to Library</button>
-    </div>`;
-
-  $('kdpApplyBtn').onclick = applyKDPScan;
+  const box=$('kdpResults');
+  if(!kdpScan.length){box.innerHTML='';return;}
+  box.innerHTML=kdpScan.map((r,i)=>{
+    if(!r.chosen)return`<div class="kdp-result-item" style="opacity:.6"><b>${esc(r.title)}</b><br><span style="color:var(--mist);font-size:13px">Not live yet — skipped</span></div>`;
+    const link=`https://www.amazon.com/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1)return`<div class="kdp-result-item"><b>${esc(r.title)}</b> · already in library<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><br><label style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked"> Update buy link</label></div>`;
+    return`<div class="kdp-result-item"><b>${esc(r.title)}</b> · NEW · ${esc(r.chosen.format)}<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><br><label style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked"> Add to library</label></div>`;
+  }).join('')+`<div style="margin-top:16px"><button class="btn btn-gold btn-sm" onclick="applyKDPScan()">Apply to Library</button></div>`;
 }
-
-function applyKDPScan(){
-  let added=0, updated=0;
+window.applyKDPScan=function(){
+  let added=0,updated=0;
   kdpScan.forEach(r=>{
-    if(!r.chosen) return;
-    const link = `https://www.amazon.com/dp/${r.chosen.asin}`;
-    if(r.existingIdx>-1){
-      if(r.updateLink){
-        db.books[r.existingIdx].amazonUrl = link;
-        updated++;
-      }
-    } else if(r.include){
-      const hasSubtitle = r.title.includes(':');
-      db.books.unshift({
-        id: slug(r.title.split(':')[0]),
-        title: r.title.split(':')[0].trim(),
-        subtitle: hasSubtitle ? r.title.split(':').slice(1).join(':').trim() : '',
-        description: '',
-        tags: [],
-        amazonUrl: link,
-        coverImage: '',
-        published: kdpDateToISO(r.chosen.submitted),
-        hue: Math.floor(Math.random()*360)
-      });
-      added++;
-    }
+    if(!r.chosen)return;
+    const link=`https://www.amazon.com/dp/${r.chosen.asin}`;
+    if(r.existingIdx>-1){if(r.updateLink){booksDB.books[r.existingIdx].amazonUrl=link;updated++;}}
+    else if(r.include){booksDB.books.unshift({id:slug(r.title.split(':')[0]),title:r.title.split(':')[0].trim(),subtitle:r.title.includes(':')?r.title.split(':').slice(1).join(':').trim():'',description:'',tags:[],amazonUrl:link,coverImage:'',published:kdpDateToISO(r.chosen.submitted),hue:Math.floor(Math.random()*360)});added++;}
   });
-  if(added||updated){
-    renderList(); markDirty();
-    toast(`Added ${added} new book(s)${updated?`, updated ${updated} link(s)`:''} — fill in details, then Publish`);
-    kdpScan = []; $('kdpResults').innerHTML=''; $('kdpPaste').value='';
-  } else {
-    toast('Nothing selected to apply','err');
-  }
-}
-
-/* ---------- add / edit modal ---------- */
-function openModal(){ $('overlay').classList.add('open'); }
-function closeModal(){ $('overlay').classList.remove('open'); }
-
-window.openEdit = function(i){
-  editingIndex = i;
-  const b = db.books[i];
-  $('modalTitle').textContent = 'Edit book';
-  $('fTitle').value = b.title||'';
-  $('fSubtitle').value = b.subtitle||'';
-  $('fDesc').value = b.description||'';
-  $('fTags').value = (b.tags||[]).join(', ');
-  $('fUrl').value = b.amazonUrl||'';
-  $('fDate').value = b.published||'';
-  $('fCover').value = b.coverImage||'';
-  $('fHue').value = b.hue ?? 35;
-  updatePreview(); openModal();
+  if(added||updated){renderBooks();markDirty('books');toast(`Added ${added}, updated ${updated} link(s) — click Publish`);kdpScan=[];$('kdpResults').innerHTML='';$('kdpPaste').value='';}
+  else toast('Nothing selected','err');
 };
 
-window.removeBook = function(i){
-  const b = db.books[i];
-  if(!confirm(`Delete "${b.title}" from the website?\n\n(It will only disappear from the live site after you click Publish.)`)) return;
-  db.books.splice(i,1);
-  renderList(); markDirty();
-};
-
-$('addBtn').onclick = ()=>{
-  editingIndex = -1;
-  $('modalTitle').textContent = 'Add a book';
-  ['fTitle','fSubtitle','fDesc','fTags','fUrl','fCover'].forEach(id=>$(id).value='');
-  $('fDate').value = new Date().toISOString().slice(0,10);
-  $('fHue').value = Math.floor(Math.random()*360);
-  updatePreview(); openModal();
-};
-$('cancelBtn').onclick = closeModal;
-$('overlay').addEventListener('click', e=>{ if(e.target===$('overlay')) closeModal(); });
-
-$('saveBookBtn').onclick = ()=>{
-  const title = $('fTitle').value.trim();
-  const url = $('fUrl').value.trim();
-  if(!title){ toast('Title is required','err'); return; }
-  if(!url){ toast('Amazon buy link is required','err'); return; }
-  const book = {
-    id: editingIndex>=0 ? db.books[editingIndex].id : slug(title),
-    title,
-    subtitle: $('fSubtitle').value.trim(),
-    description: $('fDesc').value.trim(),
-    tags: $('fTags').value.split(',').map(t=>t.trim()).filter(Boolean),
-    amazonUrl: url,
-    coverImage: $('fCover').value.trim(),
-    published: $('fDate').value || new Date().toISOString().slice(0,10),
-    hue: +$('fHue').value
-  };
-  if(editingIndex>=0) db.books[editingIndex] = book;
-  else db.books.unshift(book);
-  closeModal(); renderList(); markDirty();
-  toast(editingIndex>=0 ? 'Book updated — now click Publish' : 'Book added — now click Publish');
-};
-
-/* ---------- live cover preview ---------- */
-function updatePreview(){
-  const pv = $('pv');
-  const cover = $('fCover').value.trim();
-  if(cover){
-    pv.innerHTML = `<img src="${esc(cover)}" alt="" onerror="this.parentNode.innerHTML='<div class=gen style=padding:12px;color:#E88A8A;font-size:11px;display:flex;align-items:center;justify-content:center;height:100%>Image failed to load — check the URL</div>'">`;
-    return;
-  }
-  const h = +$('fHue').value;
-  pv.innerHTML = `
-    <div class="gen" style="background:
-        radial-gradient(circle at 50% 0%, hsl(${h} 48% 38% / .9), transparent 70%),
-        linear-gradient(170deg, hsl(${h} 42% 26%), hsl(${(h+40)%360} 38% 14%))">
-      <div class="frame"></div>
-      <div class="stars">✦ ✦ ✦</div>
-      <div class="t">${esc($('fTitle').value || 'Book Title')}</div>
-      <div class="a">Vishal Hingol</div>
-    </div>`;
-}
-['fTitle','fCover'].forEach(id=>$(id).addEventListener('input',updatePreview));
-$('fHue').addEventListener('input',updatePreview);
-
-/* ---------- publish (commit to GitHub) ---------- */
-$('publishBtn').onclick = async ()=>{
-  const btn = $('publishBtn');
-  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Publishing…';
+/* ============ PUBLISH ============ */
+async function publish(which){
+  const isBooks=which==='books';
+  const btn=$(isBooks?'publishBooksBtn':'publishBlogBtn');
+  const file=isBooks?'books.json':'blog.json';
+  const data=isBooks?booksDB:blogDB;
+  let sha=isBooks?booksSha:blogSha;
+  btn.disabled=true; btn.innerHTML='<span class="spin"></span> Publishing…';
   try{
-    db.author = db.author || {};
-    db.author.name = db.author.name || 'Vishal Hingol';
-    db.author.amazonAuthorPage = $('authorUrl').value.trim() || db.author.amazonAuthorPage;
-
-    const body = {
-      message: `Update library — ${db.books.length} book(s) · via dashboard`,
-      content: b64encode(JSON.stringify(db, null, 2)),
-      branch: cfg.branch,
-      sha
-    };
-    const res = await api(`contents/${FILE}`, {method:'PUT', body: JSON.stringify(body)});
-    if(res.status === 409){ // sha conflict — refetch and ask to retry
-      const fres = await api(`contents/${FILE}?ref=${encodeURIComponent(cfg.branch)}`);
-      const fj = await fres.json(); sha = fj.sha;
-      throw new Error('The file changed elsewhere — sync refreshed, click Publish again.');
+    if(!sha){
+      // Create file if it doesn't exist (first blog publish)
+      const cr=await api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message:`Create ${file}`,content:b64enc(JSON.stringify(data,null,2)),branch:cfg.branch})});
+      if(!cr.ok)throw new Error('Could not create '+file+' — error '+cr.status);
+      const cj=await cr.json(); sha=cj.content.sha;
+    } else {
+      const res=await api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message:`Update ${file} via dashboard`,content:b64enc(JSON.stringify(data,null,2)),branch:cfg.branch,sha})});
+      if(res.status===409){const fr=await ghGet(file);const fj=await fr.json();if(isBooks)booksSha=fj.sha;else blogSha=fj.sha;throw new Error('File changed elsewhere — please click Publish again.');}
+      if(!res.ok)throw new Error('GitHub error '+res.status);
+      const rj=await res.json(); sha=rj.content.sha;
     }
-    if(!res.ok) throw new Error('GitHub error '+res.status);
-    const j = await res.json();
-    sha = j.content.sha;
-    dirty = false; $('dirtyHint').textContent = '';
-    toast('Published! Live site updates in ~30–60 seconds.');
+    if(isBooks)booksSha=sha; else blogSha=sha;
+    if(isBooks){booksDirty=false;$('booksDirtyHint').textContent='';}
+    else{blogDirty=false;$('blogDirtyHint').textContent='';}
+    toast(`${isBooks?'Books':'Blog'} published! Live site updates in ~60 seconds ✓`);
   }catch(e){
     toast(e.message,'err');
   }finally{
-    btn.disabled = false; btn.textContent = 'Publish Changes to Live Site';
+    btn.disabled=false; btn.textContent=isBooks?'Publish Books to Live Site':'Publish Blog to Live Site';
   }
+}
+
+function markDirty(which){
+  if(which==='books'){booksDirty=true;$('booksDirtyHint').textContent='Unsaved changes — click Publish to go live.';}
+  else{blogDirty=true;$('blogDirtyHint').textContent='Unsaved changes — click Publish to go live.';}
+}
+
+/* ============ MODAL HELPERS ============ */
+function openModal(id){ $(id).classList.add('open'); }
+function closeModal(id){ $(id).classList.remove('open'); }
+['bookOverlay','blogOverlay'].forEach(id=>{
+  $(id).addEventListener('click',e=>{ if(e.target===$(id)) closeModal(id); });
+});
+
+/* ============ LOGOUT / SESSION ============ */
+$('logoutBtn').onclick=()=>{
+  if((booksDirty||blogDirty)&&!confirm('You have unpublished changes. Disconnect anyway?'))return;
+  localStorage.removeItem(LSKEY); location.reload();
 };
+window.addEventListener('beforeunload',e=>{if(booksDirty||blogDirty){e.preventDefault();e.returnValue='';}});
 
-$('authorUrl').addEventListener('input', markDirty);
-
-/* ---------- session ---------- */
-$('connectBtn').onclick = ()=>{
-  cfg = {
-    owner: $('cfgOwner').value.trim(),
-    repo: $('cfgRepo').value.trim(),
-    branch: $('cfgBranch').value.trim() || 'main',
-    token: $('cfgToken').value.trim()
-  };
-  if(!cfg.owner || !cfg.repo || !cfg.token){ toast('Fill in username, repo and token','err'); return; }
-  connect(true);
-};
-
-$('logoutBtn').onclick = ()=>{
-  if(dirty && !confirm('You have unpublished changes. Disconnect anyway?')) return;
-  localStorage.removeItem(LSKEY);
-  location.reload();
-};
-
-window.addEventListener('beforeunload', e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
-
-// auto-reconnect if saved
+/* ============ AUTO RECONNECT ============ */
 (function(){
-  const saved = localStorage.getItem(LSKEY);
+  const saved=localStorage.getItem(LSKEY);
   if(saved){
-    cfg = JSON.parse(saved);
-    $('cfgOwner').value = cfg.owner; $('cfgRepo').value = cfg.repo;
-    $('cfgBranch').value = cfg.branch; $('cfgToken').value = cfg.token;
+    cfg=JSON.parse(saved);
+    $('cfgOwner').value=cfg.owner; $('cfgRepo').value=cfg.repo;
+    $('cfgBranch').value=cfg.branch; $('cfgToken').value=cfg.token;
     connect(false);
   }
 })();

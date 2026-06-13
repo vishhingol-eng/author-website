@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookstore — Vishal Hingol | All Books & Guided Journals</title>
+<meta name="description" content="Browse every book by Vishal Hingol — self-help, manifestation, guided journals, visionary fiction and practical AI for business. Search, filter and buy on Amazon.">
+<link rel="canonical" href="https://vishalhingolauthor.com/store.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Albert+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4F7;
+  --card:#FFFFFF;
+  --header:#0B1026;
+  --header-2:#131A3E;
+  --ink:#15192E;
+  --mute:#5C6378;
+  --line:#E2E5EC;
+  --accent:#E8A33D;
+  --accent-dark:#C8862B;
+  --link:#2456B3;
+  --green:#1E7A4D;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Albert Sans',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer}
+
+/* ============ header ============ */
+.topbar{
+  background:var(--header);color:#fff;position:sticky;top:0;z-index:40;
+  box-shadow:0 2px 14px rgba(11,16,38,.25);
+}
+.topbar-inner{
+  max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:18px;
+  padding:12px clamp(14px,3vw,28px);
+}
+.store-brand{display:flex;flex-direction:column;line-height:1.15;flex-shrink:0}
+.store-brand b{font-family:var(--display);font-weight:600;font-size:19px}
+.store-brand b em{color:var(--accent);font-style:italic}
+.store-brand span{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9AA1C7;font-weight:700}
+.searchwrap{flex:1;display:flex;max-width:680px}
+.searchwrap input{
+  flex:1;border:none;outline:none;font-family:var(--body);font-size:15px;
+  padding:11px 16px;border-radius:8px 0 0 8px;color:var(--ink);
+}
+.searchwrap button{
+  background:var(--accent);border:none;padding:0 18px;border-radius:0 8px 8px 0;
+  font-size:17px;transition:background .2s;
+}
+.searchwrap button:hover{background:var(--accent-dark)}
+.top-links{display:flex;gap:18px;align-items:center;flex-shrink:0}
+.top-links a{font-size:12.5px;font-weight:700;color:#D7DBEE;letter-spacing:.04em}
+.top-links a:hover{color:var(--accent)}
+.top-links .home-link{border:1px solid rgba(255,255,255,.25);padding:8px 14px;border-radius:100px}
+@media(max-width:700px){
+  .topbar-inner{flex-wrap:wrap}
+  .searchwrap{order:3;min-width:100%}
+  .top-links a:not(.home-link){display:none}
+}
+
+/* category strip */
+.cats{background:var(--header-2);overflow-x:auto;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats-inner{max-width:1380px;margin:0 auto;display:flex;gap:6px;padding:8px clamp(14px,3vw,28px)}
+.cat{
+  background:transparent;border:1px solid transparent;color:#C9CEE6;
+  font-size:12.5px;font-weight:700;letter-spacing:.03em;white-space:nowrap;
+  padding:7px 15px;border-radius:100px;transition:all .2s;
+}
+.cat:hover{border-color:rgba(255,255,255,.35);color:#fff}
+.cat.active{background:var(--accent);color:var(--header);border-color:var(--accent)}
+
+/* ============ page ============ */
+.page{max-width:1380px;margin:0 auto;padding:22px clamp(14px,3vw,28px) 80px}
+.results-bar{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.results-bar h1{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,26px)}
+.results-bar .count{color:var(--mute);font-size:13.5px;font-weight:600}
+.sortwrap{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);font-weight:600}
+.sortwrap select{
+  font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;outline:none;
+}
+
+/* ============ product grid ============ */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:16px;
+}
+.pcard{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px;display:flex;flex-direction:column;position:relative;
+  transition:box-shadow .25s,transform .25s;
+}
+.pcard:hover{box-shadow:0 10px 30px rgba(21,25,46,.12);transform:translateY(-3px)}
+.pbadge{
+  position:absolute;top:10px;left:10px;z-index:2;
+  background:var(--accent);color:var(--header);font-size:9.5px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:6px;
+  box-shadow:0 3px 10px rgba(232,163,61,.45);
+}
+.pbadge.feat{background:var(--header);color:var(--accent)}
+.pimg{
+  display:flex;justify-content:center;padding:6px 0 14px;
+}
+.pimg .cov{
+  width:150px;aspect-ratio:2/3;border-radius:5px;overflow:hidden;position:relative;
+  box-shadow:0 8px 22px rgba(21,25,46,.22);transition:transform .25s;
+}
+.pcard:hover .cov{transform:scale(1.035)}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.gen{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;
+  justify-content:space-between;text-align:center;padding:14px 10px;color:#FBF7EE;
+}
+.gen .gt{font-family:var(--display);font-weight:500;font-size:13px;line-height:1.25}
+.gen .ga{font-size:7px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;opacity:.85}
+.gen .gs{font-size:11px;letter-spacing:5px;opacity:.9}
+.ptitle{
+  font-family:var(--display);font-weight:500;font-size:16.5px;line-height:1.25;
+  margin-bottom:4px;color:var(--ink);
+}
+.ptitle a:hover{color:var(--link);text-decoration:underline}
+.psub{font-size:12.5px;color:var(--mute);line-height:1.45;margin-bottom:8px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ptags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--link);background:#EDF2FB;padding:3px 9px;border-radius:100px}
+.pformat{font-size:11.5px;color:var(--green);font-weight:700;margin-bottom:12px}
+.pbuy{
+  margin-top:auto;display:flex;flex-direction:column;gap:8px;
+}
+.btn-cart{
+  background:linear-gradient(180deg,#F5B95A,var(--accent));border:1px solid var(--accent-dark);
+  color:var(--header);font-weight:800;font-size:13px;letter-spacing:.03em;
+  padding:11px 14px;border-radius:100px;text-align:center;
+  transition:filter .2s,transform .2s;box-shadow:0 2px 8px rgba(232,163,61,.35);
+}
+.btn-cart:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.plink{font-size:12px;color:var(--link);font-weight:700;text-align:center}
+.plink:hover{text-decoration:underline}
+
+.empty{
+  grid-column:1/-1;text-align:center;color:var(--mute);padding:60px 20px;
+  font-size:15px;
+}
+.empty b{font-family:var(--display);font-size:22px;display:block;color:var(--ink);margin-bottom:8px}
+
+/* footer */
+.storefoot{
+  border-top:1px solid var(--line);background:#fff;margin-top:30px;
+  padding:26px clamp(14px,3vw,28px);text-align:center;color:var(--mute);font-size:13px;
+}
+.storefoot a{color:var(--link);font-weight:700}
+.storefoot a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="store-brand" href="index.html">
+      <b>Vishal <em>Hingol</em></b>
+      <span>Bookstore</span>
+    </a>
+    <div class="searchwrap">
+      <input id="q" type="text" placeholder="Search books, journals, topics…" aria-label="Search books">
+      <button aria-label="Search" onclick="document.getElementById('q').focus()">⌕</button>
+    </div>
+    <nav class="top-links">
+      <a href="index.html">About the Author</a>
+      <a href="blog.html">Blog</a>
+      <a class="home-link" id="authorLink" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon Author Page ↗</a>
+    </nav>
+  </div>
+  <div class="cats"><div class="cats-inner" id="cats"></div></div>
+</header>
+
+<main class="page">
+  <div class="results-bar">
+    <h1>All Books <span class="count" id="count"></span></h1>
+    <div class="sortwrap">
+      Sort by
+      <select id="sort">
+        <option value="newest">Newest first</option>
+        <option value="featured">Featured first</option>
+        <option value="az">Title A–Z</option>
+      </select>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="storefoot">
+  © <span id="yr"></span> Vishal Hingol · All purchases are completed securely on <a id="footLink" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="index.html">Back to main site</a>
+</footer>
+
+<script src="covers.js"></script>
+<script>
+(async function(){
+  const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const grid = document.getElementById('grid');
+  const NEW_DAYS = 45, now = Date.now();
+
+  /* original-filename fallbacks (same self-healing as homepage) */
+  const ORIG = {
+    'zara-and-the-divine-signal':'ZARA_Ebook.jpg',
+    'lucky-girl-evidence-journal':'Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg',
+    'the-real-frequency-of-origins':'The_Real_Frequency_of_Origins_Ebook.jpg',
+    'the-real-architect-of-echoes':'The_Real_Architect_of_Echoes_EBOOK.jpg',
+    'the-great-alignment-principle':'THE_GREAT.jpg',
+    'the-uncontaminated-mind':'UNCOTED_KDP.jpg',
+    'your-life-is-speaking':'Your_life_KDP.jpg',
+    'your-life-is-trying-to-tell-you-something':'Your_Life_Is_Trying_To_Tell_You_Something_600DPI_HighRes.jpg',
+    'the-signal':'The_Signal_EBOOK.jpg',
+    'why-you-keep-holding-yourself-back':'Why_You_Keep_Holding_Yourself_Back_KDP__1_.jpg',
+    'the-unconditioned-mind':'The_Unconditioned_Mind_KDP.jpg',
+    'the-quiet-revolution':'71pAMMcowLL__SL1500_.jpg',
+    'the-universe-is-whispering-to-you':'universe_whispering_cover.jpg',
+    'unshackled':'UNSHACKLED.jpg',
+    'the-divine-369-manifestation-method':'The_Divine_3-6-9_Manifestation_Method.jpg'
+  };
+  function genCover(hue, title){
+    return `<div class="gen" style="background:
+      radial-gradient(circle at 50% 0%, hsl(${hue} 48% 38% / .9), transparent 70%),
+      linear-gradient(170deg, hsl(${hue} 42% 26%), hsl(${(hue+40)%360} 38% 14%))">
+      <div class="gs">✦ ✦ ✦</div><div class="gt">${title}</div><div class="ga">Vishal Hingol</div></div>`;
+  }
+  function coverHTML(b){
+    const hue = +b.hue||35;
+    if(window.COVERS && window.COVERS[b.id]) return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)}">`;
+    const cands = [];
+    if(b.coverImage){
+      const base = b.coverImage.replace(/^covers\//,'');
+      cands.push(b.coverImage); cands.push(base !== b.coverImage ? base : 'covers/'+base);
+    }
+    const o = ORIG[b.id]; if(o) cands.push(o,'covers/'+o);
+    if(!cands.length) return genCover(hue, esc(b.title));
+    return `<img src="${esc(cands[0])}" alt="Cover of ${esc(b.title)}" loading="lazy" data-i="0" data-cands='${JSON.stringify(cands)}' data-hue="${hue}" data-title="${esc(b.title)}" onerror="nextCover(this)">`;
+  }
+  window.nextCover = function(img){
+    const cands = JSON.parse(img.dataset.cands), i = (+img.dataset.i)+1;
+    if(i < cands.length){ img.dataset.i=i; img.src=cands[i]; }
+    else img.outerHTML = genCover(+img.dataset.hue, img.dataset.title);
+  };
+
+  /* load database */
+  let data;
+  try{
+    const res = await fetch('books.json?v='+Date.now(),{cache:'no-store'});
+    data = await res.json();
+  }catch(e){
+    grid.innerHTML = '<div class="empty"><b>Couldn\u2019t load the bookstore</b>Please visit the Amazon author page instead.</div>';
+    return;
+  }
+  if(data.author?.amazonAuthorPage){
+    document.getElementById('authorLink').href = data.author.amazonAuthorPage;
+    document.getElementById('footLink').href = data.author.amazonAuthorPage;
+  }
+  const all = (data.books||[]).slice();
+
+  /* categories from tags */
+  const catSet = new Set();
+  all.forEach(b=>(b.tags||[]).forEach(t=>catSet.add(t)));
+  const cats = ['All', ...Array.from(catSet).sort()];
+  let activeCat = 'All', query = '', sortMode = 'newest';
+
+  const catsBox = document.getElementById('cats');
+  catsBox.innerHTML = cats.map(c=>`<button class="cat${c==='All'?' active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  catsBox.addEventListener('click', e=>{
+    const btn = e.target.closest('.cat'); if(!btn) return;
+    activeCat = btn.dataset.cat;
+    catsBox.querySelectorAll('.cat').forEach(x=>x.classList.toggle('active', x===btn));
+    render();
+  });
+
+  document.getElementById('q').addEventListener('input', e=>{ query = e.target.value.trim().toLowerCase(); render(); });
+  document.getElementById('sort').addEventListener('change', e=>{ sortMode = e.target.value; render(); });
+
+  function render(){
+    let books = all.filter(b=>{
+      const inCat = activeCat==='All' || (b.tags||[]).includes(activeCat);
+      const hay = (b.title+' '+(b.subtitle||'')+' '+(b.tags||[]).join(' ')+' '+(b.description||'')).toLowerCase();
+      return inCat && (!query || hay.includes(query));
+    });
+    if(sortMode==='newest') books.sort((a,b)=>new Date(b.published)-new Date(a.published));
+    if(sortMode==='az') books.sort((a,b)=>a.title.localeCompare(b.title));
+    if(sortMode==='featured') books.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0) || new Date(b.published)-new Date(a.published));
+
+    document.getElementById('count').textContent = `(${books.length} ${books.length===1?'title':'titles'})`;
+
+    if(!books.length){
+      grid.innerHTML = `<div class="empty"><b>No books match "${esc(query)}"</b>Try a different search or pick another category.</div>`;
+      return;
+    }
+    grid.innerHTML = books.map(b=>{
+      const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
+      const badge = b.featured ? '<span class="pbadge feat">★ Featured</span>'
+                  : isNew ? '<span class="pbadge">New Release</span>' : '';
+      return `
+      <article class="pcard">
+        ${badge}
+        <div class="pimg"><a class="cov" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${coverHTML(b)}</a></div>
+        <h2 class="ptitle"><a href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${esc(b.title)}</a></h2>
+        <p class="psub">${esc(b.subtitle||'')}</p>
+        <div class="ptags">${(b.tags||[]).slice(0,2).map(t=>`<span class="ptag">${esc(t)}</span>`).join('')}</div>
+        <div class="pformat">Kindle &amp; Paperback</div>
+        <div class="pbuy">
+          <a class="btn-cart" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">Buy on Amazon</a>
+          <a class="plink" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">View details &amp; reviews ↗</a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+  render();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

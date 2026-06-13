@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Main Homepage -->
+  <url><loc>https://vishalhingolauthor.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://vishalhingolauthor.com/store.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vishalhingolauthor.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url>
-    <loc>https://vishalhingol.com</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- New Book Page: Zara and the Divine Signal -->
-  <url>
-    <loc>https://vishalhingol.comzara-divine-signal/</loc>
+    <loc>https://vishalhingolauthor.com/article.html?id=how-369-manifestation-method-works</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Book Page: The Divine 3-6-9 Method -->
   <url>
-    <loc>https://vishalhingol.com369-manifestation/</loc>
+    <loc>https://vishalhingolauthor.com/article.html?id=what-is-lucky-girl-syndrome</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Book Page: The Signal 21-Day Protocol -->
   <url>
-    <loc>https://vishalhingol.comthe-signal/</loc>
+    <loc>https://vishalhingolauthor.com/article.html?id=how-to-stop-self-sabotage-permanently</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://vishalhingolauthor.com/article.html?id=digital-sovereignty-reclaim-your-attention</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/article.html?id=signs-from-universe-how-to-recognize</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
