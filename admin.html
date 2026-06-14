@@ -11,8 +11,8 @@
 <style>
 :root{
   --night:#070A18;--night-2:#0B1026;--ink:#121A3E;--ink-2:#172052;
-  --glass:rgba(18,26,62,.55);
-  --line:rgba(244,238,226,.12);--gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9ECF;
+  --glass:rgba(18,26,62,.55);--line:rgba(244,238,226,.12);
+  --gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9ECF;
   --paper:#F4EEE2;--mist:#9AA1C7;--green:#7ED9A7;--red:#E88A8A;
   --display:'Fraunces',Georgia,serif;--body:'Albert Sans',system-ui,sans-serif;--tech:'Space Grotesk',monospace;
 }
@@ -20,141 +20,105 @@
 body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
 ::selection{background:var(--gold);color:var(--night)}
 a{color:inherit;text-decoration:none}
-
-/* aurora */
 .aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.35}
 .aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:55vw;height:55vw;left:-12%;top:-12%;background:radial-gradient(circle,rgba(157,123,255,.5),transparent 65%);animation:auro1 28s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:46vw;height:46vw;right:-10%;top:30%;background:radial-gradient(circle,rgba(125,230,255,.32),transparent 65%);animation:auro2 34s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:58vw;height:58vw;left:25%;bottom:-25%;background:radial-gradient(circle,rgba(232,187,107,.28),transparent 65%);animation:auro3 40s ease-in-out infinite alternate}
-@keyframes auro1{to{transform:translate(9vw,7vh) scale(1.15)}}
-@keyframes auro2{to{transform:translate(-8vw,10vh) scale(.9)}}
-@keyframes auro3{to{transform:translate(-6vw,-9vh) scale(1.12)}}
-body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
-  background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);
-}
+.aurora i:nth-child(1){width:55vw;height:55vw;left:-12%;top:-12%;background:radial-gradient(circle,rgba(157,123,255,.5),transparent 65%);animation:a1 28s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:46vw;height:46vw;right:-10%;top:30%;background:radial-gradient(circle,rgba(125,230,255,.32),transparent 65%);animation:a2 34s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:58vw;height:58vw;left:25%;bottom:-25%;background:radial-gradient(circle,rgba(232,187,107,.28),transparent 65%);animation:a3 40s ease-in-out infinite alternate}
+@keyframes a1{to{transform:translate(9vw,7vh) scale(1.15)}}
+@keyframes a2{to{transform:translate(-8vw,10vh) scale(.9)}}
+@keyframes a3{to{transform:translate(-6vw,-9vh) scale(1.12)}}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 75%)}
 header,.wrap,#toast,.overlay{position:relative;z-index:1}
-
-/* header */
-header{
-  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:18px clamp(18px,4vw,48px);border-bottom:1px solid var(--line);
-  background:rgba(7,10,24,.8);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20;
-}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:18px clamp(18px,4vw,48px);border-bottom:1px solid var(--line);background:rgba(7,10,24,.8);backdrop-filter:blur(18px);position:sticky;top:0;z-index:20}
 .brand{font-family:var(--display);font-size:20px;font-weight:500}
 .brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand small{display:block;font-family:var(--tech);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--cyan)}
 .head-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-
-/* tab bar */
-.tabbar{
-  display:flex;gap:4px;padding:0 clamp(18px,4vw,48px);
-  background:rgba(7,10,24,.6);border-bottom:1px solid var(--line);
-  overflow-x:auto;scrollbar-width:none;position:sticky;top:69px;z-index:19;
-}
+.tabbar{display:flex;gap:4px;padding:0 clamp(18px,4vw,48px);background:rgba(7,10,24,.6);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;position:sticky;top:69px;z-index:19}
 .tabbar::-webkit-scrollbar{display:none}
-.tab{
-  font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--mist);padding:14px 18px;border:none;background:transparent;cursor:pointer;
-  border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;
-}
+.tab{font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);padding:14px 18px;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
 .tab:hover{color:var(--paper)}
 .tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
-
-/* panels */
 .panel{display:none}.panel.active{display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px) 90px}
-
-/* card */
-.card{
-  position:relative;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-radius:20px;padding:clamp(20px,3vw,32px);margin-bottom:24px;
-}
-.card::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(135deg,rgba(232,187,107,.5),rgba(125,230,255,.16) 40%,rgba(157,123,255,.4) 75%,rgba(232,187,107,.25));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.75;
-}
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px) 90px}
+.card{position:relative;background:var(--glass);backdrop-filter:blur(18px);border-radius:20px;padding:clamp(20px,3vw,32px);margin-bottom:24px}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.5),rgba(125,230,255,.16) 40%,rgba(157,123,255,.4) 75%,rgba(232,187,107,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.75}
 .card h2{font-family:var(--display);font-weight:500;font-size:22px;margin-bottom:6px}
 .card .hint{color:var(--mist);font-size:14px;margin-bottom:20px}
 .card .hint a{color:var(--gold)}
-
-/* forms */
 label{display:block;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:16px 0 7px}
-input[type=text],input[type=password],input[type=date],input[type=url],input[type=number],select,textarea{
-  width:100%;background:rgba(7,10,24,.7);border:1px solid var(--line);border-radius:12px;
-  color:var(--paper);font-family:var(--body);font-size:15px;padding:13px 15px;outline:none;
-  transition:border-color .2s,box-shadow .2s;
-}
-select{cursor:pointer}
+input[type=text],input[type=password],input[type=date],input[type=url],input[type=number],select,textarea{width:100%;background:rgba(7,10,24,.7);border:1px solid var(--line);border-radius:12px;color:var(--paper);font-family:var(--body);font-size:15px;padding:13px 15px;outline:none;transition:border-color .2s,box-shadow .2s}
 input:focus,textarea:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(125,230,255,.14)}
-textarea{min-height:120px;resize:vertical}
+textarea{min-height:110px;resize:vertical}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 18px}
 @media(max-width:640px){.row,.row3{grid-template-columns:1fr}}
-
-/* buttons */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;
-  font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  padding:13px 24px;border-radius:100px;transition:transform .2s,box-shadow .2s,opacity .2s;
-}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:13px 24px;border-radius:100px;transition:transform .2s,box-shadow .2s,opacity .2s}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-gold{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
 .btn-gold:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 28px rgba(232,187,107,.5)}
 .btn-ghost{background:rgba(125,230,255,.05);color:var(--cyan);border:1px solid rgba(125,230,255,.3)}
 .btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(125,230,255,.2)}
 .btn-danger{background:transparent;color:var(--red);border:1px solid rgba(232,138,138,.35)}
-.btn-danger:hover{background:rgba(232,138,138,.12);box-shadow:0 0 18px rgba(232,138,138,.2)}
+.btn-danger:hover{background:rgba(232,138,138,.12)}
 .btn-sm{padding:8px 14px;font-size:10px}
-
-/* status pill */
-.connected-pill{
-  display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:1px solid rgba(126,217,167,.35);
-  background:rgba(126,217,167,.06);padding:7px 14px;border-radius:100px;
-}
+.btn-icon{padding:8px 12px;font-size:11px}
+.connected-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:1px solid rgba(126,217,167,.35);background:rgba(126,217,167,.06);padding:7px 14px;border-radius:100px}
 .connected-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:blink 2.2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.45}}
-
-/* list items */
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 16px}
 .toolbar h2{font-family:var(--display);font-weight:500;font-size:26px}
 .toolbar h2 span{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .ilist{display:flex;flex-direction:column;gap:12px}
-.iitem{
-  position:relative;display:grid;gap:16px;align-items:center;
-  background:var(--glass);backdrop-filter:blur(14px);
-  border-radius:16px;padding:16px 18px;
-}
-.iitem.books-item{grid-template-columns:56px 1fr auto}
-.iitem.blog-item{grid-template-columns:1fr auto}
-.iitem::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(135deg,rgba(232,187,107,.3),rgba(125,230,255,.1),rgba(157,123,255,.25));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;
-}
-.iitem:hover{box-shadow:0 0 28px rgba(125,230,255,.07),0 12px 36px rgba(0,0,0,.4)}
-@media(max-width:560px){.iitem.books-item{grid-template-columns:44px 1fr}.iactions{grid-column:1/-1;justify-content:flex-end}}
-.ithumb{width:56px;aspect-ratio:2/3;border-radius:4px 7px 7px 4px;overflow:hidden;box-shadow:4px 6px 16px rgba(0,0,0,.45)}
-.ithumb img{width:100%;height:100%;object-fit:cover;display:block}
-.ithumb .gen{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-size:8px;line-height:1.3;color:#FBF7EE;padding:4px}
-.imeta h3{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2}
-.imeta p{color:var(--mist);font-size:13px;margin-top:2px}
-.imeta .inew{font-family:var(--tech);font-weight:700;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
-.iactions{display:flex;gap:8px}
-.cat-badge{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(125,230,255,.3);padding:3px 10px;border-radius:100px;margin-right:8px}
+
+/* ---- Book card in list ---- */
+.bitem{position:relative;display:grid;grid-template-columns:70px 1fr auto;gap:16px;align-items:center;background:var(--glass);backdrop-filter:blur(14px);border-radius:16px;padding:16px 18px;transition:box-shadow .25s}
+.bitem::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.3),rgba(125,230,255,.1),rgba(157,123,255,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
+.bitem:hover{box-shadow:0 0 28px rgba(125,230,255,.07),0 12px 36px rgba(0,0,0,.4)}
+@media(max-width:600px){.bitem{grid-template-columns:56px 1fr}.bactions{grid-column:1/-1;justify-content:flex-end}}
+.bthumb{width:70px;aspect-ratio:2/3;border-radius:5px 9px 9px 5px;overflow:hidden;box-shadow:5px 8px 20px rgba(0,0,0,.5);flex-shrink:0;cursor:pointer;position:relative}
+.bthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.bthumb .gen{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--display);font-size:8px;line-height:1.3;color:#FBF7EE;padding:4px}
+.bthumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;border-radius:inherit;font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.1em;color:#fff;text-align:center;padding:4px}
+.bthumb:hover .bthumb-overlay{opacity:1}
+.bmeta h3{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2}
+.bmeta p{color:var(--mist);font-size:13px;margin-top:3px}
+.bmeta .badge{font-family:var(--tech);font-weight:700;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-left:8px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bactions{display:flex;gap:8px;flex-wrap:wrap}
 .publish-row{margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .dirty-hint{color:var(--mist);font-size:13.5px}
 
-/* book cover preview */
-.pv{width:180px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;box-shadow:12px 16px 36px rgba(0,0,0,.55);margin-top:16px}
+/* ---- Book modal ---- */
+.overlay{position:fixed;inset:0;background:rgba(4,6,16,.85);backdrop-filter:blur(10px);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:3vh 16px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{position:relative;width:100%;max-width:960px;background:linear-gradient(165deg,rgba(23,32,82,.92),rgba(11,16,38,.96));backdrop-filter:blur(22px);border-radius:24px;padding:clamp(22px,3.4vw,38px)}
+.modal::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.2) 40%,rgba(157,123,255,.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:12px}
+.modal-header h2{font-family:var(--display);font-weight:500;font-size:24px}
+.modal-close{background:none;border:1px solid var(--line);color:var(--mist);border-radius:100px;width:34px;height:34px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,color .2s}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+.modal-grid{display:grid;grid-template-columns:1fr 220px;gap:28px}
+@media(max-width:740px){.modal-grid{grid-template-columns:1fr}.pv-col{order:-1;display:flex;flex-direction:column;align-items:center}}
+.modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+
+/* ---- Cover upload area ---- */
+.cover-upload-zone{
+  border:2px dashed rgba(125,230,255,.35);border-radius:14px;
+  padding:20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;
+  background:rgba(125,230,255,.04);margin-bottom:12px;
+}
+.cover-upload-zone:hover,.cover-upload-zone.drag{border-color:var(--cyan);background:rgba(125,230,255,.08)}
+.cover-upload-zone input[type=file]{display:none}
+.cup-icon{font-size:28px;margin-bottom:8px}
+.cup-text{font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.cup-sub{font-size:12px;color:var(--mist);margin-top:4px}
+.cover-tabs{display:flex;gap:6px;margin-bottom:14px}
+.cover-tab{font-family:var(--tech);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:100px;border:1px solid var(--line);color:var(--mist);background:transparent;cursor:pointer;transition:all .2s}
+.cover-tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(125,230,255,.08)}
+
+/* ---- Cover preview pane ---- */
+.pv{width:180px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;box-shadow:12px 16px 36px rgba(0,0,0,.55);margin:0 auto}
 .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .pv .gen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:14px 10px}
 .pv .gen::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.12) 60%,transparent)}
@@ -162,341 +126,409 @@ textarea{min-height:120px;resize:vertical}
 .pv .stars{font-size:13px;color:rgba(244,238,226,.85);letter-spacing:5px;margin-top:6px}
 .pv .t{font-family:var(--display);font-weight:500;font-size:13px;line-height:1.25;color:#FBF7EE}
 .pv .a{font-size:7px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(251,247,238,.8);margin-bottom:5px}
+.pv-label{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);text-align:center;margin-bottom:10px}
+.pv-actions{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap}
 input[type=range]{width:100%;accent-color:var(--gold);margin-top:4px}
-.modal-grid{display:grid;grid-template-columns:1fr 200px;gap:28px}
-@media(max-width:720px){.modal-grid{grid-template-columns:1fr}.pv-col{order:-1;display:flex;justify-content:center}}
 
-/* blog article editor */
-.art-editor{position:relative}
+/* ---- Blog items ---- */
+.pitem{position:relative;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--glass);backdrop-filter:blur(14px);border-radius:16px;padding:16px 18px}
+.pitem::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.3),rgba(125,230,255,.1),rgba(157,123,255,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
+.pmeta h3{font-family:var(--display);font-weight:500;font-size:17px;line-height:1.2}
+.pmeta p{color:var(--mist);font-size:13px;margin-top:3px}
+.cat-badge{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(125,230,255,.3);padding:3px 10px;border-radius:100px;margin-right:8px}
+.pactions{display:flex;gap:8px}
+
+/* ---- Blog modal ---- */
+.art-body-area{min-height:260px;font-family:'Albert Sans',monospace;font-size:14px;line-height:1.7}
 .char-count{font-family:var(--tech);font-size:11px;color:var(--mist);text-align:right;margin-top:4px}
-.art-body-area{min-height:280px;font-family:'Albert Sans',monospace;font-size:14px;line-height:1.7}
 .md-hint{font-family:var(--tech);font-size:11px;color:var(--mist);margin-top:6px}
 .md-hint code{background:rgba(125,230,255,.1);color:var(--cyan);padding:2px 6px;border-radius:4px;font-size:10px}
 
-/* modal */
-.overlay{position:fixed;inset:0;background:rgba(4,6,16,.82);backdrop-filter:blur(10px);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:4vh 16px;overflow-y:auto}
-.overlay.open{display:flex}
-.modal{
-  position:relative;width:100%;max-width:900px;background:linear-gradient(165deg,rgba(23,32,82,.9),rgba(11,16,38,.95));
-  backdrop-filter:blur(22px);border-radius:24px;padding:clamp(22px,3.4vw,38px);
-}
-.modal::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.2) 40%,rgba(157,123,255,.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.modal h2{font-family:var(--display);font-weight:500;font-size:24px;margin-bottom:4px}
-.modal .hint{color:var(--mist);font-size:13.5px;margin-bottom:0}
-.modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+/* ---- Site sections editor ---- */
+.section-editor{background:rgba(7,10,24,.5);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.section-editor h3{font-family:var(--display);font-weight:500;font-size:18px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-editor h3 .icon{font-size:20px}
 
-/* KDP results */
-.kdp-result-item{background:var(--glass);border-radius:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--line)}
+/* ---- KDP ---- */
+.kdp-item{background:var(--glass);border-radius:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--line)}
 
-/* toast */
+/* ---- Toast ---- */
 #toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:rgba(23,32,82,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:100px;padding:13px 26px;font-size:14px;font-weight:600;z-index:99;transition:transform .35s cubic-bezier(.2,.8,.2,1);max-width:90vw;text-align:center}
 #toast.show{transform:translate(-50%,0)}
 #toast.ok{border-color:rgba(126,217,167,.5);color:var(--green);box-shadow:0 0 26px rgba(126,217,167,.2)}
 #toast.err{border-color:rgba(232,138,138,.5);color:var(--red);box-shadow:0 0 26px rgba(232,138,138,.2)}
-
 .hidden{display:none!important}
 .spin{display:inline-block;width:14px;height:14px;border:2px solid var(--night);border-top-color:transparent;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-2px}
 @keyframes rot{to{transform:rotate(360deg)}}
-.section-divider{border:none;border-top:1px solid var(--line);margin:28px 0}
 </style>
 </head>
 <body>
-
 <div class="aurora"><i></i><i></i><i></i></div>
 
 <header>
   <div class="brand">Vishal <em>Hingol</em><small>Author Dashboard</small></div>
   <div class="head-actions">
     <span class="connected-pill hidden" id="connPill">Connected</span>
-    <a class="btn btn-ghost btn-sm hidden" id="viewSite" href="index.html" target="_blank">View Site ↗</a>
+    <a class="btn btn-ghost btn-sm hidden" id="viewSite" href="/" target="_blank">View Site ↗</a>
     <button class="btn btn-ghost btn-sm hidden" id="logoutBtn">Disconnect</button>
   </div>
 </header>
 
-<!-- Tab bar (shown after connect) -->
 <div class="tabbar hidden" id="tabbar">
   <button class="tab active" data-tab="books">📚 Books</button>
   <button class="tab" data-tab="blog">✍️ Blog</button>
+  <button class="tab" data-tab="site">🎨 Site Editor</button>
   <button class="tab" data-tab="settings">⚙️ Settings</button>
   <button class="tab" data-tab="kdp">📥 KDP Import</button>
 </div>
 
 <div class="wrap">
 
-  <!-- ===== CONNECT PANEL ===== -->
-  <div id="connectPanel">
-    <div class="card">
-      <h2>Connect your website</h2>
-      <p class="hint">One-time setup. Your token is saved <strong>only in this browser</strong>. Create a fine-grained token at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/tokens</a> → select your repo → Contents: <strong>Read and write</strong>.</p>
-      <div class="row">
-        <div><label>GitHub Username</label><input type="text" id="cfgOwner" placeholder="e.g. vishhingol-eng"></div>
-        <div><label>Repository Name</label><input type="text" id="cfgRepo" placeholder="e.g. author-website"></div>
-      </div>
-      <div class="row">
-        <div><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
-        <div><label>Personal Access Token</label><input type="password" id="cfgToken" placeholder="github_pat_…"></div>
-      </div>
-      <div style="margin-top:24px">
-        <button class="btn btn-gold" id="connectBtn">Connect Dashboard</button>
-      </div>
+<!-- ===== CONNECT ===== -->
+<div id="connectPanel">
+  <div class="card">
+    <h2>Connect your website</h2>
+    <p class="hint">One-time setup. Token saved only in this browser. Create at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com/settings/tokens</a> → select your repo → Contents: <strong>Read and write</strong>.</p>
+    <div class="row">
+      <div><label>GitHub Username</label><input type="text" id="cfgOwner" placeholder="vishhingol-eng"></div>
+      <div><label>Repository Name</label><input type="text" id="cfgRepo" placeholder="author-website"></div>
+    </div>
+    <div class="row">
+      <div><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
+      <div><label>Personal Access Token</label><input type="password" id="cfgToken" placeholder="github_pat_…"></div>
+    </div>
+    <div style="margin-top:24px"><button class="btn btn-gold" id="connectBtn">Connect Dashboard</button></div>
+  </div>
+</div>
+
+<!-- ===== BOOKS PANEL ===== -->
+<div class="panel" id="panel-books">
+  <div class="toolbar">
+    <h2>Books <span id="bookCount"></span></h2>
+    <button class="btn btn-gold" id="addBookBtn">+ Add Book</button>
+  </div>
+  <div class="ilist" id="blist"></div>
+  <div class="publish-row">
+    <button class="btn btn-gold" id="publishBooksBtn">🚀 Publish to Live Site</button>
+    <span class="dirty-hint" id="booksDirtyHint"></span>
+  </div>
+</div>
+
+<!-- ===== BLOG PANEL ===== -->
+<div class="panel" id="panel-blog">
+  <div class="toolbar">
+    <h2>Blog <span id="postCount"></span></h2>
+    <button class="btn btn-gold" id="addPostBtn">+ New Article</button>
+  </div>
+  <div class="ilist" id="plist"></div>
+  <div class="publish-row">
+    <button class="btn btn-gold" id="publishBlogBtn">🚀 Publish Blog</button>
+    <span class="dirty-hint" id="blogDirtyHint"></span>
+  </div>
+</div>
+
+<!-- ===== SITE EDITOR PANEL ===== -->
+<div class="panel" id="panel-site">
+  <div class="toolbar"><h2>Site <span>Editor</span></h2></div>
+
+  <div class="section-editor">
+    <h3><span class="icon">🏠</span> Hero Section</h3>
+    <label>Hero Tagline (shown under your name)</label>
+    <textarea id="seHeroTagline" style="min-height:70px" placeholder="Books and 90-day guided journals for people who are done waiting for change…"></textarea>
+    <div class="row">
+      <div><label>Primary Button Text</label><input type="text" id="seBtn1Text" placeholder="Browse the Books"></div>
+      <div><label>Secondary Button Text</label><input type="text" id="seBtn2Text" placeholder="Follow on Amazon"></div>
     </div>
   </div>
 
-  <!-- ===== BOOKS PANEL ===== -->
-  <div class="panel" id="panel-books">
-    <div class="toolbar">
-      <h2>Books <span id="bookCount"></span></h2>
-      <button class="btn btn-gold" id="addBookBtn">+ Add Book</button>
+  <div class="section-editor">
+    <h3><span class="icon">📖</span> Books Section Heading</h3>
+    <div class="row">
+      <div><label>Section Label</label><input type="text" id="seBooksLabel" placeholder="// The Library"></div>
+      <div><label>Section Heading</label><input type="text" id="seBooksHeading" placeholder="Every book is a door."></div>
     </div>
-    <div class="ilist" id="blist"></div>
-    <div class="publish-row">
-      <button class="btn btn-gold" id="publishBooksBtn">Publish Books to Live Site</button>
-      <span class="dirty-hint" id="booksDirtyHint"></span>
-    </div>
+    <label>Section Sub-heading (italic part)</label>
+    <input type="text" id="seBooksSubheading" placeholder="Pick yours.">
   </div>
 
-  <!-- ===== BLOG PANEL ===== -->
-  <div class="panel" id="panel-blog">
-    <div class="toolbar">
-      <h2>Blog <span id="postCount"></span></h2>
-      <button class="btn btn-gold" id="addPostBtn">+ New Article</button>
-    </div>
-    <div class="ilist" id="plist"></div>
-    <div class="publish-row">
-      <button class="btn btn-gold" id="publishBlogBtn">Publish Blog to Live Site</button>
-      <span class="dirty-hint" id="blogDirtyHint"></span>
-    </div>
+  <div class="section-editor">
+    <h3><span class="icon">👤</span> About Section</h3>
+    <label>About Heading</label>
+    <input type="text" id="seAboutHeading" placeholder="The signal has always been transmitting.">
+    <label>About Paragraphs (separate with blank line)</label>
+    <textarea id="seAboutText" style="min-height:160px" placeholder="Write your bio here…"></textarea>
+    <label>Signature</label>
+    <input type="text" id="seSignature" placeholder="— Vishal">
   </div>
 
-  <!-- ===== SETTINGS PANEL ===== -->
-  <div class="panel" id="panel-settings">
-    <div class="card">
-      <h2>Author Settings</h2>
-      <p class="hint">Used by every "Follow on Amazon" button across the site.</p>
-      <label>Amazon Author Page URL</label>
-      <input type="url" id="authorUrl">
-      <label>Author Name</label>
-      <input type="text" id="authorName">
-    </div>
-    <div class="card">
-      <h2>Blog Settings</h2>
-      <div class="row">
-        <div><label>Blog Title</label><input type="text" id="blogTitle"></div>
-        <div><label>Blog Tagline</label><input type="text" id="blogTagline"></div>
-      </div>
-    </div>
-    <div class="publish-row">
-      <button class="btn btn-gold" id="publishSettingsBtn">Save & Publish Settings</button>
-    </div>
+  <div class="section-editor">
+    <h3><span class="icon">📧</span> Follow Band</h3>
+    <label>Band Heading</label>
+    <input type="text" id="seBandHeading" placeholder="New books arrive quietly.">
+    <label>Band Text</label>
+    <textarea id="seBandText" style="min-height:70px" placeholder="Tap Follow on my Amazon author page…"></textarea>
+    <label>Button Text</label>
+    <input type="text" id="seBandBtn" placeholder="Follow Vishal on Amazon">
   </div>
 
-  <!-- ===== KDP IMPORT PANEL ===== -->
-  <div class="panel" id="panel-kdp">
-    <div class="card">
-      <h2>Import from KDP</h2>
-      <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank" rel="noopener">KDP Bookshelf</a>, select-all, copy the page, paste below and click Scan. New live titles get added to your Books library.</p>
-      <label>Paste KDP Bookshelf Text</label>
-      <textarea id="kdpPaste" style="min-height:160px" placeholder="Ctrl+A, Ctrl+C on your KDP bookshelf page, then paste here…"></textarea>
-      <div style="margin-top:14px">
-        <button class="btn btn-gold btn-sm" id="kdpScanBtn">Scan for Books</button>
-      </div>
-      <div id="kdpResults" style="margin-top:20px"></div>
+  <div class="publish-row">
+    <button class="btn btn-gold" id="publishSiteBtn">🚀 Publish Site Changes</button>
+    <span class="dirty-hint" id="siteDirtyHint"></span>
+  </div>
+</div>
+
+<!-- ===== SETTINGS PANEL ===== -->
+<div class="panel" id="panel-settings">
+  <div class="card">
+    <h2>Author Settings</h2>
+    <div class="row">
+      <div><label>Author Name</label><input type="text" id="authorName" placeholder="Vishal Hingol"></div>
+      <div><label>Amazon Author Page URL</label><input type="url" id="authorUrl"></div>
     </div>
   </div>
+  <div class="card">
+    <h2>Blog Settings</h2>
+    <div class="row">
+      <div><label>Blog Title</label><input type="text" id="blogTitle"></div>
+      <div><label>Blog Tagline</label><input type="text" id="blogTagline"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Author Photo</h2>
+    <p class="hint">Upload a new photo for the About section. Optimised automatically.</p>
+    <div class="cover-upload-zone" id="photoZone" onclick="document.getElementById('photoFileInput').click()">
+      <input type="file" id="photoFileInput" accept="image/*">
+      <div class="cup-icon">📸</div>
+      <div class="cup-text">Click to upload photo</div>
+      <div class="cup-sub">JPG, PNG, WEBP — max 5MB</div>
+    </div>
+    <div id="photoPreview" style="margin-top:12px"></div>
+  </div>
+  <div class="publish-row">
+    <button class="btn btn-gold" id="publishSettingsBtn">🚀 Save & Publish Settings</button>
+    <span class="dirty-hint" id="settingsDirtyHint"></span>
+  </div>
+</div>
+
+<!-- ===== KDP IMPORT ===== -->
+<div class="panel" id="panel-kdp">
+  <div class="card">
+    <h2>Import from KDP</h2>
+    <p class="hint">Open your <a href="https://kdp.amazon.com/en_US/bookshelf" target="_blank">KDP Bookshelf</a>, press Ctrl+A then Ctrl+C to copy the whole page, paste below and click Scan.</p>
+    <label>Paste KDP Bookshelf Text</label>
+    <textarea id="kdpPaste" style="min-height:160px" placeholder="Ctrl+A, Ctrl+C on your KDP bookshelf, paste here…"></textarea>
+    <div style="margin-top:14px"><button class="btn btn-gold btn-sm" id="kdpScanBtn">🔍 Scan for Books</button></div>
+    <div id="kdpResults" style="margin-top:20px"></div>
+  </div>
+</div>
 
 </div><!-- /wrap -->
 
 <!-- ===== BOOK MODAL ===== -->
 <div class="overlay" id="bookOverlay">
-  <div class="modal">
-    <h2 id="bookModalTitle">Add a Book</h2>
-    <p class="hint">Fill the details as you want them shown on the website.</p>
-    <div class="modal-grid" style="margin-top:20px">
-      <div>
-        <div class="row">
-          <div><label>Title *</label><input type="text" id="fTitle" placeholder="e.g. The Signal"></div>
-          <div><label>Publish Date</label><input type="date" id="fDate"></div>
+<div class="modal">
+  <div class="modal-header">
+    <div>
+      <h2 id="bookModalTitle">Add a Book</h2>
+      <p style="color:var(--mist);font-size:13.5px">Fill details as you want them shown on the website</p>
+    </div>
+    <button class="modal-close" onclick="closeModal('bookOverlay')">✕</button>
+  </div>
+  <div class="modal-grid">
+    <div>
+      <div class="row">
+        <div><label>Title *</label><input type="text" id="fTitle" placeholder="e.g. The Signal"></div>
+        <div><label>Publish Date</label><input type="date" id="fDate"></div>
+      </div>
+      <label>Subtitle / Tagline</label>
+      <input type="text" id="fSubtitle" placeholder="One compelling line under the title">
+      <label>Description (2–4 sentences)</label>
+      <textarea id="fDesc" style="min-height:90px" placeholder="What makes this book compelling…"></textarea>
+      <div class="row">
+        <div><label>Amazon Buy Link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
+        <div><label>Tags (comma separated)</label><input type="text" id="fTags" placeholder="Self-Help, Mindset"></div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Featured Book?</label>
+          <select id="fFeatured"><option value="false">No</option><option value="true">Yes — show in spotlight</option></select>
         </div>
-        <label>Subtitle / Tagline</label>
-        <input type="text" id="fSubtitle" placeholder="One catchy line under the title">
-        <label>Description</label>
-        <textarea id="fDesc" placeholder="2–4 sentences that sell the book" style="min-height:100px"></textarea>
-        <div class="row">
-          <div><label>Amazon Buy Link *</label><input type="url" id="fUrl" placeholder="https://www.amazon.com/dp/…"></div>
-          <div><label>Tags (comma separated)</label><input type="text" id="fTags" placeholder="Self-Help, Mindset"></div>
-        </div>
-        <label>Cover Image URL (optional)</label>
-        <input type="url" id="fCover" placeholder="Paste Amazon image URL or leave blank for generated cover">
-        <div class="row" style="margin-top:4px">
-          <div>
-            <label>Featured Book?</label>
-            <select id="fFeatured"><option value="false">No</option><option value="true">Yes — show in spotlight</option></select>
-          </div>
-          <div>
-            <label>Cover Colour (if no image)</label>
-            <input type="range" id="fHue" min="0" max="360" value="35">
-          </div>
+        <div>
+          <label>Status</label>
+          <select id="fStatus"><option value="published">Published</option><option value="coming_soon">Coming Soon</option><option value="draft">Draft (hidden)</option></select>
         </div>
       </div>
-      <div class="pv-col">
-        <label>Cover Preview</label>
-        <div class="pv" id="bookPv"></div>
+    </div>
+    <div class="pv-col">
+      <div class="pv-label">Cover Preview</div>
+      <div class="pv" id="bookPv"></div>
+      <div class="pv-actions">
+        <button class="btn btn-ghost btn-sm" id="removeCoverBtn" style="display:none" onclick="removeCover()">🗑 Remove Cover</button>
+      </div>
+
+      <!-- Cover input tabs -->
+      <div style="margin-top:16px">
+        <div class="cover-tabs">
+          <button class="cover-tab active" data-ctab="upload" onclick="switchCoverTab('upload')">Upload</button>
+          <button class="cover-tab" data-ctab="url" onclick="switchCoverTab('url')">URL</button>
+          <button class="cover-tab" data-ctab="generate" onclick="switchCoverTab('generate')">Generate</button>
+        </div>
+
+        <!-- Upload tab -->
+        <div id="ctab-upload">
+          <div class="cover-upload-zone" id="coverDropZone" onclick="document.getElementById('coverFileInput').click()">
+            <input type="file" id="coverFileInput" accept="image/*">
+            <div class="cup-icon">🖼️</div>
+            <div class="cup-text">Click or drag cover image</div>
+            <div class="cup-sub">JPG, PNG · recommended 1600×2560px</div>
+          </div>
+          <div id="uploadProgress" style="display:none;color:var(--gold);font-size:13px;text-align:center;padding:8px">Processing image…</div>
+        </div>
+
+        <!-- URL tab -->
+        <div id="ctab-url" style="display:none">
+          <label>Cover Image URL</label>
+          <input type="url" id="fCover" placeholder="https://… right-click Amazon cover → Copy image address">
+          <p style="color:var(--mist);font-size:12px;margin-top:6px">Paste a direct image URL from Amazon or any image host</p>
+        </div>
+
+        <!-- Generate tab -->
+        <div id="ctab-generate" style="display:none">
+          <label>Cover Colour</label>
+          <input type="range" id="fHue" min="0" max="360" value="35">
+          <p style="color:var(--mist);font-size:12px;margin-top:6px">Auto-generates a stylish cover from your title</p>
+        </div>
       </div>
     </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelBookBtn">Cancel</button>
-      <button class="btn btn-gold" id="saveBookBtn">Save Book</button>
-    </div>
+  </div>
+  <div class="modal-actions">
+    <button class="btn btn-danger btn-sm" id="deleteBookBtn" onclick="deleteCurrentBook()" style="margin-right:auto;display:none">🗑 Delete Book</button>
+    <button class="btn btn-ghost" onclick="closeModal('bookOverlay')">Cancel</button>
+    <button class="btn btn-gold" id="saveBookBtn">Save Book</button>
   </div>
 </div>
+</div>
 
-<!-- ===== BLOG POST MODAL ===== -->
+<!-- ===== BLOG MODAL ===== -->
 <div class="overlay" id="blogOverlay">
-  <div class="modal" style="max-width:960px">
-    <h2 id="blogModalTitle">New Article</h2>
-    <p class="hint">Write your article below. Markdown supported: ## Heading, **bold**, *italic*</p>
-    <div style="margin-top:18px">
-      <label>Article Title *</label>
-      <input type="text" id="pTitle" placeholder="e.g. How the 369 Method Actually Works">
-      <div class="row">
-        <div><label>Category</label><input type="text" id="pCategory" placeholder="e.g. Manifestation, Mindset, Spirituality"></div>
-        <div><label>Tags (comma separated)</label><input type="text" id="pTags" placeholder="369 Method, Law of Attraction"></div>
-      </div>
-      <label>Excerpt (shown on blog index)</label>
-      <textarea id="pExcerpt" style="min-height:80px" placeholder="2–3 sentences that make people want to read the full article…"></textarea>
-      <label>Article Body *</label>
-      <p class="md-hint">Use <code>## Heading</code> for sections · <code>**bold**</code> · <code>*italic*</code> · blank line between paragraphs</p>
-      <textarea class="art-body-area" id="pContent" placeholder="Write your full article here…&#10;&#10;## First Section&#10;&#10;Your content here…&#10;&#10;## Second Section&#10;&#10;More content…"></textarea>
-      <div class="char-count" id="pCharCount">0 words</div>
-      <div class="row3">
-        <div>
-          <label>Publish Date</label>
-          <input type="date" id="pDate">
-        </div>
-        <div>
-          <label>Reading Time (minutes)</label>
-          <input type="number" id="pReadTime" value="5" min="1" max="60">
-        </div>
-        <div>
-          <label>Related Book (ID)</label>
-          <input type="text" id="pBook" placeholder="e.g. the-divine-369-manifestation-method">
-        </div>
-      </div>
-      <label>SEO Title (leave blank to use article title)</label>
-      <input type="text" id="pSeoTitle" placeholder="Optional: custom title for Google results">
-      <label>SEO Description (leave blank to use excerpt)</label>
-      <textarea id="pSeoDesc" style="min-height:70px" placeholder="Optional: description shown under your link in Google — aim for 150–160 characters"></textarea>
+<div class="modal" style="max-width:960px">
+  <div class="modal-header">
+    <div>
+      <h2 id="blogModalTitle">New Article</h2>
+      <p style="color:var(--mist);font-size:13.5px">Markdown supported: ## Heading · **bold** · *italic*</p>
     </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelBlogBtn">Cancel</button>
-      <button class="btn btn-gold" id="saveBlogBtn">Save Article</button>
-    </div>
+    <button class="modal-close" onclick="closeModal('blogOverlay')">✕</button>
   </div>
+  <label>Article Title *</label>
+  <input type="text" id="pTitle" placeholder="e.g. How the 369 Method Actually Works">
+  <div class="row">
+    <div><label>Category</label><input type="text" id="pCategory" placeholder="Manifestation, Mindset, Spirituality…"></div>
+    <div><label>Tags (comma separated)</label><input type="text" id="pTags" placeholder="369 Method, Law of Attraction"></div>
+  </div>
+  <label>Excerpt (2–3 sentences shown on blog index)</label>
+  <textarea id="pExcerpt" style="min-height:75px" placeholder="The hook that makes people click through…"></textarea>
+  <label>Article Body *</label>
+  <p class="md-hint">Use <code>## Section Title</code> for headings · <code>**bold**</code> · <code>*italic*</code> · blank line between paragraphs</p>
+  <textarea class="art-body-area" id="pContent" placeholder="Write your full article here…&#10;&#10;## First Section&#10;&#10;Your content…&#10;&#10;## Second Section&#10;&#10;More content…"></textarea>
+  <div class="char-count" id="pCharCount">0 words</div>
+  <div class="row3" style="margin-top:8px">
+    <div><label>Publish Date</label><input type="date" id="pDate"></div>
+    <div><label>Reading Time (min)</label><input type="number" id="pReadTime" value="5" min="1" max="60"></div>
+    <div><label>Related Book ID</label><input type="text" id="pBook" placeholder="the-divine-369-manifestation-method"></div>
+  </div>
+  <label>SEO Title (optional — leave blank to use article title)</label>
+  <input type="text" id="pSeoTitle" placeholder="Custom title for Google results · aim for 60 characters">
+  <label>SEO Description (optional)</label>
+  <textarea id="pSeoDesc" style="min-height:70px" placeholder="Description shown under your link in Google · aim for 150–160 characters"></textarea>
+  <div class="modal-actions">
+    <button class="btn btn-danger btn-sm" id="deletePostBtn" onclick="deleteCurrentPost()" style="margin-right:auto;display:none">🗑 Delete Article</button>
+    <button class="btn btn-ghost" onclick="closeModal('blogOverlay')">Cancel</button>
+    <button class="btn btn-gold" id="saveBlogBtn">Save Article</button>
+  </div>
+</div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-/* ============================================================
-   DASHBOARD ENGINE
-   • Books  → reads/writes books.json
-   • Blog   → reads/writes blog.json
-   Both use the GitHub Contents API as the backend.
-============================================================ */
+/* ================================================================
+   DASHBOARD ENGINE v3
+   Books + Blog + Site Editor + Cover Upload + Full CRUD
+================================================================ */
 const $ = id => document.getElementById(id);
-const LSKEY = 'vh_admin_cfg_v2';
+const LSKEY = 'vh_admin_v3';
 
-let cfg = null;
-let booksDB = null, booksSha = null, booksDirty = false;
-let blogDB = null, blogSha = null, blogDirty = false;
-let editingBookIdx = -1, editingPostIdx = -1;
+let cfg=null, booksDB=null, booksSha=null, booksDirty=false;
+let blogDB=null, blogSha=null, blogDirty=false;
+let siteDB=null, siteSha=null, siteDirty=false;
+let editingBookIdx=-1, editingPostIdx=-1;
+let coverDataURI=null; // base64 of uploaded cover image
 
-/* -------- helpers -------- */
-function toast(msg, type='ok'){
-  const t=$('toast'); t.textContent=msg; t.className='show '+type;
-  clearTimeout(t._h); t._h=setTimeout(()=>t.className='',3800);
-}
+/* ---- helpers ---- */
+function toast(msg,type='ok'){const t=$('toast');t.textContent=msg;t.className='show '+type;clearTimeout(t._h);t._h=setTimeout(()=>t.className='',3800)}
 const b64enc = s => btoa(unescape(encodeURIComponent(s)));
 const b64dec = s => decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
 const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'post-'+Date.now();
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'book-'+Date.now();
 
-function api(path, opts={}){
+function api(path,opts={}){
   return fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/${path}`,{
     ...opts,
     headers:{'Authorization':'Bearer '+cfg.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(opts.headers||{})}
   });
 }
-async function ghGet(file){ return api(`contents/${file}?ref=${encodeURIComponent(cfg.branch)}`); }
-async function ghPut(file, content, sha, message){
-  return api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message,content:b64enc(JSON.stringify(content,null,2)),branch:cfg.branch,sha})});
-}
+async function ghGet(file){return api(`contents/${file}?ref=${encodeURIComponent(cfg.branch)}`)}
 
-/* -------- connect -------- */
-$('connectBtn').onclick = () => {
-  cfg = {
-    owner: $('cfgOwner').value.trim(),
-    repo:  $('cfgRepo').value.trim(),
-    branch:$('cfgBranch').value.trim()||'main',
-    token: $('cfgToken').value.trim()
-  };
+/* ---- connect ---- */
+$('connectBtn').onclick = ()=>{
+  cfg={owner:$('cfgOwner').value.trim(),repo:$('cfgRepo').value.trim(),branch:$('cfgBranch').value.trim()||'main',token:$('cfgToken').value.trim()};
   if(!cfg.owner||!cfg.repo||!cfg.token){toast('Fill in username, repo and token','err');return;}
   connect(true);
 };
 
 async function connect(save){
-  const btn=$('connectBtn');
-  btn.disabled=true; btn.innerHTML='<span class="spin"></span> Connecting…';
+  const btn=$('connectBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span> Connecting…';
   try{
-    // Load books.json
-    const br = await ghGet('books.json');
-    if(br.status===401) throw new Error('Token rejected — check Contents: Read & write permission.');
-    if(br.status===404) throw new Error('books.json not found. Check repo name and branch.');
+    const br=await ghGet('books.json');
+    if(br.status===401) throw new Error('Token rejected — check Contents: Read & write permission');
+    if(br.status===404) throw new Error('books.json not found — check repo name');
     if(!br.ok) throw new Error('GitHub error '+br.status);
-    const bj = await br.json(); booksSha=bj.sha; booksDB=JSON.parse(b64dec(bj.content));
+    const bj=await br.json(); booksSha=bj.sha; booksDB=JSON.parse(b64dec(bj.content));
     if(!Array.isArray(booksDB.books)) booksDB.books=[];
 
-    // Load blog.json (create if missing)
-    const pr = await ghGet('blog.json');
-    if(pr.ok){
-      const pj=await pr.json(); blogSha=pj.sha; blogDB=JSON.parse(b64dec(pj.content));
-      if(!Array.isArray(blogDB.posts)) blogDB.posts=[];
-    } else {
-      blogDB={blog:{title:'Signal & Mind',tagline:'Insights on mindset and meaningful change',siteUrl:'https://vishalhingolauthor.com'},posts:[]};
-      blogSha=null;
-    }
+    const pr=await ghGet('blog.json');
+    if(pr.ok){const pj=await pr.json();blogSha=pj.sha;blogDB=JSON.parse(b64dec(pj.content));if(!Array.isArray(blogDB.posts))blogDB.posts=[];}
+    else{blogDB={blog:{title:'Signal & Mind',tagline:'Insights on mindset and meaningful change'},posts:[]};blogSha=null;}
+
+    // Load site.json if exists
+    const sr=await ghGet('site.json');
+    if(sr.ok){const sj=await sr.json();siteSha=sj.sha;siteDB=JSON.parse(b64dec(sj.content));}
+    else{siteDB={};siteSha=null;}
 
     if(save) localStorage.setItem(LSKEY,JSON.stringify(cfg));
     enterDashboard();
-    toast('Connected — books & blog loaded ✓');
-  }catch(e){
-    toast(e.message,'err');
-  }finally{
-    btn.disabled=false; btn.textContent='Connect Dashboard';
-  }
+    toast('Connected ✓ — library loaded');
+  }catch(e){toast(e.message,'err');}
+  finally{btn.disabled=false;btn.textContent='Connect Dashboard';}
 }
 
 function enterDashboard(){
   $('connectPanel').classList.add('hidden');
   $('tabbar').classList.remove('hidden');
-  $('connPill').classList.remove('hidden');
-  $('viewSite').classList.remove('hidden');
-  $('logoutBtn').classList.remove('hidden');
+  ['connPill','viewSite','logoutBtn'].forEach(id=>$(id).classList.remove('hidden'));
   $('viewSite').href=`https://${cfg.owner}.github.io/${cfg.repo}/`;
-  // activate first panel
-  switchTab('books');
   // populate settings
   $('authorUrl').value=booksDB.author?.amazonAuthorPage||'';
   $('authorName').value=booksDB.author?.name||'Vishal Hingol';
   $('blogTitle').value=blogDB.blog?.title||'Signal & Mind';
   $('blogTagline').value=blogDB.blog?.tagline||'';
+  // populate site editor
+  populateSiteEditor();
+  switchTab('books');
 }
 
-/* -------- tabs -------- */
-document.getElementById('tabbar').addEventListener('click',e=>{
-  const t=e.target.closest('.tab'); if(!t) return;
-  switchTab(t.dataset.tab);
-});
+/* ---- tabs ---- */
+$('tabbar').addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;switchTab(t.dataset.tab);});
 function switchTab(name){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+name));
@@ -504,26 +536,32 @@ function switchTab(name){
   if(name==='blog') renderPosts();
 }
 
-/* ============ BOOKS ============ */
+/* ================================================================
+   BOOKS
+================================================================ */
 function renderBooks(){
-  const list=$('blist'), books=booksDB.books;
+  const list=$('blist'),books=booksDB.books;
   $('bookCount').textContent=`(${books.length})`;
-  if(!books.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No books yet.</div>';return;}
+  if(!books.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No books yet — add your first one.</div>';return;}
   const now=Date.now();
   list.innerHTML=books.map((b,i)=>{
     const isNew=(now-new Date(b.published).getTime())<45*864e5;
-    const thumb=b.coverImage
-      ?`<img src="${esc(b.coverImage)}" alt="">`
+    const hasCover=b.coverImage&&b.coverImage.length>50;
+    const thumb=hasCover
+      ?`<img src="${b.coverImage.startsWith('data:')?b.coverImage:esc(b.coverImage)}" alt="">`
       :`<div class="gen" style="background:linear-gradient(170deg,hsl(${+b.hue||35} 42% 26%),hsl(${((+b.hue||35)+40)%360} 38% 14%))">${esc(b.title)}</div>`;
-    return `<div class="iitem books-item">
-      <div class="ithumb">${thumb}</div>
-      <div class="imeta">
-        <h3>${esc(b.title)}${b.featured?'<span class="inew">★ Featured</span>':''}${isNew?'<span class="inew">New</span>':''}</h3>
-        <p>${esc(b.subtitle||'—')} · ${esc(b.published||'')}</p>
+    return `<div class="bitem">
+      <div class="bthumb" onclick="openEditBook(${i})" title="Click to edit cover">
+        ${thumb}
+        <div class="bthumb-overlay">✏️ Edit Cover</div>
       </div>
-      <div class="iactions">
-        <button class="btn btn-ghost btn-sm" onclick="openEditBook(${i})">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="removeBook(${i})">Delete</button>
+      <div class="bmeta">
+        <h3>${esc(b.title)}${b.featured?'<span class="badge">★ Featured</span>':''}${isNew?'<span class="badge">New</span>':''}</h3>
+        <p>${esc(b.subtitle||'No subtitle')} · ${esc(b.published||'No date')}${b.status==='coming_soon'?' · <span style="color:var(--gold)">Coming Soon</span>':''}</p>
+      </div>
+      <div class="bactions">
+        <button class="btn btn-ghost btn-sm" onclick="openEditBook(${i})">✏️ Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteBook(${i})">🗑 Delete</button>
       </div>
     </div>`;
   }).join('');
@@ -534,47 +572,132 @@ $('addBookBtn').onclick=()=>{
   ['fTitle','fSubtitle','fDesc','fTags','fUrl','fCover'].forEach(id=>$(id).value='');
   $('fDate').value=new Date().toISOString().slice(0,10);
   $('fHue').value=Math.floor(Math.random()*360);
-  $('fFeatured').value='false';
-  updateBookPreview(); openModal('bookOverlay');
+  $('fFeatured').value='false'; $('fStatus').value='published';
+  $('deleteBookBtn').style.display='none';
+  coverDataURI=null; $('removeCoverBtn').style.display='none';
+  switchCoverTab('upload'); updateBookPreview(); openModal('bookOverlay');
 };
+
 window.openEditBook=function(i){
   editingBookIdx=i; const b=booksDB.books[i];
   $('bookModalTitle').textContent='Edit Book';
   $('fTitle').value=b.title||''; $('fSubtitle').value=b.subtitle||'';
   $('fDesc').value=b.description||''; $('fTags').value=(b.tags||[]).join(', ');
-  $('fUrl').value=b.amazonUrl||''; $('fCover').value=b.coverImage||'';
-  $('fDate').value=b.published||''; $('fHue').value=b.hue??35;
-  $('fFeatured').value=b.featured?'true':'false';
+  $('fUrl').value=b.amazonUrl||''; $('fDate').value=b.published||'';
+  $('fHue').value=b.hue??35; $('fFeatured').value=b.featured?'true':'false';
+  $('fStatus').value=b.status||'published';
+  $('deleteBookBtn').style.display='inline-flex';
+  // set cover
+  if(b.coverImage&&b.coverImage.startsWith('data:')){
+    coverDataURI=b.coverImage;
+    $('fCover').value='';
+    $('removeCoverBtn').style.display='inline-flex';
+    switchCoverTab('upload');
+  } else if(b.coverImage){
+    $('fCover').value=b.coverImage; coverDataURI=null;
+    $('removeCoverBtn').style.display='inline-flex';
+    switchCoverTab('url');
+  } else {
+    $('fCover').value=''; coverDataURI=null;
+    $('removeCoverBtn').style.display='none';
+    switchCoverTab('generate');
+  }
   updateBookPreview(); openModal('bookOverlay');
 };
-window.removeBook=function(i){
-  if(!confirm(`Delete "${booksDB.books[i].title}"?`)) return;
+
+window.confirmDeleteBook=function(i){
+  const b=booksDB.books[i];
+  if(!confirm(`Delete "${b.title}" from your website?\n\nThis only removes it from the site — not from Amazon.\n\nClick Publish after to make it live.`)) return;
   booksDB.books.splice(i,1); renderBooks(); markDirty('books');
+  toast('Book removed — click Publish to update live site');
 };
+
+window.deleteCurrentBook=function(){
+  if(editingBookIdx<0) return;
+  confirmDeleteBook(editingBookIdx);
+  closeModal('bookOverlay');
+};
+
 $('saveBookBtn').onclick=()=>{
   const title=$('fTitle').value.trim(), url=$('fUrl').value.trim();
   if(!title){toast('Title is required','err');return;}
   if(!url){toast('Amazon link is required','err');return;}
+  // Determine cover
+  let cover='';
+  const activeTab=document.querySelector('.cover-tab.active')?.dataset.ctab;
+  if(activeTab==='upload'&&coverDataURI) cover=coverDataURI;
+  else if(activeTab==='url') cover=$('fCover').value.trim();
+  // generate = cover stays ''
   const book={
     id:editingBookIdx>=0?booksDB.books[editingBookIdx].id:slug(title),
     title, subtitle:$('fSubtitle').value.trim(),
     description:$('fDesc').value.trim(),
     tags:$('fTags').value.split(',').map(t=>t.trim()).filter(Boolean),
-    amazonUrl:url, coverImage:$('fCover').value.trim(),
+    amazonUrl:url, coverImage:cover,
     published:$('fDate').value||new Date().toISOString().slice(0,10),
-    hue:+$('fHue').value, featured:$('fFeatured').value==='true'
+    hue:+$('fHue').value, featured:$('fFeatured').value==='true',
+    status:$('fStatus').value||'published'
   };
   if(editingBookIdx>=0) booksDB.books[editingBookIdx]=book;
   else booksDB.books.unshift(book);
   closeModal('bookOverlay'); renderBooks(); markDirty('books');
-  toast(editingBookIdx>=0?'Book updated — click Publish':'Book added — click Publish');
+  toast(editingBookIdx>=0?'Book updated — click Publish ✓':'Book added — click Publish ✓');
 };
-$('cancelBookBtn').onclick=()=>closeModal('bookOverlay');
+
+$('publishBooksBtn').onclick=()=>publishFile('books');
+
+/* ---- Cover upload & preview ---- */
+window.switchCoverTab=function(tab){
+  document.querySelectorAll('.cover-tab').forEach(t=>t.classList.toggle('active',t.dataset.ctab===tab));
+  ['upload','url','generate'].forEach(t=>$('ctab-'+t).style.display=t===tab?'block':'none');
+  updateBookPreview();
+};
+
+function processImageFile(file){
+  if(!file||!file.type.startsWith('image/')) return;
+  if(file.size>10*1024*1024){toast('Image too large — max 10MB','err');return;}
+  $('uploadProgress').style.display='block';
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      const MAX=800; let {width:w,height:h}=img;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      coverDataURI=canvas.toDataURL('image/jpeg',0.82);
+      $('uploadProgress').style.display='none';
+      $('removeCoverBtn').style.display='inline-flex';
+      updateBookPreview();
+      toast('Cover image loaded ✓');
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+$('coverFileInput').addEventListener('change',e=>processImageFile(e.target.files[0]));
+const dz=$('coverDropZone');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');processImageFile(e.dataTransfer.files[0])});
+
+window.removeCover=function(){
+  coverDataURI=null; $('fCover').value='';
+  $('removeCoverBtn').style.display='none';
+  switchCoverTab('generate'); updateBookPreview();
+  toast('Cover removed');
+};
 
 function updateBookPreview(){
-  const pv=$('bookPv'), cover=$('fCover').value.trim(), h=+$('fHue').value;
-  if(cover){
-    pv.innerHTML=`<img src="${esc(cover)}" alt="" onerror="this.outerHTML='<div class=gen style=padding:10px;color:#E88A8A;font-size:11px;display:flex;align-items:center;justify-content:center;height:100%>Bad URL</div>'">`;
+  const pv=$('bookPv'), h=+$('fHue').value||35;
+  const activeTab=document.querySelector('.cover-tab.active')?.dataset.ctab;
+  let src='';
+  if(activeTab==='upload'&&coverDataURI) src=coverDataURI;
+  else if(activeTab==='url') src=$('fCover').value.trim();
+  if(src){
+    pv.innerHTML=`<img src="${esc(src)}" alt="" onerror="this.parentNode.innerHTML='<div class=gen style=background:#1a1a2e;padding:10px;color:#E88A8A;font-size:10px;display:flex;align-items:center;justify-content:center;height:100%;text-align:center>Could not load image</div>'">`;
     return;
   }
   pv.innerHTML=`<div class="gen" style="background:radial-gradient(circle at 50% 0%, hsl(${h} 48% 38% / .9), transparent 70%),linear-gradient(170deg, hsl(${h} 42% 26%), hsl(${(h+40)%360} 38% 14%))">
@@ -582,28 +705,57 @@ function updateBookPreview(){
     <div class="t">${esc($('fTitle').value||'Book Title')}</div>
     <div class="a">Vishal Hingol</div></div>`;
 }
-['fTitle','fCover'].forEach(id=>$(id).addEventListener('input',updateBookPreview));
+$('fTitle').addEventListener('input',updateBookPreview);
+$('fCover').addEventListener('input',updateBookPreview);
 $('fHue').addEventListener('input',updateBookPreview);
 
-$('publishBooksBtn').onclick=()=>publish('books');
+/* ---- Author photo upload ---- */
+$('photoFileInput').addEventListener('change',e=>{
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      let {width:w,height:h}=img; const MAX=600;
+      if(w>MAX){h=Math.round(h*MAX/w);w=MAX;}
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const uri=canvas.toDataURL('image/jpeg',0.82);
+      $('photoPreview').innerHTML=`<img src="${uri}" style="width:120px;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:2px solid var(--gold)">
+        <p style="color:var(--green);font-size:13px;margin-top:8px">✓ Photo ready — click Publish to update site</p>`;
+      siteDB=siteDB||{};
+      siteDB.authorPhoto=uri;
+      markDirty('settings');
+    };
+    img.src=ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+const pz=$('photoZone');
+pz.addEventListener('dragover',e=>{e.preventDefault();pz.classList.add('drag')});
+pz.addEventListener('dragleave',()=>pz.classList.remove('drag'));
+pz.addEventListener('drop',e=>{e.preventDefault();pz.classList.remove('drag');$('photoFileInput').files=e.dataTransfer.files;$('photoFileInput').dispatchEvent(new Event('change'))});
 
-/* ============ BLOG ============ */
+/* ================================================================
+   BLOG
+================================================================ */
 function renderPosts(){
-  const list=$('plist'), posts=blogDB.posts;
+  const list=$('plist'),posts=blogDB.posts;
   $('postCount').textContent=`(${posts.length})`;
-  if(!posts.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No articles yet — write your first one.</div>';return;}
+  if(!posts.length){list.innerHTML='<div class="card" style="text-align:center;color:var(--mist)">No articles yet. Write your first one!</div>';return;}
   const sorted=[...posts].sort((a,b)=>new Date(b.published)-new Date(a.published));
-  list.innerHTML=sorted.map((p,i)=>{
+  list.innerHTML=sorted.map(p=>{
     const origIdx=posts.indexOf(p);
     const wc=p.content?p.content.split(/\s+/).length:0;
-    return `<div class="iitem blog-item">
-      <div class="imeta">
+    return `<div class="pitem">
+      <div class="pmeta">
         <h3><span class="cat-badge">${esc(p.category||'General')}</span>${esc(p.title)}</h3>
         <p>${esc(p.published||'—')} · ${p.readingTime||Math.ceil(wc/200)} min read · ${wc.toLocaleString()} words</p>
       </div>
-      <div class="iactions">
-        <button class="btn btn-ghost btn-sm" onclick="openEditPost(${origIdx})">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="removePost(${origIdx})">Delete</button>
+      <div class="pactions">
+        <button class="btn btn-ghost btn-sm" onclick="openEditPost(${origIdx})">✏️ Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeletePost(${origIdx})">🗑 Delete</button>
       </div>
     </div>`;
   }).join('');
@@ -613,9 +765,10 @@ $('addPostBtn').onclick=()=>{
   editingPostIdx=-1; $('blogModalTitle').textContent='New Article';
   ['pTitle','pCategory','pTags','pExcerpt','pContent','pBook','pSeoTitle','pSeoDesc'].forEach(id=>$(id).value='');
   $('pDate').value=new Date().toISOString().slice(0,10);
-  $('pReadTime').value=5; updateWordCount();
-  openModal('blogOverlay');
+  $('pReadTime').value=5; $('deletePostBtn').style.display='none';
+  updateWordCount(); openModal('blogOverlay');
 };
+
 window.openEditPost=function(i){
   editingPostIdx=i; const p=blogDB.posts[i];
   $('blogModalTitle').textContent='Edit Article';
@@ -624,23 +777,31 @@ window.openEditPost=function(i){
   $('pContent').value=p.content||''; $('pDate').value=p.published||'';
   $('pReadTime').value=p.readingTime||5; $('pBook').value=p.relatedBook||'';
   $('pSeoTitle').value=p.seoTitle||''; $('pSeoDesc').value=p.seoDescription||'';
+  $('deletePostBtn').style.display='inline-flex';
   updateWordCount(); openModal('blogOverlay');
 };
-window.removePost=function(i){
-  if(!confirm(`Delete article "${blogDB.posts[i].title}"?`)) return;
+
+window.confirmDeletePost=function(i){
+  if(!confirm(`Delete article "${blogDB.posts[i].title}"?\n\nThis cannot be undone.`)) return;
   blogDB.posts.splice(i,1); renderPosts(); markDirty('blog');
+  toast('Article deleted — click Publish to update live site');
 };
+window.deleteCurrentPost=function(){
+  if(editingPostIdx<0) return;
+  confirmDeletePost(editingPostIdx); closeModal('blogOverlay');
+};
+
 $('saveBlogBtn').onclick=()=>{
   const title=$('pTitle').value.trim(), content=$('pContent').value.trim();
   if(!title){toast('Title is required','err');return;}
-  if(!content||content.length<100){toast('Article body too short (min 100 characters)','err');return;}
+  if(content.length<50){toast('Article body too short','err');return;}
   const wc=content.split(/\s+/).length;
   const post={
     id:editingPostIdx>=0?blogDB.posts[editingPostIdx].id:slug(title),
     title, slug:slug(title),
     category:$('pCategory').value.trim()||'General',
     tags:$('pTags').value.split(',').map(t=>t.trim()).filter(Boolean),
-    excerpt:$('pExcerpt').value.trim()||content.slice(0,200).replace(/\n/g,' ')+'…',
+    excerpt:$('pExcerpt').value.trim()||content.slice(0,200)+'…',
     content, author:'Vishal Hingol',
     published:$('pDate').value||new Date().toISOString().slice(0,10),
     readingTime:+$('pReadTime').value||Math.max(1,Math.ceil(wc/200)),
@@ -651,18 +812,59 @@ $('saveBlogBtn').onclick=()=>{
   if(editingPostIdx>=0) blogDB.posts[editingPostIdx]=post;
   else blogDB.posts.unshift(post);
   closeModal('blogOverlay'); renderPosts(); markDirty('blog');
-  toast(editingPostIdx>=0?'Article updated — click Publish':'Article added — click Publish');
+  toast(editingPostIdx>=0?'Article updated — click Publish ✓':'Article added — click Publish ✓');
 };
-$('cancelBlogBtn').onclick=()=>closeModal('blogOverlay');
+$('publishBlogBtn').onclick=()=>publishFile('blog');
 $('pContent').addEventListener('input',updateWordCount);
 function updateWordCount(){
   const v=$('pContent').value, wc=v.trim()?v.trim().split(/\s+/).length:0;
   $('pCharCount').textContent=`${wc.toLocaleString()} words · ~${Math.max(1,Math.ceil(wc/200))} min read`;
 }
 
-$('publishBlogBtn').onclick=()=>publish('blog');
+/* ================================================================
+   SITE EDITOR
+================================================================ */
+function populateSiteEditor(){
+  if(!siteDB) return;
+  $('seHeroTagline').value=siteDB.heroTagline||'';
+  $('seBtn1Text').value=siteDB.heroBtn1||'';
+  $('seBtn2Text').value=siteDB.heroBtn2||'';
+  $('seBooksLabel').value=siteDB.booksLabel||'';
+  $('seBooksHeading').value=siteDB.booksHeading||'';
+  $('seBooksSubheading').value=siteDB.booksSubheading||'';
+  $('seAboutHeading').value=siteDB.aboutHeading||'';
+  $('seAboutText').value=siteDB.aboutText||'';
+  $('seSignature').value=siteDB.signature||'';
+  $('seBandHeading').value=siteDB.bandHeading||'';
+  $('seBandText').value=siteDB.bandText||'';
+  $('seBandBtn').value=siteDB.bandBtn||'';
+}
 
-/* ============ SETTINGS ============ */
+['seHeroTagline','seBtn1Text','seBtn2Text','seBooksLabel','seBooksHeading','seBooksSubheading',
+ 'seAboutHeading','seAboutText','seSignature','seBandHeading','seBandText','seBandBtn'].forEach(id=>{
+  $(id).addEventListener('input',()=>{
+    siteDB=siteDB||{};
+    siteDB.heroTagline=$('seHeroTagline').value;
+    siteDB.heroBtn1=$('seBtn1Text').value;
+    siteDB.heroBtn2=$('seBtn2Text').value;
+    siteDB.booksLabel=$('seBooksLabel').value;
+    siteDB.booksHeading=$('seBooksHeading').value;
+    siteDB.booksSubheading=$('seBooksSubheading').value;
+    siteDB.aboutHeading=$('seAboutHeading').value;
+    siteDB.aboutText=$('seAboutText').value;
+    siteDB.signature=$('seSignature').value;
+    siteDB.bandHeading=$('seBandHeading').value;
+    siteDB.bandText=$('seBandText').value;
+    siteDB.bandBtn=$('seBandBtn').value;
+    markDirty('site');
+  });
+});
+
+$('publishSiteBtn').onclick=()=>publishFile('site');
+
+/* ================================================================
+   SETTINGS
+================================================================ */
 $('publishSettingsBtn').onclick=async()=>{
   booksDB.author=booksDB.author||{};
   booksDB.author.name=$('authorName').value.trim()||'Vishal Hingol';
@@ -670,11 +872,15 @@ $('publishSettingsBtn').onclick=async()=>{
   blogDB.blog=blogDB.blog||{};
   blogDB.blog.title=$('blogTitle').value.trim()||'Signal & Mind';
   blogDB.blog.tagline=$('blogTagline').value.trim();
-  await publish('books');
-  await publish('blog');
+  markDirty('books'); markDirty('blog');
+  await publishFile('books');
+  await publishFile('blog');
+  if(siteDirty) await publishFile('site');
 };
 
-/* ============ KDP IMPORT ============ */
+/* ================================================================
+   KDP IMPORT
+================================================================ */
 function parseKDPPaste(text){
   const lines=text.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
   const byIdxs=[];
@@ -690,7 +896,6 @@ function parseKDPPaste(text){
       if(/^Kindle eBook$/i.test(line)||/^Paperback$/i.test(line)||/^Hardcover$/i.test(line)){current=line;formats[current]=formats[current]||{status:null,asin:null,submitted:null};return;}
       if(!current)return;
       if(/^Live$/i.test(line))formats[current].status='Live';
-      else if(/^Publishing$/i.test(line))formats[current].status=formats[current].status||'Publishing';
       const sub=line.match(/^Submitted on\s+(.+)$/i);if(sub)formats[current].submitted=sub[1];
       const asin=line.match(/^ASIN:\s*([A-Z0-9]{6,})/i);if(asin)formats[current].asin=asin[1];
     });
@@ -698,13 +903,16 @@ function parseKDPPaste(text){
   }
   return items;
 }
-function kdpChoose(formats){for(const f of['Paperback','Kindle eBook','Hardcover']){const fmt=formats[f];if(fmt&&fmt.status==='Live'&&fmt.asin)return{format:f,...fmt};}return null;}
-function kdpDateToISO(str){if(!str)return new Date().toISOString().slice(0,10);const d=new Date(str);return isNaN(d)?new Date().toISOString().slice(0,10):d.toISOString().slice(0,10);}
+function kdpChoose(f){for(const k of['Paperback','Kindle eBook','Hardcover']){if(f[k]&&f[k].status==='Live'&&f[k].asin)return{format:k,...f[k]};}return null;}
+function kdpDateToISO(s){if(!s)return new Date().toISOString().slice(0,10);const d=new Date(s);return isNaN(d)?new Date().toISOString().slice(0,10):d.toISOString().slice(0,10);}
 const kdpMainTitle=t=>t.split(':')[0].trim().toLowerCase();
 let kdpScan=[];
+
 $('kdpScanBtn').onclick=()=>{
-  const text=$('kdpPaste').value;if(!text.trim()){toast('Paste your KDP bookshelf text first','err');return;}
-  const items=parseKDPPaste(text);if(!items.length){toast('No books detected','err');return;}
+  const text=$('kdpPaste').value;
+  if(!text.trim()){toast('Paste your KDP bookshelf text first','err');return;}
+  const items=parseKDPPaste(text);
+  if(!items.length){toast('No books detected — try selecting all (Ctrl+A) before copying','err');return;}
   kdpScan=items.map(item=>{
     const chosen=kdpChoose(item.formats);
     const existingIdx=booksDB.books.findIndex(b=>kdpMainTitle(b.title)===kdpMainTitle(item.title));
@@ -712,16 +920,17 @@ $('kdpScanBtn').onclick=()=>{
   });
   renderKDPResults();
 };
+
 function renderKDPResults(){
   const box=$('kdpResults');
-  if(!kdpScan.length){box.innerHTML='';return;}
   box.innerHTML=kdpScan.map((r,i)=>{
-    if(!r.chosen)return`<div class="kdp-result-item" style="opacity:.6"><b>${esc(r.title)}</b><br><span style="color:var(--mist);font-size:13px">Not live yet — skipped</span></div>`;
+    if(!r.chosen) return `<div class="kdp-item" style="opacity:.6"><b>${esc(r.title)}</b><br><span style="color:var(--mist);font-size:13px">Not live yet — skipped</span></div>`;
     const link=`https://www.amazon.com/dp/${r.chosen.asin}`;
-    if(r.existingIdx>-1)return`<div class="kdp-result-item"><b>${esc(r.title)}</b> · already in library<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><br><label style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked"> Update buy link</label></div>`;
-    return`<div class="kdp-result-item"><b>${esc(r.title)}</b> · NEW · ${esc(r.chosen.format)}<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><br><label style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked"> Add to library</label></div>`;
-  }).join('')+`<div style="margin-top:16px"><button class="btn btn-gold btn-sm" onclick="applyKDPScan()">Apply to Library</button></div>`;
+    if(r.existingIdx>-1) return `<div class="kdp-item"><b>${esc(r.title)}</b> · already in library<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><label style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.updateLink?'checked':''} onchange="kdpScan[${i}].updateLink=this.checked"> Update buy link</label></div>`;
+    return `<div class="kdp-item"><b>${esc(r.title)}</b> · NEW · ${esc(r.chosen.format)}<br><a href="${link}" target="_blank" style="color:var(--gold);font-size:13px">${link}</a><label style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;text-transform:none;letter-spacing:0;color:var(--paper)"><input type="checkbox" ${r.include?'checked':''} onchange="kdpScan[${i}].include=this.checked"> Add to library</label></div>`;
+  }).join('')+`<div style="margin-top:16px"><button class="btn btn-gold btn-sm" onclick="applyKDPScan()">✓ Apply to Library</button></div>`;
 }
+
 window.applyKDPScan=function(){
   let added=0,updated=0;
   kdpScan.forEach(r=>{
@@ -730,69 +939,58 @@ window.applyKDPScan=function(){
     if(r.existingIdx>-1){if(r.updateLink){booksDB.books[r.existingIdx].amazonUrl=link;updated++;}}
     else if(r.include){booksDB.books.unshift({id:slug(r.title.split(':')[0]),title:r.title.split(':')[0].trim(),subtitle:r.title.includes(':')?r.title.split(':').slice(1).join(':').trim():'',description:'',tags:[],amazonUrl:link,coverImage:'',published:kdpDateToISO(r.chosen.submitted),hue:Math.floor(Math.random()*360)});added++;}
   });
-  if(added||updated){renderBooks();markDirty('books');toast(`Added ${added}, updated ${updated} link(s) — click Publish`);kdpScan=[];$('kdpResults').innerHTML='';$('kdpPaste').value='';}
+  if(added||updated){renderBooks();markDirty('books');toast(`Added ${added}, updated ${updated} — click Publish`);kdpScan=[];$('kdpResults').innerHTML='';$('kdpPaste').value='';}
   else toast('Nothing selected','err');
 };
 
-/* ============ PUBLISH ============ */
-async function publish(which){
-  const isBooks=which==='books';
-  const btn=$(isBooks?'publishBooksBtn':'publishBlogBtn');
-  const file=isBooks?'books.json':'blog.json';
-  const data=isBooks?booksDB:blogDB;
-  let sha=isBooks?booksSha:blogSha;
+/* ================================================================
+   PUBLISH
+================================================================ */
+async function publishFile(which){
+  const map={
+    books:{btn:'publishBooksBtn',file:'books.json',getData:()=>booksDB,getSha:()=>booksSha,setSha:s=>booksSha=s,clearDirty:()=>{booksDirty=false;$('booksDirtyHint').textContent=''}},
+    blog:{btn:'publishBlogBtn',file:'blog.json',getData:()=>blogDB,getSha:()=>blogSha,setSha:s=>blogSha=s,clearDirty:()=>{blogDirty=false;$('blogDirtyHint').textContent=''}},
+    site:{btn:'publishSiteBtn',file:'site.json',getData:()=>siteDB,getSha:()=>siteSha,setSha:s=>siteSha=s,clearDirty:()=>{siteDirty=false;$('siteDirtyHint').textContent=''}},
+    settings:{btn:'publishSettingsBtn',file:'books.json',getData:()=>booksDB,getSha:()=>booksSha,setSha:s=>booksSha=s,clearDirty:()=>{}}
+  };
+  const m=map[which]; const btn=$(m.btn);
   btn.disabled=true; btn.innerHTML='<span class="spin"></span> Publishing…';
   try{
-    if(!sha){
-      // Create file if it doesn't exist (first blog publish)
-      const cr=await api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message:`Create ${file}`,content:b64enc(JSON.stringify(data,null,2)),branch:cfg.branch})});
-      if(!cr.ok)throw new Error('Could not create '+file+' — error '+cr.status);
-      const cj=await cr.json(); sha=cj.content.sha;
-    } else {
-      const res=await api(`contents/${file}`,{method:'PUT',body:JSON.stringify({message:`Update ${file} via dashboard`,content:b64enc(JSON.stringify(data,null,2)),branch:cfg.branch,sha})});
-      if(res.status===409){const fr=await ghGet(file);const fj=await fr.json();if(isBooks)booksSha=fj.sha;else blogSha=fj.sha;throw new Error('File changed elsewhere — please click Publish again.');}
-      if(!res.ok)throw new Error('GitHub error '+res.status);
-      const rj=await res.json(); sha=rj.content.sha;
-    }
-    if(isBooks)booksSha=sha; else blogSha=sha;
-    if(isBooks){booksDirty=false;$('booksDirtyHint').textContent='';}
-    else{blogDirty=false;$('blogDirtyHint').textContent='';}
-    toast(`${isBooks?'Books':'Blog'} published! Live site updates in ~60 seconds ✓`);
-  }catch(e){
-    toast(e.message,'err');
-  }finally{
-    btn.disabled=false; btn.textContent=isBooks?'Publish Books to Live Site':'Publish Blog to Live Site';
-  }
+    const data=m.getData(), sha=m.getSha();
+    const body={message:`Update ${m.file} via dashboard`,content:b64enc(JSON.stringify(data,null,2)),branch:cfg.branch};
+    if(sha) body.sha=sha;
+    const res=await api(`contents/${m.file}`,{method:'PUT',body:JSON.stringify(body)});
+    if(res.status===409){const fr=await ghGet(m.file);const fj=await fr.json();m.setSha(fj.sha);throw new Error('Conflict — click Publish again');}
+    if(!res.ok) throw new Error('GitHub error '+res.status);
+    const rj=await res.json(); m.setSha(rj.content.sha); m.clearDirty();
+    toast(`Published! Live in ~60 seconds ✓`);
+  }catch(e){toast(e.message,'err');}
+  finally{btn.disabled=false;btn.textContent=btn.dataset.label||'🚀 Publish';}
 }
 
 function markDirty(which){
-  if(which==='books'){booksDirty=true;$('booksDirtyHint').textContent='Unsaved changes — click Publish to go live.';}
-  else{blogDirty=true;$('blogDirtyHint').textContent='Unsaved changes — click Publish to go live.';}
+  if(which==='books'){booksDirty=true;$('booksDirtyHint').textContent='Unsaved changes — click Publish';}
+  if(which==='blog'){blogDirty=true;$('blogDirtyHint').textContent='Unsaved changes — click Publish';}
+  if(which==='site'){siteDirty=true;$('siteDirtyHint').textContent='Unsaved changes — click Publish';}
+  if(which==='settings'){$('settingsDirtyHint').textContent='Unsaved changes — click Publish';}
 }
 
-/* ============ MODAL HELPERS ============ */
-function openModal(id){ $(id).classList.add('open'); }
-function closeModal(id){ $(id).classList.remove('open'); }
-['bookOverlay','blogOverlay'].forEach(id=>{
-  $(id).addEventListener('click',e=>{ if(e.target===$(id)) closeModal(id); });
-});
+/* ---- modal helpers ---- */
+function openModal(id){$(id).classList.add('open');}
+function closeModal(id){$(id).classList.remove('open');}
+document.querySelectorAll('.overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)closeModal(ov.id);}));
 
-/* ============ LOGOUT / SESSION ============ */
+/* ---- logout ---- */
 $('logoutBtn').onclick=()=>{
   if((booksDirty||blogDirty)&&!confirm('You have unpublished changes. Disconnect anyway?'))return;
-  localStorage.removeItem(LSKEY); location.reload();
+  localStorage.removeItem(LSKEY);location.reload();
 };
-window.addEventListener('beforeunload',e=>{if(booksDirty||blogDirty){e.preventDefault();e.returnValue='';}});
+window.addEventListener('beforeunload',e=>{if(booksDirty||blogDirty||siteDirty){e.preventDefault();e.returnValue='';}});
 
-/* ============ AUTO RECONNECT ============ */
+/* ---- auto reconnect ---- */
 (function(){
   const saved=localStorage.getItem(LSKEY);
-  if(saved){
-    cfg=JSON.parse(saved);
-    $('cfgOwner').value=cfg.owner; $('cfgRepo').value=cfg.repo;
-    $('cfgBranch').value=cfg.branch; $('cfgToken').value=cfg.token;
-    connect(false);
-  }
+  if(saved){cfg=JSON.parse(saved);$('cfgOwner').value=cfg.owner;$('cfgRepo').value=cfg.repo;$('cfgBranch').value=cfg.branch;$('cfgToken').value=cfg.token;connect(false);}
 })();
 </script>
 </body>
