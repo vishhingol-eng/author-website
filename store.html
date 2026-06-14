@@ -168,6 +168,20 @@ button{font-family:var(--body);cursor:pointer}
 }
 .storefoot a{color:var(--link);font-weight:700}
 .storefoot a:hover{text-decoration:underline}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
+.hamburger span{width:24px;height:2px;background:var(--paper);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:100}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:20px;letter-spacing:.2em}
+  .nav-links .nav-amzn{padding:14px 28px;font-size:16px}
+}
+@media(max-width:480px){nav{padding:14px clamp(14px,3vw,28px)}.brand{font-size:17px}}
 </style>
 </head>
 <body>
@@ -330,6 +344,20 @@ button{font-family:var(--body);cursor:pointer}
   render();
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
+</script>
+<script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const n=document.getElementById('navLinks');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+}
+document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('navLinks').classList.remove('open');
+  document.body.style.overflow='';
+}));
 </script>
 </body>
 </html>

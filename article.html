@@ -102,6 +102,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:28px
 footer a{color:var(--gold)}
 
 .loading{color:var(--mist);text-align:center;padding:80px 20px}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
+.hamburger span{width:24px;height:2px;background:var(--paper);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:100}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:20px;letter-spacing:.2em}
+  .nav-links .nav-amzn{padding:14px 28px;font-size:16px}
+}
+@media(max-width:480px){nav{padding:14px clamp(14px,3vw,28px)}.brand{font-size:17px}}
 </style>
 </head>
 <body>
@@ -109,7 +123,10 @@ footer a{color:var(--gold)}
 
 <nav>
   <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
-  <div class="nav-links">
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="store.html">Books</a>
     <a href="blog.html">Blog</a>
