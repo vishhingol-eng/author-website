@@ -182,6 +182,59 @@ button{font-family:var(--body);cursor:pointer}
   .nav-links .nav-amzn{padding:14px 28px;font-size:16px}
 }
 @media(max-width:480px){nav{padding:14px clamp(14px,3vw,28px)}.brand{font-size:17px}}
+
+/* ===== MOBILE NAV v3 ===== */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(244,238,226,.2);border-radius:8px;background:transparent;z-index:200;position:relative}
+.hamburger span{width:22px;height:2px;background:var(--paper);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(0,7px)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-7px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{
+    display:flex !important;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(7,10,24,.97);
+    backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:32px;z-index:150;
+    transform:translateX(100%);
+    transition:transform .38s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+  }
+  .nav-links.open{transform:translateX(0);pointer-events:all}
+  .nav-links a{
+    font-family:var(--display) !important;
+    font-size:28px !important;font-weight:400 !important;
+    letter-spacing:.02em !important;color:#F4EEE2 !important;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .3s ease,transform .3s ease;
+    text-decoration:none;
+  }
+  .nav-links.open a{opacity:1 !important;transform:translateY(0) !important}
+  .nav-links.open a:nth-child(2){transition-delay:.08s}
+  .nav-links.open a:nth-child(3){transition-delay:.14s}
+  .nav-links.open a:nth-child(4){transition-delay:.20s}
+  .nav-links.open a:nth-child(5){transition-delay:.26s}
+  .nav-links a:hover{color:var(--gold) !important}
+  .nav-links .nav-amzn{
+    font-family:var(--tech) !important;font-size:14px !important;
+    background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;
+    color:#070A18 !important;padding:14px 32px !important;
+    border-radius:100px !important;letter-spacing:.1em !important;
+    font-weight:700 !important;
+  }
+  .nav-close{
+    position:absolute;top:24px;right:24px;
+    background:transparent;border:1px solid rgba(244,238,226,.25);
+    color:#F4EEE2;border-radius:100px;
+    width:42px;height:42px;font-size:20px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s;z-index:160;
+  }
+  .nav-close:hover{border-color:#E8BB6B;color:#E8BB6B}
+}
+/* ===== END MOBILE NAV ===== */
 </style>
 </head>
 <body>
@@ -345,19 +398,29 @@ button{font-family:var(--body);cursor:pointer}
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
+
 <script>
 function toggleMenu(){
-  const h=document.getElementById('hamburger');
-  const n=document.getElementById('navLinks');
-  h.classList.toggle('open');
-  n.classList.toggle('open');
-  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+  var h=document.getElementById('hamburger');
+  var n=document.getElementById('navLinks');
+  var isOpen=n.classList.contains('open');
+  h.classList.toggle('open',!isOpen);
+  n.classList.toggle('open',!isOpen);
+  document.body.style.overflow=!isOpen?'hidden':'';
 }
-document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('navLinks').classList.remove('open');
+function closeMenu(){
+  var h=document.getElementById('hamburger');
+  var n=document.getElementById('navLinks');
+  if(h) h.classList.remove('open');
+  if(n) n.classList.remove('open');
   document.body.style.overflow='';
-}));
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click',closeMenu);
+  });
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 </script>
 </body>
 </html>
