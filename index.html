@@ -649,10 +649,10 @@ footer a:hover{text-decoration:underline}
 <header class="hero veil" id="top">
   <p class="eyebrow">Author · Self-Help · Guided Journals</p>
   <h1>Vishal Hingol</h1>
-  <p class="hero-sub">Books and 90-day guided journals for people who are done waiting for change — and ready to write it into existence, one page at a time.</p>
+  <p class="hero-sub" id="siteHeroTagline">Books and 90-day guided journals for people who are done waiting for change — and ready to write it into existence, one page at a time.</p>
   <div class="hero-cta">
-    <a class="btn btn-gold" href="#books">Browse the Books</a>
-    <a class="btn btn-ghost amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Follow on Amazon</a>
+    <a class="btn btn-gold" href="#books" id="siteBtn1">Browse the Books</a>
+    <a class="btn btn-ghost amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" id="siteBtn2">Follow on Amazon</a>
   </div>
   <span class="scroll-hint">Scroll</span>
 </header>
@@ -660,8 +660,8 @@ footer a:hover{text-decoration:underline}
 <main class="veil">
   <section id="books">
     <div class="sec-head reveal">
-      <span class="sec-eyebrow">// The Library</span>
-      <h2>Every book is a door.<br><em>Pick yours.</em></h2>
+      <span class="sec-eyebrow" id="siteBooksLabel">// The Library</span>
+      <h2 id="siteBooksHeading">Every book is a door.<br><em id="siteBooksSubheading">Pick yours.</em></h2>
     </div>
     <div id="spotlightBox"></div>
     <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
@@ -672,14 +672,14 @@ footer a:hover{text-decoration:underline}
       <div class="author-photo-wrap reveal">
         <img id="authorPhotoImg" alt="Vishal Hingol — Author" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
       </div>
-      <div class="about-text reveal">
+      <div class="about-text reveal" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
-        <h2>The signal has always been <em>transmitting.</em></h2>
+        <h2 id="siteAboutHeading">The signal has always been <em>transmitting.</em></h2>
         <p>Vishal Hingol writes at the intersection of <strong>human psychology, personal transformation,</strong> and the mechanics by which people build lives of genuine meaning and abundance.</p>
         <p>His work is grounded in a single sustained conviction: the gap between where most people are and where they are capable of being is not a gap of effort, intelligence or opportunity. <strong>It is a gap of frequency</strong> — and frequency can be learned.</p>
         <p><strong>Zara and the Divine Signal</strong> is his most ambitious work to date: a complete human journey, told through one person over twenty-three years, showing through lived experience how the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.</p>
         <p>Every person alive is carrying a signal the world needs. The work is not to acquire a new one — it is to <strong>clear the interference from the one you were born with.</strong> This work is an invitation to receive it.</p>
-        <p class="signature">— Vishal</p>
+        <p class="signature" id="siteSignature">— Vishal</p>
       </div>
     </div>
   </section>
@@ -688,9 +688,9 @@ footer a:hover{text-decoration:underline}
 <div class="band veil">
   <div class="band-inner reveal">
     <span class="sec-eyebrow">// Never Miss a Release</span>
-    <h2>New books arrive <em>quietly.</em></h2>
-    <p>Tap "Follow" on my Amazon author page and Amazon will email you the moment a new book or journal goes live.</p>
-    <a class="btn btn-gold amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Follow Vishal on Amazon</a>
+    <h2 id="siteBandHeading">New books arrive <em>quietly.</em></h2>
+    <p id="siteBandText">Tap "Follow" on my Amazon author page and Amazon will email you the moment a new book or journal goes live.</p>
+    <a class="btn btn-gold amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" id="siteBandBtn">Follow Vishal on Amazon</a>
   </div>
 </div>
 
@@ -701,6 +701,55 @@ footer a:hover{text-decoration:underline}
 
 <script src="covers.js"></script>
 <script>
+/* ================= load site.json & apply text =================== */
+(async function(){
+  try{
+    const res = await fetch('site.json?v='+Date.now(),{cache:'no-store'});
+    if(!res.ok) return; // no site.json yet = use defaults
+    const s = await res.json();
+    function setSite(id, val, attr){
+      const el=document.getElementById(id);
+      if(!el||!val) return;
+      if(attr) el[attr]=val;
+      else el.textContent=val;
+    }
+    if(s.heroTagline) setSite('siteHeroTagline', s.heroTagline);
+    if(s.heroBtn1)    setSite('siteBtn1', s.heroBtn1);
+    if(s.heroBtn2)    setSite('siteBtn2', s.heroBtn2);
+    if(s.booksLabel)  setSite('siteBooksLabel', s.booksLabel);
+    if(s.booksHeading) setSite('siteBooksHeading', s.booksHeading+'.');
+    if(s.booksSubheading) setSite('siteBooksSubheading', s.booksSubheading);
+    if(s.aboutHeading){
+      const el=document.getElementById('siteAboutHeading');
+      if(el) el.innerHTML=s.aboutHeading;
+    }
+    if(s.aboutText){
+      const el=document.getElementById('siteAboutText');
+      if(el){
+        // Convert plain paragraphs (separated by \n\n) into <p> tags
+        // preserve existing strong/em tags the user writes with **bold** *italic*
+        const paras = s.aboutText.split(/\n\n+/).filter(p=>p.trim());
+        el.innerHTML = '<span class="sec-eyebrow">// About the Author</span><h2 id="siteAboutHeading">'+(s.aboutHeading||'The signal has always been <em>transmitting.</em>')+'</h2>'
+          + paras.map(p=>'<p>'+p.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')+'</p>').join('')
+          + '<p class="signature" id="siteSignature">'+(s.signature||'— Vishal')+'</p>';
+      }
+    } else {
+      if(s.signature) setSite('siteSignature', s.signature);
+    }
+    if(s.bandHeading){
+      const el=document.getElementById('siteBandHeading');
+      if(el) el.innerHTML=s.bandHeading+' <em>quietly.</em>';
+    }
+    if(s.bandText)    setSite('siteBandText', s.bandText);
+    if(s.bandBtn)     setSite('siteBandBtn', s.bandBtn);
+    // Author photo from site.json
+    if(s.authorPhoto){
+      const ap=document.getElementById('authorPhotoImg');
+      if(ap) ap.src=s.authorPhoto;
+    }
+  }catch(e){ /* site.json not found, use HTML defaults */ }
+})();
+
 /* ================= load database & render bookshelf ================= */
 (async function(){
   const shelf = document.getElementById('shelf');
