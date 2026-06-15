@@ -366,8 +366,9 @@ nav.scrolled{
 
 .hamburger{
   display:none;flex-direction:column;justify-content:center;gap:5px;
-  cursor:pointer;padding:8px;border:none;background:transparent;
-  border:1px solid rgba(244,238,226,.2);border-radius:8px;z-index:200;
+  cursor:pointer;padding:8px;border:1px solid rgba(244,238,226,.2);
+  background:transparent;border-radius:8px;
+  position:relative;z-index:300;
 }
 .hamburger span{
   width:22px;height:2px;background:var(--paper);border-radius:2px;
@@ -381,13 +382,14 @@ nav.scrolled{
   .nav-links{
     display:flex;
     position:fixed;top:0;left:0;right:0;bottom:0;
-    background:rgba(7,10,24,.96);
-    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    background:rgba(7,10,24,.97);
+    backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
     flex-direction:column;align-items:center;justify-content:center;
-    gap:28px;z-index:150;
+    gap:32px;z-index:250;
     transform:translateX(100%);
-    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    transition:transform .38s cubic-bezier(.4,0,.2,1);
     pointer-events:none;
+    overflow-y:auto;
   }
   .nav-links.open{
     transform:translateX(0);
@@ -395,17 +397,17 @@ nav.scrolled{
   }
   .nav-links a{
     font-family:var(--display);
-    font-size:28px;font-weight:400;letter-spacing:.02em;
+    font-size:30px;font-weight:400;letter-spacing:.02em;
     color:var(--paper);opacity:0;
-    transform:translateY(20px);
-    transition:opacity .3s ease, transform .3s ease;
+    transform:translateY(18px);
+    transition:opacity .3s ease, transform .3s ease, color .2s;
     text-decoration:none;
   }
-  .nav-links.open a{opacity:1;transform:translateY(0)}
-  .nav-links.open a:nth-child(1){transition-delay:.1s}
-  .nav-links.open a:nth-child(2){transition-delay:.15s}
-  .nav-links.open a:nth-child(3){transition-delay:.2s}
-  .nav-links.open a:nth-child(4){transition-delay:.25s}
+  .nav-links.open a{opacity:1 !important;transform:translateY(0) !important}
+  .nav-links.open a:nth-child(2){transition-delay:.08s}
+  .nav-links.open a:nth-child(3){transition-delay:.14s}
+  .nav-links.open a:nth-child(4){transition-delay:.20s}
+  .nav-links.open a:nth-child(5){transition-delay:.26s}
   .nav-links a:hover{color:var(--gold)}
   .nav-links .nav-amzn{
     font-family:var(--tech) !important;
@@ -414,18 +416,17 @@ nav.scrolled{
     color:var(--night) !important;
     padding:14px 32px;border-radius:100px;
     letter-spacing:.1em;font-weight:700;
-    opacity:0;transform:translateY(20px);
-    transition:opacity .3s ease .3s, transform .3s ease .3s;
+    opacity:0;transform:translateY(18px);
+    transition:opacity .3s ease .28s, transform .3s ease .28s;
   }
-  .nav-links.open .nav-amzn{opacity:1;transform:translateY(0)}
-  /* close button inside menu */
+  .nav-links.open .nav-amzn{opacity:1 !important;transform:translateY(0) !important}
   .nav-close{
-    position:absolute;top:24px;right:24px;
-    background:none;border:1px solid rgba(244,238,226,.25);
+    position:absolute;top:22px;right:22px;
+    background:rgba(7,10,24,.5);border:1px solid rgba(244,238,226,.25);
     color:var(--paper);border-radius:100px;
-    width:40px;height:40px;font-size:20px;cursor:pointer;
+    width:42px;height:42px;font-size:20px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
-    transition:border-color .2s,color .2s;
+    transition:border-color .2s,color .2s;z-index:260;
   }
   .nav-close:hover{border-color:var(--gold);color:var(--gold)}
 }
@@ -1104,15 +1105,13 @@ function toggleMenu(){
   const isOpen=n.classList.contains('open');
   h.classList.toggle('open',!isOpen);
   n.classList.toggle('open',!isOpen);
-  document.body.style.overflow=!isOpen?'hidden':'';
+  /* NO body overflow change — prevents page freeze on mobile */
 }
 function closeMenu(){
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('navLinks').classList.remove('open');
-  document.body.style.overflow='';
 }
 document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',closeMenu));
-// close on escape key
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
