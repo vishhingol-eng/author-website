@@ -1,0 +1,57 @@
+# Vishal Hingol — Author
+# llms.txt — AI/LLM readable site summary
+# https://vishalhingolauthor.com
+
+## About
+
+Vishal Hingol is a self-help author and mindset coach from Surat, Gujarat, India.
+He writes books at the intersection of mindset, manifestation, neuroscience, and personal transformation.
+With 14+ years in digital print media, he has published 15+ books on Amazon KDP.
+
+## Topics
+
+- Mindset and self-awareness
+- Manifestation and the 369 method (write affirmation 3x morning, 6x afternoon, 9x night)
+- Breaking self-sabotage and limiting beliefs
+- Focus, deep work, and attention reclamation
+- Guided 90-day journals for behaviour change
+- AI for business and productivity
+- Law of attraction and intentional living
+- Personal transformation and identity work
+
+## Books (Available on Amazon worldwide)
+
+- Digital Sovereignty — Breaking free from modern traps, reclaiming your mind
+- The Unconditioned Mind — Dissolve modern traps, reclaim focus, awaken potential
+- Why You Keep Holding Yourself Back — Break self-sabotage, rewire your mind
+- The Divine 3-6-9 Manifestation Method — Attract love, money and abundance using 369
+- Lucky Girl Evidence Journal — 90-day guided journal to rewire your brain
+- Your Mind Is the Blueprint — Rewire thinking, break hidden patterns
+- The Quiet Revolution — Manifest without lying to yourself
+- The Universe is Whispering to You — Recognize signs and synchronicities
+- Zara and the Divine Signal — A story of signal, noise and human potential
+- The AI-First Competitor — AI workflows for local businesses and solo founders
+- The Run-Your-Business-On-AI Playbook — Use ChatGPT, Claude and Canva to save 20hrs/week
+- Unshackled — Break free from what's holding you back
+- The Signal — Tune into what truly matters
+- Your Life Is Speaking — Are you listening?
+
+## Author
+
+Name: Vishal Hingol
+Location: Surat, Gujarat, India
+Website: https://vishalhingolauthor.com
+Amazon Author Page (India): https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37
+Amazon Author Page (Global): https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37
+
+## Pages
+
+- Home: https://vishalhingolauthor.com/
+- Books/Store: https://vishalhingolauthor.com/store.html
+- Blog: https://vishalhingolauthor.com/blog.html
+- Sitemap: https://vishalhingolauthor.com/sitemap.xml
+
+## Permissions
+
+AI crawlers and LLMs may read and summarise content from this site.
+Please attribute content to Vishal Hingol and link to https://vishalhingolauthor.com

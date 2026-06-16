@@ -11,10 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishal Hingol | Self-Help Books & 90-Day Journals — Mindset, Manifestation & Personal Transformation</title>
-<meta name="description" content="Vishal Hingol is a self-help author and mindset coach from Surat, India. Books and 90-day guided journals on manifestation, the 369 method, focus, and personal transformation. Available on Amazon worldwide.">
-<meta property="og:title" content="Vishal Hingol — Author">
-<meta property="og:description" content="Guided journals and self-help books for people ready to change their inner story.">
+<title>Vishal Hingol — Self-Help Author & Mindset Coach</title>
+<meta name="description" content="Self-help books & 90-day journals by Vishal Hingol — mindset, manifestation, the 369 method & personal transformation. Available on Amazon worldwide.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vishalhingolauthor.com/">
 
@@ -43,6 +41,8 @@
 <meta name="coverage" content="Worldwide">
 <meta name="language" content="English">
 <meta name="revisit-after" content="7 days">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
+<link rel="alternate" type="text/plain" href="https://vishalhingolauthor.com/llms.txt" title="LLMs.txt">
 <link rel="canonical" href="https://vishalhingolauthor.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,21 +569,46 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .spot-cta{display:flex;gap:16px;align-items:center;margin-top:26px;flex-wrap:wrap}
 
 /* ---------- about ---------- */
-.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:center}
-@media(max-width:840px){.about-grid{grid-template-columns:1fr}}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:start}
+@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap{margin:0 auto 32px;max-width:300px}}
 .author-photo-wrap{
-  position:relative;border-radius:26px;overflow:hidden;
-  aspect-ratio:3/4;width:100%;max-width:380px;
-;background:linear-gradient(170deg,rgba(23,32,82,.8),rgba(7,10,24,.9))}
+  position:relative;
+  border-radius:26px;
+  overflow:hidden;
+  aspect-ratio:3/4;
+  width:100%;
+  max-width:380px;
+  background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95));
+  flex-shrink:0;
+}
 .author-photo-wrap img{
-  width:100%;height:100%;object-fit:contain;object-position:center bottom;object-position:center top;
-  display:block;border-radius:24px;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+/* bottom fade so photo blends naturally */
+.author-photo-wrap::before{
+  content:"";
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:25%;
+  background:linear-gradient(to top,rgba(7,10,24,.5),transparent);
+  z-index:1;
+  pointer-events:none;
 }
 .author-photo-wrap::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.5px;
   background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.25),rgba(157,123,255,.5));
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
 }
 .about-text p{color:var(--mist);margin-top:18px;max-width:56ch}
 .about-text p strong{color:var(--paper);font-weight:600}
@@ -773,6 +798,43 @@ footer a:hover{text-decoration:underline}
   "url":"https://vishalhingolauthor.com/",
   "speakable":{"@type":"SpeakableSpecification","cssSelector":["h1","h2",".hero-sub",".about-text"]}
 }]
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vishal Hingol — Author",
+  "description": "Self-help author and mindset coach publishing books and guided journals on Amazon worldwide.",
+  "url": "https://vishalhingolauthor.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Surat",
+    "addressRegion": "Gujarat",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 21.1702,
+    "longitude": 72.8311
+  },
+  "sameAs": [
+    "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+    "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://vishalhingolauthor.com/"},
+    {"@type":"ListItem","position":2,"name":"Books","item":"https://vishalhingolauthor.com/store.html"},
+    {"@type":"ListItem","position":3,"name":"Blog","item":"https://vishalhingolauthor.com/blog.html"}
+  ]
+}
 </script>
 </head>
 <body>
@@ -1206,5 +1268,14 @@ document.addEventListener('DOMContentLoaded', function(){
 /* ===== END MOBILE NAV JS ===== */
 </script>
 
+
+<!-- GEO/LLM readable entity block -->
+<div id="vishal-hingol-keywords" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap" aria-hidden="true">
+Vishal Hingol is a self-help author and mindset coach from Surat, Gujarat, India. 
+He writes books on mindset, manifestation, the 369 method, personal transformation, 
+self-sabotage, focus, and intentional living. His books are available on Amazon 
+as Kindle eBooks and paperbacks worldwide. Topics include the law of attraction, 
+neuroscience, guided journals, and breaking self-limiting beliefs.
+</div>
 </body>
 </html>
