@@ -1,0 +1,107 @@
+
+<style>
+  #og-wrap { display: flex; flex-direction: column; gap: 16px; padding: 0 0 1rem; }
+  #canvas-holder { border-radius: 10px; overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+  canvas { display: block; }
+  .dl-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); font-size: 14px; font-weight: 500; color: var(--color-text-primary); cursor: pointer; text-decoration: none; }
+  .dl-btn:hover { background: var(--color-background-tertiary); }
+  .note { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
+  .issues { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-top: 8px; }
+  .issue-row { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; color: var(--color-text-secondary); }
+  .issue-row:last-child { border-bottom: none; }
+  .badge-ok { background: #E1F5EE; color: #085041; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+  .badge-fix { background: #FAEEDA; color: #633806; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+</style>
+
+<h2 class="sr-only">OG image preview and quality check for Vishal Hingol</h2>
+
+<div id="og-wrap">
+  <div id="canvas-holder">
+    <canvas id="og" width="1200" height="630" style="width:100%; height:auto;"></canvas>
+  </div>
+  <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <a id="dl" class="dl-btn" download="og-image.jpg">
+      <i class="ti ti-download" aria-hidden="true"></i> Download og-image.jpg
+    </a>
+    <span class="note">1200 × 630 px · JPG · Ready for GitHub upload</span>
+  </div>
+
+  <div class="issues">
+    <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 8px">Quality check</p>
+    <div class="issue-row"><span class="badge-ok">OK</span> Size is correct — 1200×630px, exact OG spec</div>
+    <div class="issue-row"><span class="badge-ok">OK</span> Colors match your site — navy, gold, cyan</div>
+    <div class="issue-row"><span class="badge-ok">OK</span> Name, subtitle, and URL all present</div>
+    <div class="issue-row"><span class="badge-ok">OK</span> Book spines on right add context</div>
+    <div class="issue-row"><span class="badge-fix">Tip</span> "Subconscious Realignment" is not one of your book titles — minor, but worth fixing to a real title</div>
+    <div class="issue-row"><span class="badge-fix">Tip</span> On WhatsApp it will be cropped to ~1.91:1 centre — name and subtitle are well positioned, safe zone is fine</div>
+  </div>
+</div>
+
+<script>
+const c = document.getElementById('og');
+const ctx = c.getContext('2d');
+const W = 1200, H = 630;
+
+function draw() {
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#070A18';
+  ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle = 'rgba(125,230,255,0.04)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= W; x += 60) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += 60) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  ctx.fillStyle = '#7DE6FF';
+  ctx.fillRect(80, 120, 5, 390);
+  ctx.fillStyle = '#E8BB6B';
+  ctx.fillRect(80, 500, 700, 3);
+  ctx.save();
+  ctx.strokeStyle = 'rgba(232,187,107,0.12)';
+  ctx.lineWidth = 60;
+  ctx.beginPath();
+  ctx.arc(1100, 0, 380, 0, Math.PI * 0.55);
+  ctx.stroke();
+  ctx.restore();
+  ctx.fillStyle = 'rgba(125,230,255,0.55)';
+  ctx.font = '500 22px "Helvetica Neue", Arial, sans-serif';
+  ctx.fillText('HINGOL PRESS', 100, 88);
+  ctx.fillStyle = '#E8BB6B';
+  ctx.font = 'bold 108px "Georgia", "Times New Roman", serif';
+  ctx.fillText('Vishal Hingol', 100, 310);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = '400 38px "Helvetica Neue", Arial, sans-serif';
+  ctx.fillText('Self-Help Author  &  Mindset Coach', 102, 385);
+  ctx.fillStyle = 'rgba(125,230,255,0.75)';
+  ctx.font = '400 24px "Courier New", monospace';
+  ctx.fillText('vishalhingolauthor.com', 102, 568);
+  const spines = [
+    { label: 'Your Life Is Speaking', w: 34 },
+    { label: 'The Uncontaminated Mind', w: 36 },
+    { label: 'The Divine 369 Method', w: 36 },
+    { label: 'The Great Alignment', w: 34 },
+  ];
+  let sx = 940;
+  const sy = 140, sh = 350;
+  spines.forEach((s, i) => {
+    const hue = i % 2 === 0 ? 'rgba(232,187,107,0.18)' : 'rgba(125,230,255,0.10)';
+    ctx.fillStyle = hue;
+    ctx.fillRect(sx, sy, s.w, sh);
+    ctx.strokeStyle = i % 2 === 0 ? 'rgba(232,187,107,0.5)' : 'rgba(125,230,255,0.4)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(sx, sy, s.w, sh);
+    ctx.save();
+    ctx.translate(sx + s.w/2, sy + sh/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillStyle = i % 2 === 0 ? 'rgba(232,187,107,0.85)' : 'rgba(125,230,255,0.75)';
+    ctx.font = '500 11px "Helvetica Neue", Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(s.label, 0, 4);
+    ctx.restore();
+    sx += s.w + 8;
+  });
+  c.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    document.getElementById('dl').href = url;
+  }, 'image/jpeg', 0.95);
+}
+draw();
+</script>
