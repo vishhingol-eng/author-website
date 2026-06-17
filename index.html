@@ -951,7 +951,7 @@ footer a:hover{text-decoration:underline}
     <a href="#books">Books</a>
     <a href="store.html">Store</a>
     <a href="blog.html">Blog</a>
-    <a href="#about">About</a>
+    <a href="about.html">About</a>
     <a class="nav-amzn" id="navAmzn" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon Page</a>
   </div>
 </nav>
@@ -977,12 +977,17 @@ footer a:hover{text-decoration:underline}
     <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
   </section>
 
-  <section id="about">
-    <div class="about-grid">
-      <div class="author-photo-wrap reveal">
-        <img id="authorPhotoImg" alt="Vishal Hingol — Author" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
+  <section id="about" style="opacity:1;transform:none;">
+    <div class="about-grid" style="opacity:1;">
+      <div class="author-photo-wrap reveal in">
+        <div class="photo-loading-state" id="photoLoadingState">
+          <span class="ph-initials">VH</span>
+          <span class="ph-name">Vishal Hingol</span>
+          <span class="ph-role">Author &amp; Mindset Coach</span>
+        </div>
+        <img id="authorPhotoImg" alt="Vishal Hingol — Self-Help Author and Mindset Coach" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);display:none;" decoding="async">
       </div>
-      <div class="about-text reveal" id="siteAboutText">
+      <div class="about-text reveal in" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
         <h2 id="siteAboutHeading">The signal has always been <em>transmitting.</em></h2>
         <p>Vishal Hingol writes at the intersection of <strong>human psychology, personal transformation,</strong> and the mechanics by which people build lives of genuine meaning and abundance.</p>
@@ -1015,7 +1020,7 @@ footer a:hover{text-decoration:underline}
 document.addEventListener("DOMContentLoaded", function(){
 (async function(){
   try{
-    const res = await fetch('site.json?v='+Math.floor(Date.now()/86400000));
+    const res = await fetch('site.json?v='+Date.now(),{cache:'no-store'});
     if(!res.ok) return; // no site.json yet = use defaults
     const s = await res.json();
     function setSite(id, val, attr){
@@ -1056,9 +1061,21 @@ document.addEventListener("DOMContentLoaded", function(){
     // Author photo from site.json
     if(s.authorPhoto){
       const ap=document.getElementById('authorPhotoImg');
-      if(ap) ap.src=s.authorPhoto;
+      const pl=document.getElementById('photoLoadingState');
+      if(ap){
+        ap.onload=function(){
+          this.style.display='block';
+          if(pl) pl.style.display='none'; // hide placeholder once photo loads
+        };
+        ap.onerror=function(){
+          this.style.display='none';
+          if(pl) pl.style.display='flex'; // keep placeholder if photo fails
+        };
+        ap.src=s.authorPhoto;
+      }
     }
-  }catch(e){ /* site.json not found, use HTML defaults */ }
+    // if no photo in site.json, placeholder stays visible (already showing)
+  }catch(e){ console.warn('site.json:', e); showPhotoPlaceholder(); }
 })();
 
 /* ================= load database & render bookshelf ================= */
@@ -1126,7 +1143,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   let data = null;
   try{
-    const res = await fetch('books.json?v='+Math.floor(Date.now()/86400000));
+    const res = await fetch('books.json?v='+Date.now(),{cache:'no-store'});
     if(!res.ok) throw new Error(res.status);
     data = await res.json();
   }catch(e){
@@ -1138,9 +1155,10 @@ document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll('.amzn-link, #navAmzn').forEach(a=>a.href = data.author.amazonAuthorPage);
   }
 
-  const all = (data.books||[]).slice().sort((a,b)=> new Date(b.published) - new Date(a.published));
+  // Show ALL books — no filtering, no hiding
+  const all = (data.books||[]).filter(b=>b.status!=='draft').slice().sort((a,b)=> new Date(b.published) - new Date(a.published));
   const feat = all.find(b=>b.featured) || all[0];
-  const books = all.filter(b=>b!==feat);
+  const books = all; // ALL books show in grid including featured
   shelf.innerHTML = '';
 
   // featured spotlight
@@ -1310,21 +1328,40 @@ function hookTilt(){
 
 const io = new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-}),{threshold:.12});
+}),{threshold:0.05, rootMargin:"0px 0px -50px 0px"});
 function hookReveals(){
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
 }
 hookReveals();
 
 
+
+function showPhotoPlaceholder(){
+  const wrap = document.querySelector('.author-photo-wrap');
+  if(!wrap) return;
+  const ap = document.getElementById('authorPhotoImg');
+  if(ap) ap.style.display='none';
+  // Show a styled placeholder with initials
+  if(!wrap.querySelector('.photo-placeholder')){
+    const ph = document.createElement('div');
+    ph.className = 'photo-placeholder';
+    ph.innerHTML = '<span class="ph-initials">VH</span><span class="ph-name">Vishal Hingol</span><span class="ph-role">Author & Mindset Coach</span>';
+    wrap.appendChild(ph);
+  }
+}
+
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-// Load author photo from embedded data
+// Load author photo from embedded data (covers.js)
   const ap = document.getElementById('authorPhotoImg');
   if(ap && window.COVERS && window.COVERS['__author__']){
     ap.src = window.COVERS['__author__'];
+    ap.style.display='block';
+  } else if(ap && !ap.src){
+    // No photo in site.json or covers.js — show placeholder
+    showPhotoPlaceholder();
   }
 </script>
 
@@ -1345,7 +1382,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     <a class="mob-link" href="#books" onclick="closeMobileNav()">Books</a>
     <a class="mob-link" href="store.html" onclick="closeMobileNav()">Store</a>
     <a class="mob-link" href="blog.html" onclick="closeMobileNav()">Blog</a>
-    <a class="mob-link" href="#about" onclick="closeMobileNav()">About</a>
+    <a class="mob-link" href="about.html" onclick="closeMobileNav()">About</a>
   </div>
 
   <!-- Amazon CTA -->
