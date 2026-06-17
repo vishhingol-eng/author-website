@@ -938,7 +938,7 @@ footer{
   <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  <div class="nav-links" id="navLinks">
     <a href="#books">Books</a>
     <a href="store.html">Store</a>
     <a href="blog.html">Blog</a>
@@ -1083,21 +1083,22 @@ window._renderBooks = null; // set below once closure is ready
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
   const ORIG = {
-    'zara-and-the-divine-signal':'ZARA_Ebook.jpg',
-    'lucky-girl-evidence-journal':'Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg',
-    'the-real-frequency-of-origins':'The_Real_Frequency_of_Origins_Ebook.jpg',
-    'the-real-architect-of-echoes':'The_Real_Architect_of_Echoes_EBOOK.jpg',
-    'the-great-alignment-principle':'THE_GREAT.jpg',
-    'the-uncontaminated-mind':'UNCOTED_KDP.jpg',
-    'your-life-is-speaking':'Your_life_KDP.jpg',
-    'your-life-is-trying-to-tell-you-something':'Your_Life_Is_Trying_To_Tell_You_Something_600DPI_HighRes.jpg',
-    'the-signal':'The_Signal_EBOOK.jpg',
-    'why-you-keep-holding-yourself-back':'Why_You_Keep_Holding_Yourself_Back_KDP__1_.jpg',
-    'the-unconditioned-mind':'The_Unconditioned_Mind_KDP.jpg',
-    'the-quiet-revolution':'71pAMMcowLL__SL1500_.jpg',
-    'the-universe-is-whispering-to-you':'universe_whispering_cover.jpg',
-    'unshackled':'UNSHACKLED.jpg',
-    'the-divine-369-manifestation-method':'The_Divine_3-6-9_Manifestation_Method.jpg'
+    'zara-and-the-divine-signal':          'ZARA_Ebook.jpg',
+    'digital-sovereignty':                  'Digital_Sovereignty.jpg',
+    'the-real-resonance-threshold':         'The_Real_RT_Ebook.jpg',
+    'the-real-frequency-of-origins':        'The_Real_Frequency_of_Origins_Ebook.jpg',
+    'the-real-architect-of-echoes':         'The_Real_Architect_of_Echoes_EBOOK.jpg',
+    'the-signal':                           'The_Signal_EBOOK.jpg',
+    'why-you-keep-holding-yourself-back':   'Why_You_Keep_Holding_Yourself_Back_KDP__1_.jpg',
+    'the-universe-is-whispering-to-you':    'universe_whispering_cover.jpg',
+    'the-unconditioned-mind':               'The_Unconditioned_Mind_KDP.jpg',
+    'unshackled':                           'UNSHACKLED.jpg',
+    'run-your-business-on-ai-playbook':     'Run_Your_Business_On_AI.jpg',
+    'your-mind-is-the-blueprint':           'Your_Mind_Is_Blueprint.jpg',
+    'the-divine-369-manifestation-method':  'The_Divine_3-6-9_Manifestation_Method.jpg',
+    'the-quiet-revolution':                 '71pAMMcowLL__SL1500_.jpg',
+    'lucky-girl-evidence-journal':          'Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg',
+    'the-ai-first-competitor':              'AI_First_Competitor.jpg'
   };
 
   function genCoverHTML(hue, title, id){

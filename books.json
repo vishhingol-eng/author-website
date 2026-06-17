@@ -1,15 +1,19 @@
 {
   "author": {
     "name": "Vishal Hingol",
-    "amazonAuthorPage": "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37"
+    "amazonAuthorPage": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37"
   },
   "books": [
     {
       "id": "zara-and-the-divine-signal",
       "title": "Zara and the Divine Signal",
       "subtitle": "When the Universe Chooses a Child to Change the World",
-      "description": "Vishal's most ambitious work to date: a complete human journey told through one person over twenty-three years — a girl, an old radio, and a signal that should not exist. Not instruction, but lived experience: how the signal works, what the noise costs, and what becomes possible when you choose, consistently and without apology, to transmit what you actually are.",
-      "tags": ["Fiction", "Spirituality", "Signal"],
+      "description": "A complete human journey told through one person over twenty-three years — a girl, an old radio, and a signal that should not exist. Not instruction, but lived experience: how the signal works, what the noise costs, and what becomes possible when you choose, consistently and without apology, to transmit what you actually are.",
+      "tags": [
+        "Fiction",
+        "Spirituality",
+        "Signal"
+      ],
       "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
       "coverImage": "covers/ZARA_Ebook.jpg",
       "published": "2026-06-08",
@@ -19,20 +23,88 @@
     {
       "id": "digital-sovereignty",
       "title": "Digital Sovereignty",
-      "subtitle": "Breaking free from modern traps, reclaiming your mind, and winning the game of life",
-      "description": "The system profits when you obey. You win when you think. A practical manual for men who refuse to be programmed — covering algorithms that hijack your attention, social media that owns your mind, money myths that keep you broke, fake identities that steal your self, and constant distraction that kills your depth.",
-      "tags": ["Self-Help", "Men's Growth", "Digital Wellness"],
+      "subtitle": "Breaking Free from Modern Traps, Reclaiming Your Mind, and Building a Life of Meaning",
+      "description": "The system profits when you obey. You win when you think. A practical manual for people who refuse to be programmed — covering algorithms that hijack your attention, social media that owns your mind, money myths that keep you broke, and constant distraction that kills your depth.",
+      "tags": [
+        "Self-Help",
+        "Digital Wellness",
+        "Mindset"
+      ],
       "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
       "coverImage": "covers/Digital_Sovereignty.jpg",
       "published": "2026-06-01",
       "hue": 200
     },
     {
+      "id": "the-real-resonance-threshold",
+      "title": "The Real Resonance Threshold",
+      "subtitle": "A Mind-Bending Sci-Fi Thriller of Quantum Consciousness, Frequency, and the Collapse of Reality",
+      "description": "A mind-bending science fiction thriller that explores the boundary between consciousness and quantum reality. When transformation becomes possible at the frequency level, nothing about who you are remains the same.",
+      "tags": [
+        "Sci-Fi",
+        "Thriller",
+        "Quantum"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/The_Real_RT_Ebook.jpg",
+      "published": "2026-05-20",
+      "hue": 260
+    },
+    {
+      "id": "the-real-frequency-of-origins",
+      "title": "The Real Frequency of Origins",
+      "subtitle": "When the Universe Starts Talking Back",
+      "description": "NO SIGNAL. RETRYING... In a city drowning in noise, one woman starts receiving answers to questions she never asked aloud. A novel about origins, signals, and what happens when the universe finally talks back to someone who has spent a lifetime broadcasting into silence.",
+      "tags": [
+        "Fiction",
+        "Spirituality",
+        "Signal"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/The_Real_Frequency_of_Origins_Ebook.jpg",
+      "published": "2026-05-10",
+      "hue": 195
+    },
+    {
+      "id": "the-real-architect-of-echoes",
+      "title": "The Real Architect of Echoes",
+      "subtitle": "The Story of Changing Your Frequency",
+      "description": "Reality is not random. It is responding. A story about the echoes we send into the world, the ones that return, and the moment a man realizes he has been the architect of both all along. When you change your frequency, you change everything that comes back to you.",
+      "tags": [
+        "Fiction",
+        "Frequency",
+        "Mindset"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/The_Real_Architect_of_Echoes_EBOOK.jpg",
+      "published": "2026-05-05",
+      "hue": 270
+    },
+    {
+      "id": "the-signal",
+      "title": "The Signal",
+      "subtitle": "A 21-Day Protocol for Rewiring Your Attention, Reclaiming Your Mind, and Finding Your Purpose",
+      "description": "Cut through the noise. Tune into what matters. A focused 21-day protocol for rewiring your attention, reclaiming your mind, and locking onto the frequency of the life you actually want. Day by day, the interference clears. Day by day, the signal gets stronger.",
+      "tags": [
+        "Self-Help",
+        "21-Day Protocol",
+        "Focus"
+      ],
+      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "coverImage": "covers/The_Signal_EBOOK.jpg",
+      "published": "2026-04-28",
+      "hue": 160
+    },
+    {
       "id": "why-you-keep-holding-yourself-back",
       "title": "Why You Keep Holding Yourself Back",
-      "subtitle": "Break self-sabotage, rewire your mind, and finally move forward",
-      "description": "You know what to do — yet you keep ending up in the same place. This isn't laziness; it's subconscious patterns, old conditioning and comfort-zone loops quietly steering your decisions. A practical, science-backed guide to understanding the real roots of self-sabotage and breaking the pattern for good.",
-      "tags": ["Self-Help", "Mindset"],
+      "subtitle": "Break Self-Sabotage, Rewire Your Mind, and Unlock Your Potential",
+      "description": "You know what to do. You have set your goals. You have made the plans. And yet you keep ending up in the same place — not because you are lazy or lack discipline, but because subconscious beliefs, childhood conditioning, and comfort zone addiction are silently controlling your decisions.",
+      "tags": [
+        "Self-Help",
+        "Mindset",
+        "Self-Sabotage"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H363BTBG",
       "coverImage": "covers/Why_You_Keep_Holding_Yourself_Back_KDP__1_.jpg",
       "published": "2026-04-20",
@@ -41,9 +113,12 @@
     {
       "id": "the-universe-is-whispering-to-you",
       "title": "The Universe is Whispering to You",
-      "subtitle": "Recognize signs, decode synchronicities, and listen to messages from the other side",
-      "description": "For everyone who has experienced something they can't explain — and can't tell anyone about. A guide to noticing the signs and synchronicities woven through everyday life, and learning to trust what they're telling you.",
-      "tags": ["Spirituality", "Signs & Synchronicity"],
+      "subtitle": "How to Recognize Signs, Decode Synchronicities, and Align with Your Soul's Path",
+      "description": "For everyone who has experienced something they cannot explain — and cannot tell anyone about. A guide to noticing the signs and synchronicities woven through everyday life: the 111s, the 222s, the feathers, the doors. Learn to trust what they are telling you.",
+      "tags": [
+        "Spirituality",
+        "Signs & Synchronicity"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H2PSYFDY",
       "coverImage": "covers/universe_whispering_cover.jpg",
       "published": "2026-04-10",
@@ -52,9 +127,12 @@
     {
       "id": "the-unconditioned-mind",
       "title": "The Unconditioned Mind",
-      "subtitle": "Dissolve modern traps, reclaim your focus, and awaken your true potential",
+      "subtitle": "How to Dissolve Modern Traps, Reclaim Your Focus, and Live Life on Your Own Terms",
       "description": "Your attention is being farmed, your habits engineered, your thinking conditioned. This book shows you how to step out of the modern traps — distraction, comparison, autopilot living — and recover a clear, focused, self-directed mind.",
-      "tags": ["Self-Help", "Focus & Clarity"],
+      "tags": [
+        "Self-Help",
+        "Focus & Clarity"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H2WV8SS7",
       "coverImage": "covers/The_Unconditioned_Mind_KDP.jpg",
       "published": "2026-03-28",
@@ -62,10 +140,13 @@
     },
     {
       "id": "unshackled",
-      "title": "Unshackled",
-      "subtitle": "12 hidden habits keeping modern men stagnant, lonely, and broke — and how to break free",
+      "title": "UNSHACKLED",
+      "subtitle": "12 Hidden Habits Keeping Modern Men Stagnant, Lonely, and Broke — And How to Break Them",
       "description": "The habits that saved you then are silently destroying you now. Twelve hidden patterns keeping modern men stagnant, lonely, and broke: dopamine distractions, the lone wolf myth, overthinking paralysis, emotional disconnection, financial illiteracy, comfort addiction and more. Named, explained, and dismantled.",
-      "tags": ["Self-Help", "Men's Growth"],
+      "tags": [
+        "Self-Help",
+        "Men's Growth"
+      ],
       "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
       "coverImage": "covers/UNSHACKLED.jpg",
       "published": "2026-03-20",
@@ -74,9 +155,12 @@
     {
       "id": "run-your-business-on-ai-playbook",
       "title": "The Run-Your-Business-On-AI Playbook",
-      "subtitle": "How small business owners use ChatGPT, Claude, and Canva to reclaim 20 hours a week",
+      "subtitle": "How Small Business Owners Use ChatGPT, Claude, and Gemini to Scale Faster",
       "description": "No theory, no future predictions — every page answers one question: how do I get AI to do this specific business task for me, right now, today? A hands-on playbook for owners who want their time back.",
-      "tags": ["Business", "AI Tools"],
+      "tags": [
+        "Business",
+        "AI Tools"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H2HSTBK3",
       "coverImage": "covers/Run_Your_Business_On_AI.jpg",
       "published": "2026-03-15",
@@ -85,9 +169,12 @@
     {
       "id": "your-mind-is-the-blueprint",
       "title": "Your Mind Is the Blueprint",
-      "subtitle": "Rewire your thinking, break hidden patterns, and design the life you actually want",
+      "subtitle": "Rewire Your Thinking, Break Hidden Patterns, and Create the Life You Want",
       "description": "Most people try to change their life by changing what they do — and fail. This book targets the one factor that shapes every decision, habit and outcome: your thinking patterns. A structured, practical system to reshape them step by step.",
-      "tags": ["Self-Help", "Thinking Patterns"],
+      "tags": [
+        "Self-Help",
+        "Thinking Patterns"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H29HNRKY",
       "coverImage": "covers/Your_Mind_Is_Blueprint.jpg",
       "published": "2026-03-01",
@@ -96,9 +183,12 @@
     {
       "id": "the-divine-369-manifestation-method",
       "title": "The Divine 3-6-9 Manifestation Method",
-      "subtitle": "A practical guide to attract love, money, self-love, and abundance using the 369 technique",
+      "subtitle": "A Practical Guide to Attract Love, Money, and Abundance",
       "description": "A complete, structured guide to the 369 writing practice — 3 times in the morning, 6 in the afternoon, 9 at night — grounded in how repetition actually rewires belief. Covers love, money, self-love and abundance with a clear daily method you can start today.",
-      "tags": ["Manifestation", "Law of Attraction"],
+      "tags": [
+        "Manifestation",
+        "Law of Attraction"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H25SQD3P",
       "coverImage": "covers/The_Divine_3-6-9_Manifestation_Method.jpg",
       "published": "2026-02-15",
@@ -107,9 +197,12 @@
     {
       "id": "the-quiet-revolution",
       "title": "The Quiet Revolution",
-      "subtitle": "How to manifest the life you want without lying to yourself",
+      "subtitle": "How to Manifest the Life You Want Without Lying to Yourself",
       "description": "A radically honest approach to transformation — no fake positivity, no magical thinking, no spiritual performance. Blending psychology, neuroscience and daily action, this book replaces fantasy manifestation with something stronger: becoming someone new through small, consistent, honest actions.",
-      "tags": ["Self-Help", "Honest Manifestation"],
+      "tags": [
+        "Self-Help",
+        "Manifestation"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0H25M2Z3W",
       "coverImage": "covers/71pAMMcowLL__SL1500_.jpg",
       "published": "2026-02-01",
@@ -118,9 +211,12 @@
     {
       "id": "lucky-girl-evidence-journal",
       "title": "Lucky Girl Evidence Journal",
-      "subtitle": "A 90-day guided program to rewire your brain, track your wins, and attract lasting abundance",
+      "subtitle": "A 90-Day Guided Program to Rewire Your Brain, Track Your Wins, and Manifest Faster",
       "description": "Luck is a lens — and this journal trains it. For 90 days you collect daily evidence that things work out for you: small wins, near-misses, perfect timing. By the end, your brain stops arguing and starts expecting good things.",
-      "tags": ["Guided Journal", "90-Day Program"],
+      "tags": [
+        "Guided Journal",
+        "90-Day Program"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0GZHY4H5M",
       "coverImage": "covers/Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg",
       "published": "2026-01-15",
@@ -129,46 +225,16 @@
     {
       "id": "the-ai-first-competitor",
       "title": "The AI-First Competitor",
-      "subtitle": "How local businesses and solo founders use next-gen AI workflows to reclaim time and outpace competitors",
-      "description": "The businesses winning today aren't working harder — they're running smarter systems. Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.",
-      "tags": ["Business", "AI Workflows"],
+      "subtitle": "How Local Businesses and Solo Founders Weaponize Artificial Intelligence to Dominate Their Niche",
+      "description": "The businesses winning today are not working harder — they are running smarter systems. Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.",
+      "tags": [
+        "Business",
+        "AI Workflows"
+      ],
       "amazonUrl": "https://www.amazon.com/dp/B0GYQ9WXPZ",
       "coverImage": "covers/AI_First_Competitor.jpg",
       "published": "2026-01-05",
       "hue": 195
-    },
-    {
-      "id": "your-life-is-speaking",
-      "title": "Your Life Is Speaking — Are You Listening?",
-      "subtitle": "How to hear the signals, break the patterns, and live with clarity",
-      "description": "Your life is already speaking — through repetition, resistance, and the things you keep avoiding. Every pattern that won't break, every door that keeps closing, every restlessness you can't name is a signal. A practical guide to hearing what your life is saying and finally living with clarity.",
-      "tags": ["Self-Help", "Clarity", "Signals"],
-      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
-      "coverImage": "covers/Your_life_KDP.jpg",
-      "published": "2025-12-15",
-      "hue": 45
-    },
-    {
-      "id": "the-great-alignment-principle",
-      "title": "The Great Alignment Principle",
-      "subtitle": "How to stop forcing life and start aligning with the natural flow of success, peace, and abundance",
-      "description": "Forcing creates friction; alignment creates flow. This book shows you how to stop white-knuckling your way through life and start moving with the natural current of success, peace, and abundance that is already available to you — the moment you stop fighting it.",
-      "tags": ["Self-Help", "Alignment", "Abundance"],
-      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
-      "coverImage": "covers/THE_GREAT.jpg",
-      "published": "2025-11-20",
-      "hue": 55
-    },
-    {
-      "id": "the-real-architect-of-echoes",
-      "title": "The Real Architect of Echoes",
-      "subtitle": "The story of changing your frequency",
-      "description": "Reality is not random. It's responding. A story about the echoes we send into the world, the ones that return, and the moment a man realizes he has been the architect of both all along. When you change your frequency, you change everything that comes back to you.",
-      "tags": ["Fiction", "Frequency", "Mindset"],
-      "amazonUrl": "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
-      "coverImage": "covers/The_Real_Architect_of_Echoes_EBOOK.jpg",
-      "published": "2025-11-01",
-      "hue": 270
     }
   ]
 }
