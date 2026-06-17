@@ -48,7 +48,7 @@
       "Intentional Living", "Neuroscience", "AI for Business"
     ],
     "sameAs": [
-      "https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37",
+      "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37",
       "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37",
       "https://vishalhingolauthor.com"
     ]
@@ -86,7 +86,7 @@
       "name": "Where can I buy Vishal Hingol books?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All books by Vishal Hingol are available on Amazon India (amazon.in) and Amazon worldwide (amazon.com) in Kindle eBook and paperback formats. Visit his Amazon author page or his official website at vishalhingolauthor.com."
+        "text": "All books by Vishal Hingol are available on Amazon India (amazon.com) and Amazon worldwide (amazon.com) in Kindle eBook and paperback formats. Visit his Amazon author page or his official website at vishalhingolauthor.com."
       }
     },
     {
@@ -188,13 +188,52 @@ nav{
 
 footer{text-align:center;padding:32px;border-top:1px solid var(--line);font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.1em}
 footer a{color:var(--mist)}footer a:hover{color:var(--gold)}
+
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(244,238,226,.2);border-radius:8px;background:transparent;z-index:200;position:relative}
+.hamburger span{width:22px;height:2px;background:var(--paper);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(0,7px)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-7px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{display:flex !important;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(28px);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:150;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none}
+  .nav-links.open{transform:translateX(0);pointer-events:all}
+  .nav-links a{font-family:var(--display) !important;font-size:26px !important;font-weight:400 !important;color:#F4EEE2 !important;opacity:0;transform:translateY(20px);transition:opacity .3s ease,transform .3s ease;text-decoration:none}
+  .nav-links.open a{opacity:1 !important;transform:translateY(0) !important}
+  .nav-links.open a:nth-child(2){transition-delay:.08s}
+  .nav-links.open a:nth-child(3){transition-delay:.14s}
+  .nav-links.open a:nth-child(4){transition-delay:.20s}
+  .nav-links.open a:nth-child(5){transition-delay:.26s}
+  .nav-links a:hover{color:var(--gold) !important}
+  .nav-links .nav-amzn{background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;color:#070A18 !important;padding:14px 28px !important;border-radius:100px !important;font-size:14px !important}
+  .nav-close{position:absolute;top:24px;right:24px;background:transparent;border:1px solid rgba(244,238,226,.25);color:#F4EEE2;border-radius:100px;width:42px;height:42px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:160}
+  .nav-close:hover{border-color:#E8BB6B;color:#E8BB6B}
+}
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TWQE2GSNBD');
+</script>
 </head>
 <body>
 
 <nav>
-  <a class="brand" href="/"><em>Vishal</em> Hingol</a>
-  <a class="nav-back" href="/">← Back to Home</a>
+  <a class="brand" href="/">Vishal <em>Hingol</em></a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+    <a href="/">Home</a>
+    <a href="/store.html">Books</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/about.html">About</a>
+    <a class="nav-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
+  </div>
 </nav>
 
 <div class="wrap">
@@ -241,7 +280,7 @@ footer a{color:var(--mist)}footer a:hover{color:var(--gold)}
       <li>The Signal</li>
       <li>Your Life Is Speaking</li>
     </ul>
-    <p>All books by Vishal Hingol are available on <a href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon India</a> and <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon worldwide</a> as Kindle eBooks and paperbacks.</p>
+    <p>All books by Vishal Hingol are available on <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon India</a> and <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon worldwide</a> as Kindle eBooks and paperbacks.</p>
 
     <h2>What is Vishal Hingol known for?</h2>
     <p>
@@ -274,7 +313,7 @@ footer a{color:var(--mist)}footer a:hover{color:var(--gold)}
       All books by Vishal Hingol are available on Amazon:
     </p>
     <p>
-      🇮🇳 <a href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon India — amazon.in</a><br>
+      🇮🇳 <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon India — amazon.com</a><br>
       🌍 <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon Global — amazon.com</a>
     </p>
 
@@ -283,7 +322,7 @@ footer a{color:var(--mist)}footer a:hover{color:var(--gold)}
   <div class="cta-block">
     <h2>Browse All Books</h2>
     <p>Kindle eBooks and paperbacks available worldwide on Amazon.</p>
-    <a class="btn-gold" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">View on Amazon ↗</a>
+    <a class="btn-gold" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">View on Amazon ↗</a>
     <a class="btn-ghost" href="/store.html">Browse the Store</a>
   </div>
 
@@ -293,5 +332,10 @@ footer a{color:var(--mist)}footer a:hover{color:var(--gold)}
   <p>© 2026 Vishal Hingol · <a href="/">vishalhingolauthor.com</a> · Surat, Gujarat, India</p>
 </footer>
 
+<script>
+function toggleMenu(){var h=document.getElementById('hamburger');var n=document.getElementById('navLinks');if(!h||!n)return;var isOpen=n.classList.contains('open');h.classList.toggle('open',!isOpen);n.classList.toggle('open',!isOpen);document.body.style.overflow=!isOpen?'hidden':'';}
+function closeMenu(){var h=document.getElementById('hamburger');var n=document.getElementById('navLinks');if(h)h.classList.remove('open');if(n)n.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',closeMenu);});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});});
+</script>
 </body>
 </html>
