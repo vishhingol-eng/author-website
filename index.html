@@ -594,18 +594,7 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:start}
-@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}}
-.author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}
-.author-photo-wrap img{
-  width:100%;
-  height:100%;
-  /* scale-down = show full photo without cropping OR stretching */
-  object-fit:scale-down;
-  object-position:center center;
-  display:block;
-  /* ensure it fills at least the min-height */
-  min-height:420px;
-}
+@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
 /* Only apply if image is taller than wide (portrait) — fill frame naturally */
 @supports (aspect-ratio: 1) {
   .author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}
@@ -652,7 +641,7 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .band-inner{
   position:relative;border-radius:30px;overflow:hidden;
   background:var(--glass);backdrop-filter:blur(18px);
-  text-align:center;padding:clamp(36px,5vw,60px) 28px;
+  text-align:center;padding:clamp(28px,4vw,44px) 28px;
 }
 .band-inner::before{
   content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
@@ -1104,13 +1093,8 @@ footer a:hover{text-decoration:underline}
 
   <section id="about" style="opacity:1;transform:none;">
     <div class="about-grid" style="opacity:1;">
-      <div class="author-photo-wrap reveal in">
-        <div class="photo-loading-state" id="photoLoadingState">
-          <span class="ph-initials">VH</span>
-          <span class="ph-name">Vishal Hingol</span>
-          <span class="ph-role">Author &amp; Mindset Coach</span>
-        </div>
-        <img id="authorPhotoImg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:24px;" alt="Vishal Hingol — Self-Help Author and Mindset Coach" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);display:none;" decoding="async">
+      <div class="author-photo-wrap reveal">
+        <img id="authorPhotoImg" alt="Vishal Hingol" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:24px;box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
       </div>
       <div class="about-text reveal in" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
@@ -1134,14 +1118,14 @@ footer a:hover{text-decoration:underline}
   </div>
 </div>
 
-<footer class="veil">
-  <div style="max-width:1240px;margin:0 auto;padding:28px clamp(20px,6vw,72px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(244,238,226,.1)">
-    <span style="color:#9AA1C7;font-size:13px">© <span id="yr"></span> Vishal Hingol. All rights reserved.</span>
-    <span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+<footer class="veil" style="border-top:1px solid rgba(244,238,226,.1);padding:20px clamp(20px,6vw,72px)">
+  <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+    <span style="color:#9AA1C7;font-size:13px">© <span id="yr"></span> Vishal Hingol</span>
+    <span style="display:flex;gap:18px;align-items:center">
       <a href="about.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">About</a>
       <a href="store.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">Store</a>
       <a href="blog.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">Blog</a>
-      <a class="amzn-link" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:#E8BB6B;font-size:13px;text-decoration:none">Amazon ↗</a>
+      <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" style="color:#E8BB6B;font-size:13px;text-decoration:none">Amazon ↗</a>
     </span>
   </div>
 </footer>
@@ -1487,17 +1471,29 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Load author photo from embedded data (covers.js)
-  const ap = document.getElementById('authorPhotoImg');
-  if(ap && window.COVERS && window.COVERS['__author__']){
-    ap.src = window.COVERS['__author__'];
-    ap.style.display='block';
-  } else if(ap && !ap.src){
-    // No photo in site.json or covers.js — show placeholder
-    showPhotoPlaceholder();
-  }
+  (function(){
+    var ap = document.getElementById('authorPhotoImg');
+    if(!ap) return;
+    function showPhoto(src){
+      ap.onload = function(){ ap.style.display = 'block'; };
+      ap.onerror = function(){ ap.style.display = 'none'; };
+      ap.src = src;
+    }
+    // Try covers.js first
+    if(window.COVERS && window.COVERS['__author__']){
+      showPhoto(window.COVERS['__author__']);
+      return;
+    }
+    // Wait for covers.js to load then try again
+    window.addEventListener('load', function(){
+      if(window.COVERS && window.COVERS['__author__']){
+        showPhoto(window.COVERS['__author__']);
+      }
+    });
+  })();
 </script>
 
-<!-- MOBILE NAV OVERLAY — outside <nav> to escape z-index stacking context -->
+
 
 
 <script>
