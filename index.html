@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
+<script async defer src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -45,6 +45,8 @@
 <link rel="alternate" type="text/plain" href="https://vishalhingolauthor.com/llms.txt" title="LLMs.txt">
 <link rel="canonical" href="https://vishalhingolauthor.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://www.amazon.in">
+<link rel="dns-prefetch" href="https://www.amazon.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -575,36 +577,57 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
   position:relative;
   border-radius:26px;
   overflow:hidden;
-  aspect-ratio:3/4;
+  /* No fixed aspect-ratio — let photo define its own height */
   width:100%;
-  max-width:380px;
+  max-width:360px;
   background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95));
   flex-shrink:0;
+  /* min-height so it never collapses if photo is slow to load */
+  min-height:420px;
+  display:flex;
+  align-items:stretch;
 }
 .author-photo-wrap img{
   width:100%;
   height:100%;
-  object-fit:cover;
-  object-position:center top;
+  /* scale-down = show full photo without cropping OR stretching */
+  object-fit:scale-down;
+  object-position:center center;
   display:block;
+  /* ensure it fills at least the min-height */
+  min-height:420px;
 }
-/* bottom fade so photo blends naturally */
+/* Only apply if image is taller than wide (portrait) — fill frame naturally */
+@supports (aspect-ratio: 1) {
+  .author-photo-wrap{
+    aspect-ratio:3/4;
+    min-height:unset;
+  }
+  .author-photo-wrap img{
+    object-fit:cover;
+    object-position:center top;
+    min-height:unset;
+  }
+}
+/* bottom fade */
 .author-photo-wrap::before{
   content:"";
   position:absolute;
   bottom:0;left:0;right:0;
-  height:25%;
-  background:linear-gradient(to top,rgba(7,10,24,.5),transparent);
+  height:30%;
+  background:linear-gradient(to top,rgba(7,10,24,.6),transparent);
   z-index:1;
   pointer-events:none;
+  border-radius:0 0 26px 26px;
 }
+/* gold+cyan border frame */
 .author-photo-wrap::after{
   content:"";
   position:absolute;
   inset:0;
   border-radius:inherit;
   padding:1.5px;
-  background:linear-gradient(135deg,rgba(232,187,107,.6),rgba(125,230,255,.25),rgba(157,123,255,.5));
+  background:linear-gradient(135deg,rgba(232,187,107,.7),rgba(125,230,255,.3),rgba(157,123,255,.6));
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   -webkit-mask-composite:xor;
   mask-composite:exclude;
@@ -683,98 +706,153 @@ footer a:hover{text-decoration:underline}
 /* ─ Mobile overlay ─ */
 @media(max-width:700px){
   .hamburger{display:flex}
+  nav .nav-links{display:none !important;}
 
-  /* Desktop nav links hidden on mobile — overlay handles it */
-  nav .nav-links{
-    display:none !important;
-  }
-
-  /* The fullscreen overlay — lives outside nav stacking context */
+  /* ── Fullscreen premium overlay ── */
   #mobileNav{
     display:none;
     position:fixed;
     top:0;left:0;right:0;bottom:0;
     width:100%;height:100%;
-    background:rgba(7,10,24,.98);
-    backdrop-filter:blur(32px);
-    -webkit-backdrop-filter:blur(32px);
     z-index:9999;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:0;
+    align-items:stretch;
+    justify-content:flex-start;
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
+    /* layered background: dark base + aurora glow */
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(157,123,255,.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(125,230,255,.12), transparent 60%),
+      rgba(7,10,24,.97);
+    backdrop-filter:blur(40px);
+    -webkit-backdrop-filter:blur(40px);
   }
-  #mobileNav.open{
+  #mobileNav.open{display:flex;}
+
+  /* Brand block at top */
+  #mobileNav .mob-brand{
+    display:flex !important;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 28px 18px;
+    border-bottom:1px solid rgba(244,238,226,.08);
+    opacity:0;
+    transform:translateY(-10px);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  #mobileNav.open .mob-brand{opacity:1 !important;transform:translateY(0) !important;}
+  #mobileNav .mob-brand-name{
+    font-family:'Fraunces',Georgia,serif;
+    font-size:20px;font-weight:500;
+    background:linear-gradient(100deg,#E8BB6B,#FF9ECF);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  #mobileNav .mob-brand-tag{
+    font-family:'Space Grotesk',monospace;
+    font-size:9px;font-weight:700;letter-spacing:.3em;
+    text-transform:uppercase;color:#7DE6FF;display:block;margin-top:3px;
+  }
+
+  /* Nav links */
+  #mobileNav .mob-links{
     display:flex;
+    flex-direction:column;
+    padding:12px 0;
+    flex:1;
   }
-  #mobileNav a{
+  #mobileNav a.mob-link{
     font-family:'Fraunces',Georgia,serif !important;
-    font-size:36px !important;
+    font-size:34px !important;
     font-weight:400 !important;
-    letter-spacing:.02em !important;
+    letter-spacing:.01em !important;
     color:#F4EEE2 !important;
     text-decoration:none !important;
-    padding:14px 0 !important;
-    width:100%;
-    text-align:center;
-    border-bottom:1px solid rgba(244,238,226,.08);
-    transition:color .2s, background .2s;
+    padding:16px 32px !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:16px !important;
+    border-bottom:1px solid rgba(244,238,226,.06) !important;
+    width:100% !important;
+    text-align:left !important;
+    transition:color .2s, padding-left .2s, background .2s !important;
     opacity:0;
-    transform:translateY(16px);
-    animation:none;
+    transform:translateX(-20px);
+    position:relative;
   }
-  #mobileNav.open a{
-    opacity:1 !important;
-    transform:translateY(0) !important;
-    transition:opacity .3s ease, transform .3s ease, color .2s;
+  /* accent dot before each link */
+  #mobileNav a.mob-link::before{
+    content:'';
+    width:6px;height:6px;border-radius:50%;
+    background:linear-gradient(135deg,#E8BB6B,#FF9ECF);
+    flex-shrink:0;opacity:.7;
+    transition:opacity .2s, transform .2s;
   }
-  #mobileNav.open a:nth-child(2){transition-delay:.06s}
-  #mobileNav.open a:nth-child(3){transition-delay:.12s}
-  #mobileNav.open a:nth-child(4){transition-delay:.18s}
-  #mobileNav.open a:nth-child(5){transition-delay:.24s}
-  #mobileNav.open a:nth-child(6){transition-delay:.30s}
-  #mobileNav a:active{background:rgba(244,238,226,.06);color:#E8BB6B !important}
+  #mobileNav a.mob-link:active{
+    background:rgba(244,238,226,.04) !important;
+    padding-left:40px !important;
+    color:#E8BB6B !important;
+  }
+  #mobileNav a.mob-link:active::before{opacity:1;transform:scale(1.4);}
+
+  /* staggered entrance */
+  #mobileNav.open a.mob-link{
+    opacity:1 !important;transform:translateX(0) !important;
+    transition:opacity .35s ease, transform .35s ease, color .2s, padding-left .2s !important;
+  }
+  #mobileNav.open a.mob-link:nth-child(1){transition-delay:.05s}
+  #mobileNav.open a.mob-link:nth-child(2){transition-delay:.10s}
+  #mobileNav.open a.mob-link:nth-child(3){transition-delay:.15s}
+  #mobileNav.open a.mob-link:nth-child(4){transition-delay:.20s}
+
+  /* Amazon CTA button at bottom */
+  #mobileNav .mob-cta{
+    padding:24px 28px 40px;
+    border-top:1px solid rgba(244,238,226,.08);
+    opacity:0;transform:translateY(16px);
+    transition:opacity .35s ease .25s, transform .35s ease .25s;
+  }
+  #mobileNav.open .mob-cta{opacity:1 !important;transform:translateY(0) !important;}
   #mobileNav .mob-amzn{
-    margin-top:28px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:10px !important;
     font-family:'Space Grotesk',monospace !important;
-    font-size:13px !important;
-    font-weight:700 !important;
-    letter-spacing:.14em !important;
-    text-transform:uppercase !important;
+    font-size:13px !important;font-weight:700 !important;
+    letter-spacing:.14em !important;text-transform:uppercase !important;
     background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;
     color:#070A18 !important;
-    padding:16px 40px !important;
-    border-radius:100px !important;
-    border:none !important;
-    width:auto !important;
-    text-align:center !important;
-    transition:transform .25s, box-shadow .25s, opacity .3s ease .32s, translateY .3s ease .32s !important;
-    opacity:0;
-    transform:translateY(16px);
-  }
-  #mobileNav.open .mob-amzn{
-    opacity:1 !important;
-    transform:translateY(0) !important;
-  }
-  /* Close button inside overlay */
-  #mobileNavClose{
-    position:absolute;
-    top:20px;right:20px;
-    width:44px;height:44px;
-    background:rgba(244,238,226,.08);
-    border:1px solid rgba(244,238,226,.2);
-    border-radius:50%;
-    color:#F4EEE2;
-    font-size:22px;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    z-index:10001;
-    transition:background .2s, border-color .2s;
+    padding:18px 32px !important;border-radius:100px !important;
+    border:none !important;width:100% !important;
+    text-decoration:none !important;
+    box-shadow:0 8px 32px rgba(232,187,107,.3) !important;
+    transition:transform .2s, box-shadow .2s !important;
     -webkit-tap-highlight-color:transparent;
   }
-  #mobileNavClose:active{background:rgba(232,187,107,.2);border-color:#E8BB6B}
+  #mobileNav .mob-amzn:active{
+    transform:scale(.97) !important;
+    box-shadow:0 4px 16px rgba(232,187,107,.2) !important;
+  }
+
+  /* Close button */
+  #mobileNavClose{
+    position:absolute;top:18px;right:20px;
+    width:44px;height:44px;
+    background:rgba(244,238,226,.06);
+    border:1px solid rgba(244,238,226,.15);
+    border-radius:50%;color:#F4EEE2;
+    font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    z-index:10001;
+    transition:background .2s,border-color .2s,transform .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  #mobileNavClose:active{
+    background:rgba(232,187,107,.15);
+    border-color:#E8BB6B;
+    transform:scale(.92);
+  }
 }
 /* ===== END MOBILE NAV ===== */
 
@@ -909,12 +987,13 @@ footer a:hover{text-decoration:underline}
   <span>All purchases are completed securely on <a class="amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a>.</span>
 </footer>
 
-<script src="covers.js"></script>
+<script src="covers.js" defer></script>
 <script>
 /* ================= load site.json & apply text =================== */
+document.addEventListener("DOMContentLoaded", function(){
 (async function(){
   try{
-    const res = await fetch('site.json?v='+Date.now(),{cache:'no-store'});
+    const res = await fetch('site.json?v='+Math.floor(Date.now()/86400000));
     if(!res.ok) return; // no site.json yet = use defaults
     const s = await res.json();
     function setSite(id, val, attr){
@@ -1025,7 +1104,7 @@ footer a:hover{text-decoration:underline}
 
   let data = null;
   try{
-    const res = await fetch('books.json?v=' + Date.now(), {cache:'no-store'});
+    const res = await fetch('books.json?v='+Math.floor(Date.now()/86400000));
     if(!res.ok) throw new Error(res.status);
     data = await res.json();
   }catch(e){
@@ -1091,9 +1170,16 @@ footer a:hover{text-decoration:underline}
   hookReveals();
   hookTilt();
 })();
+}); // end DOMContentLoaded
 
 /* ================= constellation sky ================= */
 (function(){
+  // Skip heavy canvas animation on small screens to improve mobile performance
+  if(window.innerWidth < 768){
+    const sc = document.getElementById('sky');
+    if(sc) sc.style.display='none';
+    return;
+  }
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const c = document.getElementById('sky');
   const x = c.getContext('2d');
@@ -1223,11 +1309,29 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 <!-- MOBILE NAV OVERLAY — outside <nav> to escape z-index stacking context -->
 <div id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <button id="mobileNavClose" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
-  <a href="#books" onclick="closeMobileNav()">Books</a>
-  <a href="store.html" onclick="closeMobileNav()">Store</a>
-  <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-  <a href="#about" onclick="closeMobileNav()">About</a>
-  <a class="mob-amzn" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" onclick="closeMobileNav()">Amazon Page</a>
+
+  <!-- Brand -->
+  <div class="mob-brand">
+    <div>
+      <span class="mob-brand-name">Vishal Hingol</span>
+      <span class="mob-brand-tag">Author &amp; Mindset Coach</span>
+    </div>
+  </div>
+
+  <!-- Nav links -->
+  <div class="mob-links">
+    <a class="mob-link" href="#books" onclick="closeMobileNav()">Books</a>
+    <a class="mob-link" href="store.html" onclick="closeMobileNav()">Store</a>
+    <a class="mob-link" href="blog.html" onclick="closeMobileNav()">Blog</a>
+    <a class="mob-link" href="#about" onclick="closeMobileNav()">About</a>
+  </div>
+
+  <!-- Amazon CTA -->
+  <div class="mob-cta">
+    <a class="mob-amzn" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" onclick="closeMobileNav()">
+      ☆ &nbsp;Follow on Amazon
+    </a>
+  </div>
 </div>
 
 
