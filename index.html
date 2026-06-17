@@ -594,21 +594,8 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:start}
-@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap{aspect-ratio:3/4;max-width:420px;overflow:hidden;border-radius:26px;position:relative;margin:0 auto 32px;max-width:300px}}
-.author-photo-wrap{aspect-ratio:3/4;max-width:420px;overflow:hidden;border-radius:26px;position:relative;
-  position:relative;
-  border-radius:26px;
-  overflow:hidden;
-  /* No fixed aspect-ratio — let photo define its own height */
-  width:100%;
-  max-width:360px;
-  background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95));
-  flex-shrink:0;
-  /* min-height so it never collapses if photo is slow to load */
-  min-height:420px;
-  display:flex;
-  align-items:stretch;
-}
+@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}}
+.author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}
 .author-photo-wrap img{
   width:100%;
   height:100%;
@@ -621,10 +608,7 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 }
 /* Only apply if image is taller than wide (portrait) — fill frame naturally */
 @supports (aspect-ratio: 1) {
-  .author-photo-wrap{aspect-ratio:3/4;max-width:420px;overflow:hidden;border-radius:26px;position:relative;
-    aspect-ratio:3/4;
-    min-height:unset;
-  }
+  .author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:3/4;width:100%;max-width:420px;}
   .author-photo-wrap img{
     object-fit:cover;
     object-position:center top;
@@ -668,7 +652,7 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .band-inner{
   position:relative;border-radius:30px;overflow:hidden;
   background:var(--glass);backdrop-filter:blur(18px);
-  text-align:center;padding:clamp(50px,8vw,90px) 28px;
+  text-align:center;padding:clamp(36px,5vw,60px) 28px;
 }
 .band-inner::before{
   content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
@@ -727,8 +711,7 @@ footer a:hover{text-decoration:underline}
 
 /* ─ Mobile overlay ─ */
 
-@media(max-width:700px){
-  .hamburger{display:flex}
+
   .nav-links{
     display:flex !important;position:fixed;top:0;left:0;right:0;bottom:0;
     background:rgba(7,10,24,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
@@ -913,6 +896,113 @@ footer a:hover{text-decoration:underline}
 }
 /* ===== END MOBILE NAV ===== */
 
+
+/* ===== PERFECT MOBILE NAV ===== */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:6px;
+  cursor:pointer;padding:10px;border:1px solid rgba(244,238,226,.25);
+  border-radius:10px;background:transparent;z-index:300;flex-shrink:0;
+}
+.hamburger span{
+  width:22px;height:2px;background:#F4EEE2;border-radius:2px;
+  transition:all .35s cubic-bezier(.4,0,.2,1);display:block;
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(0,8px)}
+.hamburger.open span:nth-child(2){opacity:0;width:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-8px)}
+
+@media(max-width:700px){
+  .hamburger{display:flex}
+  
+  /* Hide nav links by default on mobile - slide in panel */
+  .nav-links{
+    position:fixed !important;
+    top:0 !important;left:0 !important;right:0 !important;bottom:0 !important;
+    background:rgba(7,10,24,.98) !important;
+    backdrop-filter:blur(30px) !important;
+    -webkit-backdrop-filter:blur(30px) !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+    z-index:200 !important;
+    transform:translateX(100%) !important;
+    transition:transform .4s cubic-bezier(.4,0,.2,1) !important;
+    pointer-events:none !important;
+    padding:0 !important;
+  }
+  .nav-links.open{
+    transform:translateX(0) !important;
+    pointer-events:all !important;
+  }
+  
+  /* Nav links inside mobile menu */
+  .nav-links a{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    text-align:center !important;
+    font-family:'Fraunces',Georgia,serif !important;
+    font-size:clamp(28px,8vw,38px) !important;
+    font-weight:400 !important;
+    letter-spacing:.04em !important;
+    color:#F4EEE2 !important;
+    text-decoration:none !important;
+    padding:16px 40px !important;
+    opacity:0 !important;
+    transform:translateY(24px) !important;
+    transition:opacity .35s ease, transform .35s ease, color .2s !important;
+  }
+  .nav-links.open a{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+  }
+  .nav-links.open a:nth-child(2){transition-delay:.06s !important}
+  .nav-links.open a:nth-child(3){transition-delay:.12s !important}
+  .nav-links.open a:nth-child(4){transition-delay:.18s !important}
+  .nav-links.open a:nth-child(5){transition-delay:.24s !important}
+  .nav-links.open a:nth-child(6){transition-delay:.30s !important}
+  .nav-links a:hover{color:#E8BB6B !important}
+  
+  /* Amazon button in mobile menu */
+  .nav-links .nav-amzn{
+    font-family:'Space Grotesk',monospace !important;
+    font-size:13px !important;
+    font-weight:700 !important;
+    letter-spacing:.12em !important;
+    text-transform:uppercase !important;
+    background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;
+    color:#070A18 !important;
+    padding:16px 36px !important;
+    border-radius:100px !important;
+    margin-top:8px !important;
+    display:inline-flex !important;
+    width:auto !important;
+  }
+  
+  /* Close button */
+  .nav-close{
+    position:absolute !important;
+    top:20px !important;right:20px !important;
+    background:transparent !important;
+    border:1px solid rgba(244,238,226,.3) !important;
+    color:#F4EEE2 !important;
+    border-radius:50% !important;
+    width:44px !important;height:44px !important;
+    font-size:18px !important;
+    cursor:pointer !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    z-index:210 !important;
+    transition:border-color .2s,color .2s !important;
+  }
+  .nav-close:hover{border-color:#E8BB6B !important;color:#E8BB6B !important}
+}
+/* ===== END PERFECT MOBILE NAV ===== */
+
 </style>
 
 <script type="application/ld+json">
@@ -982,7 +1072,7 @@ footer a:hover{text-decoration:underline}
   <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
     <a href="#books">Books</a>
     <a href="store.html">Store</a>
     <a href="blog.html">Blog</a>
@@ -1045,13 +1135,13 @@ footer a:hover{text-decoration:underline}
 </div>
 
 <footer class="veil">
-  <div style="max-width:1240px;margin:0 auto;padding:36px clamp(20px,6vw,72px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--mist);font-size:13.5px">
-    <span>© <span id="yr"></span> Vishal Hingol. All rights reserved.</span>
+  <div style="max-width:1240px;margin:0 auto;padding:28px clamp(20px,6vw,72px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(244,238,226,.1)">
+    <span style="color:#9AA1C7;font-size:13px">© <span id="yr"></span> Vishal Hingol. All rights reserved.</span>
     <span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <a href="about.html" style="color:var(--mist)">About</a>
-      <a href="store.html" style="color:var(--mist)">Store</a>
-      <a href="blog.html" style="color:var(--mist)">Blog</a>
-      <a class="amzn-link" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--gold)">Amazon</a>
+      <a href="about.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">About</a>
+      <a href="store.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">Store</a>
+      <a href="blog.html" style="color:#9AA1C7;font-size:13px;text-decoration:none">Blog</a>
+      <a class="amzn-link" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:#E8BB6B;font-size:13px;text-decoration:none">Amazon ↗</a>
     </span>
   </div>
 </footer>
@@ -1408,32 +1498,6 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 
 <!-- MOBILE NAV OVERLAY — outside <nav> to escape z-index stacking context -->
-<div id="navLinks" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <button id="navLinksClose" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
-
-  <!-- Brand -->
-  <div class="mob-brand">
-    <div>
-      <span class="mob-brand-name">Vishal Hingol</span>
-      <span class="mob-brand-tag">Author &amp; Mindset Coach</span>
-    </div>
-  </div>
-
-  <!-- Nav links -->
-  <div class="mob-links">
-    <a class="mob-link" href="#books" onclick="closeMobileNav()">Books</a>
-    <a class="mob-link" href="store.html" onclick="closeMobileNav()">Store</a>
-    <a class="mob-link" href="blog.html" onclick="closeMobileNav()">Blog</a>
-    <a class="mob-link" href="about.html" onclick="closeMobileNav()">About</a>
-  </div>
-
-  <!-- Amazon CTA -->
-  <div class="mob-cta">
-    <a class="mob-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" onclick="closeMobileNav()">
-      ☆ &nbsp;Follow on Amazon
-    </a>
-  </div>
-</div>
 
 
 <script>
