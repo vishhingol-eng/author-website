@@ -583,9 +583,12 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 }
 .author-photo-wrap img{
   width:100%;
-  height:auto;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
   display:block;
-  object-fit:contain;
+  object-fit:cover;
+  object-position:center 20%;
   object-position:center center;
   display:block;
   /* ensure it fills at least the min-height */
@@ -862,7 +865,7 @@ footer{
 #mobileNav{display:none !important;visibility:hidden;position:fixed;opacity:0;pointer-events:none}
 #mobileNav.open{display:flex !important;visibility:visible;opacity:1;pointer-events:auto}
 @media(min-width:701px){
-  #mobileNav{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important}
+  #mobileNav,#mobileNav.open{display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;overflow:hidden !important;pointer-events:none !important}
 }
 </style>
 
@@ -966,7 +969,7 @@ footer{
   <section id="about">
     <div class="about-grid">
       <div class="author-photo-wrap reveal">
-        <img id="authorPhotoImg" alt="Vishal Hingol — Self-Help Author and Mindset Coach" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);object-fit:cover;object-position:center top;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect fill='%23121A3E' width='300' height='400'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23E8BB6B' font-family='Georgia' font-size='64' font-weight='400'%3EVH%3C/text%3E%3Ctext x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' fill='%239AA1C7' font-family='Georgia' font-size='16'%3EVishal Hingol%3C/text%3E%3Ctext x='50%25' y='72%25' dominant-baseline='middle' text-anchor='middle' fill='%237DE6FF' font-family='Arial' font-size='11'%3EAuthor %26amp%3B Mindset Coach%3C/text%3E%3C/svg%3E">
+        <img id="authorPhotoImg" width="1023" height="1537" alt="Vishal Hingol — Self-Help Author and Mindset Coach" loading="eager" decoding="sync" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);object-fit:cover;object-position:center 20%;width:100%;height:100%;max-width:100%;max-height:100%;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect fill='%23121A3E' width='300' height='400'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23E8BB6B' font-family='Georgia' font-size='64'%3EVH%3C/text%3E%3Ctext x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' fill='%239AA1C7' font-family='Georgia' font-size='16'%3EVishal Hingol%3C/text%3E%3C/svg%3E">
       </div>
       <div class="about-text reveal" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
