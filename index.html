@@ -570,43 +570,29 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,80px);align-items:start}
-@media(max-width:840px){.about-grid{grid-template-columns:1fr}.author-photo-wrap{margin:0 auto 32px;max-width:300px}}
+@media(max-width:840px){.about-grid{grid-template-columns:1fr}./* removed stale duplicate */
 .author-photo-wrap{
   position:relative;
   border-radius:26px;
   overflow:hidden;
-  /* No fixed aspect-ratio — let photo define its own height */
   width:100%;
-  max-width:360px;
-  background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95));
+  max-width:320px;
   flex-shrink:0;
-  /* min-height so it never collapses if photo is slow to load */
-  min-height:420px;
-  display:flex;
-  align-items:stretch;
+  background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95));
+  /* height follows the image naturally — no forced height */
 }
 .author-photo-wrap img{
   width:100%;
-  height:100%;
-  /* scale-down = show full photo without cropping OR stretching */
-  object-fit:scale-down;
+  height:auto;
+  display:block;
+  object-fit:contain;
   object-position:center center;
   display:block;
   /* ensure it fills at least the min-height */
   min-height:420px;
 }
 /* Only apply if image is taller than wide (portrait) — fill frame naturally */
-@supports (aspect-ratio: 1) {
-  .author-photo-wrap{
-    aspect-ratio:3/4;
-    min-height:unset;
-  }
-  .author-photo-wrap img{
-    object-fit:cover;
-    object-position:center top;
-    min-height:unset;
-  }
-}
+/* aspect-ratio override removed — photo natural height used instead */
 /* bottom fade */
 .author-photo-wrap::before{
   content:"";
@@ -869,6 +855,10 @@ footer{
 }
 /* ===== END MOBILE NAV ===== */
 
+
+/* Global: mobileNav always hidden until JS opens it */
+#mobileNav{display:none !important}
+#mobileNav.open{display:flex !important}
 </style>
 
 <script type="application/ld+json">
@@ -1003,7 +993,7 @@ footer{
     <a href="#about">About</a>
     <a class="footer-amzn amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
   </div>
-  <p class="footer-copy">© <span id="yr"></span> Vishal Hingol · All rights reserved · Surat, India</p>
+  <p class="footer-copy">© <span id="yr"></span> Vishal Hingol · All rights reserved</p>
 </footer>
 
 <!-- covers.js loaded async+defer so it never blocks first paint -->
