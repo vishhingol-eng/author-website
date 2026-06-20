@@ -1,0 +1,151 @@
+<!--
+  EMAIL SIGNUP FORM — add this block wherever you want the subscribe box on your site
+  (e.g. inside the "New books arrive quietly" section, or in the footer area)
+
+  Before this works live, replace YOUR-NETLIFY-SITE below with your actual Netlify URL.
+  Right now that is: vishal-hingol-author.netlify.app
+-->
+
+<div class="subscribe-box">
+  <h3 class="subscribe-title">Never miss a release</h3>
+  <p class="subscribe-sub">Get notified the moment a new book or journal goes live. No spam, ever.</p>
+
+  <form id="subscribeForm" class="subscribe-form">
+    <input
+      type="email"
+      id="subscribeEmail"
+      class="subscribe-input"
+      placeholder="you@example.com"
+      required
+    />
+    <button type="submit" class="subscribe-btn" id="subscribeBtn">Subscribe</button>
+  </form>
+
+  <p id="subscribeMsg" class="subscribe-msg" aria-live="polite"></p>
+</div>
+
+<style>
+.subscribe-box{
+  max-width:480px;
+  margin:0 auto;
+  padding:32px clamp(20px,5vw,40px);
+  border-radius:20px;
+  background:linear-gradient(170deg,rgba(23,32,82,.55),rgba(7,10,24,.7));
+  border:1px solid rgba(125,230,255,.15);
+  text-align:center;
+}
+.subscribe-title{
+  font-family:var(--display,Georgia,serif);
+  font-size:24px;
+  font-weight:500;
+  color:#fff;
+  margin:0 0 8px;
+}
+.subscribe-sub{
+  font-size:14px;
+  color:rgba(255,255,255,.65);
+  margin:0 0 20px;
+  line-height:1.5;
+}
+.subscribe-form{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.subscribe-input{
+  flex:1;
+  min-width:180px;
+  padding:13px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:14px;
+  outline:none;
+}
+.subscribe-input::placeholder{
+  color:rgba(255,255,255,.4);
+}
+.subscribe-input:focus{
+  border-color:#7DE6FF;
+}
+.subscribe-btn{
+  padding:13px 26px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(100deg,#E8BB6B,#f0d49a);
+  color:#1a1306;
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:transform .15s, opacity .15s;
+}
+.subscribe-btn:hover{ opacity:.9; }
+.subscribe-btn:active{ transform:scale(.97); }
+.subscribe-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+.subscribe-msg{
+  margin:14px 0 0;
+  font-size:13px;
+  min-height:18px;
+}
+.subscribe-msg.success{ color:#7DE6FF; }
+.subscribe-msg.error{ color:#ff8a8a; }
+
+@media(max-width:480px){
+  .subscribe-form{ flex-direction:column; }
+  .subscribe-btn{ width:100%; }
+}
+</style>
+
+<script>
+(function(){
+  // ⚠️ IMPORTANT: replace this with your actual Netlify function URL
+  const SUBSCRIBE_ENDPOINT = "https://vishal-hingol-author.netlify.app/.netlify/functions/subscribe";
+
+  const form = document.getElementById('subscribeForm');
+  const emailInput = document.getElementById('subscribeEmail');
+  const btn = document.getElementById('subscribeBtn');
+  const msg = document.getElementById('subscribeMsg');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = "Subscribing...";
+    msg.textContent = "";
+    msg.className = "subscribe-msg";
+
+    try {
+      const res = await fetch(SUBSCRIBE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        msg.textContent = "✓ " + data.message;
+        msg.classList.add("success");
+        emailInput.value = "";
+      } else {
+        msg.textContent = data.error || "Something went wrong. Please try again.";
+        msg.classList.add("error");
+      }
+    } catch (err) {
+      msg.textContent = "Network error. Please try again.";
+      msg.classList.add("error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Subscribe";
+    }
+  });
+})();
+</script>
