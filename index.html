@@ -43,6 +43,7 @@
 <link rel="canonical" href="https://vishalhingolauthor.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" type="image/webp" href="vishal-hero.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
@@ -51,6 +52,7 @@
   "name": "Vishal Hingol",
   "jobTitle": "Author",
   "description": "Mindset author, corporate professional, and lifelong student of personal transformation. Born and raised in Surat, Gujarat, with 14+ years in digital print media.",
+  "image": "https://vishalhingolauthor.com/vishal-hero.jpg",
   "url": "https://vishalhingolauthor.com",
   "sameAs": [
     "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37",
@@ -138,9 +140,24 @@ nav.scrolled{background:rgba(7,10,24,.7);backdrop-filter:blur(18px);border-botto
 .nav-amzn:hover{transform:translateY(-1px);box-shadow:0 0 28px rgba(232,187,107,.5);color:var(--night)!important}
 
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
+.hero-split{display:flex;align-items:center;gap:clamp(24px,5vw,72px);max-width:1200px;width:100%}
+.hero-text{flex:1.1;text-align:left}
+.hero-photo-wrap-outer{flex:0 0 auto;position:relative;display:flex;align-items:center;justify-content:center;max-width:380px}
+.hero-photo-img{width:100%;max-height:72vh;object-fit:cover;border-radius:0 0 8px 8px;display:block;position:relative;z-index:1;-webkit-mask-image:linear-gradient(to bottom,black 65%,transparent 100%);mask-image:linear-gradient(to bottom,black 65%,transparent 100%)}
+.hero-photo-glow{position:absolute;width:140%;height:130%;top:-15%;left:-20%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(232,187,107,.12) 0%,rgba(157,123,255,.08) 35%,transparent 65%);animation:hpGlow 7s ease-in-out infinite alternate}
+@keyframes hpGlow{0%{opacity:.7;transform:scale(1)}100%{opacity:1;transform:scale(1.06)}}
+.hero-photo-ring{position:absolute;inset:-18px;border-radius:50%;border:1px solid rgba(232,187,107,.12);z-index:0;pointer-events:none;animation:hpRing 12s linear infinite}
+.hero-photo-ring::after{content:"✦";position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--gold);opacity:.7}
+@keyframes hpRing{to{transform:rotate(360deg)}}
+.hero-photo-ring-2{position:absolute;inset:-38px;border-radius:50%;border:1px dashed rgba(125,230,255,.06);z-index:0;pointer-events:none;animation:hpRing 20s linear infinite reverse}
+@media(max-width:840px){.hero-split{flex-direction:column-reverse;gap:28px}.hero-text{text-align:center}.hero-photo-wrap-outer{max-width:260px}.hero-photo-ring,.hero-photo-ring-2{display:none}}
 .eyebrow{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;display:inline-flex;align-items:center;gap:14px}
 .eyebrow::before,.eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
 .eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.hero-text .hero-sub{margin:30px 0 0;text-align:left;max-width:500px}
+.hero-text .hero-cta{justify-content:flex-start}
+.hero-text .eyebrow::before{display:none}
+@media(max-width:840px){.hero-text .hero-sub{text-align:center;margin-left:auto;margin-right:auto}.hero-text .hero-cta{justify-content:center}}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(54px,11vw,124px);line-height:1.02;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 25%,var(--gold) 48%,var(--rose) 64%,var(--cyan) 82%,var(--paper) 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
 @keyframes sheen{to{background-position:220% center}}
 .hero-sub{max-width:540px;margin:30px auto 0;color:var(--mist);font-size:clamp(16px,2vw,19px)}
@@ -350,12 +367,25 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
 </nav>
 
 <header class="hero veil" id="top">
-  <p class="eyebrow">Author · Self-Help · Guided Journals</p>
-  <h1>Vishal Hingol</h1>
-  <p class="hero-sub" id="siteHeroTagline">Books and 90-day guided journals for people who are done waiting for change — and ready to write it into existence, one page at a time.</p>
-  <div class="hero-cta">
-    <a class="btn btn-gold" href="#books" id="siteBtn1">Browse the Books</a>
-    <a class="btn btn-ghost amzn-link" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" id="siteBtn2">Follow on Amazon</a>
+  <div class="hero-split">
+    <div class="hero-text">
+      <p class="eyebrow">Author · Self-Help · Guided Journals</p>
+      <h1>Vishal Hingol</h1>
+      <p class="hero-sub" id="siteHeroTagline">Books and 90-day guided journals for people who are done waiting for change — and ready to write it into existence, one page at a time.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#books" id="siteBtn1">Browse the Books</a>
+        <a class="btn btn-ghost" href="mentor.html" id="siteBtn2">Book a Session</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap-outer" data-parallax="photo">
+      <div class="hero-photo-ring" aria-hidden="true"></div>
+      <div class="hero-photo-ring-2" aria-hidden="true"></div>
+      <div class="hero-photo-glow" aria-hidden="true"></div>
+      <picture>
+        <source srcset="vishal-hero.webp" type="image/webp">
+        <img class="hero-photo-img" src="vishal-hero.jpg" alt="Vishal Hingol — Author & Mindset Coach" width="600" height="901" fetchpriority="high">
+      </picture>
+    </div>
   </div>
   <span class="scroll-hint">Scroll</span>
 </header>
@@ -368,8 +398,6 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
     </div>
     <div id="spotlightBox"></div>
     <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
-  </section>
-
   </section>
 
   <section id="mentor">
@@ -404,10 +432,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
   </section>
 
   <section id="about">
-    <div class="about-grid">
-      <div class="author-photo-wrap reveal">
-        <img id="authorPhotoImg" src="covers/author-photo.jpg" alt="Vishal Hingol — Author" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
-      </div>
+    <div class="about-grid" style="display:block;max-width:720px">
       <div class="about-text reveal" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
         <h2 id="siteAboutHeading">The signal has always been <em>transmitting.</em></h2>
@@ -817,6 +842,30 @@ hookReveals();
 
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+// Subtle parallax on aurora + hero photo
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const aurora = document.querySelector('.aurora');
+  const heroPhoto = document.querySelector('[data-parallax="photo"]');
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(()=>{
+      const sy = window.scrollY;
+      const vh = window.innerHeight;
+      if(aurora && sy < vh * 1.5){
+        aurora.style.transform = 'translateY(' + (sy * 0.12) + 'px)';
+      }
+      if(heroPhoto && sy < vh){
+        heroPhoto.style.transform = 'translateY(' + (sy * 0.08) + 'px)';
+      }
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+})();
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 (function(){
