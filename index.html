@@ -776,8 +776,9 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 (function(){
-  const BREVO_API_KEY = "REPLACE_WITH_YOUR_BREVO_API_KEY";
-  const BREVO_LIST_ID = 3;
+  // Secure: calls your Cloudflare Worker, which holds the Brevo API key
+  // server-side. The key never appears in this public file.
+  const SUBSCRIBE_ENDPOINT = "https://subscribe.vishalhingolauthor.com";
 
   const form = document.getElementById('subscribeForm');
   const emailInput = document.getElementById('subscribeEmail');
@@ -796,32 +797,20 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     msg.className = "subscribe-msg";
 
     try {
-      const res = await fetch("https://api.brevo.com/v3/contacts", {
+      const res = await fetch(SUBSCRIBE_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "api-key": BREVO_API_KEY
-        },
-        body: JSON.stringify({
-          email: email,
-          listIds: [BREVO_LIST_ID],
-          updateEnabled: true
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
       });
+      const data = await res.json();
 
-      if (res.ok || res.status === 204) {
-        msg.textContent = "✓ You're subscribed! Watch your inbox.";
+      if (res.ok && data.success) {
+        msg.textContent = "✓ " + data.message;
         msg.classList.add("success");
         emailInput.value = "";
       } else {
-        const data = await res.json().catch(()=>({}));
-        if(data.code === 'duplicate_parameter'){
-          msg.textContent = "✓ You're already subscribed!";
-          msg.classList.add("success");
-        } else {
-          msg.textContent = "Something went wrong. Please try again.";
-          msg.classList.add("error");
-        }
+        msg.textContent = data.error || "Something went wrong. Please try again.";
+        msg.classList.add("error");
       }
     } catch (err) {
       msg.textContent = "Network error. Please try again.";
