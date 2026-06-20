@@ -141,9 +141,9 @@ nav.scrolled{background:rgba(7,10,24,.7);backdrop-filter:blur(18px);border-botto
 
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
 .hero-split{display:flex;align-items:center;gap:clamp(24px,5vw,72px);max-width:1200px;width:100%}
-.hero-text{flex:1.1;text-align:left}
+.hero-text{flex:1.1;text-align:center}
 .hero-photo-wrap-outer{flex:0 0 auto;position:relative;display:flex;align-items:center;justify-content:center;max-width:380px}
-.hero-photo-img{width:100%;max-height:72vh;object-fit:cover;border-radius:0 0 8px 8px;display:block;position:relative;z-index:1;-webkit-mask-image:linear-gradient(to bottom,black 65%,transparent 100%);mask-image:linear-gradient(to bottom,black 65%,transparent 100%)}
+.hero-photo-img{width:100%;max-height:72vh;object-fit:cover;border-radius:20px;display:block;position:relative;z-index:1;-webkit-mask-image:linear-gradient(to bottom,black 65%,transparent 100%);mask-image:linear-gradient(to bottom,black 65%,transparent 100%)}
 .hero-photo-glow{position:absolute;width:140%;height:130%;top:-15%;left:-20%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(232,187,107,.12) 0%,rgba(157,123,255,.08) 35%,transparent 65%);animation:hpGlow 7s ease-in-out infinite alternate}
 @keyframes hpGlow{0%{opacity:.7;transform:scale(1)}100%{opacity:1;transform:scale(1.06)}}
 .hero-photo-ring{position:absolute;inset:-18px;border-radius:50%;border:1px solid rgba(232,187,107,.12);z-index:0;pointer-events:none;animation:hpRing 12s linear infinite}
@@ -154,9 +154,8 @@ nav.scrolled{background:rgba(7,10,24,.7);backdrop-filter:blur(18px);border-botto
 .eyebrow{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;display:inline-flex;align-items:center;gap:14px}
 .eyebrow::before,.eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
 .eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
-.hero-text .hero-sub{margin:30px 0 0;text-align:left;max-width:500px}
-.hero-text .hero-cta{justify-content:flex-start}
-.hero-text .eyebrow::before{display:none}
+.hero-text .hero-sub{margin:30px auto 0;text-align:center;max-width:500px}
+.hero-text .hero-cta{justify-content:center}
 @media(max-width:840px){.hero-text .hero-sub{text-align:center;margin-left:auto;margin-right:auto}.hero-text .hero-cta{justify-content:center}}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(54px,11vw,124px);line-height:1.02;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 25%,var(--gold) 48%,var(--rose) 64%,var(--cyan) 82%,var(--paper) 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
 @keyframes sheen{to{background-position:220% center}}
@@ -171,13 +170,28 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(54px,11vw,124px);l
 @keyframes drift{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
 section{padding:clamp(80px,12vw,150px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto}
+
+/* Stats credibility bar */
+.stats-bar{display:flex;justify-content:center;gap:clamp(24px,5vw,64px);flex-wrap:wrap;padding:clamp(28px,4vw,44px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto}
+.stat-item{text-align:center}
+.stat-num{font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:500;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;display:block;line-height:1.1}
+.stat-label{font-family:var(--tech);font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mist);margin-top:6px;display:block}
+
+/* Testimonials */
+.reviews-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(18px,2.5vw,28px)}
+.review-card{position:relative;background:var(--glass);backdrop-filter:blur(16px);border-radius:20px;padding:clamp(24px,3vw,32px)}
+.review-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.35),rgba(125,230,255,.12) 50%,rgba(157,123,255,.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
+.review-stars{color:var(--gold);font-size:14px;letter-spacing:4px;margin-bottom:12px}
+.review-text{font-family:var(--display);font-style:italic;font-weight:300;font-size:15.5px;line-height:1.55;color:var(--paper)}
+.review-cite{margin-top:16px;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+.review-book{display:block;margin-top:4px;font-size:10px;letter-spacing:.12em;color:var(--cyan);font-weight:400}
 .sec-head{margin-bottom:clamp(44px,6vw,72px)}
 .sec-eyebrow{font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:16px}
 h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5.4vw,58px);line-height:1.08;letter-spacing:-.01em}
 h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 
 .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(460px,100%),1fr));gap:clamp(22px,3vw,36px)}
-.shelf-status{color:var(--mist);font-size:15px}
+.shelf-status{color:var(--mist);font-size:15px;text-align:center;grid-column:1/-1}
 .book{position:relative;display:grid;grid-template-columns:170px 1fr;gap:26px;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:22px;padding:27px;transition:transform .35s,box-shadow .35s;transform-style:preserve-3d;will-change:transform}
 .book::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.55),rgba(125,230,255,.18) 38%,rgba(157,123,255,.45) 72%,rgba(232,187,107,.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.7;transition:opacity .35s}
 .book:hover{box-shadow:0 0 44px rgba(125,230,255,.12),0 28px 80px rgba(0,0,0,.5)}
@@ -251,7 +265,7 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .author-photo-wrap img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top}
 .author-photo-wrap::before{content:"";position:absolute;bottom:0;left:0;right:0;height:30%;background:linear-gradient(to top,rgba(7,10,24,.6),transparent);z-index:1;pointer-events:none;border-radius:0 0 26px 26px}
 .author-photo-wrap::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(135deg,rgba(232,187,107,.7),rgba(125,230,255,.3),rgba(157,123,255,.6));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.about-text p{color:var(--mist);margin-top:18px;max-width:56ch}
+.about-text p{color:var(--mist);margin-top:18px;max-width:56ch;margin-left:auto;margin-right:auto}
 .about-text p strong{color:var(--paper);font-weight:600}
 .signature{font-family:var(--display);font-style:italic;font-weight:300;font-size:30px;margin-top:30px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 
@@ -390,9 +404,28 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
   <span class="scroll-hint">Scroll</span>
 </header>
 
+<div class="stats-bar veil reveal">
+  <div class="stat-item">
+    <span class="stat-num">17+</span>
+    <span class="stat-label">Books Published</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">90+</span>
+    <span class="stat-label">Countries Reached</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">Kindle</span>
+    <span class="stat-label">& Paperback</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">1:1</span>
+    <span class="stat-label">Mentorship Available</span>
+  </div>
+</div>
+
 <main class="veil">
   <section id="books">
-    <div class="sec-head reveal">
+    <div class="sec-head reveal" style="text-align:center">
       <span class="sec-eyebrow" id="siteBooksLabel">// The Library</span>
       <h2 id="siteBooksHeading">Every book is a door.<br><em id="siteBooksSubheading">Pick yours.</em></h2>
     </div>
@@ -432,7 +465,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
   </section>
 
   <section id="about">
-    <div class="about-grid" style="display:block;max-width:720px">
+    <div class="about-grid" style="display:block;max-width:720px;margin:0 auto;text-align:center">
       <div class="about-text reveal" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
         <h2 id="siteAboutHeading">The signal has always been <em>transmitting.</em></h2>
@@ -440,7 +473,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
         <p>His work is grounded in a single sustained conviction: the gap between where most people are and where they are capable of being is not a gap of effort, intelligence or opportunity. <strong>It is a gap of frequency</strong> — and frequency can be learned.</p>
         <p><strong>Zara and the Divine Signal</strong> is his most ambitious work to date: a complete human journey, told through one person over twenty-three years, showing through lived experience how the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.</p>
         <p>Every person alive is carrying a signal the world needs. The work is not to acquire a new one — it is to <strong>clear the interference from the one you were born with.</strong> This work is an invitation to receive it.</p>
-        <p class="signature" id="siteSignature">— Vishal</p>
+        <p class="signature" id="siteSignature">— Vishal Hingol</p>
       </div>
     </div>
   </section>
@@ -448,14 +481,14 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
 
 <div class="band veil">
   <div class="band-inner reveal">
-    <span class="sec-eyebrow">// Never Miss a Release</span>
-    <h2 id="siteBandHeading">New books arrive <em>quietly.</em></h2>
-    <p id="siteBandText">Tap "Follow" on my Amazon author page and Amazon will email you the moment a new book or journal goes live.</p>
+    <span class="sec-eyebrow">// Join the Inner Circle</span>
+    <h2 id="siteBandHeading">Get a free chapter + <em>new release alerts.</em></h2>
+    <p id="siteBandText">Subscribe and get Chapter 1 of Zara and the Divine Signal delivered to your inbox — plus be the first to know when new books and journals go live.</p>
 
     <div class="subscribe-wrap">
       <form id="subscribeForm" class="subscribe-form">
         <input type="email" id="subscribeEmail" class="subscribe-input" placeholder="you@example.com" required />
-        <button type="submit" class="subscribe-btn" id="subscribeBtn">Subscribe</button>
+        <button type="submit" class="subscribe-btn" id="subscribeBtn">Get Free Chapter</button>
       </form>
       <p id="subscribeMsg" class="subscribe-msg" aria-live="polite"></p>
     </div>
@@ -564,7 +597,7 @@ window._coversReady = true; // covers.js removed for speed - using real image fi
         const paras = s.aboutText.split(/\n\n+/).filter(p=>p.trim());
         el.innerHTML = '<span class="sec-eyebrow">// About the Author</span><h2 id="siteAboutHeading">'+(s.aboutHeading||'The signal has always been <em>transmitting.</em>')+'</h2>'
           + paras.map(p=>'<p>'+p.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')+'</p>').join('')
-          + '<p class="signature" id="siteSignature">'+(s.signature||'— Vishal')+'</p>';
+          + '<p class="signature" id="siteSignature">'+(s.signature||'— Vishal Hingol')+'</p>';
       }
     } else {
       if(s.signature) setSite('siteSignature', s.signature);
@@ -885,7 +918,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     if (!email) return;
 
     btn.disabled = true;
-    btn.textContent = "Subscribing...";
+    btn.textContent = "Sending...";
     msg.textContent = "";
     msg.className = "subscribe-msg";
 
@@ -898,7 +931,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
       const data = await res.json();
 
       if (res.ok && data.success) {
-        msg.textContent = "✓ " + data.message;
+        msg.textContent = "✓ Check your inbox — your free chapter is on the way!";
         msg.classList.add("success");
         emailInput.value = "";
       } else {
@@ -910,7 +943,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
       msg.classList.add("error");
     } finally {
       btn.disabled = false;
-      btn.textContent = "Subscribe";
+      btn.textContent = "Get Free Chapter";
     }
   });
 })();
