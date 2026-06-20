@@ -643,6 +643,39 @@ h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.16;le
 .band-inner h2{margin-bottom:14px}
 .band-inner p{color:var(--mist);max-width:46ch;margin:0 auto 34px}
 
+/* ---------- subscribe form (email capture) ---------- */
+.subscribe-wrap{max-width:440px;margin:0 auto 28px}
+.subscribe-form{display:flex;gap:10px;flex-wrap:wrap}
+.subscribe-input{
+  flex:1;min-width:180px;padding:14px 18px;border-radius:100px;
+  border:1px solid rgba(244,238,226,.18);background:rgba(244,238,226,.05);
+  color:var(--paper);font-family:var(--body);font-size:14px;outline:none;
+  transition:border-color .2s;
+}
+.subscribe-input::placeholder{color:rgba(244,238,226,.4)}
+.subscribe-input:focus{border-color:var(--cyan)}
+.subscribe-btn{
+  padding:14px 28px;border-radius:100px;border:none;cursor:pointer;
+  background:linear-gradient(110deg,var(--cyan),#A6F0FF);
+  color:var(--night);font-family:var(--tech);font-weight:700;font-size:12.5px;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:transform .2s,box-shadow .2s,opacity .2s;
+}
+.subscribe-btn:hover{transform:translateY(-1px);box-shadow:0 0 26px rgba(125,230,255,.45)}
+.subscribe-btn:disabled{opacity:.6;cursor:not-allowed}
+.subscribe-msg{margin-top:12px;font-size:13px;min-height:18px}
+.subscribe-msg.success{color:var(--cyan)}
+.subscribe-msg.error{color:#FF9B9B}
+.band-divider{
+  display:flex;align-items:center;gap:14px;max-width:300px;margin:30px auto;
+  color:var(--mist);font-family:var(--tech);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+}
+.band-divider::before,.band-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+@media(max-width:480px){
+  .subscribe-form{flex-direction:column}
+  .subscribe-btn{width:100%}
+}
+
 /* ---------- footer ---------- */
 footer{
   border-top:1px solid var(--line);
@@ -977,6 +1010,23 @@ footer{
     <span class="sec-eyebrow">// Never Miss a Release</span>
     <h2 id="siteBandHeading">New books arrive <em>quietly.</em></h2>
     <p id="siteBandText">Tap "Follow" on my Amazon author page and Amazon will email you the moment a new book or journal goes live.</p>
+
+    <div class="subscribe-wrap">
+      <form id="subscribeForm" class="subscribe-form">
+        <input
+          type="email"
+          id="subscribeEmail"
+          class="subscribe-input"
+          placeholder="you@example.com"
+          required
+        />
+        <button type="submit" class="subscribe-btn" id="subscribeBtn">Subscribe</button>
+      </form>
+      <p id="subscribeMsg" class="subscribe-msg" aria-live="polite"></p>
+    </div>
+
+    <div class="band-divider">or</div>
+
     <a class="btn btn-gold amzn-link" href="https://www.amazon.in/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" id="siteBandBtn">Follow Vishal on Amazon</a>
   </div>
 </div>
@@ -1365,6 +1415,51 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Author photo is now loaded inside _renderBooks() after covers.js is ready
+
+/* ================= email subscribe form ================= */
+(function(){
+  const SUBSCRIBE_ENDPOINT = "https://vishal-hingol-author.netlify.app/.netlify/functions/subscribe";
+  const form = document.getElementById('subscribeForm');
+  const emailInput = document.getElementById('subscribeEmail');
+  const btn = document.getElementById('subscribeBtn');
+  const msg = document.getElementById('subscribeMsg');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = "Subscribing...";
+    msg.textContent = "";
+    msg.className = "subscribe-msg";
+
+    try {
+      const res = await fetch(SUBSCRIBE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        msg.textContent = "✓ " + data.message;
+        msg.classList.add("success");
+        emailInput.value = "";
+      } else {
+        msg.textContent = data.error || "Something went wrong. Please try again.";
+        msg.classList.add("error");
+      }
+    } catch (err) {
+      msg.textContent = "Network error. Please try again.";
+      msg.classList.add("error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Subscribe";
+    }
+  });
+})();
 </script>
 
 <!-- MOBILE NAV OVERLAY — outside <nav> to escape z-index stacking context -->
