@@ -205,7 +205,35 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
   .spotlight{grid-template-columns:1fr;text-align:center}
   .spot-cover{margin:0 auto;width:min(220px,70vw)}
   .spot-cta{justify-content:center}
+  .stats-bar{gap:0;display:grid;grid-template-columns:1fr 1fr;row-gap:18px}
+  .btn{padding:18px 28px;font-size:14px}
+  .btn-buy{padding:14px 20px;font-size:12.5px}
+  body{padding-bottom:72px}
 }
+
+/* Sticky mobile CTA bar */
+.mobile-cta-bar{display:none}
+@media(max-width:700px){
+  .mobile-cta-bar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:49;gap:8px;padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:rgba(7,10,24,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line)}
+  .mobile-cta-bar a{flex:1;text-align:center;font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 8px;border-radius:100px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+  .mcta-books{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
+  .mcta-mentor{border:1px solid rgba(125,230,255,.35);color:var(--cyan);background:rgba(125,230,255,.05)}
+}
+
+/* Mid-page compact subscribe */
+.mid-subscribe{max-width:600px;margin:0 auto;text-align:center;padding:clamp(28px,4vw,40px) clamp(20px,3vw,32px);position:relative;background:var(--glass);backdrop-filter:blur(16px);border-radius:24px}
+.mid-subscribe::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.4),rgba(125,230,255,.15),rgba(157,123,255,.35));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.mid-subscribe>*{position:relative;z-index:1}
+.mid-sub-heading{font-family:var(--display);font-weight:400;font-size:clamp(20px,3vw,26px);margin-bottom:6px}
+.mid-sub-heading em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mid-sub-text{color:var(--mist);font-size:14px;margin-bottom:18px}
+.mid-sub-form{display:flex;gap:10px;max-width:400px;margin:0 auto;flex-wrap:wrap}
+.mid-sub-form input{flex:1;min-width:160px;padding:14px 20px;border-radius:100px;border:1px solid rgba(244,238,226,.18);background:rgba(7,10,24,.45);color:var(--paper);font-family:var(--body);font-size:13px;outline:none;transition:border-color .2s}
+.mid-sub-form input::placeholder{color:rgba(244,238,226,.4)}
+.mid-sub-form input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,187,107,.15)}
+.mid-sub-form button{padding:14px 24px;border-radius:100px;border:none;cursor:pointer;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);font-family:var(--tech);font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s}
+.mid-sub-form button:hover{transform:translateY(-2px)}
+@media(max-width:480px){.mid-sub-form{flex-direction:column}.mid-sub-form button{width:100%}}
 
 .badge-new{position:absolute;top:-13px;right:22px;z-index:2;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);font-family:var(--tech);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 15px;border-radius:100px;box-shadow:0 0 0 4px var(--night),0 0 26px rgba(232,187,107,.75);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 4px var(--night),0 0 14px rgba(232,187,107,.45)}50%{box-shadow:0 0 0 4px var(--night),0 0 32px rgba(232,187,107,.9)}}
@@ -433,11 +461,22 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
     <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
   </section>
 
+  <div class="mid-subscribe reveal" style="margin:clamp(-20px,0vw,0px) auto clamp(40px,6vw,60px);max-width:600px;padding-left:clamp(20px,6vw,72px);padding-right:clamp(20px,6vw,72px)">
+    <p class="mid-sub-heading">Get Chapter 1 <em>free.</em></p>
+    <p class="mid-sub-text">Subscribe and receive the opening chapter of Zara and the Divine Signal — plus new release alerts.</p>
+    <form class="mid-sub-form" onsubmit="return handleMidSub(event)">
+      <input type="email" id="midSubEmail" placeholder="you@example.com" required />
+      <button type="submit" id="midSubBtn">Send It</button>
+    </form>
+    <p id="midSubMsg" style="margin-top:10px;font-size:12px;min-height:16px" aria-live="polite"></p>
+  </div>
+
   <section id="mentor">
     <div class="sec-head reveal" style="text-align:center;max-width:700px;margin:0 auto clamp(44px,6vw,72px)">
       <span class="sec-eyebrow">// Work With Vishal Directly</span>
       <h2>Reading helped. <em>Talking it through helps more.</em></h2>
       <p class="hero-sub" style="margin-top:20px">Every book gives you a framework. A real conversation finds the exact pattern that's specific to <strong style="color:var(--paper)">your</strong> life — and a way through it that doesn't depend on guessing alone.</p>
+      <p style="margin-top:14px;font-family:var(--tech);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">✦ Limited spots each month</p>
     </div>
 
     <div class="mentor-grid reveal">
@@ -546,7 +585,6 @@ function openMobileNav(){
   overlay.style.display = 'flex';
   overlay.classList.add('open');
   if(btn) btn.classList.add('open');
-  overlay.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
 }
 function closeMobileNav(){
@@ -555,7 +593,6 @@ function closeMobileNav(){
   if(!overlay) return;
   overlay.classList.remove('open');
   if(btn) btn.classList.remove('open');
-  overlay.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
   setTimeout(function(){
     if(!overlay.classList.contains('open')){ overlay.style.display = 'none'; }
@@ -626,10 +663,8 @@ window._renderBooks = null;
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
   const ORIG = {
-    'the-architecture-of-destiny':          'The_Architecture_of_Destiny_Ebook.jpg',
     'zara-and-the-divine-signal':          'ZARA_Ebook.jpg',
     'digital-sovereignty':                  'Digital_Sovereignty.jpg',
-    'the-real-resonance-threshold':         'The_Real_RT_Ebook.jpg',
     'the-real-frequency-of-origins':        'The_Real_Frequency_of_Origins_Ebook.jpg',
     'the-real-architect-of-echoes':         'The_Real_Architect_of_Echoes_EBOOK.jpg',
     'the-signal':                           'The_Signal_EBOOK.jpg',
@@ -656,8 +691,11 @@ window._renderBooks = null;
      </div>`;
   }
 
+  const NO_COVER = new Set(['the-architecture-of-destiny','the-real-resonance-threshold']);
+
   function coverHTML(b){
     const hue = +b.hue||35;
+    if(NO_COVER.has(b.id)) return genCoverHTML(hue, esc(b.title), b.id);
     const cands = [];
     if(b.coverImage){
       const base = b.coverImage.replace(/^covers\//,'');
@@ -947,7 +985,56 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     }
   });
 })();
+
+// Mid-page subscribe form handler
+window.handleMidSub = async function(e){
+  e.preventDefault();
+  const email = document.getElementById('midSubEmail').value.trim();
+  const btn = document.getElementById('midSubBtn');
+  const msg = document.getElementById('midSubMsg');
+  if(!email) return false;
+  btn.disabled = true; btn.textContent = 'Sending...';
+  msg.textContent = ''; msg.style.color = '';
+  try {
+    const res = await fetch('https://subscribe.vishalhingolauthor.com', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    const data = await res.json();
+    if(res.ok && data.success){
+      msg.textContent = '✓ Check your inbox!';
+      msg.style.color = 'var(--cyan)';
+      document.getElementById('midSubEmail').value = '';
+    } else {
+      msg.textContent = data.error || 'Something went wrong.';
+      msg.style.color = '#FF9B9B';
+    }
+  } catch(err){
+    msg.textContent = 'Network error. Try again.';
+    msg.style.color = '#FF9B9B';
+  } finally { btn.disabled = false; btn.textContent = 'Send It'; }
+  return false;
+};
+
+// Show sticky mobile CTA bar after scrolling past hero
+(function(){
+  var bar = document.getElementById('mobileCta');
+  if(!bar) return;
+  var shown = false;
+  addEventListener('scroll', function(){
+    var past = scrollY > innerHeight * 0.7;
+    if(past && !shown){ bar.style.transform='translateY(0)'; bar.style.opacity='1'; shown=true; }
+    else if(!past && shown){ bar.style.transform='translateY(100%)'; bar.style.opacity='0'; shown=false; }
+  }, {passive:true});
+  bar.style.transform='translateY(100%)'; bar.style.opacity='0';
+  bar.style.transition='transform .35s ease, opacity .35s ease';
+})();
 </script>
+
+<div class="mobile-cta-bar" id="mobileCta">
+  <a class="mcta-books" href="#books">Browse Books</a>
+  <a class="mcta-mentor" href="mentor.html">Free Mentor Call</a>
+</div>
 
 <div id="vishal-hingol-keywords" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap" aria-hidden="true">
 Vishal Hingol is a self-help author and mindset coach from Surat, Gujarat, India.
