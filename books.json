@@ -5,6 +5,21 @@
   },
   "books": [
     {
+      "id": "the-architecture-of-destiny",
+      "title": "The Architecture of Destiny",
+      "subtitle": "A Novel of Shadows, Invention, and the Life No One Saw Coming",
+      "description": "Destiny is not found. It is built. A novel about the quiet architecture beneath every life that looks ordinary from the outside — the shadows, the invention, and the slow construction of a future no one saw coming, including the person living it.",
+      "tags": [
+        "Fiction",
+        "Destiny",
+        "Self-Discovery"
+      ],
+      "amazonUrl": "https://www.amazon.com/dp/B0H6334BRG",
+      "coverImage": "covers/The_Architecture_of_Destiny_Ebook.jpg",
+      "published": "2026-07-13",
+      "hue": 30
+    },
+    {
       "id": "zara-and-the-divine-signal",
       "title": "Zara and the Divine Signal",
       "subtitle": "When the Universe Chooses a Child to Change the World",
