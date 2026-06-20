@@ -1,171 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://vishalhingolauthor.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://vishalhingolauthor.com/store.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vishalhingolauthor.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://vishalhingolauthor.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
-    <loc>https://vishalhingolauthor.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/store.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/blog.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/posts/power-of-journalling-for-transformation.html</loc>
+    <loc>https://vishalhingolauthor.com/power-of-journalling-for-transformation.html</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/unshackled-habits-modern-men.html</loc>
+    <loc>https://vishalhingolauthor.com/unshackled-habits-modern-men.html</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/lucky-girl-syndrome-does-it-work.html</loc>
+    <loc>https://vishalhingolauthor.com/lucky-girl-syndrome-does-it-work.html</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-meditate-for-beginners.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-meditate-for-beginners.html</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-ai-is-changing-business-india-2026.html</loc>
+    <loc>https://vishalhingolauthor.com/how-ai-is-changing-business-india-2026.html</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-build-mental-toughness.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-build-mental-toughness.html</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/synchronicity-carl-jung-meaning.html</loc>
+    <loc>https://vishalhingolauthor.com/synchronicity-carl-jung-meaning.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-develop-emotional-intelligence.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-develop-emotional-intelligence.html</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/quantum-consciousness-what-it-means.html</loc>
+    <loc>https://vishalhingolauthor.com/quantum-consciousness-what-it-means.html</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-break-bad-habits-permanently.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-break-bad-habits-permanently.html</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-find-your-purpose-in-life.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-find-your-purpose-in-life.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-manifest-money-abundance.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-manifest-money-abundance.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/what-is-limiting-beliefs-how-to-overcome.html</loc>
+    <loc>https://vishalhingolauthor.com/what-is-limiting-beliefs-how-to-overcome.html</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-use-ai-tools-for-small-business.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-use-ai-tools-for-small-business.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-build-unshakeable-confidence.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-build-unshakeable-confidence.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/signs-universe-is-guiding-you.html</loc>
+    <loc>https://vishalhingolauthor.com/signs-universe-is-guiding-you.html</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-raise-your-vibration-permanently.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-raise-your-vibration-permanently.html</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/morning-routine-subconscious-reprogramming.html</loc>
+    <loc>https://vishalhingolauthor.com/morning-routine-subconscious-reprogramming.html</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/law-of-assumption-vs-law-of-attraction.html</loc>
+    <loc>https://vishalhingolauthor.com/law-of-assumption-vs-law-of-attraction.html</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/how-to-rewire-your-brain-for-success.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-rewire-your-brain-for-success.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/what-is-subconscious-reprogramming.html</loc>
+    <loc>https://vishalhingolauthor.com/what-is-subconscious-reprogramming.html</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/best-self-help-books-indian-authors-2026.html</loc>
+    <loc>https://vishalhingolauthor.com/best-self-help-books-indian-authors-2026.html</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/digital-sovereignty-reclaim-your-mind.html</loc>
+    <loc>https://vishalhingolauthor.com/digital-sovereignty-reclaim-your-mind.html</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/369-manifestation-method-complete-guide.html</loc>
+    <loc>https://vishalhingolauthor.com/369-manifestation-method-complete-guide.html</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/posts/why-you-keep-self-sabotaging.html</loc>
+    <loc>https://vishalhingolauthor.com/why-you-keep-self-sabotaging.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>

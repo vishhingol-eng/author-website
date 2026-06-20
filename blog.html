@@ -252,9 +252,9 @@ footer a:hover{text-decoration:underline}
       return;
     }
     document.getElementById('posts').innerHTML = filtered.map(p=>`
-    <article class="pcard" onclick="location.href='posts/${esc(p.id)}.html'">
+    <article class="pcard" onclick="location.href='${esc(p.id)}.html'">
       <div class="pcard-cat">${esc(p.category)}</div>
-      <h2><a href="posts/${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
+      <h2><a href="${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
       <p class="pcard-excerpt">${esc(p.excerpt)}</p>
       <div class="pcard-meta">
         <span class="pcard-date">${formatDate(p.published)} · ${p.readingTime} min read</span>
