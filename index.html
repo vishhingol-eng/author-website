@@ -357,7 +357,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
   <section id="about">
     <div class="about-grid">
       <div class="author-photo-wrap reveal">
-        <img id="authorPhotoImg" alt="Vishal Hingol — Author" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
+        <img id="authorPhotoImg" src="covers/author-photo.jpg" alt="Vishal Hingol — Author" style="box-shadow:0 0 60px rgba(232,187,107,.2),0 30px 70px rgba(0,0,0,.55);">
       </div>
       <div class="about-text reveal" id="siteAboutText">
         <span class="sec-eyebrow">// About the Author</span>
@@ -459,15 +459,7 @@ document.addEventListener('keydown', function(e){
 </script>
 
 <script>
-(function(){
-  var s = document.createElement('script');
-  s.src = 'covers.js';
-  s.async = true;
-  window._coversReady = false;
-  s.onload = function(){ window._coversReady = true; if(window._booksReady) window._renderBooks(); };
-  document.head.appendChild(s);
-  setTimeout(function(){ if(!window._coversReady){ window._coversReady = true; if(window._booksReady) window._renderBooks(); } }, 2000);
-})();
+window._coversReady = true; // covers.js removed for speed - using real image files via coverImage path
 </script>
 <script>
 (async function(){
@@ -558,9 +550,6 @@ window._renderBooks = null;
 
   function coverHTML(b){
     const hue = +b.hue||35;
-    if(window.COVERS && window.COVERS[b.id]){
-      return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)}">`;
-    }
     const cands = [];
     if(b.coverImage){
       const base = b.coverImage.replace(/^covers\//,'');
@@ -569,10 +558,15 @@ window._renderBooks = null;
     }
     const o = ORIG[b.id];
     if(o){ cands.push(o, 'covers/'+o); }
-    if(!cands.length) return genCoverHTML(hue, esc(b.title), b.id);
-    return `<img src="${esc(cands[0])}" alt="Cover of ${esc(b.title)}" loading="lazy"
-      data-i="0" data-id="${esc(b.id)}" data-cands='${JSON.stringify(cands)}' data-hue="${hue}" data-title="${esc(b.title)}"
-      onerror="nextCover(this)">`;
+    if(cands.length){
+      return `<img src="${esc(cands[0])}" alt="Cover of ${esc(b.title)}" loading="lazy"
+        data-i="0" data-id="${esc(b.id)}" data-cands='${JSON.stringify(cands)}' data-hue="${hue}" data-title="${esc(b.title)}"
+        onerror="nextCover(this)">`;
+    }
+    if(window.COVERS && window.COVERS[b.id]){
+      return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)}">`;
+    }
+    return genCoverHTML(hue, esc(b.title), b.id);
   }
   window.nextCover = function(img){
     const cands = JSON.parse(img.dataset.cands);
