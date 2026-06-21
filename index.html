@@ -484,13 +484,13 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
 <div class="band veil">
   <div class="band-inner reveal">
     <span class="sec-eyebrow">// Join the Inner Circle</span>
-    <h2 id="siteBandHeading">Get a free chapter + <em>new release alerts.</em></h2>
-    <p id="siteBandText">Subscribe and get Chapter 1 of Zara and the Divine Signal delivered to your inbox — plus be the first to know when new books and journals go live.</p>
+    <h2 id="siteBandHeading">Get the Lost Chapter — <em>free.</em></h2>
+    <p id="siteBandText">Subscribe and receive "The Night Before" — a scene that never made it into Zara and the Divine Signal — plus new release alerts.</p>
 
     <div class="subscribe-wrap">
       <form id="subscribeForm" class="subscribe-form">
         <input type="email" id="subscribeEmail" class="subscribe-input" placeholder="you@example.com" required />
-        <button type="submit" class="subscribe-btn" id="subscribeBtn">Get Free Chapter</button>
+        <button type="submit" class="subscribe-btn" id="subscribeBtn">Get the Lost Chapter</button>
       </form>
       <p id="subscribeMsg" class="subscribe-msg" aria-live="polite"></p>
     </div>
@@ -936,7 +936,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
       const data = await res.json();
 
       if (res.ok && data.success) {
-        msg.textContent = "✓ Check your inbox — your free chapter is on the way!";
+        msg.textContent = "✓ Check your inbox — The Night Before is on the way!";
         msg.classList.add("success");
         emailInput.value = "";
       } else {
@@ -948,7 +948,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
       msg.classList.add("error");
     } finally {
       btn.disabled = false;
-      btn.textContent = "Get Free Chapter";
+      btn.textContent = "Get the Lost Chapter";
     }
   });
 })();
