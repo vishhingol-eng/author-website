@@ -207,12 +207,12 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .carousel::-webkit-scrollbar{display:none}
 
 /* Scroll arrows */
-.car-arrow{position:absolute;top:50%;transform:translateY(-60%);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid rgba(232,187,107,.3);background:rgba(7,10,24,.85);backdrop-filter:blur(10px);color:var(--gold);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,opacity .3s}
-.car-arrow:hover{background:rgba(232,187,107,.15);border-color:var(--gold)}
-.car-arrow.left{left:8px}
-.car-arrow.right{right:8px}
+.car-arrow{position:absolute;top:45%;z-index:5;width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:rgba(7,10,24,.9);color:var(--gold);font-size:24px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,opacity .3s;box-shadow:0 0 20px rgba(232,187,107,.2)}
+.car-arrow:hover{background:var(--gold);color:var(--night);transform:scale(1.1)}
+.car-arrow.left{left:-8px}
+.car-arrow.right{right:-8px}
 .car-arrow.hidden{opacity:0;pointer-events:none}
-@media(max-width:600px){.car-arrow{width:36px;height:36px;font-size:16px}}
+@media(max-width:600px){.car-arrow{width:38px;height:38px;font-size:18px}.car-arrow.left{left:4px}.car-arrow.right{right:4px}}
 
 .c-card{flex:0 0 auto;width:190px;scroll-snap-align:center;transition:transform .45s cubic-bezier(.25,.8,.25,1),opacity .4s;cursor:pointer;position:relative}
 .c-card .cover{width:190px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .4s,transform .3s}
@@ -885,24 +885,49 @@ window._renderBooks = null;
     }, {passive:true});
     setTimeout(updateActive, 100);
 
-    // Click to show detail below
+    // Click to center + show detail below
     carousel.querySelectorAll('.c-card').forEach(card => {
       card.addEventListener('click', () => {
         const b = bookMap[card.dataset.bookId];
         if(!b) return;
+
+        // Scroll clicked card to center
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const scrollTarget = cardCenter - carousel.offsetWidth / 2;
+        carousel.scrollTo({left: scrollTarget, behavior:'smooth'});
+
+        // Toggle detail
         if(activeBookId === b.id){ detailBox.classList.remove('show'); activeBookId=null; return; }
         activeBookId = b.id;
-        detailBox.innerHTML = `
-          <button class="detail-close" onclick="this.parentElement.classList.remove('show')">✕</button>
-          <h3>${esc(b.title)}</h3>
-          <p class="book-sub">${esc(b.subtitle||'')}</p>
-          <p class="book-desc">${esc(b.description||'')}</p>
-          <a class="btn-buy" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">
-            Buy on Amazon
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
-          </a>`;
-        detailBox.classList.add('show');
-        detailBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+        setTimeout(() => {
+          const tags = (b.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+          const formats = [];
+          if(b.amazonUrl) formats.push('Kindle');
+          if(b.paperback !== false) formats.push('Paperback');
+          if(b.hardcover) formats.push('Hardcover');
+          detailBox.innerHTML = `
+            <button class="detail-close" onclick="this.parentElement.classList.remove('show')">✕</button>
+            <h3>${esc(b.title)}</h3>
+            <p class="book-sub">${esc(b.subtitle||'')}</p>
+            ${tags ? '<div class="book-tags" style="justify-content:center;margin-bottom:14px">'+tags+'</div>' : ''}
+            <p class="book-desc">${esc(b.description||'')}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0;font-family:var(--tech);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)">
+              ${formats.map(f=>'<span style="border:1px solid var(--line);padding:5px 14px;border-radius:100px">'+f+'</span>').join('')}
+              ${b.pages ? '<span style="border:1px solid var(--line);padding:5px 14px;border-radius:100px">'+b.pages+' Pages</span>' : ''}
+              <span style="border:1px solid var(--line);padding:5px 14px;border-radius:100px">English</span>
+              ${b.published ? '<span style="border:1px solid var(--line);padding:5px 14px;border-radius:100px">'+new Date(b.published).toLocaleDateString('en-US',{month:'short',year:'numeric'})+'</span>' : ''}
+            </div>
+            ${b.isbn ? '<p style="font-size:11px;color:var(--mist);margin-bottom:12px">ISBN: '+esc(b.isbn)+'</p>' : ''}
+            <p style="font-size:13px;color:var(--mist);margin-bottom:18px">By <strong style="color:var(--paper)">Vishal Hingol</strong> · Available worldwide on Amazon</p>
+            <a class="btn-buy" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">
+              Buy on Amazon
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+            <p style="font-size:11px;color:rgba(154,161,199,.5);margin-top:14px">Free with Kindle Unlimited · Available in 90+ countries</p>`;
+          detailBox.classList.add('show');
+          detailBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }, 350);
       });
     });
   }
