@@ -693,6 +693,8 @@ window._renderBooks = null;
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
   const ORIG = {
+    'the-architecture-of-destiny':          'the-architecture-of-destiny.jpg',
+    'the-real-resonance-threshold':         'the-real-resonance-threshold.jpg',
     'zara-and-the-divine-signal':          'ZARA_Ebook.jpg',
     'digital-sovereignty':                  'Digital_Sovereignty.jpg',
     'the-real-frequency-of-origins':        'The_Real_Frequency_of_Origins_Ebook.jpg',
@@ -721,7 +723,7 @@ window._renderBooks = null;
      </div>`;
   }
 
-  const NO_COVER = new Set(['the-architecture-of-destiny','the-real-resonance-threshold']);
+  const NO_COVER = new Set([]);
 
   function coverHTML(b){
     const hue = +b.hue||35;
