@@ -39,6 +39,67 @@ export default {
       const body = await request.json();
 
       // ============================================================
+      // CLIENT AGREEMENT — sends signed copy to both parties
+      // ============================================================
+      if (body.type === "client_agreement") {
+        const { name, email, date, refId, agreements } = body;
+
+        if (!name || !email || !agreements) {
+          return new Response(JSON.stringify({ success: false, error: "Missing required fields" }), { status: 400, headers: cors });
+        }
+
+        const agreementList = agreements.map((a, i) => `<li style="margin-bottom:8px;color:#333">${a}</li>`).join('');
+
+        const agreementHtml = `
+          <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;color:#333;line-height:1.7">
+            <div style="background:#070A18;padding:28px 32px;border-radius:12px 12px 0 0;text-align:center">
+              <h1 style="color:#E8BB6B;font-size:22px;margin:0;font-weight:400">Client Agreement — Signed Copy</h1>
+              <p style="color:#9AA1C7;font-size:13px;margin:8px 0 0">vishalhingolauthor.com</p>
+            </div>
+            <div style="background:#f9f9f9;padding:28px 32px;border:1px solid #e0e0e0">
+              <p><strong>Reference:</strong> ${refId}</p>
+              <p><strong>Client Name:</strong> ${escapeHtml(name)}</p>
+              <p><strong>Client Email:</strong> ${escapeHtml(email)}</p>
+              <p><strong>Date Signed:</strong> ${escapeHtml(date)}</p>
+              <hr style="border:none;border-top:1px solid #e0e0e0;margin:20px 0">
+              <p><strong>The client has confirmed agreement to the following terms:</strong></p>
+              <ol style="padding-left:20px">${agreementList}</ol>
+              <hr style="border:none;border-top:1px solid #e0e0e0;margin:20px 0">
+              <p style="font-size:13px;color:#888">This is an automated confirmation generated when the client accepted the mentorship agreement on vishalhingolauthor.com. Full terms available at <a href="https://vishalhingolauthor.com/policies.html">vishalhingolauthor.com/policies.html</a></p>
+              <p style="font-size:13px;color:#888">Both the client and Vishal Hingol have received a copy of this agreement.</p>
+            </div>
+          </div>
+        `;
+
+        // Send to Vishal
+        await fetch("https://api.brevo.com/v3/smtp/email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": BREVO_API_KEY },
+          body: JSON.stringify({
+            sender: { name: "Client Agreement System", email: "contact@vishalhingolauthor.com" },
+            to: [{ email: YOUR_INBOX_EMAIL, name: YOUR_NAME }],
+            replyTo: { email: email, name: name },
+            subject: `Client Agreement Signed — ${name} (${refId})`,
+            htmlContent: agreementHtml,
+          }),
+        });
+
+        // Send copy to client
+        await fetch("https://api.brevo.com/v3/smtp/email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": BREVO_API_KEY },
+          body: JSON.stringify({
+            sender: { name: "Vishal Hingol", email: "contact@vishalhingolauthor.com" },
+            to: [{ email: email, name: name }],
+            subject: `Your Mentorship Agreement — Signed Copy (${refId})`,
+            htmlContent: agreementHtml,
+          }),
+        });
+
+        return new Response(JSON.stringify({ success: true }), { status: 200, headers: cors });
+      }
+
+      // ============================================================
       // MENTOR INQUIRY — emails the submission to Vishal via Brevo
       // + sends confirmation email back to the person
       // ============================================================

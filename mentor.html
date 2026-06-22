@@ -524,5 +524,12 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   });
 })();
 </script>
+<div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
+  This website uses minimal cookies for analytics. No advertising or tracking cookies. 
+  <a href="/policies.html#privacy" style="color:#E8BB6B">Privacy Policy</a> · 
+  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
 </body>
 </html>
