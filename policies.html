@@ -33,6 +33,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:cent
 .nav-links{display:flex;gap:clamp(14px,2.5vw,28px);font-size:14px;font-weight:500}
 .nav-links a{text-decoration:none;color:var(--mist);transition:color .2s}
 .nav-links a:hover{color:var(--paper)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--paper);border-radius:2px}
+.mob-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,10,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mob-overlay.open{display:flex}
+.mob-overlay a{font-family:var(--tech);font-size:16px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);padding:10px 20px}
+.mob-overlay a:hover{color:var(--gold)}
+.mob-overlay .mob-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer}
+@media(max-width:600px){.nav-links{display:none !important}.hamburger{display:flex}}
 
 main{max-width:780px;margin:0 auto;padding:120px clamp(20px,5vw,48px) 80px}
 
@@ -74,8 +82,24 @@ footer a{color:var(--gold)}
     <a href="/store.html">Books</a>
     <a href="/blog.html">Blog</a>
     <a href="/mentor.html">Mentorship</a>
+    <a href="/policies.html" style="color:var(--gold)">Policies</a>
   </div>
+  <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mob-overlay" id="mobNav">
+  <button class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')" aria-label="Close menu">✕</button>
+  <a href="/" onclick="document.getElementById('mobNav').classList.remove('open')">Home</a>
+  <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
+  <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
+  <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
+  <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Policies</a>
+  <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--gold)">Amazon ↗</a>
+  <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Instagram ↗</a>
+  <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Twitter ↗</a>
+</div>
 
 <main>
   <h1>Policies & <em>Terms</em></h1>
@@ -117,7 +141,7 @@ footer a{color:var(--gold)}
   <p>The Provider reserves the right to update these terms at any time. Changes will be reflected on this page with an updated date. Continued use of the website or services after changes constitutes acceptance of the revised terms.</p>
 
   <h3>Governing law and jurisdiction</h3>
-  <p>These terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from or relating to these terms or the services provided shall be subject to the exclusive jurisdiction of the courts in Surat, Gujarat, India.</p>
+  <p>These terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from or relating to these terms or the services provided shall be subject to the exclusive jurisdiction of the courts in Ahmedabad, Gujarat, India.</p>
 
   <h3>Limitation of liability</h3>
   <p>To the maximum extent permitted by applicable law, the Provider's total liability arising from or related to the services shall not exceed the amount paid by you for the specific service giving rise to the claim. The Provider shall not be liable for any indirect, incidental, consequential, or punitive damages, including but not limited to loss of income, emotional distress, or personal outcomes resulting from mentorship sessions or content.</p>
@@ -133,7 +157,7 @@ footer a{color:var(--gold)}
   <p>With your written permission, the Provider may use anonymised or attributed feedback, testimonials, or success stories on the website or promotional materials. You will always be asked before any testimonial is published. You have the right to request removal of your testimonial at any time.</p>
 
   <h3>Dispute resolution</h3>
-  <p>In the event of a dispute, both parties agree to first attempt resolution through direct communication via email (contact@vishalhingolauthor.com). If the dispute cannot be resolved within 30 days, the matter shall be referred to mediation before proceeding to litigation. Any litigation shall be subject to the exclusive jurisdiction of courts in Surat, Gujarat, India.</p>
+  <p>In the event of a dispute, both parties agree to first attempt resolution through direct communication via email (contact@vishalhingolauthor.com). If the dispute cannot be resolved within 30 days, the matter shall be referred to mediation before proceeding to litigation. Any litigation shall be subject to the exclusive jurisdiction of courts in Ahmedabad, Gujarat, India.</p>
 
   <!-- ===== 2. REFUND & CANCELLATION ===== -->
   <h2 id="refund">2. Refund & Cancellation Policy</h2>
@@ -273,11 +297,26 @@ footer a{color:var(--gold)}
   <!-- ===== 5. DISCLAIMER ===== -->
   <h2 id="disclaimer">5. Disclaimer</h2>
 
-  <h3>Mentorship services</h3>
-  <p>Mentorship sessions are designed to provide guidance, perspective, and accountability based on the Provider's personal experience and published work. They are <strong>not</strong> a substitute for professional therapy, counselling, medical advice, financial advice, or legal advice. The Provider is an author and mindset coach, not a licensed therapist or medical professional.</p>
+  <h3>Qualifications</h3>
+  <p>Vishal Hingol is an <strong>author, mindset adviser, and personal development mentor</strong>. He is <strong>not</strong> a licensed doctor, therapist, psychologist, counsellor, financial adviser, or legal professional. He does not hold a medical degree or any clinical certification. His expertise comes from 14+ years of professional experience, published research across 17+ books, and deep personal study of human psychology, mindset, and personal transformation.</p>
+
+  <h3>Advisory role — not instructional</h3>
+  <div class="highlight-box">
+    <p><strong>Important:</strong> Vishal Hingol operates strictly as an <strong>adviser, not an instructor</strong>. Mentorship sessions provide guidance, perspective, observations, and frameworks for thinking — not directives, prescriptions, or commands. The Provider does not tell you what to do. He helps you see your situation more clearly so <strong>you</strong> can decide what to do.</p>
+  </div>
+
+  <h3>Individual responsibility</h3>
+  <p>Any decisions, actions, or changes you make based on mentorship sessions, books, articles, or any content published by the Provider are <strong>entirely your own responsibility</strong>. You are a free, autonomous individual capable of your own judgment. The Provider offers guidance — how you apply it, when you apply it, and whether you apply it at all is solely your choice and your responsibility.</p>
+  <p>The Provider is <strong>not responsible</strong> for any outcomes — positive or negative — resulting from actions taken based on mentorship conversations, books, or content. By engaging with any paid or free service, you acknowledge and accept this.</p>
+
+  <h3>Not a substitute for professional help</h3>
+  <p>Mentorship sessions are <strong>not</strong> a substitute for professional therapy, psychiatric treatment, medical advice, financial planning, or legal counsel. If you are experiencing a mental health crisis, suicidal thoughts, or any medical emergency, please contact a licensed professional or emergency services in your country immediately.</p>
+
+  <h3>Client privacy</h3>
+  <p>The Provider takes client privacy seriously. All conversations, personal details, and session content shared during mentorship are treated as <strong>strictly confidential</strong>. The Provider will never share, publish, or disclose any client information to any third party without explicit written consent. This commitment to privacy is a core value of the mentorship practice and is non-negotiable.</p>
 
   <h3>Results</h3>
-  <p>Personal transformation outcomes vary from person to person. The Provider does not guarantee specific results from mentorship sessions, books, or any other content. Your results depend on your own actions, decisions, and circumstances.</p>
+  <p>Personal transformation outcomes vary from person to person. The Provider <strong>does not guarantee</strong> specific results from mentorship sessions, books, or any other content. Your results depend on your own actions, decisions, circumstances, consistency, and willingness to do the work. No outcome is promised or implied.</p>
 
   <h3>Book content</h3>
   <p>The books and articles published by Vishal Hingol are for informational and educational purposes. They reflect the author's personal views, research, and experience. Readers should use their own judgment when applying any concepts to their lives.</p>
@@ -291,7 +330,7 @@ footer a{color:var(--gold)}
     <strong>Vishal Hingol</strong><br>
     Email: <a href="mailto:contact@vishalhingolauthor.com">contact@vishalhingolauthor.com</a><br>
     Website: <a href="https://vishalhingolauthor.com">vishalhingolauthor.com</a><br>
-    Location: Surat, Gujarat, India
+    Location: Ahmedabad, Gujarat, India
   </p>
 
 </main>
