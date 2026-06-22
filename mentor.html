@@ -266,6 +266,10 @@ h2 em{font-style:italic;background:linear-gradient(100deg,var(--violet),var(--cy
 .price-period{font-family:var(--tech);font-size:13px;color:var(--mist);font-weight:600}
 .price-desc{color:var(--mist);font-size:13.5px;line-height:1.6}
 .price-note{text-align:center;color:var(--mist);font-size:13px;max-width:480px;margin:28px auto 0;line-height:1.6}
+.pay-cta{text-align:center;margin-top:30px}
+.pay-cta .btn-pay{display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;font-family:var(--tech);font-weight:700;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border-radius:100px;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);transition:transform .25s,box-shadow .25s}
+.pay-cta .btn-pay:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(232,187,107,.5)}
+.pay-cta .pay-note{font-family:var(--tech);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-top:12px}
 .step{display:flex;gap:18px;align-items:flex-start}
 .step-num{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);font-family:var(--tech);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
 .step h3{font-family:var(--display);font-weight:500;font-size:17px;margin-bottom:4px}
@@ -393,8 +397,13 @@ footer a{color:var(--gold)}
       <p class="price-desc">4 sessions a month, real ongoing accountability, and direct WhatsApp access between calls.</p>
     </div>
   </div>
+
+  <div class="pay-cta">
+    <a class="btn-pay" href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view">Pay Securely via Razorpay</a>
+    <p class="pay-note">🔒 Encrypted checkout · Cards, UPI, netbanking & more</p>
+  </div>
+
   <p class="price-note">Prices shown in USD, accepted from anywhere in the world. Payment is arranged after your free intro call — no charge for that first conversation.</p>
-  <p class="price-note" style="margin-top:12px"><a href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;font-weight:600">Pay Securely via Razorpay →</a></p>
   <p class="price-note" style="margin-top:12px"><a href="/policies.html" style="color:var(--gold);text-decoration:underline">View our Terms, Refund & Privacy Policies</a> — including our refund guarantee, cancellation terms, and data protection commitments.</p>
   <p class="price-note" style="margin-top:12px"><a href="/agreement.html" style="color:var(--cyan);text-decoration:underline">Sign the Client Agreement</a> — required before your first paid session. Both you and Vishal receive a signed copy via email.</p>
 </section>
