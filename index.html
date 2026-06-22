@@ -197,7 +197,7 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .carousel-wrap{position:relative}
 .carousel-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:46px;background:linear-gradient(to bottom,var(--night),transparent);z-index:4;pointer-events:none}
 .carousel-viewport{overflow:hidden;perspective:1400px;-webkit-perspective:1400px}
-.carousel{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:46px 0 28px;scrollbar-width:none;scroll-behavior:smooth;touch-action:pan-y;list-style:none}
+.carousel{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:46px 0 44px;scrollbar-width:none;scroll-behavior:smooth;touch-action:pan-y;list-style:none}
 .carousel::-webkit-scrollbar{display:none}
 
 .car-arrow{position:absolute;top:38%;z-index:5;width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:rgba(7,10,24,.92);color:var(--gold);font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,opacity .3s,visibility .3s;box-shadow:0 0 24px rgba(232,187,107,.25)}
@@ -210,13 +210,27 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 @media(max-width:600px){.car-arrow{width:38px;height:38px;font-size:15px}}
 
 .c-card{flex:0 0 auto;width:190px;scroll-snap-align:center;cursor:pointer;position:relative;transform-style:preserve-3d;padding:0 18px}
-.c-card .cover{width:190px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;position:relative;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .5s;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
-.c-card .cover-inner{width:100%;height:100%;transition:transform .5s cubic-bezier(.25,.8,.25,1),opacity .5s cubic-bezier(.25,.8,.25,1);transform-origin:center center}
+.c-card .cover{width:190px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;position:relative;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .6s ease;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
+.c-card .cover-inner{width:100%;height:100%;transition:transform .65s cubic-bezier(.22,.85,.18,1),opacity .65s cubic-bezier(.22,.85,.18,1),filter .65s ease;transform-origin:center center;position:relative}
 .c-card .cover img{width:100%;height:100%;object-fit:cover;display:block}
 .c-card .cover .cover-gen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:18px 14px}
-.c-card .c-title{font-family:var(--display);font-size:13px;font-weight:400;color:var(--paper);text-align:center;margin-top:14px;opacity:.4;transition:opacity .5s,transform .5s;text-wrap:balance}
+.c-card .c-title{font-family:var(--display);font-size:13px;font-weight:400;color:var(--paper);text-align:center;margin-top:14px;opacity:.4;transition:opacity .6s ease,transform .6s ease;text-wrap:balance}
 
-.c-card .cover::after{content:"";position:absolute;bottom:-36px;left:8%;width:84%;height:36px;background:linear-gradient(to bottom,rgba(232,187,107,.1),transparent);border-radius:50%;filter:blur(10px);opacity:0;transition:opacity .5s;pointer-events:none}
+/* Galaxy glow — a soft rotating swirl that blooms behind the cover
+   the moment it becomes the active (centered) card. Pure CSS, GPU-cheap. */
+.c-card .galaxy-glow{position:absolute;inset:-40%;z-index:-1;border-radius:50%;opacity:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(125,230,255,.55), transparent 55%),
+    radial-gradient(circle at 70% 65%, rgba(157,123,255,.5), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(232,187,107,.4), transparent 60%);
+  filter:blur(28px);
+  transition:opacity .7s ease, transform 1.8s ease;
+  transform:scale(.6) rotate(0deg);
+}
+.c-card.active .galaxy-glow{opacity:.85;transform:scale(1.15) rotate(80deg);animation:galaxySpin 14s linear infinite}
+@keyframes galaxySpin{to{transform:scale(1.15) rotate(440deg)}}
+
+.c-card .cover::after{content:"";position:absolute;bottom:-36px;left:8%;width:84%;height:36px;background:linear-gradient(to bottom,rgba(232,187,107,.1),transparent);border-radius:50%;filter:blur(10px);opacity:0;transition:opacity .6s ease;pointer-events:none}
 .c-card.active .cover::after{opacity:1}
 
 .c-card.active .cover-inner{transform:scale(1.32) translateZ(40px) rotateY(0deg);box-shadow:none}
@@ -232,6 +246,9 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
   .c-card{width:150px;padding:0 12px}
   .c-card .cover{width:150px}
   .c-card.active .cover-inner{transform:scale(1.22) translateZ(20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .c-card.active .galaxy-glow{animation:none;transform:scale(1.15) rotate(0deg)}
 }
 
 /* Inline book detail panel below carousel */
@@ -611,6 +628,7 @@ document.addEventListener('keydown', function(e){
 
 <script>
 window._coversReady = true; // covers.js removed for speed - using real image files via coverImage path
+window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser cache once per day so replaced covers always show
 </script>
 <script>
 (async function(){
@@ -713,18 +731,19 @@ window._coversReady = true; // covers.js removed for speed - using real image fi
     if(NO_COVER.has(b.id)) return genCoverHTML(hue, esc(b.title), b.id);
 
     const cands = [];
+    const o = ORIG[b.id];
+    if(o){ cands.push('covers/'+o, o); }
     if(b.coverImage){
       const base = b.coverImage.replace(/^covers\//,'');
       cands.push(b.coverImage);
       cands.push(base !== b.coverImage ? base : 'covers/'+base);
     }
-    const o = ORIG[b.id];
-    if(o){ cands.push('covers/'+o, o); }
 
     if(cands.length){
       const unique = [...new Set(cands)];
-      return `<img src="${esc(unique[0])}" alt="Cover of ${esc(b.title)}" loading="lazy"
-        data-i="0" data-id="${esc(b.id)}" data-cands='${esc(JSON.stringify(unique))}' data-hue="${hue}" data-title="${esc(b.title)}"
+      const bust = '?v=' + (window.COVER_BUST || '1');
+      return `<img src="${esc(unique[0]+bust)}" alt="Cover of ${esc(b.title)}" loading="lazy"
+        data-i="0" data-id="${esc(b.id)}" data-cands='${esc(JSON.stringify(unique))}' data-hue="${hue}" data-title="${esc(b.title)}" data-bust="${esc(bust)}"
         onerror="window.nextCover(this)">`;
     }
     return genCoverHTML(hue, esc(b.title), b.id);
@@ -734,7 +753,7 @@ window._coversReady = true; // covers.js removed for speed - using real image fi
     try{
       const cands = JSON.parse(img.dataset.cands.replace(/&quot;/g,'"').replace(/&amp;/g,'&'));
       const i = (+img.dataset.i) + 1;
-      if(i < cands.length){ img.dataset.i = i; img.src = cands[i]; }
+      if(i < cands.length){ img.dataset.i = i; img.src = cands[i] + (img.dataset.bust||''); }
       else { img.outerHTML = genCoverHTML(+img.dataset.hue, img.dataset.title, img.dataset.id); }
     }catch(e){
       img.outerHTML = genCoverHTML(+img.dataset.hue || 35, img.dataset.title || '', img.dataset.id || '');
@@ -811,7 +830,7 @@ window._coversReady = true; // covers.js removed for speed - using real image fi
             <div class="carousel" data-cat="${esc(cat.key)}" role="list">
               ${books.map(b => `
                 <div class="c-card" data-book-id="${esc(b.id)}" role="listitem">
-                  <div class="cover"><div class="cover-inner">${coverHTML(b)}</div></div>
+                  <div class="cover"><div class="galaxy-glow" aria-hidden="true"></div><div class="cover-inner">${coverHTML(b)}</div></div>
                   <p class="c-title">${esc(b.title)}</p>
                 </div>
               `).join('')}
