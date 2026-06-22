@@ -194,6 +194,41 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 
 .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(460px,100%),1fr));gap:clamp(22px,3vw,36px)}
 .shelf-status{color:var(--mist);font-size:15px;text-align:center;grid-column:1/-1}
+
+/* Category carousels */
+.cat-section{margin-bottom:clamp(48px,7vw,80px)}
+.cat-head{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(20px,3vw,32px);padding:0 4px}
+.cat-label{font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)}
+.cat-title{font-family:var(--display);font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--paper)}
+.cat-title em{font-style:italic;color:var(--gold)}
+
+.carousel-wrap{position:relative}
+.carousel{display:flex;gap:clamp(16px,2.5vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:40px 20px 40px calc(50% - 130px);scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+
+.c-card{flex:0 0 auto;width:200px;scroll-snap-align:center;transition:transform .45s cubic-bezier(.25,.8,.25,1),opacity .4s;transform-origin:center center;cursor:pointer;position:relative}
+.c-card .cover{width:200px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .4s}
+.c-card .cover img{width:100%;height:100%;object-fit:cover;display:block}
+.c-card .cover .cover-gen{width:100%;height:100%}
+.c-card .c-title{font-family:var(--display);font-size:14px;font-weight:400;color:var(--paper);text-align:center;margin-top:14px;opacity:.7;transition:opacity .4s}
+
+/* Center card effect */
+.c-card.active{transform:scale(1.18);z-index:2}
+.c-card.active .cover{box-shadow:0 0 50px rgba(232,187,107,.3),16px 22px 56px rgba(0,0,0,.6)}
+.c-card.active .c-title{opacity:1;color:var(--gold)}
+.c-card:not(.active){transform:scale(.88);opacity:.6}
+
+/* Expanded card overlay */
+.c-expanded{position:fixed;inset:0;z-index:200;background:rgba(7,10,24,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,60px);opacity:0;pointer-events:none;transition:opacity .35s}
+.c-expanded.show{opacity:1;pointer-events:all}
+.c-expanded-inner{display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,4vw,48px);max-width:700px;width:100%;align-items:center}
+.c-expanded-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer;z-index:201}
+.c-expanded .cover{width:220px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;box-shadow:0 0 60px rgba(232,187,107,.2),20px 26px 60px rgba(0,0,0,.6)}
+.c-expanded .cover img{width:100%;height:100%;object-fit:cover}
+.c-expanded h3{font-family:var(--display);font-size:clamp(22px,3vw,28px);font-weight:400;color:var(--paper);margin-bottom:6px}
+.c-expanded .book-sub{font-family:var(--display);font-style:italic;font-size:16px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+.c-expanded .book-desc{color:var(--mist);font-size:15px;line-height:1.7;margin-bottom:20px}
+@media(max-width:640px){.c-expanded-inner{grid-template-columns:1fr;text-align:center}.c-expanded .cover{margin:0 auto;width:180px}}
 .book{position:relative;display:grid;grid-template-columns:170px 1fr;gap:26px;background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:22px;padding:27px;transition:transform .35s,box-shadow .35s;transform-style:preserve-3d;will-change:transform}
 .book::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.55),rgba(125,230,255,.18) 38%,rgba(157,123,255,.45) 72%,rgba(232,187,107,.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.7;transition:opacity .35s}
 .book:hover{box-shadow:0 0 44px rgba(125,230,255,.12),0 28px 80px rgba(0,0,0,.5)}
@@ -434,8 +469,13 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
       <h2 id="siteBooksHeading">Every book is a door.<br><em id="siteBooksSubheading">Pick yours.</em></h2>
     </div>
     <div id="spotlightBox"></div>
-    <div class="shelf" id="shelf"><p class="shelf-status">Loading the library…</p></div>
+    <div id="categoryShelf"><p class="shelf-status">Loading the library…</p></div>
   </section>
+
+  <div class="c-expanded" id="bookOverlay">
+    <button class="c-expanded-close" onclick="closeBookOverlay()" aria-label="Close">✕</button>
+    <div class="c-expanded-inner" id="bookOverlayInner"></div>
+  </div>
 
   <section id="mentor">
     <div class="sec-head reveal" style="text-align:center;max-width:700px;margin:0 auto clamp(44px,6vw,72px)">
@@ -631,7 +671,7 @@ window._booksData = null;
 window._renderBooks = null;
 
 (async function(){
-  const shelf = document.getElementById('shelf');
+  const shelf = document.getElementById('categoryShelf');
   const NEW_DAYS = 45;
   const now = Date.now();
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -728,15 +768,29 @@ window._renderBooks = null;
   const feat = all.find(b=>b.featured) || all[0];
   const rest = all.filter(b=>b!==feat);
 
+  // Category definitions
+  const CATS = [
+    {key:'novels', eyebrow:'// Novels', title:'Visionary <em>Fiction</em>', ids:['the-architecture-of-destiny','the-real-resonance-threshold','the-real-frequency-of-origins','the-real-architect-of-echoes']},
+    {key:'mindset', eyebrow:'// Mindset & Self-Help', title:'Rewire your <em>mind.</em>', ids:['why-you-keep-holding-yourself-back','the-unconditioned-mind','your-mind-is-the-blueprint','the-quiet-revolution','unshackled','digital-sovereignty','the-universe-is-whispering-to-you','the-signal']},
+    {key:'manifestation', eyebrow:'// Manifestation & Journals', title:'Write it into <em>existence.</em>', ids:['the-divine-369-manifestation-method','lucky-girl-evidence-journal']},
+    {key:'ai', eyebrow:'// AI & Business', title:'Work <em>smarter.</em>', ids:['run-your-business-on-ai-playbook','the-ai-first-competitor']}
+  ];
+
+  const bookMap = {};
+  allBooks.forEach(b => bookMap[b.id] = b);
+
   function renderShelf(){
-    shelf.innerHTML = '';
+    const catShelf = document.getElementById('categoryShelf');
+    catShelf.innerHTML = '';
+
+    // Spotlight Zara
     if(feat){
       const fCover = coverHTML(feat);
       document.getElementById('spotlightBox').innerHTML = `
         <div class="spotlight reveal">
           <div class="spot-cover">${fCover}</div>
           <div class="spot-info">
-            <span class="spot-eyebrow">✦ Featured Release</span>
+            <span class="spot-eyebrow">✦ Featured Novel</span>
             <h3>${esc(feat.title)}</h3>
             <p class="book-sub">${esc(feat.subtitle)}</p>
             <p class="book-desc">${esc(feat.description)}</p>
@@ -747,33 +801,83 @@ window._renderBooks = null;
           </div>
         </div>`;
     }
-    rest.forEach((b,i)=>{
-      const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
-      const card = document.createElement('article');
-      card.className = 'book reveal';
-      card.style.transitionDelay = (i%2 ? .12 : 0)+'s';
-      const coverInner = coverHTML(b);
-      card.innerHTML = `
-        ${isNew ? '<span class="badge-new">New Release</span>' : ''}
-        <div class="cover">${coverInner}</div>
-        <div class="book-info">
-          <div class="book-tags">${(b.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-          <h3>${esc(b.title)}</h3>
-          <p class="book-sub">${esc(b.subtitle)}</p>
-          <p class="book-desc">${esc(b.description)}</p>
-          <div class="buy-row">
+
+    // Category carousels
+    CATS.forEach(cat => {
+      const books = cat.ids.map(id => bookMap[id]).filter(Boolean);
+      if(!books.length) return;
+
+      const section = document.createElement('div');
+      section.className = 'cat-section reveal';
+      section.innerHTML = `
+        <div class="cat-head">
+          <span class="cat-label">${cat.eyebrow}</span>
+        </div>
+        <div class="cat-title" style="margin:-12px 0 20px 4px">${cat.title}</div>
+        <div class="carousel-wrap">
+          <div class="carousel" data-cat="${cat.key}">
+            ${books.map(b => `
+              <div class="c-card" data-book-id="${b.id}">
+                <div class="cover">${coverHTML(b)}</div>
+                <p class="c-title">${esc(b.title)}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      catShelf.appendChild(section);
+    });
+
+    // Init carousel center detection
+    document.querySelectorAll('.carousel').forEach(initCarousel);
+    hookReveals();
+    hookTilt();
+  }
+
+  // Carousel center-focus effect
+  function initCarousel(carousel){
+    function updateActive(){
+      const cards = carousel.querySelectorAll('.c-card');
+      const cx = carousel.scrollLeft + carousel.offsetWidth / 2;
+      let closest = null, minDist = Infinity;
+      cards.forEach(card => {
+        const cardCx = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(cardCx - cx);
+        if(dist < minDist){ minDist = dist; closest = card; }
+      });
+      cards.forEach(c => c.classList.toggle('active', c === closest));
+    }
+    carousel.addEventListener('scroll', updateActive, {passive:true});
+    setTimeout(updateActive, 100);
+
+    // Click to expand
+    carousel.querySelectorAll('.c-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const b = bookMap[card.dataset.bookId];
+        if(!b) return;
+        const overlay = document.getElementById('bookOverlay');
+        document.getElementById('bookOverlayInner').innerHTML = `
+          <div class="cover">${coverHTML(b)}</div>
+          <div>
+            <h3>${esc(b.title)}</h3>
+            <p class="book-sub">${esc(b.subtitle||'')}</p>
+            <p class="book-desc">${esc(b.description||'')}</p>
             <a class="btn-buy" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">
               Buy on Amazon
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <span class="buy-note">Kindle · Paperback</span>
-          </div>
-        </div>`;
-      shelf.appendChild(card);
+          </div>`;
+        overlay.classList.add('show');
+      });
     });
-    hookReveals();
-    hookTilt();
   }
+
+  // Close book overlay
+  window.closeBookOverlay = function(){
+    document.getElementById('bookOverlay').classList.remove('show');
+  };
+  document.getElementById('bookOverlay').addEventListener('click', function(e){
+    if(e.target === this) closeBookOverlay();
+  });
 
   renderShelf();
 
