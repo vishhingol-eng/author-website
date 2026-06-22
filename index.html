@@ -194,10 +194,10 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .cat-title{font-family:var(--display);font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--paper)}
 .cat-title em{font-style:italic;color:var(--gold)}
 
-.carousel-wrap{position:relative}
+.carousel-wrap{position:relative;--card-w:190px}
 .carousel-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:46px;background:linear-gradient(to bottom,var(--night),transparent);z-index:4;pointer-events:none}
-.carousel-viewport{overflow:hidden;perspective:1400px;-webkit-perspective:1400px}
-.carousel{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:46px 0 44px;scrollbar-width:none;scroll-behavior:smooth;touch-action:pan-y;list-style:none}
+.carousel-viewport{overflow:hidden;perspective:1400px;-webkit-perspective:1400px;padding:34px 0 56px}
+.carousel{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:34px calc(50% - (var(--card-w) / 2)) 18px;scrollbar-width:none;scroll-behavior:smooth;touch-action:pan-y;list-style:none}
 .carousel::-webkit-scrollbar{display:none}
 
 .car-arrow{position:absolute;top:38%;z-index:5;width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:rgba(7,10,24,.92);color:var(--gold);font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,opacity .3s,visibility .3s;box-shadow:0 0 24px rgba(232,187,107,.25)}
@@ -209,12 +209,12 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .car-arrow.hidden{opacity:0;visibility:hidden;pointer-events:none}
 @media(max-width:600px){.car-arrow{width:38px;height:38px;font-size:15px}}
 
-.c-card{flex:0 0 auto;width:190px;scroll-snap-align:center;cursor:pointer;position:relative;transform-style:preserve-3d;padding:0 18px}
-.c-card .cover{width:190px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;position:relative;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .6s ease;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
-.c-card .cover-inner{width:100%;height:100%;transition:transform .65s cubic-bezier(.22,.85,.18,1),opacity .65s cubic-bezier(.22,.85,.18,1),filter .65s ease;transform-origin:center center;position:relative}
+.c-card{flex:0 0 auto;width:190px;scroll-snap-align:center;cursor:pointer;position:relative;transform-style:preserve-3d;padding:0 6px}
+.c-card .cover{width:190px;aspect-ratio:2/3;border-radius:8px 14px 14px 8px;overflow:hidden;position:relative;box-shadow:12px 16px 44px rgba(0,0,0,.5),0 0 0 1px rgba(244,238,226,.06);transition:box-shadow .7s ease;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
+.c-card .cover-inner{width:100%;height:100%;transition:transform .75s cubic-bezier(.16,.84,.2,1),opacity .7s cubic-bezier(.16,.84,.2,1),filter .7s ease;transform-origin:center center;position:relative}
 .c-card .cover img{width:100%;height:100%;object-fit:cover;display:block}
 .c-card .cover .cover-gen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:18px 14px}
-.c-card .c-title{font-family:var(--display);font-size:13px;font-weight:400;color:var(--paper);text-align:center;margin-top:14px;opacity:.4;transition:opacity .6s ease,transform .6s ease;text-wrap:balance}
+.c-card .c-title{font-family:var(--display);font-size:13px;font-weight:400;color:var(--paper);text-align:center;margin-top:16px;opacity:.4;transition:opacity .7s ease,transform .7s ease;text-wrap:balance}
 
 /* Galaxy glow — a soft rotating swirl that blooms behind the cover
    the moment it becomes the active (centered) card. Pure CSS, GPU-cheap. */
@@ -224,28 +224,34 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
     radial-gradient(circle at 70% 65%, rgba(157,123,255,.5), transparent 55%),
     radial-gradient(circle at 50% 50%, rgba(232,187,107,.4), transparent 60%);
   filter:blur(28px);
-  transition:opacity .7s ease, transform 1.8s ease;
+  transition:opacity .8s ease, transform 1.8s ease;
   transform:scale(.6) rotate(0deg);
 }
 .c-card.active .galaxy-glow{opacity:.85;transform:scale(1.15) rotate(80deg);animation:galaxySpin 14s linear infinite}
 @keyframes galaxySpin{to{transform:scale(1.15) rotate(440deg)}}
 
-.c-card .cover::after{content:"";position:absolute;bottom:-36px;left:8%;width:84%;height:36px;background:linear-gradient(to bottom,rgba(232,187,107,.1),transparent);border-radius:50%;filter:blur(10px);opacity:0;transition:opacity .6s ease;pointer-events:none}
+.c-card .cover::after{content:"";position:absolute;bottom:-30px;left:10%;width:80%;height:28px;background:linear-gradient(to bottom,rgba(232,187,107,.09),transparent);border-radius:50%;filter:blur(9px);opacity:0;transition:opacity .7s ease;pointer-events:none}
 .c-card.active .cover::after{opacity:1}
 
-.c-card.active .cover-inner{transform:scale(1.32) translateZ(40px) rotateY(0deg);box-shadow:none}
+.c-card.active{z-index:3}
+.c-card.active .cover-inner{transform:scale(1.28) translateZ(20px) rotateY(0deg);box-shadow:none}
 .c-card.active .cover{box-shadow:0 0 60px rgba(232,187,107,.35),0 26px 54px rgba(0,0,0,.7)}
 .c-card.active .c-title{opacity:1;color:var(--gold);transform:translateY(6px)}
 
-.c-card.side-l .cover-inner{transform:scale(.78) rotateY(18deg) translateZ(-40px) translateX(6px);opacity:.45}
-.c-card.side-r .cover-inner{transform:scale(.78) rotateY(-18deg) translateZ(-40px) translateX(-6px);opacity:.45}
-.c-card.far .cover-inner{transform:scale(.68) translateZ(-70px);opacity:.22}
-.c-card:not(.active):hover .cover-inner{opacity:.7}
+.c-card.side-l{z-index:2}
+.c-card.side-r{z-index:2}
+.c-card.side-l .cover-inner{transform:scale(.76) rotateY(16deg) translateZ(-50px) translateX(-2px);opacity:.4}
+.c-card.side-r .cover-inner{transform:scale(.76) rotateY(-16deg) translateZ(-50px) translateX(2px);opacity:.4}
+.c-card.far{z-index:1}
+.c-card.far .cover-inner{transform:scale(.66) translateZ(-80px);opacity:.18}
+.c-card:not(.active):hover .cover-inner{opacity:.65}
 
 @media(max-width:600px){
-  .c-card{width:150px;padding:0 12px}
+  .carousel-wrap{--card-w:150px}
+  .carousel{gap:18px}
+  .c-card{width:150px;padding:0 4px}
   .c-card .cover{width:150px}
-  .c-card.active .cover-inner{transform:scale(1.22) translateZ(20px)}
+  .c-card.active .cover-inner{transform:scale(1.18) translateZ(14px)}
 }
 @media(prefers-reduced-motion:reduce){
   .c-card.active .galaxy-glow{animation:none;transform:scale(1.15) rotate(0deg)}
