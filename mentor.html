@@ -266,10 +266,6 @@ h2 em{font-style:italic;background:linear-gradient(100deg,var(--violet),var(--cy
 .price-period{font-family:var(--tech);font-size:13px;color:var(--mist);font-weight:600}
 .price-desc{color:var(--mist);font-size:13.5px;line-height:1.6}
 .price-note{text-align:center;color:var(--mist);font-size:13px;max-width:480px;margin:28px auto 0;line-height:1.6}
-.pay-cta{text-align:center;margin-top:30px}
-.pay-cta .btn-pay{display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;font-family:var(--tech);font-weight:700;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border-radius:100px;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);transition:transform .25s,box-shadow .25s}
-.pay-cta .btn-pay:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(232,187,107,.5)}
-.pay-cta .pay-note{font-family:var(--tech);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-top:12px}
 .step{display:flex;gap:18px;align-items:flex-start}
 .step-num{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);font-family:var(--tech);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
 .step h3{font-family:var(--display);font-weight:500;font-size:17px;margin-bottom:4px}
@@ -397,14 +393,41 @@ footer a{color:var(--gold)}
       <p class="price-desc">4 sessions a month, real ongoing accountability, and direct WhatsApp access between calls.</p>
     </div>
   </div>
+  <p class="price-note">Prices shown in USD, accepted from anywhere in the world. Payment is arranged after your free intro call — no charge for that first conversation.</p>
 
-  <div class="pay-cta">
-    <a class="btn-pay" href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view">Pay Securely via Razorpay</a>
-    <p class="pay-note">🔒 Encrypted checkout · Cards, UPI, netbanking & more</p>
+  <div style="margin-top:24px;text-align:center">
+    <p style="font-family:var(--tech);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px">// Secure Payment Options</p>
+
+    <p style="font-family:var(--display);font-size:18px;color:var(--paper);margin-bottom:6px">Single Session — <strong style="color:var(--gold)">$29</strong></p>
+    <p style="font-size:13px;color:var(--mist);margin-bottom:14px">One 45-minute video call</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+      <a href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:14px;background:linear-gradient(135deg,#528FF0,#2B84EA);color:#fff;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(82,143,240,.3)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Razorpay
+      </a>
+      <a href="https://www.paypal.com/ncp/payment/TYDZJNRRV8HNU" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:14px;background:linear-gradient(135deg,#003087,#009CDE);color:#fff;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,156,222,.3)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        PayPal
+      </a>
+    </div>
+
+    <p style="font-family:var(--display);font-size:18px;color:var(--paper);margin-bottom:6px">Monthly Plan — <strong style="color:var(--gold)">$99</strong>/month</p>
+    <p style="font-size:13px;color:var(--mist);margin-bottom:14px">4 sessions + WhatsApp access · Cancel anytime</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+      <a href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:14px;background:linear-gradient(135deg,#528FF0,#2B84EA);color:#fff;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(82,143,240,.3)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Razorpay
+      </a>
+      <a href="https://www.paypal.com/ncp/payment/9VSTQUY7M42EQ" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:14px;background:linear-gradient(135deg,#003087,#009CDE);color:#fff;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,156,222,.3)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        PayPal
+      </a>
+    </div>
+
+    <p style="font-size:11px;color:rgba(154,161,199,.45)">🔒 Secure payment · Visa · Mastercard · Amex · All major cards · USD worldwide</p>
   </div>
 
-  <p class="price-note">Prices shown in USD, accepted from anywhere in the world. Payment is arranged after your free intro call — no charge for that first conversation.</p>
-  <p class="price-note" style="margin-top:12px"><a href="/policies.html" style="color:var(--gold);text-decoration:underline">View our Terms, Refund & Privacy Policies</a> — including our refund guarantee, cancellation terms, and data protection commitments.</p>
+  <p class="price-note" style="margin-top:20px"><a href="/policies.html" style="color:var(--gold);text-decoration:underline">View our Terms, Refund & Privacy Policies</a> — including our refund guarantee, cancellation terms, and data protection commitments.</p>
   <p class="price-note" style="margin-top:12px"><a href="/agreement.html" style="color:var(--cyan);text-decoration:underline">Sign the Client Agreement</a> — required before your first paid session. Both you and Vishal receive a signed copy via email.</p>
 </section>
 
