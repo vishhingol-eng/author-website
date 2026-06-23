@@ -221,8 +221,7 @@ button{font-family:var(--body);cursor:pointer}
   margin-bottom:4px;color:var(--ink);
 }
 .ptitle a:hover{color:var(--link);text-decoration:underline}
-.psub{font-size:12.5px;color:var(--mute);line-height:1.45;margin-bottom:8px;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.psub{font-size:12.5px;color:var(--mute);line-height:1.45;margin-bottom:8px;font-style:italic}
 .ptags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .ptag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:var(--link);background:#EDF2FB;padding:3px 9px;border-radius:100px}
@@ -239,6 +238,12 @@ button{font-family:var(--body);cursor:pointer}
 .btn-cart:hover{filter:brightness(1.06);transform:translateY(-1px)}
 .plink{font-size:12px;color:var(--link);font-weight:700;text-align:center}
 .plink:hover{text-decoration:underline}
+.pdesc{font-size:13px;color:var(--mute);line-height:1.6;margin-bottom:12px}
+.pmeta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.pmeta span{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border:1px solid var(--line);padding:4px 10px;border-radius:100px}
+.pauthor{font-size:12px;color:var(--mute);margin-bottom:12px}
+.pauthor strong{color:var(--ink)}
+.pku{font-size:11px;color:var(--mute);opacity:.6;margin-top:8px;text-align:center}
 
 .empty{
   grid-column:1/-1;text-align:center;color:var(--mute);padding:60px 20px;
@@ -334,11 +339,19 @@ button{font-family:var(--body);cursor:pointer}
       <input id="q" type="text" placeholder="Search books, journals, topics…" aria-label="Search books">
       <button aria-label="Search" onclick="document.getElementById('q').focus()">⌕</button>
     </div>
-    <nav class="top-links">
-      <a href="index.html">About the Author</a>
+    <nav class="top-links" id="navLinks">
+      <button class="nav-close" onclick="closeMenu()">✕</button>
+      <a href="index.html">Home</a>
+      <a href="mentor.html">Mentorship</a>
       <a href="blog.html">Blog</a>
-      <a class="home-link" id="authorLink" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon Author Page ↗</a>
+      <a href="policies.html" style="color:#E8BB6B">Policies</a>
+      <a class="home-link" id="authorLink" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
+      <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Instagram ↗</a>
+      <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Twitter ↗</a>
     </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
   <div class="cats"><div class="cats-inner" id="cats"></div></div>
 </header>
@@ -360,12 +373,19 @@ button{font-family:var(--body);cursor:pointer}
 </main>
 
 <footer class="storefoot">
-  © <span id="yr"></span> Vishal Hingol · All purchases are completed securely on <a id="footLink" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="index.html">Back to main site</a>
+  © 2025–<span id="yr"></span> Vishal Hingol · <a href="policies.html" style="color:#E8BB6B">Policies</a> · <a href="index.html">Home</a> · <a href="mentor.html">Mentorship</a> · <a id="footLink" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Instagram</a> · <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Twitter</a>
 </footer>
 
-<script src="covers.js"></script>
+<div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
+  This website uses minimal cookies for analytics. No advertising or tracking cookies.
+  <a href="/policies.html#privacy" style="color:#E8BB6B">Privacy Policy</a> ·
+  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
 <script>
-window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser cache once per day so replaced covers always show
+window._coversReady = true;
+window.COVER_BUST = new Date().toISOString().slice(0,10);
 </script>
 <script>
 (async function(){
@@ -503,19 +523,26 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
 
   function cardHTML(b){
     const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
-    const badge = b.featured ? '<span class="pbadge feat">★ Featured</span>'
+    const badge = b.featured ? '<span class="pbadge feat">★ Featured Novel</span>'
                 : isNew ? '<span class="pbadge">New Release</span>' : '';
+    const tags = (b.tags||[]).map(t=>`<span class="ptag">${esc(t)}</span>`).join('');
+    const formats = ['Kindle','Paperback'];
+    if(b.hardcover) formats.push('Hardcover');
     return `
     <article class="pcard">
       ${badge}
       <div class="pimg"><a class="cov" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${coverHTML(b)}</a></div>
-      <h3 class="ptitle"><a href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${esc(b.title)}</a></h3>
-      <p class="psub">${esc(b.subtitle||'')}</p>
-      <div class="ptags">${(b.tags||[]).slice(0,2).map(t=>`<span class="ptag">${esc(t)}</span>`).join('')}</div>
-      <div class="pformat">Kindle &amp; Paperback · Worldwide on Amazon</div>
-      <div class="pbuy">
-        <a class="btn-cart" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">Buy on Amazon</a>
-        <a class="plink" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">View details &amp; reviews ↗</a>
+      <div class="pinfo">
+        <div class="ptags">${tags}</div>
+        <h3 class="ptitle"><a href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${esc(b.title)}</a></h3>
+        <p class="psub">${esc(b.subtitle||'')}</p>
+        <p class="pdesc">${esc(b.description||'')}</p>
+        <div class="pmeta">${formats.map(f=>'<span>'+esc(f)+'</span>').join('')}<span>English</span></div>
+        <p class="pauthor">By <strong>Vishal Hingol</strong> · Available worldwide on Amazon</p>
+        <div class="pbuy">
+          <a class="btn-cart" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">Buy on Amazon</a>
+        </div>
+        <p class="pku">Free with Kindle Unlimited · 90+ countries</p>
       </div>
     </article>`;
   }
