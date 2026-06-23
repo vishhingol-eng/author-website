@@ -12,11 +12,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bookstore — Vishal Hingol | All Books & Guided Journals</title>
-<meta name="description" content="Browse every book by Vishal Hingol — self-help, manifestation, guided journals, visionary fiction and practical AI for business. Search, filter and buy on Amazon.">
+<meta name="description" content="Browse every book by Vishal Hingol — self-help, manifestation, guided journals, visionary fiction and practical AI for business. Search, filter and buy on Amazon worldwide. Free with Kindle Unlimited.">
+<meta name="keywords" content="Vishal Hingol books, self-help books, manifestation books, mindset books, 369 method book, visionary fiction novels, AI business books, Kindle Unlimited books, personal transformation books, guided journals, Indian author books, online book store, buy books worldwide, Amazon Kindle author">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Vishal Hingol">
 <link rel="canonical" href="https://vishalhingolauthor.com/store.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bookstore — Vishal Hingol | All Books & Guided Journals">
+<meta property="og:description" content="Browse the complete collection — self-help, manifestation, visionary fiction, and AI for business. Available worldwide on Amazon. Free with Kindle Unlimited.">
+<meta property="og:url" content="https://vishalhingolauthor.com/store.html">
+<meta property="og:image" content="https://vishalhingolauthor.com/vishal-hero.jpg">
+<meta property="og:site_name" content="Vishal Hingol — Author">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Authorvhingol">
+<meta name="twitter:creator" content="@Authorvhingol">
+<meta name="twitter:title" content="Bookstore — Vishal Hingol | All Books & Guided Journals">
+<meta name="twitter:description" content="Search, filter, and buy every book by Vishal Hingol. Mindset, manifestation, visionary fiction, and AI — worldwide on Amazon.">
+<meta name="twitter:image" content="https://vishalhingolauthor.com/vishal-hero.jpg">
+
+<!-- GEO Tags — business base + worldwide service -->
+<meta name="geo.region" content="IN-GJ">
+<meta name="geo.placename" content="Ahmedabad, Gujarat, India">
+<meta name="geo.position" content="23.0225;72.5714">
+<meta name="ICBM" content="23.0225, 72.5714">
+<meta name="coverage" content="Worldwide">
+<meta name="language" content="English">
+<meta name="distribution" content="global">
+<meta name="target" content="all">
+
+<!-- Hreflang — English worldwide -->
+<link rel="alternate" hreflang="en" href="https://vishalhingolauthor.com/store.html">
+<link rel="alternate" hreflang="x-default" href="https://vishalhingolauthor.com/store.html">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Albert+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://vishalhingolauthor.com/"},
+    {"@type":"ListItem","position":2,"name":"Bookstore","item":"https://vishalhingolauthor.com/store.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Bookstore — Vishal Hingol",
+  "description": "Complete catalogue of books by Vishal Hingol — mindset, manifestation, visionary fiction, and AI for business. Available worldwide on Amazon as Kindle eBooks and paperbacks, free with Kindle Unlimited.",
+  "url": "https://vishalhingolauthor.com/store.html",
+  "isPartOf": {"@type":"WebSite","name":"Vishal Hingol — Author","url":"https://vishalhingolauthor.com/"},
+  "author": {
+    "@type": "Person",
+    "name": "Vishal Hingol",
+    "image": "https://vishalhingolauthor.com/vishal-hero.jpg",
+    "sameAs": [
+      "https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37",
+      "https://www.instagram.com/authorvishalhingol",
+      "https://x.com/Authorvhingol"
+    ]
+  }
+}
+</script>
+<script type="application/ld+json" id="itemListSchema">
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[]}
+</script>
 <style>
 :root{
   --bg:#F3F4F7;
@@ -91,6 +161,7 @@ button{font-family:var(--body);cursor:pointer}
 }
 .results-bar h1{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,26px)}
 .results-bar .count{color:var(--mute);font-size:13.5px;font-weight:600}
+.seo-intro{color:var(--mute);font-size:13.5px;line-height:1.65;max-width:90ch;margin-bottom:24px}
 .sortwrap{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);font-weight:600}
 .sortwrap select{
   font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--ink);
@@ -99,6 +170,20 @@ button{font-family:var(--body);cursor:pointer}
 
 /* ============ product grid ============ */
 .grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:16px;
+}
+
+/* Category-wise rows (shown on the unfiltered "All" view) */
+.grid.rows-mode{display:block}
+.cat-row{margin-bottom:34px}
+.cat-row:last-child{margin-bottom:0}
+.cat-row-title{
+  font-family:var(--display);font-weight:600;font-size:clamp(18px,2.4vw,22px);
+  color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--accent);
+  display:inline-block;
+}
+.cat-row-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
   gap:16px;
 }
@@ -270,6 +355,7 @@ button{font-family:var(--body);cursor:pointer}
       </select>
     </div>
   </div>
+  <p class="seo-intro">Browse the complete bookstore of Vishal Hingol — visionary fiction novels, mindset and self-help books, manifestation guides, 90-day guided journals, and practical AI-for-business titles. Every book is available worldwide as a Kindle eBook and paperback on Amazon, ships to readers across the USA, UK, Canada, Australia, India, Europe, the Gulf, and beyond, and is free to read with Kindle Unlimited. Use the search bar or category filters above to find a specific book by Vishal Hingol, or browse by topic below.</p>
   <div class="grid" id="grid"></div>
 </main>
 
@@ -279,6 +365,9 @@ button{font-family:var(--body);cursor:pointer}
 
 <script src="covers.js"></script>
 <script>
+window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser cache once per day so replaced covers always show
+</script>
+<script>
 (async function(){
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const grid = document.getElementById('grid');
@@ -286,6 +375,8 @@ button{font-family:var(--body);cursor:pointer}
 
   /* original-filename fallbacks (same self-healing as homepage) */
   const ORIG = {
+    'the-architecture-of-destiny':'the-architecture-of-destiny.jpg',
+    'the-real-resonance-threshold':'the-real-resonance-threshold.jpg',
     'zara-and-the-divine-signal':'ZARA_Ebook.jpg',
     'lucky-girl-evidence-journal':'Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg',
     'the-real-frequency-of-origins':'The_Real_Frequency_of_Origins_Ebook.jpg',
@@ -300,6 +391,10 @@ button{font-family:var(--body);cursor:pointer}
     'the-quiet-revolution':'71pAMMcowLL__SL1500_.jpg',
     'the-universe-is-whispering-to-you':'universe_whispering_cover.jpg',
     'unshackled':'UNSHACKLED.jpg',
+    'digital-sovereignty':'Digital_Sovereignty.jpg',
+    'your-mind-is-the-blueprint':'Your_Mind_Is_Blueprint.jpg',
+    'run-your-business-on-ai-playbook':'Run_Your_Business_On_AI.jpg',
+    'the-ai-first-competitor':'AI_First_Competitor.jpg',
     'the-divine-369-manifestation-method':'The_Divine_3-6-9_Manifestation_Method.jpg'
   };
   function genCover(hue, title){
@@ -310,21 +405,67 @@ button{font-family:var(--body);cursor:pointer}
   }
   function coverHTML(b){
     const hue = +b.hue||35;
-    if(window.COVERS && window.COVERS[b.id]) return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)}">`;
+    if(window.COVERS && window.COVERS[b.id]) return `<img src="${window.COVERS[b.id]}" alt="Cover of ${esc(b.title)} by Vishal Hingol">`;
     const cands = [];
+    const o = ORIG[b.id]; if(o) cands.push('covers/'+o, o);
     if(b.coverImage){
       const base = b.coverImage.replace(/^covers\//,'');
       cands.push(b.coverImage); cands.push(base !== b.coverImage ? base : 'covers/'+base);
     }
-    const o = ORIG[b.id]; if(o) cands.push(o,'covers/'+o);
     if(!cands.length) return genCover(hue, esc(b.title));
-    return `<img src="${esc(cands[0])}" alt="Cover of ${esc(b.title)}" loading="lazy" data-i="0" data-cands='${JSON.stringify(cands)}' data-hue="${hue}" data-title="${esc(b.title)}" onerror="nextCover(this)">`;
+    const unique = [...new Set(cands)];
+    const bust = '?v=' + (window.COVER_BUST || '1');
+    return `<img src="${esc(unique[0]+bust)}" alt="Cover of ${esc(b.title)} by Vishal Hingol" loading="lazy" data-i="0" data-cands='${esc(JSON.stringify(unique))}' data-hue="${hue}" data-title="${esc(b.title)}" data-bust="${esc(bust)}" onerror="nextCover(this)">`;
   }
   window.nextCover = function(img){
-    const cands = JSON.parse(img.dataset.cands), i = (+img.dataset.i)+1;
-    if(i < cands.length){ img.dataset.i=i; img.src=cands[i]; }
-    else img.outerHTML = genCover(+img.dataset.hue, img.dataset.title);
+    try{
+      const cands = JSON.parse(img.dataset.cands.replace(/&quot;/g,'"').replace(/&amp;/g,'&'));
+      const i = (+img.dataset.i)+1;
+      if(i < cands.length){ img.dataset.i=i; img.src=cands[i]+(img.dataset.bust||''); }
+      else img.outerHTML = genCover(+img.dataset.hue, img.dataset.title);
+    }catch(e){
+      img.outerHTML = genCover(+img.dataset.hue||35, img.dataset.title||'');
+    }
   };
+
+  /* Category-wise row order — matches the canonical category structure
+     used across the rest of the site (homepage carousels, store grid). */
+  const CAT_ROWS = [
+    {label:'Visionary Fiction',        match:t=>/fiction|destiny|signal|echo|resonance|frequency|novel/i.test(t)},
+    {label:'Mindset & Self-Help',      match:t=>/mindset|self-help|self help|habit|focus|discipline|psycholog/i.test(t)},
+    {label:'Manifestation & Journals', match:t=>/manifest|journal|369|law of attraction|gratitude/i.test(t)},
+    {label:'AI & Business',            match:t=>/ai|business|entrepreneur|productivity/i.test(t)}
+  ];
+  function categoryRowFor(book){
+    const hay = (book.tags||[]).join(' ');
+    for(const row of CAT_ROWS){ if(row.match(hay)) return row.label; }
+    return 'More from Vishal Hingol';
+  }
+
+  function populateItemListSchema(books){
+    try{
+      const el = document.getElementById('itemListSchema');
+      if(!el) return;
+      const schema = {
+        "@context":"https://schema.org",
+        "@type":"ItemList",
+        "itemListElement": books.map((b,i)=>({
+          "@type":"ListItem",
+          "position": i+1,
+          "item":{
+            "@type":"Book",
+            "name": b.title,
+            "url": b.amazonUrl,
+            "author":{"@type":"Person","name":"Vishal Hingol"},
+            "bookFormat": "https://schema.org/EBook",
+            "inLanguage": "en",
+            "description": b.description||b.subtitle||''
+          }
+        }))
+      };
+      el.textContent = JSON.stringify(schema);
+    }catch(e){ /* schema population is non-critical, never block render */ }
+  }
 
   /* load database */
   let data;
@@ -340,6 +481,7 @@ button{font-family:var(--body);cursor:pointer}
     document.getElementById('footLink').href = data.author.amazonAuthorPage;
   }
   const all = (data.books||[]).slice();
+  populateItemListSchema(all);
 
   /* categories from tags */
   const catSet = new Set();
@@ -359,6 +501,25 @@ button{font-family:var(--body);cursor:pointer}
   document.getElementById('q').addEventListener('input', e=>{ query = e.target.value.trim().toLowerCase(); render(); });
   document.getElementById('sort').addEventListener('change', e=>{ sortMode = e.target.value; render(); });
 
+  function cardHTML(b){
+    const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
+    const badge = b.featured ? '<span class="pbadge feat">★ Featured</span>'
+                : isNew ? '<span class="pbadge">New Release</span>' : '';
+    return `
+    <article class="pcard">
+      ${badge}
+      <div class="pimg"><a class="cov" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${coverHTML(b)}</a></div>
+      <h3 class="ptitle"><a href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${esc(b.title)}</a></h3>
+      <p class="psub">${esc(b.subtitle||'')}</p>
+      <div class="ptags">${(b.tags||[]).slice(0,2).map(t=>`<span class="ptag">${esc(t)}</span>`).join('')}</div>
+      <div class="pformat">Kindle &amp; Paperback · Worldwide on Amazon</div>
+      <div class="pbuy">
+        <a class="btn-cart" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">Buy on Amazon</a>
+        <a class="plink" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">View details &amp; reviews ↗</a>
+      </div>
+    </article>`;
+  }
+
   function render(){
     let books = all.filter(b=>{
       const inCat = activeCat==='All' || (b.tags||[]).includes(activeCat);
@@ -373,26 +534,35 @@ button{font-family:var(--body);cursor:pointer}
 
     if(!books.length){
       grid.innerHTML = `<div class="empty"><b>No books match "${esc(query)}"</b>Try a different search or pick another category.</div>`;
+      grid.classList.remove('rows-mode');
       return;
     }
-    grid.innerHTML = books.map(b=>{
-      const isNew = (now - new Date(b.published).getTime()) < NEW_DAYS*864e5;
-      const badge = b.featured ? '<span class="pbadge feat">★ Featured</span>'
-                  : isNew ? '<span class="pbadge">New Release</span>' : '';
-      return `
-      <article class="pcard">
-        ${badge}
-        <div class="pimg"><a class="cov" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${coverHTML(b)}</a></div>
-        <h2 class="ptitle"><a href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">${esc(b.title)}</a></h2>
-        <p class="psub">${esc(b.subtitle||'')}</p>
-        <div class="ptags">${(b.tags||[]).slice(0,2).map(t=>`<span class="ptag">${esc(t)}</span>`).join('')}</div>
-        <div class="pformat">Kindle &amp; Paperback</div>
-        <div class="pbuy">
-          <a class="btn-cart" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">Buy on Amazon</a>
-          <a class="plink" href="${esc(b.amazonUrl)}" target="_blank" rel="noopener">View details &amp; reviews ↗</a>
-        </div>
-      </article>`;
-    }).join('');
+
+    // Category-wise rows only make sense for the unfiltered, unsearched
+    // view — once someone searches or picks a specific tag pill, show
+    // the flat sorted/filtered grid instead.
+    const showRows = activeCat === 'All' && !query;
+
+    if(!showRows){
+      grid.classList.remove('rows-mode');
+      grid.innerHTML = books.map(cardHTML).join('');
+      return;
+    }
+
+    grid.classList.add('rows-mode');
+    const grouped = {};
+    books.forEach(b=>{
+      const label = categoryRowFor(b);
+      (grouped[label] = grouped[label] || []).push(b);
+    });
+    const order = [...CAT_ROWS.map(r=>r.label), 'More from Vishal Hingol'].filter(l=>grouped[l] && grouped[l].length);
+
+    grid.innerHTML = order.map(label => `
+      <section class="cat-row">
+        <h2 class="cat-row-title">${esc(label)}</h2>
+        <div class="cat-row-grid">${grouped[label].map(cardHTML).join('')}</div>
+      </section>
+    `).join('');
   }
   render();
   document.getElementById('yr').textContent = new Date().getFullYear();
