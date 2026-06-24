@@ -44,8 +44,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="vishal-hero.webp" fetchpriority="high">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -169,8 +168,7 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(54px,11vw,124px);l
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(232,187,107,.55),0 12px 34px rgba(0,0,0,.4)}
 .btn-ghost{border:1px solid rgba(125,230,255,.35);color:var(--cyan);background:rgba(125,230,255,.05);backdrop-filter:blur(8px)}
 .btn-ghost:hover{border-color:var(--cyan);box-shadow:0 0 26px rgba(125,230,255,.3);transform:translateY(-2px)}
-.scroll-hint{position:absolute;bottom:34px;left:50%;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--mist);font-family:var(--tech);font-size:10.5px;letter-spacing:.36em;text-transform:uppercase;transform:translate(-50%,0);animation:drift 2.6s ease-in-out infinite}
-.scroll-hint svg{width:14px;height:14px;stroke:var(--cyan);opacity:.85}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);color:var(--mist);font-family:var(--tech);font-size:10.5px;letter-spacing:.36em;text-transform:uppercase;animation:drift 2.6s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
 section{padding:clamp(80px,12vw,150px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
@@ -206,7 +204,7 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .g-card .g-info{display:flex;flex-direction:column;justify-content:center}
 .g-card .g-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .g-card .g-title{font-family:var(--display);font-size:clamp(18px,2.5vw,22px);font-weight:400;color:var(--paper);margin-bottom:4px}
-.g-card .g-sub{font-family:var(--display);font-style:italic;font-size:14px;background:linear-gradient(100deg,#F0CE8E,var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+.g-card .g-sub{font-family:var(--display);font-style:italic;font-size:14px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
 .g-card .g-desc{color:var(--mist);font-size:13.5px;line-height:1.65;margin-bottom:16px}
 .g-card .g-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .g-card .g-meta span{font-family:var(--tech);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);border:1px solid var(--line);padding:4px 12px;border-radius:100px}
@@ -239,7 +237,7 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .spot-cover img{width:100%;height:100%;object-fit:cover;display:block}
 .spot-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);padding:8px 18px;border-radius:100px;margin-bottom:20px;box-shadow:0 0 24px rgba(232,187,107,.5)}
 .spot-info h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.06;letter-spacing:-.01em}
-.spot-info .book-sub{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(16px,2vw,20px);margin-top:10px;background:linear-gradient(100deg,#F0CE8E,var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.spot-info .book-sub{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(16px,2vw,20px);margin-top:10px;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .spot-info .book-desc{color:var(--mist);font-size:clamp(15px,1.8vw,16.5px);max-width:60ch;margin-top:14px}
 .spot-cta{display:flex;gap:16px;align-items:center;margin-top:26px;flex-wrap:wrap}
 .buy-note{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.08em;text-transform:uppercase}
@@ -406,11 +404,11 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
       <div class="hero-photo-glow" aria-hidden="true"></div>
       <picture>
         <source srcset="vishal-hero.webp" type="image/webp">
-        <img class="hero-photo-img" src="vishal-hero.jpg" alt="Vishal Hingol — Author & Mindset Coach" width="600" height="901" fetchpriority="high" decoding="async">
+        <img class="hero-photo-img" src="vishal-hero.jpg" alt="Vishal Hingol — Author & Mindset Coach" width="600" height="901" fetchpriority="high">
       </picture>
     </div>
   </div>
-  <span class="scroll-hint" aria-hidden="true">Scroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+  <span class="scroll-hint">Scroll</span>
 </header>
 
 <div class="stats-bar veil reveal">
@@ -682,14 +680,8 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
      </div>`;
   }
 
-  // Build a WebP path from a JPG/PNG path: 'covers/foo.jpg' -> 'covers/foo.webp'
-  function toWebp(path){
-    return path.replace(/\.(jpe?g|png)$/i, '.webp');
-  }
-
-  function coverHTML(b, opts){
+  function coverHTML(b){
     const hue = +b.hue || 35;
-    const eager = opts && opts.eager;
     if(NO_COVER.has(b.id)) return genCoverHTML(hue, esc(b.title), b.id);
 
     const cands = [];
@@ -704,16 +696,9 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     if(cands.length){
       const unique = [...new Set(cands)];
       const bust = '?v=' + (window.COVER_BUST || '1');
-      const first = unique[0];
-      const webp = toWebp(first);
-      const loadingAttr = eager ? '' : ' loading="lazy"';
-      return `<picture>
-        <source srcset="${esc(webp+bust)}" type="image/webp">
-        <img src="${esc(first+bust)}" alt="Cover of ${esc(b.title)}"${loadingAttr} decoding="async"
-          width="320" height="480"
-          data-i="0" data-id="${esc(b.id)}" data-cands='${esc(JSON.stringify(unique))}' data-hue="${hue}" data-title="${esc(b.title)}" data-bust="${esc(bust)}"
-          onerror="window.nextCover(this)">
-      </picture>`;
+      return `<img src="${esc(unique[0]+bust)}" alt="Cover of ${esc(b.title)}" loading="lazy"
+        data-i="0" data-id="${esc(b.id)}" data-cands='${esc(JSON.stringify(unique))}' data-hue="${hue}" data-title="${esc(b.title)}" data-bust="${esc(bust)}"
+        onerror="window.nextCover(this)">`;
     }
     return genCoverHTML(hue, esc(b.title), b.id);
   }
@@ -722,19 +707,10 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     try{
       const cands = JSON.parse(img.dataset.cands.replace(/&quot;/g,'"').replace(/&amp;/g,'&'));
       const i = (+img.dataset.i) + 1;
-      if(i < cands.length){
-        img.dataset.i = i;
-        const next = cands[i] + (img.dataset.bust||'');
-        img.src = next;
-        // Keep the WebP <source> in sync with whichever JPG/PNG candidate we just fell back to,
-        // so the picture element keeps trying WebP first on subsequent renders too.
-        const picture = img.closest('picture');
-        const source = picture && picture.querySelector('source');
-        if(source) source.srcset = toWebp(cands[i]) + (img.dataset.bust||'');
-      }
-      else { (img.closest('picture')||img).outerHTML = genCoverHTML(+img.dataset.hue, img.dataset.title, img.dataset.id); }
+      if(i < cands.length){ img.dataset.i = i; img.src = cands[i] + (img.dataset.bust||''); }
+      else { img.outerHTML = genCoverHTML(+img.dataset.hue, img.dataset.title, img.dataset.id); }
     }catch(e){
-      (img.closest('picture')||img).outerHTML = genCoverHTML(+img.dataset.hue || 35, img.dataset.title || '', img.dataset.id || '');
+      img.outerHTML = genCoverHTML(+img.dataset.hue || 35, img.dataset.title || '', img.dataset.id || '');
     }
   };
 
@@ -772,14 +748,14 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     if(!feat){ box.innerHTML = ''; return; }
     box.innerHTML = `
       <div class="spotlight reveal">
-        <div class="spot-cover">${coverHTML(feat, {eager:true})}</div>
+        <div class="spot-cover">${coverHTML(feat)}</div>
         <div class="spot-info">
           <span class="spot-eyebrow">✦ Featured Novel</span>
           <h3>${esc(feat.title)}</h3>
           <p class="book-sub">${esc(feat.subtitle||'')}</p>
           <p class="book-desc">${esc(feat.description||'')}</p>
           <div class="spot-cta">
-            <a class="btn btn-gold" href="${esc(feat.amazonUrl||'#')}" target="_blank" rel="noopener" aria-label="Buy ${esc(feat.title)} on Amazon">Get the Book</a>
+            <a class="btn btn-gold" href="${esc(feat.amazonUrl||'#')}" target="_blank" rel="noopener">Get the Book</a>
             <span class="buy-note">Kindle · Paperback</span>
           </div>
         </div>
@@ -822,7 +798,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
                   <span>English</span>
                 </div>
                 <p class="g-author">By <strong>Vishal Hingol</strong> · Available worldwide</p>
-                <a class="btn-buy" href="${esc(b.amazonUrl||'#')}" target="_blank" rel="noopener" aria-label="Buy ${esc(b.title)} on Amazon">
+                <a class="btn-buy" href="${esc(b.amazonUrl||'#')}" target="_blank" rel="noopener">
                   Buy on Amazon
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
                 </a>
