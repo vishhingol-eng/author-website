@@ -638,14 +638,14 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
 <script>
 /* ====================================================================
    BOOK LIBRARY — embedded data, no external JSON needed.
-   Books with covers in /author-website/covers/ load real images.
+   Books with covers in /covers/ load real images.
    Books without covers show beautiful gradient-generated covers.
 ==================================================================== */
 (function(){
   const shelfEl = document.getElementById('categoryShelf');
   const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-  const COVER_BASE = 'author-website/covers/';
+  const COVER_BASE = 'covers/';
   const ORIG = {
     'the-architecture-of-destiny':          COVER_BASE + 'the-architecture-of-destiny.jpg',
     'the-real-resonance-threshold':         COVER_BASE + 'the-real-resonance-threshold.jpg',
@@ -827,7 +827,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
   const feat = BOOKS.find(b => b.featured) || BOOKS[0] || null;
   renderSpotlight(feat);
   renderCategories();
-  hookReveals();
+  // hookReveals() is called later in the starfield script
 })();
 </script>
 
