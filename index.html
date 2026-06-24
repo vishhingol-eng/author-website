@@ -398,7 +398,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
         <a class="btn btn-gold" href="#books" id="siteBtn1">Browse the Books</a>
         <a class="btn btn-ghost" href="mentor.html" id="siteBtn2">Free Mentor Call</a>
       </div>
-      <a href="about.html" style="display:inline-block;margin-top:16px;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);text-decoration:none;transition:color .2s">About Me →</a>
+      <a href="about.html" class="btn btn-ghost" style="margin-top:16px">About Vishal Hingol</a>
     </div>
     <div class="hero-photo-wrap-outer" data-parallax="photo">
       <div class="hero-photo-ring" aria-hidden="true"></div>
@@ -586,7 +586,7 @@ document.addEventListener('keydown', function(e){
 window._coversReady = true; // covers.js removed for speed - using real image files via coverImage path
 window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser cache once per day so replaced covers always show
 </script>
-<!-- site.json not present on server — using static content already in HTML
+<!-- site.json not present on server — using static content
 <script>
 (async function(){
   try{
@@ -637,42 +637,35 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
 
 <script>
 /* ====================================================================
-   BOOK LIBRARY — rebuilt from scratch.
-   Single fetch -> single render path. No "shelf" vs "categoryShelf"
-   naming drift, no "allBooks" vs "all" drift. Everything below uses
-   one consistent set of names: BOOKS (array) and BOOK_MAP (lookup).
-   Wrapped in try/catch at every async boundary so a single failure
-   (bad image, missing book.json field) can never leave the section
-   stuck on "Loading the library…" forever.
+   BOOK LIBRARY — embedded data, no external JSON needed.
+   Books with covers in /author-website/covers/ load real images.
+   Books without covers show beautiful gradient-generated covers.
 ==================================================================== */
 (function(){
   const shelfEl = document.getElementById('categoryShelf');
   const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-  // Known original cover filenames, keyed by book id.
-  // All covers live in: /author-website/covers/
   const COVER_BASE = 'author-website/covers/';
   const ORIG = {
     'the-architecture-of-destiny':          COVER_BASE + 'the-architecture-of-destiny.jpg',
     'the-real-resonance-threshold':         COVER_BASE + 'the-real-resonance-threshold.jpg',
-    'zara-and-the-divine-signal':           COVER_BASE + 'ZARA_Ebook.jpg',
-    'digital-sovereignty':                  COVER_BASE + 'Digital_Sovereignty.jpg',
-    'the-real-frequency-of-origins':        COVER_BASE + 'The_Real_Frequency_of_Origins_Ebook.jpg',
-    'the-real-architect-of-echoes':         COVER_BASE + 'The_Real_Architect_of_Echoes_EBOOK.jpg',
-    'the-signal':                           COVER_BASE + 'The_Signal_EBOOK.jpg',
-    'why-you-keep-holding-yourself-back':   COVER_BASE + 'Why_You_Keep_Holding_Yourself_Back_KDP__1_.jpg',
-    'the-universe-is-whispering-to-you':    COVER_BASE + 'universe_whispering_cover.jpg',
-    'the-unconditioned-mind':               COVER_BASE + 'The_Unconditioned_Mind_KDP.jpg',
-    'unshackled':                           COVER_BASE + 'UNSHACKLED.jpg',
-    'run-your-business-on-ai-playbook':     COVER_BASE + 'Run_Your_Business_On_AI.jpg',
-    'your-mind-is-the-blueprint':           COVER_BASE + 'Your_Mind_Is_Blueprint.jpg',
-    'the-divine-369-manifestation-method':  COVER_BASE + 'The_Divine_3-6-9_Manifestation_Method.jpg',
-    'the-quiet-revolution':                 COVER_BASE + '71pAMMcowLL__SL1500_.jpg',
-    'lucky-girl-evidence-journal':          COVER_BASE + 'Lucky_Girl_Evidence_Journal_KDP_Kindle_Compliant__1_.jpg',
-    'the-ai-first-competitor':              COVER_BASE + 'AI_First_Competitor.jpg'
+    'zara-and-the-divine-signal':           null,
+    'digital-sovereignty':                  COVER_BASE + 'digital-sovereignty.jpg',
+    'the-real-frequency-of-origins':        COVER_BASE + 'the-real-frequency-of-origins.jpg',
+    'the-real-architect-of-echoes':         COVER_BASE + 'the-real-architect-of-echoes.jpg',
+    'the-signal':                           COVER_BASE + 'the-signal.jpg',
+    'why-you-keep-holding-yourself-back':   null,
+    'the-universe-is-whispering-to-you':    null,
+    'the-unconditioned-mind':               COVER_BASE + 'the-unconditioned-mind.jpg',
+    'unshackled':                           null,
+    'run-your-business-on-ai-playbook':     COVER_BASE + 'run-your-business-on-ai-playbook.jpg',
+    'your-mind-is-the-blueprint':           null,
+    'the-divine-369-manifestation-method':  COVER_BASE + 'the-divine-369-manifestation-method.jpg',
+    'the-quiet-revolution':                 COVER_BASE + 'the-quiet-revolution.jpg',
+    'lucky-girl-evidence-journal':          null,
+    'the-ai-first-competitor':              COVER_BASE + 'the-ai-first-competitor.jpg'
   };
 
-  // Books with confirmed, real cover art now live in /covers — no fallback needed.
   const NO_COVER = new Set([]);
 
   function genCoverHTML(hue, title, id){
@@ -686,7 +679,6 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
      </div>`;
   }
 
-  // Build a WebP path from a JPG/PNG path: 'covers/foo.jpg' -> 'covers/foo.webp'
   function toWebp(path){
     return path.replace(/\.(jpe?g|png)$/i, '.webp');
   }
@@ -699,10 +691,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     const cands = [];
     const o = ORIG[b.id];
     if(o){ cands.push(o); }
-    if(b.coverImage){
-      // coverImage should already include full path if provided in books.json
-      cands.push(b.coverImage);
-    }
+    if(b.coverImage){ cands.push(b.coverImage); }
 
     if(cands.length){
       const unique = [...new Set(cands)];
@@ -725,23 +714,13 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     try{
       const cands = JSON.parse(img.dataset.cands.replace(/&quot;/g,'"').replace(/&amp;/g,'&'));
       const i = (+img.dataset.i) + 1;
-      if(i < cands.length){
-        img.dataset.i = i;
-        const next = cands[i] + (img.dataset.bust||'');
-        img.src = next;
-        // Keep the WebP <source> in sync with whichever JPG/PNG candidate we just fell back to,
-        // so the picture element keeps trying WebP first on subsequent renders too.
-        const picture = img.closest('picture');
-        const source = picture && picture.querySelector('source');
-        if(source) source.srcset = toWebp(cands[i]) + (img.dataset.bust||'');
-      }
+      if(i < cands.length){ img.dataset.i = i; img.src = cands[i] + (img.dataset.bust||''); }
       else { (img.closest('picture')||img).outerHTML = genCoverHTML(+img.dataset.hue, img.dataset.title, img.dataset.id); }
     }catch(e){
       (img.closest('picture')||img).outerHTML = genCoverHTML(+img.dataset.hue || 35, img.dataset.title || '', img.dataset.id || '');
     }
   };
 
-  // Category definitions (order = display order)
   const CATS = [
     {key:'novels',        eyebrow:'// Visionary Fiction', title:'Visionary <em>Fiction.</em>',  ids:['the-architecture-of-destiny','the-real-resonance-threshold','the-real-frequency-of-origins','the-real-architect-of-echoes']},
     {key:'mindset',       eyebrow:'// Mindset & Self-Help', title:'Rewire your <em>mind.</em>', ids:['why-you-keep-holding-yourself-back','the-unconditioned-mind','your-mind-is-the-blueprint','the-quiet-revolution','unshackled','digital-sovereignty','the-universe-is-whispering-to-you','the-signal']},
@@ -749,25 +728,28 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     {key:'ai',            eyebrow:'// AI & Business', title:'Work <em>smarter.</em>', ids:['run-your-business-on-ai-playbook','the-ai-first-competitor']}
   ];
 
-  const ZARA_FALLBACK = {
-    id:'zara-and-the-divine-signal',
-    title:'Zara and the Divine Signal',
-    subtitle:'When the Universe Chooses a Child to Change the World',
-    description:"Vishal's most ambitious work — a girl, an old radio, and a signal that should not exist. How the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.",
-    published:'2026-06-08',
-    featured:true,
-    tags:['Fiction','Spirituality','Signal'],
-    amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',
-    hue:35
-  };
+  const BOOKS = [
+    {id:'zara-and-the-divine-signal',title:'Zara and the Divine Signal',subtitle:'When the Universe Chooses a Child to Change the World',description:"Vishal's most ambitious work — a girl, an old radio, and a signal that should not exist. How the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.",published:'2026-06-08',featured:true,tags:['Fiction','Spirituality','Signal'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:35},
+    {id:'the-architecture-of-destiny',title:'The Architecture of Destiny',subtitle:'A Novel of Shadows, Invention, and the Life No One Saw Coming',description:'Destiny is not found. It is built. A novel about the quiet architecture beneath every life that looks ordinary from the outside — the shadows, the invention, and the slow construction of a future no one saw coming, including the person living it.',published:'2024-01-15',tags:['Fiction','Destiny','Self-Discovery'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:45},
+    {id:'the-real-resonance-threshold',title:'The Real Resonance Threshold',subtitle:'A Mind-Bending Sci-Fi Thriller of Quantum Consciousness, Frequency, and the Collapse of Reality',description:'A mind-bending science fiction thriller that explores the boundary between consciousness and quantum reality. When transformation becomes possible at the frequency level, nothing about who you are remains the same.',published:'2024-03-20',tags:['Sci-Fi','Thriller','Quantum'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:200},
+    {id:'the-real-frequency-of-origins',title:'The Real Frequency of Origins',subtitle:'When the Universe Starts Talking Back',description:'NO SIGNAL. RETRYING... In a city drowning in noise, one woman starts receiving answers to questions she never asked aloud. A novel about origins, signals, and what happens when the universe finally talks back to someone who has spent a lifetime broadcasting into silence.',published:'2024-05-10',tags:['Fiction','Spirituality','Signal'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:280},
+    {id:'the-real-architect-of-echoes',title:'The Real Architect of Echoes',subtitle:'The Story of Changing Your Frequency',description:'Reality is not random. It is responding. A story about the echoes we send into the world, the ones that return, and the moment a man realizes he has been the architect of both all along. When you change your frequency, you change everything that comes back to you.',published:'2024-07-22',tags:['Fiction','Frequency','Mindset'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:320},
+    {id:'why-you-keep-holding-yourself-back',title:'Why You Keep Holding Yourself Back',subtitle:'Break Self-Sabotage, Rewire Your Mind, and Unlock Your Potential',description:'You know what to do. You have set your goals. You have made the plans. And yet you keep ending up in the same place — not because you are lazy or lack discipline, but because subconscious beliefs, childhood conditioning, and comfort zone addiction are silently controlling your decisions.',published:'2024-02-14',tags:['Self-Help','Mindset','Self-Sabotage'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:30},
+    {id:'the-unconditioned-mind',title:'The Unconditioned Mind',subtitle:'How to Dissolve Modern Traps, Reclaim Your Focus, and Live Life on Your Own Terms',description:'Your attention is being farmed, your habits engineered, your thinking conditioned. This book shows you how to step out of the modern traps — distraction, comparison, autopilot living — and recover a clear, focused, self-directed mind.',published:'2024-04-18',tags:['Self-Help','Focus & Clarity'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:160},
+    {id:'your-mind-is-the-blueprint',title:'Your Mind Is the Blueprint',subtitle:'Rewire Your Thinking, Break Hidden Patterns, and Create the Life You Want',description:'Most people try to change their life by changing what they do — and fail. This book targets the one factor that shapes every decision, habit and outcome: your thinking patterns. A structured, practical system to reshape them step by step.',published:'2024-06-01',tags:['Self-Help','Thinking Patterns'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:60},
+    {id:'the-quiet-revolution',title:'The Quiet Revolution',subtitle:'How to Manifest the Life You Want Without Lying to Yourself',description:'A radically honest approach to transformation — no fake positivity, no magical thinking, no spiritual performance. Blending psychology, neuroscience and daily action, this book replaces fantasy manifestation with something stronger: becoming someone new through small, consistent, honest actions.',published:'2024-08-12',tags:['Self-Help','Manifestation'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:120},
+    {id:'unshackled',title:'UNSHACKLED',subtitle:"12 Hidden Habits Keeping Modern Men Stagnant, Lonely, and Broke — And How to Break Them",description:'The habits that saved you then are silently destroying you now. Twelve hidden patterns keeping modern men stagnant, lonely, and broke: dopamine distractions, the lone wolf myth, overthinking paralysis, emotional disconnection, financial illiteracy, comfort addiction and more. Named, explained, and dismantled.',published:'2024-09-05',tags:['Self-Help',"Men's Growth"],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:10},
+    {id:'digital-sovereignty',title:'Digital Sovereignty',subtitle:'Breaking Free from Modern Traps, Reclaiming Your Mind, and Building a Life of Meaning',description:'The system profits when you obey. You win when you think. A practical manual for people who refuse to be programmed — covering algorithms that hijack your attention, social media that owns your mind, money myths that keep you broke, and constant distraction that kills your depth.',published:'2024-10-20',tags:['Self-Help','Digital Wellness','Mindset'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:220},
+    {id:'the-universe-is-whispering-to-you',title:'The Universe is Whispering to You',subtitle:"How to Recognize Signs, Decode Synchronicities, and Align with Your Soul's Path",description:'For everyone who has experienced something they cannot explain — and cannot tell anyone about. A guide to noticing the signs and synchronicities woven through everyday life: the 111s, the 222s, the feathers, the doors. Learn to trust what they are telling you.',published:'2024-11-15',tags:['Spirituality','Signs & Synchronicity'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:260},
+    {id:'the-signal',title:'The Signal',subtitle:'A 21-Day Protocol for Rewiring Your Attention, Reclaiming Your Mind, and Finding Your Purpose',description:'Cut through the noise. Tune into what matters. A focused 21-day protocol for rewiring your attention, reclaiming your mind, and locking onto the frequency of the life you actually want. Day by day, the interference clears. Day by day, the signal gets stronger.',published:'2025-01-10',tags:['Self-Help','21-Day Protocol','Focus'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:190},
+    {id:'the-divine-369-manifestation-method',title:'The Divine 3-6-9 Manifestation Method',subtitle:'A Practical Guide to Attract Love, Money, and Abundance',description:'A complete, structured guide to the 369 writing practice — 3 times in the morning, 6 in the afternoon, 9 at night — grounded in how repetition actually rewires belief. Covers love, money, self-love and abundance with a clear daily method you can start today.',published:'2024-12-01',tags:['Manifestation','Law of Attraction'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:40},
+    {id:'lucky-girl-evidence-journal',title:'Lucky Girl Evidence Journal',subtitle:'A 90-Day Guided Program to Rewire Your Brain, Track Your Wins, and Manifest Faster',description:'Luck is a lens — and this journal trains it. For 90 days you collect daily evidence that things work out for you: small wins, near-misses, perfect timing. By the end, your brain stops arguing and starts expecting good things.',published:'2025-02-14',tags:['Guided Journal','90-Day Program'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:340},
+    {id:'run-your-business-on-ai-playbook',title:'The Run-Your-Business-On-AI Playbook',subtitle:'How Small Business Owners Use ChatGPT, Claude, and Gemini to Scale Faster',description:'No theory, no future predictions — every page answers one question: how do I get AI to do this specific business task for me, right now, today? A hands-on playbook for owners who want their time back.',published:'2025-03-01',tags:['Business','AI Tools'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:210},
+    {id:'the-ai-first-competitor',title:'The AI-First Competitor',subtitle:'How Local Businesses and Solo Founders Weaponize Artificial Intelligence to Dominate Their Niche',description:'The businesses winning today are not working harder — they are running smarter systems. Build AI workflows that capture leads, reply in minutes, nurture clients and keep your business moving while you sleep.',published:'2025-04-20',tags:['Business','AI Workflows'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:180}
+  ];
 
-  let BOOKS = [];
   let BOOK_MAP = {};
-
-  function buildBookMap(){
-    BOOK_MAP = {};
-    BOOKS.forEach(b => { if(b && b.id) BOOK_MAP[b.id] = b; });
-  }
+  BOOKS.forEach(b => { if(b && b.id) BOOK_MAP[b.id] = b; });
 
   function renderSpotlight(feat){
     const box = document.getElementById('spotlightBox');
@@ -842,37 +824,10 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     }
   }
 
-  async function loadBooks(){
-    try{
-      const res = await fetch('author-website/books.json?v=' + Date.now(), {cache:'no-store'});
-      if(!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-
-      if(data.author && data.author.amazonAuthorPage){
-        document.querySelectorAll('.amzn-link, #navAmzn').forEach(a => a.href = data.author.amazonAuthorPage);
-      }
-
-      let books = Array.isArray(data.books) ? data.books.slice() : [];
-      const hasZara = books.some(b => b && (b.id === 'zara-and-the-divine-signal' || b.title === 'Zara and the Divine Signal'));
-      if(!hasZara) books = [ZARA_FALLBACK, ...books];
-      books.forEach(b => { if(b && b.id === 'zara-and-the-divine-signal') b.featured = true; });
-
-      books.sort((a, b) => new Date(b.published||0) - new Date(a.published||0));
-
-      BOOKS = books;
-      buildBookMap();
-
-      const feat = BOOKS.find(b => b.featured) || BOOKS[0] || null;
-      renderSpotlight(feat);
-      renderCategories();
-      hookReveals();
-    }catch(err){
-      console.error('Book library failed to load:', err);
-      shelfEl.innerHTML = '<p class="shelf-status">The library couldn\u2019t load right now — please visit my <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon author page</a> to see all books.</p>';
-    }
-  }
-
-  loadBooks();
+  const feat = BOOKS.find(b => b.featured) || BOOKS[0] || null;
+  renderSpotlight(feat);
+  renderCategories();
+  hookReveals();
 })();
 </script>
 
