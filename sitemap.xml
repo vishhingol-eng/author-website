@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
   <url>
     <loc>https://vishalhingolauthor.com/</loc>
     <changefreq>weekly</changefreq>
@@ -26,14 +28,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://vishalhingolauthor.com/policies.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://vishalhingolauthor.com/lost-chapter.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Blog articles — slugs taken exactly from blog.json -->
   <url>
-    <loc>https://vishalhingolauthor.com/policies.html</loc>
+    <loc>https://vishalhingolauthor.com/why-you-keep-self-sabotaging.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/369-manifestation-method-complete-guide.html</loc>
@@ -41,82 +50,42 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/best-self-help-books-indian-authors.html</loc>
+    <loc>https://vishalhingolauthor.com/digital-sovereignty-reclaim-your-mind.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/how-to-break-self-sabotage-patterns.html</loc>
+    <loc>https://vishalhingolauthor.com/best-self-help-books-indian-authors-2026.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/manifestation-journal-guide.html</loc>
+    <loc>https://vishalhingolauthor.com/what-is-subconscious-reprogramming.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/how-to-reprogram-subconscious-mind.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-rewire-your-brain-for-success.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/digital-minimalism-guide.html</loc>
+    <loc>https://vishalhingolauthor.com/law-of-assumption-vs-law-of-attraction.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/signs-universe-is-talking-to-you.html</loc>
+    <loc>https://vishalhingolauthor.com/morning-routine-subconscious-reprogramming.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/morning-routine-for-manifestation.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-raise-your-vibration-permanently.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/law-of-attraction-for-beginners.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/how-to-use-ai-for-small-business.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/overcome-fear-of-failure.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/mindset-shifts-for-success.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/how-to-stop-overthinking.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/guided-journal-vs-blank-journal.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/why-most-people-stay-stuck.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/abundance-mindset-guide.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/self-help-books-that-actually-work.html</loc>
+    <loc>https://vishalhingolauthor.com/signs-universe-is-guiding-you.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -126,38 +95,74 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/what-is-frequency-in-manifestation.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-use-ai-tools-for-small-business.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/power-of-writing-things-down.html</loc>
+    <loc>https://vishalhingolauthor.com/what-is-limiting-beliefs-how-to-overcome.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/how-to-manifest-money.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-manifest-money-abundance.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/books-about-personal-transformation.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-find-your-purpose-in-life.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/how-to-find-your-purpose.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-break-bad-habits-permanently.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/daily-habits-for-manifestation.html</loc>
+    <loc>https://vishalhingolauthor.com/quantum-consciousness-what-it-means.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vishalhingolauthor.com/visionary-fiction-books.html</loc>
+    <loc>https://vishalhingolauthor.com/how-to-develop-emotional-intelligence.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/synchronicity-carl-jung-meaning.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/how-to-build-mental-toughness.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/how-ai-is-changing-business-india-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/how-to-meditate-for-beginners.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/lucky-girl-syndrome-does-it-work.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/unshackled-habits-modern-men.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/power-of-journalling-for-transformation.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
