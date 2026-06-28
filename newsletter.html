@@ -257,7 +257,7 @@ footer a{color:var(--gold)}
         <li>Monthly Q&A — ask me anything</li>
         <li>Exclusive exercises & worksheets</li>
       </ul>
-      <a class="tier-cta paid-btn" href="https://pages.razorpay.com/pl_T4deNTwd9qmLJK/view" target="_blank" rel="noopener">Join Deep Signal — $5/month</a>
+      <div id="paypal-button-container-P-7J39705828684221NNJAD3BQ" style="margin-top:8px"></div>
     </div>
   </div>
 
@@ -295,7 +295,7 @@ footer a{color:var(--gold)}
         <h3>The One Pattern Keeping You Stuck</h3>
         <p>Why self-sabotage isn't a character flaw — it's a frequency mismatch. And how to fix it.</p>
       </div>
-      <a href="/how-to-break-self-sabotage-patterns.html" class="edition-badge free-read">Read →</a>
+      <a href="/why-you-keep-self-sabotaging.html" class="edition-badge free-read">Read →</a>
     </div>
 
     <div class="edition">
@@ -313,7 +313,7 @@ footer a{color:var(--gold)}
         <h3>Your Phone Is Stealing Your Signal</h3>
         <p>Digital sovereignty isn't about deleting apps. It's about reclaiming the 4 hours your brain loses daily.</p>
       </div>
-      <a href="/digital-minimalism-guide.html" class="edition-badge free-read">Read →</a>
+      <a href="/digital-sovereignty-reclaim-your-mind.html" class="edition-badge free-read">Read →</a>
     </div>
 
     <div class="edition">
@@ -322,7 +322,7 @@ footer a{color:var(--gold)}
         <h3>What Zara Heard That Night</h3>
         <p>Behind the scenes of writing the lost chapter. What I cut, what stayed, and why that scene haunts me.</p>
       </div>
-      <a href="/lost-chapter.html" class="edition-badge free-read">Read →</a>
+      <a href="#" onclick="document.getElementById('nlEmail').focus();document.getElementById('nlEmail').scrollIntoView({behavior:'smooth',block:'center'});return false;" class="edition-badge free-read">Subscribe to Read →</a>
     </div>
 
     <div class="edition">
@@ -331,7 +331,7 @@ footer a{color:var(--gold)}
         <h3>The Architecture of Your Next Year</h3>
         <p>Forget goals. Build architecture. The framework I use every December to design the year ahead.</p>
       </div>
-      <a href="/books-about-personal-transformation.html" class="edition-badge free-read">Read →</a>
+      <a href="/power-of-journalling-for-transformation.html" class="edition-badge free-read">Read →</a>
     </div>
   </div>
 </main>
@@ -396,6 +396,19 @@ footer a{color:var(--gold)}
     }
   });
 })();
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAANubAJo-dTNQ60vuge6OgpKtQEBvIBzMIxTU4qABEC7czdzsaSV3HdpYS6FjJWBtCngI9ln9-_LJIk3s&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+    style: {shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},
+    createSubscription: function(data, actions){
+      return actions.subscription.create({plan_id:'P-7J39705828684221NNJAD3BQ'});
+    },
+    onApprove: function(data, actions){
+      document.getElementById('paypal-button-container-P-7J39705828684221NNJAD3BQ').innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Check your email for confirmation.</p>';
+    }
+  }).render('#paypal-button-container-P-7J39705828684221NNJAD3BQ');
 </script>
 
 </body>
