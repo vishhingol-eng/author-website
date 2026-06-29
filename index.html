@@ -145,7 +145,9 @@ nav.scrolled{background:rgba(7,10,24,.7);backdrop-filter:blur(18px);border-botto
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
 .hero-split{display:flex;align-items:center;gap:clamp(24px,5vw,72px);max-width:1200px;width:100%}
 .hero-text{flex:1.1;text-align:center}
+.hero-photo-col{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:440px}
 .hero-photo-wrap-outer{flex:0 0 auto;position:relative;display:flex;align-items:center;justify-content:center;max-width:440px}
+.hero-about-btn{font-size:12.5px;padding:13px 26px}
 .hero-photo-img{width:100%;max-height:72vh;object-fit:cover;object-position:center top;border-radius:20px;display:block;position:relative;z-index:1;-webkit-mask-image:linear-gradient(to bottom,black 65%,transparent 100%);mask-image:linear-gradient(to bottom,black 65%,transparent 100%)}
 .hero-photo-glow{position:absolute;width:140%;height:130%;top:-15%;left:-20%;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(232,187,107,.12) 0%,rgba(157,123,255,.08) 35%,transparent 65%);animation:hpGlow 7s ease-in-out infinite alternate}
 @keyframes hpGlow{0%{opacity:.7;transform:scale(1)}100%{opacity:1;transform:scale(1.06)}}
@@ -153,7 +155,7 @@ nav.scrolled{background:rgba(7,10,24,.7);backdrop-filter:blur(18px);border-botto
 .hero-photo-ring::after{content:"✦";position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--gold);opacity:.7}
 @keyframes hpRing{to{transform:rotate(360deg)}}
 .hero-photo-ring-2{position:absolute;inset:-38px;border-radius:50%;border:1px dashed rgba(125,230,255,.06);z-index:0;pointer-events:none;animation:hpRing 20s linear infinite reverse}
-@media(max-width:840px){.hero-split{flex-direction:column-reverse;gap:28px}.hero-text{text-align:center}.hero-photo-wrap-outer{max-width:220px}.hero-photo-img{max-height:45vh}.hero-photo-ring,.hero-photo-ring-2{display:none}}
+@media(max-width:840px){.hero-split{flex-direction:column-reverse;gap:28px}.hero-text{text-align:center}.hero-photo-col{max-width:220px}.hero-photo-wrap-outer{max-width:220px}.hero-photo-img{max-height:45vh}.hero-photo-ring,.hero-photo-ring-2{display:none}}
 .eyebrow{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;display:inline-flex;align-items:center;gap:14px}
 .eyebrow::before,.eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
 .eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
@@ -299,6 +301,55 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .subscribe-msg.error{color:#FF9B9B}
 .band-divider{display:flex;align-items:center;gap:14px;max-width:300px;margin:32px auto 24px;color:var(--mist);font-family:var(--tech);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
 .band-divider::before,.band-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---------- Promo cards: Newsletter + Signal Fashion ---------- */
+.promo-row{display:flex;gap:clamp(16px,3vw,24px);max-width:1240px;margin:0 auto clamp(40px,6vw,60px);padding:0 clamp(20px,6vw,72px);flex-wrap:wrap;justify-content:center}
+.promo-card{flex:1;min-width:280px;max-width:560px;display:block;position:relative;text-decoration:none;border-radius:24px;overflow:hidden;background:rgba(11,16,38,.6);border:1px solid rgba(244,238,226,.10);transition:border-color .35s,box-shadow .35s,transform .35s;isolation:isolate}
+.promo-card:hover{transform:translateY(-5px)}
+.promo-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(2px)}
+.promo-card.is-newsletter .promo-glow{background:
+  radial-gradient(ellipse 60% 55% at 75% 15%, rgba(125,230,255,.55), transparent 60%),
+  radial-gradient(ellipse 55% 50% at 25% 85%, rgba(157,123,255,.45), transparent 60%),
+  radial-gradient(ellipse 40% 40% at 60% 60%, rgba(232,187,107,.25), transparent 65%)}
+.promo-card.is-fashion .promo-glow{background:
+  radial-gradient(ellipse 60% 55% at 80% 20%, rgba(157,123,255,.5), transparent 60%),
+  radial-gradient(ellipse 55% 50% at 20% 80%, rgba(255,158,207,.4), transparent 60%),
+  radial-gradient(ellipse 40% 40% at 50% 50%, rgba(125,230,255,.2), transparent 65%)}
+.promo-card:hover .promo-glow{filter:blur(1px)}
+.promo-card.is-newsletter:hover{border-color:rgba(125,230,255,.35);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 50px rgba(125,230,255,.12)}
+.promo-card.is-fashion:hover{border-color:rgba(157,123,255,.35);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 50px rgba(157,123,255,.12)}
+
+/* Fixed height + identical layout rules so both cards' visual areas match exactly */
+.promo-visual{position:relative;z-index:1;height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* --- Newsletter: an actual envelope/email mockup, not a bank card --- */
+.promo-mail{position:relative;width:min(82%,300px);aspect-ratio:16/11;border-radius:14px;background:linear-gradient(135deg,rgba(244,238,226,.16),rgba(244,238,226,.05));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(244,238,226,.3);box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);padding:18px 20px;transform:rotate(-2deg);transition:transform .4s}
+.promo-card:hover .promo-mail{transform:rotate(0deg) scale(1.03)}
+.promo-mail::before{content:"";position:absolute;top:0;left:8%;right:35%;height:42%;border-radius:14px 14px 60% 60%;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent);pointer-events:none}
+.promo-mail-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.promo-mail-from{font-family:'Space Grotesk',monospace;font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(244,238,226,.55)}
+.promo-mail-badge{font-family:'Space Grotesk',monospace;font-size:8.5px;font-weight:800;letter-spacing:.14em;color:#070A18;background:linear-gradient(110deg,#7DE6FF,#9D7BFF);padding:3px 8px;border-radius:100px;box-shadow:0 0 10px rgba(125,230,255,.5)}
+.promo-mail-subject{font-family:'Fraunces',Georgia,serif;font-size:17px;color:#F4EEE2;line-height:1.3;margin-bottom:10px;font-weight:500}
+.promo-mail-lines{display:flex;flex-direction:column;gap:5px}
+.promo-mail-line{height:5px;border-radius:3px;background:rgba(244,238,226,.18)}
+.promo-mail-line:nth-child(1){width:90%}
+.promo-mail-line:nth-child(2){width:65%}
+
+/* --- Fashion: real product photo as a CSS background, which never
+     collapses to a tiny broken icon the way <img> sizing conflicts can --- */
+.promo-fashion-frame{position:relative;width:min(82%,300px);aspect-ratio:16/11;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);border:1px solid rgba(244,238,226,.3);transform:rotate(-2deg);transition:transform .4s;background:#F4EEE2;display:flex;align-items:center;justify-content:center;padding:14px}
+.promo-card:hover .promo-fashion-frame{transform:rotate(0deg) scale(1.03)}
+.promo-fashion-bg{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+
+.promo-body{position:relative;z-index:1;padding:clamp(22px,3vw,28px);background:linear-gradient(180deg,transparent,rgba(7,10,24,.35) 40%,rgba(7,10,24,.6))}
+.promo-eyebrow{font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.promo-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(19px,2.6vw,24px);color:#F4EEE2;font-weight:400;margin-bottom:9px;line-height:1.25}
+.promo-title-lg{font-size:clamp(22px,3vw,28px)}
+.promo-title em{font-style:italic;color:#E8BB6B}
+.promo-desc{font-size:13.5px;color:#9AA1C7;line-height:1.6;margin-bottom:14px}
+.promo-cta{font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
+.promo-card:hover .promo-cta{gap:11px}
+@media(max-width:480px){.promo-visual{height:200px}}
 @media(max-width:480px){.subscribe-wrap{padding:22px 20px 18px}.subscribe-form{flex-direction:column;align-items:center}.subscribe-btn{width:100%}}
 @media(max-width:700px){.subscribe-form{justify-content:center}}
 
@@ -385,6 +436,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
     <a href="newsletter.html">Newsletter</a>
     <a href="shop.html">Signal Fashion</a>
     <a href="#about">About</a>
+    <a href="account.html" id="navAccount">Account</a>
     <a class="nav-amzn" id="navAmzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon Page</a>
     <a href="policies.html" style="color:var(--gold)">Policies</a>
   </div>
@@ -400,16 +452,18 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
         <a class="btn btn-gold" href="#books" id="siteBtn1">Browse the Books</a>
         <a class="btn btn-ghost" href="mentor.html" id="siteBtn2">Free Mentor Call</a>
       </div>
-      <a href="about.html" class="btn btn-ghost" style="margin-top:16px">About Vishal Hingol</a>
     </div>
-    <div class="hero-photo-wrap-outer" data-parallax="photo">
-      <div class="hero-photo-ring" aria-hidden="true"></div>
-      <div class="hero-photo-ring-2" aria-hidden="true"></div>
-      <div class="hero-photo-glow" aria-hidden="true"></div>
-      <picture>
-        <source srcset="vishal-hero.webp" type="image/webp">
-        <img class="hero-photo-img" src="vishal-hero.jpg" alt="Vishal Hingol — Author & Mindset Coach" width="600" height="901" fetchpriority="high" decoding="async">
-      </picture>
+    <div class="hero-photo-col">
+      <div class="hero-photo-wrap-outer" data-parallax="photo">
+        <div class="hero-photo-ring" aria-hidden="true"></div>
+        <div class="hero-photo-ring-2" aria-hidden="true"></div>
+        <div class="hero-photo-glow" aria-hidden="true"></div>
+        <picture>
+          <source srcset="vishal-hero.webp" type="image/webp">
+          <img class="hero-photo-img" src="vishal-hero.jpg" alt="Vishal Hingol — Author & Mindset Coach" width="600" height="901" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+      <a href="about.html" class="btn btn-ghost hero-about-btn">About Vishal Hingol</a>
     </div>
   </div>
   <span class="scroll-hint" aria-hidden="true">Scroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
@@ -435,18 +489,42 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
 </div>
 
 
-<div style="display:flex;gap:clamp(16px,3vw,24px);max-width:1240px;margin:0 auto clamp(40px,6vw,60px);padding:0 clamp(20px,6vw,72px);flex-wrap:wrap;justify-content:center" class="veil reveal">
-  <a href="newsletter.html" style="flex:1;min-width:280px;max-width:560px;display:block;padding:clamp(24px,3vw,32px);background:rgba(18,26,62,.55);backdrop-filter:blur(12px);border-radius:20px;border:1px solid rgba(244,238,226,.10);text-decoration:none;transition:border-color .3s,box-shadow .3s,transform .3s" onmouseover="this.style.borderColor='rgba(125,230,255,.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(244,238,226,.10)';this.style.transform='none'">
-    <p style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7DE6FF;margin-bottom:10px">// The Signal Newsletter</p>
-    <p style="font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,3vw,26px);color:#F4EEE2;font-weight:400;margin-bottom:10px">Weekly insights for people tuning into <em style="color:#E8BB6B;font-style:italic">themselves.</em></p>
-    <p style="font-size:14px;color:#9AA1C7;line-height:1.6;margin-bottom:14px">Mindset frameworks, manifestation techniques, and behind-the-book stories delivered to your inbox. Join readers in 47+ countries who start their week with The Signal.</p>
-    <span style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#7DE6FF">Subscribe Free →</span>
+<div class="promo-row veil reveal">
+  <a href="newsletter.html" class="promo-card is-newsletter">
+    <div class="promo-visual">
+      <div class="promo-glow" aria-hidden="true"></div>
+      <div class="promo-mail">
+        <div class="promo-mail-top">
+          <span class="promo-mail-from">FROM: VISHAL HINGOL</span>
+          <span class="promo-mail-badge">DAILY</span>
+        </div>
+        <p class="promo-mail-subject">The Signal — Today's Issue</p>
+        <div class="promo-mail-lines">
+          <div class="promo-mail-line"></div>
+          <div class="promo-mail-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="promo-body">
+      <p class="promo-eyebrow" style="color:#7DE6FF">// The Signal Newsletter</p>
+      <p class="promo-title promo-title-lg">Daily insights for people tuning into <em>themselves.</em></p>
+      <p class="promo-desc">Mindset frameworks, manifestation techniques, and behind-the-book stories — delivered to your inbox every day. Join readers in 47+ countries who start each morning with The Signal.</p>
+      <span class="promo-cta" style="color:#7DE6FF">Subscribe Free →</span>
+    </div>
   </a>
-  <a href="shop.html" style="flex:1;min-width:280px;max-width:560px;display:block;padding:clamp(24px,3vw,32px);background:rgba(18,26,62,.55);backdrop-filter:blur(12px);border-radius:20px;border:1px solid rgba(244,238,226,.10);text-decoration:none;transition:border-color .3s,box-shadow .3s,transform .3s" onmouseover="this.style.borderColor='rgba(157,123,255,.3)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(244,238,226,.10)';this.style.transform='none'">
-    <p style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#9D7BFF;margin-bottom:10px">// Signal Fashion Wear</p>
-    <p style="font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,3vw,26px);color:#F4EEE2;font-weight:400;margin-bottom:10px">What you wear shapes what you <em style="color:#E8BB6B;font-style:italic">think.</em></p>
-    <p style="font-size:14px;color:#9AA1C7;line-height:1.6;margin-bottom:14px">Every affirmation you carry on your body rewires your subconscious frequency. Our apparel is designed to shift your aura, anchor your thoughts, and remind you of who you are becoming — every time you get dressed.</p>
-    <span style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#9D7BFF">Explore Collection →</span>
+  <a href="shop.html" class="promo-card is-fashion">
+    <div class="promo-visual">
+      <div class="promo-glow" aria-hidden="true"></div>
+      <div class="promo-fashion-frame">
+        <img class="promo-fashion-bg" src="/shop/stay-positive-hoodie.jpg" alt="Stay Positive Signature Hoodie — Signal Fashion" loading="lazy">
+      </div>
+    </div>
+    <div class="promo-body">
+      <p class="promo-eyebrow" style="color:#9D7BFF">// Signal Fashion Wear</p>
+      <p class="promo-title">What you wear shapes what you <em>think.</em></p>
+      <p class="promo-desc">Every affirmation you carry on your body rewires your subconscious frequency. Our apparel is designed to shift your aura, anchor your thoughts, and remind you of who you are becoming — every time you get dressed.</p>
+      <span class="promo-cta" style="color:#9D7BFF">Explore Collection →</span>
+    </div>
   </a>
 </div>
 <main class="veil">
@@ -556,6 +634,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
     <a class="mob-link" href="newsletter.html" onclick="closeMobileNav()">Newsletter</a>
     <a class="mob-link" href="shop.html" onclick="closeMobileNav()">Signal Fashion</a>
     <a class="mob-link" href="#about" onclick="closeMobileNav()">About</a>
+    <a class="mob-link" href="account.html" id="mobNavAccount" onclick="closeMobileNav()">Account</a>
     <a class="mob-link" href="policies.html" onclick="closeMobileNav()" style="color:var(--gold)">Policies</a>
   </div>
   <div class="mob-cta">
@@ -607,54 +686,6 @@ document.addEventListener('keydown', function(e){
 window._coversReady = true; // covers.js removed for speed - using real image files via coverImage path
 window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser cache once per day so replaced covers always show
 </script>
-<!-- site.json not present on server — using static content
-<script>
-(async function(){
-  try{
-    const res = await fetch('site.json?v='+Date.now(),{cache:'no-store'});
-    if(!res.ok) return;
-    const s = await res.json();
-    function setSite(id, val, attr){
-      const el=document.getElementById(id);
-      if(!el||!val) return;
-      if(attr) el[attr]=val;
-      else el.textContent=val;
-    }
-    if(s.heroTagline) setSite('siteHeroTagline', s.heroTagline);
-    if(s.heroBtn1)    setSite('siteBtn1', s.heroBtn1);
-    if(s.heroBtn2)    setSite('siteBtn2', s.heroBtn2);
-    if(s.booksLabel)  setSite('siteBooksLabel', s.booksLabel);
-    if(s.booksHeading) setSite('siteBooksHeading', s.booksHeading+'.');
-    if(s.booksSubheading) setSite('siteBooksSubheading', s.booksSubheading);
-    if(s.aboutHeading){
-      const el=document.getElementById('siteAboutHeading');
-      if(el) el.innerHTML=s.aboutHeading;
-    }
-    if(s.aboutText){
-      const el=document.getElementById('siteAboutText');
-      if(el){
-        const paras = s.aboutText.split(/\n\n+/).filter(p=>p.trim());
-        el.innerHTML = '<span class="sec-eyebrow">// About the Author</span><h2 id="siteAboutHeading">'+(s.aboutHeading||'The signal has always been <em>transmitting.</em>')+'</h2>'
-          + paras.map(p=>'<p>'+p.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')+'</p>').join('')
-          + '<p class="signature" id="siteSignature">'+(s.signature||'— Vishal Hingol')+'</p>';
-      }
-    } else {
-      if(s.signature) setSite('siteSignature', s.signature);
-    }
-    if(s.bandHeading){
-      const el=document.getElementById('siteBandHeading');
-      if(el) el.innerHTML=s.bandHeading+' <em>quietly.</em>';
-    }
-    if(s.bandText)    setSite('siteBandText', s.bandText);
-    if(s.bandBtn)     setSite('siteBandBtn', s.bandBtn);
-    if(s.authorPhoto){
-      const ap=document.getElementById('authorPhotoImg');
-      if(ap) ap.src=s.authorPhoto;
-    }
-  }catch(e){}
-})();
-</script>
--->
 
 <script>
 /* ====================================================================
@@ -670,6 +701,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     'the-architecture-of-destiny':          'the-architecture-of-destiny.jpg',
     'the-real-resonance-threshold':         'the-real-resonance-threshold.jpg',
     'zara-and-the-divine-signal':           'zara-and-the-divine-signal.jpg',
+    'the-mechanic-of-redemption':           'The%20Mechanic%20Paperdover%20ebook.jpg',
     'digital-sovereignty':                  'digital-sovereignty.jpg',
     'the-real-frequency-of-origins':        'the-real-frequency-of-origins.jpg',
     'the-real-architect-of-echoes':         'the-real-architect-of-echoes.jpg',
@@ -735,7 +767,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
   };
 
   const CATS = [
-    {key:'novels',        eyebrow:'// Visionary Fiction', title:'Visionary <em>Fiction.</em>',  ids:['the-architecture-of-destiny','the-real-resonance-threshold','the-real-frequency-of-origins','the-real-architect-of-echoes']},
+    {key:'novels',        eyebrow:'// Visionary Fiction', title:'Visionary <em>Fiction.</em>',  ids:['the-architecture-of-destiny','zara-and-the-divine-signal','the-mechanic-of-redemption','the-real-resonance-threshold','the-real-frequency-of-origins','the-real-architect-of-echoes']},
     {key:'mindset',       eyebrow:'// Mindset & Self-Help', title:'Rewire your <em>mind.</em>', ids:['why-you-keep-holding-yourself-back','the-unconditioned-mind','your-mind-is-the-blueprint','the-quiet-revolution','unshackled','digital-sovereignty','the-universe-is-whispering-to-you','the-signal']},
     {key:'manifestation', eyebrow:'// Manifestation & Journals', title:'Write it into <em>existence.</em>', ids:['the-divine-369-manifestation-method','lucky-girl-evidence-journal']},
     {key:'ai',            eyebrow:'// AI & Business', title:'Work <em>smarter.</em>', ids:['run-your-business-on-ai-playbook','the-ai-first-competitor']}
@@ -743,6 +775,7 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
 
   const BOOKS = [
     {id:'zara-and-the-divine-signal',title:'Zara and the Divine Signal',subtitle:'When the Universe Chooses a Child to Change the World',description:"Vishal's most ambitious work — a girl, an old radio, and a signal that should not exist. How the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.",published:'2026-06-08',featured:true,tags:['Fiction','Spirituality','Signal'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:35},
+    {id:'the-mechanic-of-redemption',title:'The Mechanic of Redemption',subtitle:'How a Broken Life Can Be Restored When You Master Your Mind and Embrace the Grind',description:"Daniel Reyes had the Wall Street title, the Westchester house, everything money could buy — then lost it all to the one thing money couldn't fix. A story of homelessness, an old mechanic's hard-won wisdom, and the slow, unglamorous work of rebuilding a life one honest day at a time.",published:'2026-06-20',tags:['Fiction','Redemption','Faith & Mindset'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:80},
     {id:'the-architecture-of-destiny',title:'The Architecture of Destiny',subtitle:'A Novel of Shadows, Invention, and the Life No One Saw Coming',description:'Destiny is not found. It is built. A novel about the quiet architecture beneath every life that looks ordinary from the outside — the shadows, the invention, and the slow construction of a future no one saw coming, including the person living it.',published:'2024-01-15',tags:['Fiction','Destiny','Self-Discovery'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:45},
     {id:'the-real-resonance-threshold',title:'The Real Resonance Threshold',subtitle:'A Mind-Bending Sci-Fi Thriller of Quantum Consciousness, Frequency, and the Collapse of Reality',description:'A mind-bending science fiction thriller that explores the boundary between consciousness and quantum reality. When transformation becomes possible at the frequency level, nothing about who you are remains the same.',published:'2024-03-20',tags:['Sci-Fi','Thriller','Quantum'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:200},
     {id:'the-real-frequency-of-origins',title:'The Real Frequency of Origins',subtitle:'When the Universe Starts Talking Back',description:'NO SIGNAL. RETRYING... In a city drowning in noise, one woman starts receiving answers to questions she never asked aloud. A novel about origins, signals, and what happens when the universe finally talks back to someone who has spent a lifetime broadcasting into silence.',published:'2024-05-10',tags:['Fiction','Spirituality','Signal'],amazonUrl:'https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37',hue:280},
@@ -878,9 +911,6 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
   }
   setTimeout(spawnShooting, 3000);
 
-  // A few extra particles burst in on scroll, layered on top of the
-  // ambient starfield, then fade out — this is the "falling stars on
-  // scroll" effect requested for the library section.
   let scrollBursts = [];
   let lastScrollY = window.scrollY;
   let scrollBurstCooldown = 0;
@@ -960,7 +990,6 @@ hookReveals();
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 
-// Subtle parallax on aurora + hero photo
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const aurora = document.querySelector('.aurora');
@@ -986,8 +1015,6 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 (function(){
-  // Secure: calls your Cloudflare Worker, which holds the Brevo API key
-  // server-side. The key never appears in this public file.
   const SUBSCRIBE_ENDPOINT = "https://subscribe.vishalhingolauthor.com";
 
   const form = document.getElementById('subscribeForm');
@@ -1046,6 +1073,51 @@ neuroscience, guided journals, and breaking self-limiting beliefs.
   <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
 </div>
 <script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
+<script>
+// ============================================================
+// Account nav swap — if the visitor is logged in, show their
+// first name (linking to my-account.html) instead of the
+// static "Account" link. Mirrors the same logic used on
+// shop.html and the order pages. Fails silently if the check
+// doesn't succeed, leaving the nav as plain "Account".
+// ============================================================
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) {
+      return;
+    }
+
+    if (!data || !data.loggedIn) return;
+
+    const name = firstName(data.fullName, data.email);
+    const links = document.querySelectorAll('#navAccount, #mobNavAccount, a[href="account.html"], a[href="/account.html"]');
+    links.forEach(function(link){
+      link.textContent = name;
+      link.href = 'my-account.html';
+    });
+  }
+
+  applyLoginStateToNav();
+})();
+</script>
 
 </body>
 </html>
