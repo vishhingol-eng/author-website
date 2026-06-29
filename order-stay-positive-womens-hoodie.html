@@ -116,6 +116,15 @@ main{max-width:980px;margin:0 auto;padding:110px clamp(20px,5vw,48px) 80px}
 
 footer{border-top:1px solid var(--line);padding:30px clamp(20px,5vw,64px);max-width:980px;margin:40px auto 0;text-align:center;color:var(--mist);font-size:13px}
 footer a{color:var(--gold)}
+
+.login-gate{text-align:center;padding:10px 4px 4px}
+.login-gate p{color:var(--mist);font-size:14px;margin-bottom:22px;line-height:1.6}
+.login-gate .submit-btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border:none;cursor:pointer;text-decoration:none;display:block;margin-bottom:10px;transition:transform .2s,box-shadow .2s}
+.login-gate .submit-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
+.login-gate .gate-or{color:rgba(154,161,199,.5);font-size:11px;font-family:var(--tech);letter-spacing:.1em;text-transform:uppercase;margin:14px 0}
+.login-gate .gate-login-link{font-size:13px;color:var(--mist)}
+.login-gate .gate-login-link a{color:var(--gold);text-decoration:underline}
+.gate-checking{text-align:center;padding:30px 10px;color:var(--mist);font-size:14px}
 </style>
 </head>
 <body>
@@ -123,7 +132,7 @@ footer a{color:var(--gold)}
 <nav>
   <a class="brand" href="/">Vishal <em>Hingol</em></a>
   <div class="nav-links">
-    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/shop.html" class="active" style="color:var(--gold)">Signal Fashion</a><a href="/about.html">About</a><a href="/policies.html">Policies</a>
+    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/shop.html" class="active" style="color:var(--gold)">Signal Fashion</a><a href="/about.html">About</a><a href="/account.html">Account</a><a href="/policies.html">Policies</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -136,6 +145,7 @@ footer a{color:var(--gold)}
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')">Newsletter</a>
   <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Signal Fashion</a>
   <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
+  <a href="/account.html" onclick="document.getElementById('mobNav').classList.remove('open')">Account</a>
   <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
 </div>
 
@@ -157,7 +167,14 @@ footer a{color:var(--gold)}
     </div>
 
     <div class="order-form-card">
-      <div id="detailsStep">
+      <div class="gate-checking" id="gateChecking">Checking your account&hellip;</div>
+      <div class="login-gate" id="loginGate" style="display:none">
+        <p>Please sign in or create a free account to complete your order. This lets us confirm your order and keep you updated on shipping.</p>
+        <a class="submit-btn" href="/account.html" id="gateSignupLink">Create Account</a>
+        <div class="gate-or">or</div>
+        <p class="gate-login-link">Already have an account? <a href="/account.html?mode=login" id="gateLoginLink">Sign in here</a>, then come back to this page.</p>
+      </div>
+      <div id="detailsStep" style="display:none">
 
         <div class="form-section">
           <span class="form-label">// Choose Color</span>
@@ -295,6 +312,47 @@ footer a{color:var(--gold)}
   const PRODUCT_AMOUNT = "42.99";
   const PRODUCT_CATEGORY = "Women's Hoodie";
   const ORDER_ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+  // ---- Require login before showing the order form ----
+  const gateChecking = document.getElementById('gateChecking');
+  const loginGate = document.getElementById('loginGate');
+  const gateLoginLink = document.getElementById('gateLoginLink');
+  if (gateLoginLink) {
+    gateLoginLink.href = '/account.html?mode=login&next=' + encodeURIComponent(window.location.pathname);
+  }
+  const gateSignupLink = document.getElementById('gateSignupLink');
+  if (gateSignupLink) {
+    gateSignupLink.href = '/account.html?next=' + encodeURIComponent(window.location.pathname);
+  }
+
+  async function checkLoginAndReveal(){
+    try {
+      const res = await fetch(ORDER_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      const data = await res.json().catch(function(){ return {}; });
+      gateChecking.style.display = 'none';
+      if (data && data.loggedIn) {
+        document.getElementById('detailsStep').style.display = 'block';
+        // Pre-fill known details from the account
+        if (data.fullName) { const f = document.getElementById('fullName'); if (f) f.value = data.fullName; }
+        if (data.email) { const e = document.getElementById('email'); if (e) e.value = data.email; }
+        if (data.phone) { const p = document.getElementById('phone'); if (p) p.value = data.phone; }
+      } else {
+        loginGate.style.display = 'block';
+      }
+    } catch (err) {
+      // If the check itself fails (network issue), don't lock the customer out completely —
+      // show the gate so they can still choose to sign in, rather than a dead page.
+      gateChecking.style.display = 'none';
+      loginGate.style.display = 'block';
+    }
+  }
+  checkLoginAndReveal();
+
 
   const detailsStep = document.getElementById('detailsStep');
   const paymentStep = document.getElementById('paymentStep');

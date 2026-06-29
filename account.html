@@ -216,15 +216,25 @@ footer a{color:var(--gold)}
   });
 
   // Allow ?mode=login to deep-link straight to the login tab (useful from checkout)
-  if (new URLSearchParams(window.location.search).get('mode') === 'login') {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('mode') === 'login') {
     tabLogin.click();
   }
+  const nextUrl = urlParams.get('next');
 
   function showSuccess(message){
     formsWrap.style.display = 'none';
     successMsg.textContent = message;
     successPanel.classList.add('visible');
     successPanel.scrollIntoView({behavior:'smooth', block:'center'});
+    if (nextUrl) {
+      const continueLink = successPanel.querySelector('a');
+      if (continueLink) {
+        continueLink.href = nextUrl;
+        continueLink.textContent = 'Continue to Your Order';
+      }
+      setTimeout(function(){ window.location.href = nextUrl; }, 1200);
+    }
   }
 
   // ---- SIGNUP ----
