@@ -370,6 +370,129 @@ export default {
       }
 
       // ============================================================
+      // ACCOUNT SIGNUP — creates a new customer account (email/password)
+      // Stores in D1 (ACCOUNTS_DB binding), sends you a notification
+      // email, and returns a session token as a cookie.
+      // ============================================================
+      if (body.type === "account_signup") {
+        if (!env.ACCOUNTS_DB) {
+          return new Response(JSON.stringify({ success: false, error: "Accounts database is not configured yet." }), { status: 500, headers: cors });
+        }
+
+        const { email, password, fullName, phone } = body;
+
+        if (!email || !email.includes("@") || !password || password.length < 8) {
+          return new Response(JSON.stringify({ success: false, error: "Please provide a valid email and a password of at least 8 characters." }), { status: 400, headers: cors });
+        }
+
+        const normalizedEmail = String(email).trim().toLowerCase();
+
+        // Check for existing account
+        const existing = await env.ACCOUNTS_DB.prepare("SELECT id FROM accounts WHERE email = ?").bind(normalizedEmail).first();
+        if (existing) {
+          return new Response(JSON.stringify({ success: false, error: "An account with this email already exists. Try logging in instead." }), { status: 409, headers: cors });
+        }
+
+        const accountId = generateUUID();
+        const salt = generateSalt();
+        const passwordHash = await hashPassword(password, salt);
+        const now = new Date().toISOString();
+
+        await env.ACCOUNTS_DB.prepare(
+          "INSERT INTO accounts (id, email, password_hash, password_salt, full_name, phone, created_at, auth_provider) VALUES (?, ?, ?, ?, ?, ?, ?, 'password')"
+        ).bind(accountId, normalizedEmail, passwordHash, salt, fullName || null, phone || null, now).run();
+
+        const sessionToken = await createSession(env.ACCOUNTS_DB, accountId);
+
+        // Notify Vishal of new account creation — separate from order/newsletter emails
+        await fetch("https://api.brevo.com/v3/smtp/email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": BREVO_API_KEY },
+          body: JSON.stringify({
+            sender: { name: "Signal Fashion Accounts", email: "orders@vishalhingolauthor.com" },
+            to: [{ email: YOUR_INBOX_EMAIL, name: YOUR_NAME }],
+            subject: `New Account Created — ${escapeHtml(fullName || normalizedEmail)}`,
+            htmlContent: `
+              <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#333;line-height:1.7">
+                <div style="background:#070A18;padding:28px 32px;border-radius:12px 12px 0 0;text-align:center">
+                  <h1 style="color:#7DE6FF;font-size:22px;margin:0;font-weight:400">New Account Created</h1>
+                </div>
+                <div style="background:#f9f9f9;padding:28px 32px;border:1px solid #e0e0e0">
+                  <p><strong>Name:</strong> ${escapeHtml(fullName || "Not provided")}</p>
+                  <p><strong>Email:</strong> ${escapeHtml(normalizedEmail)}</p>
+                  <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
+                  <p><strong>Created:</strong> ${escapeHtml(now)}</p>
+                  <hr style="border:none;border-top:1px solid #e0e0e0;margin:20px 0">
+                  <p style="font-size:13px;color:#888">Sent from the Signal Fashion account system on vishalhingolauthor.com</p>
+                </div>
+              </div>
+            `,
+          }),
+        }).catch(() => {}); // best-effort, never block signup on email failure
+
+        return new Response(JSON.stringify({ success: true, accountId }), {
+          status: 200,
+          headers: { ...cors, "Set-Cookie": `session=${sessionToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=2592000` },
+        });
+      }
+
+      // ============================================================
+      // ACCOUNT LOGIN — verifies email/password, issues a session
+      // ============================================================
+      if (body.type === "account_login") {
+        if (!env.ACCOUNTS_DB) {
+          return new Response(JSON.stringify({ success: false, error: "Accounts database is not configured yet." }), { status: 500, headers: cors });
+        }
+
+        const { email, password } = body;
+        if (!email || !password) {
+          return new Response(JSON.stringify({ success: false, error: "Please provide both email and password." }), { status: 400, headers: cors });
+        }
+
+        const normalizedEmail = String(email).trim().toLowerCase();
+        const account = await env.ACCOUNTS_DB.prepare(
+          "SELECT id, password_hash, password_salt FROM accounts WHERE email = ?"
+        ).bind(normalizedEmail).first();
+
+        if (!account) {
+          return new Response(JSON.stringify({ success: false, error: "Incorrect email or password." }), { status: 401, headers: cors });
+        }
+
+        const computedHash = await hashPassword(password, account.password_salt);
+        if (computedHash !== account.password_hash) {
+          return new Response(JSON.stringify({ success: false, error: "Incorrect email or password." }), { status: 401, headers: cors });
+        }
+
+        await env.ACCOUNTS_DB.prepare("UPDATE accounts SET last_login_at = ? WHERE id = ?")
+          .bind(new Date().toISOString(), account.id).run();
+
+        const sessionToken = await createSession(env.ACCOUNTS_DB, account.id);
+
+        return new Response(JSON.stringify({ success: true }), {
+          status: 200,
+          headers: { ...cors, "Set-Cookie": `session=${sessionToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=2592000` },
+        });
+      }
+
+      // ============================================================
+      // ACCOUNT LOGOUT — invalidates the session
+      // ============================================================
+      if (body.type === "account_logout") {
+        if (!env.ACCOUNTS_DB) {
+          return new Response(JSON.stringify({ success: true }), { status: 200, headers: cors });
+        }
+        const cookieHeader = request.headers.get("Cookie") || "";
+        const match = cookieHeader.match(/session=([^;]+)/);
+        if (match) {
+          await env.ACCOUNTS_DB.prepare("DELETE FROM sessions WHERE token = ?").bind(match[1]).run();
+        }
+        return new Response(JSON.stringify({ success: true }), {
+          status: 200,
+          headers: { ...cors, "Set-Cookie": "session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0" },
+        });
+      }
+
+      // ============================================================
       // NEWSLETTER SUBSCRIBE — existing behaviour, unchanged
       // Completely separate from product orders above. Subscribing
       // never sends an order email, and ordering never touches
@@ -410,4 +533,46 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+// ============================================================
+// Account system crypto helpers (Stage 1)
+// Uses the Web Crypto API native to Cloudflare Workers — no
+// external dependencies. PBKDF2 with 100,000 iterations and
+// SHA-256, which is a widely accepted secure default.
+// ============================================================
+
+function generateUUID() {
+  return crypto.randomUUID();
+}
+
+function generateSalt() {
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function hashPassword(password, saltHex) {
+  const encoder = new TextEncoder();
+  const saltBytes = new Uint8Array(saltHex.match(/.{2}/g).map(b => parseInt(b, 16)));
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw", encoder.encode(password), { name: "PBKDF2" }, false, ["deriveBits"]
+  );
+  const derivedBits = await crypto.subtle.deriveBits(
+    { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
+    keyMaterial,
+    256
+  );
+  const hashBytes = new Uint8Array(derivedBits);
+  return Array.from(hashBytes).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function createSession(db, accountId) {
+  const token = generateUUID() + generateUUID(); // extra-long random token
+  const now = new Date();
+  const expires = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+  await db.prepare(
+    "INSERT INTO sessions (token, account_id, created_at, expires_at) VALUES (?, ?, ?, ?)"
+  ).bind(token, accountId, now.toISOString(), expires.toISOString()).run();
+  return token;
 }
