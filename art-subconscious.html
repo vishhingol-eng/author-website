@@ -90,6 +90,20 @@ h1.art-title{font-family:var(--display);font-size:clamp(32px,5vw,48px);font-weig
 
 footer{border-top:1px solid var(--line);padding:30px clamp(20px,5vw,64px);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;color:var(--mist);font-size:13px;max-width:760px;margin:40px auto 0}
 footer a{color:var(--gold)}
+
+     section, and the script block right before 
+
+<style>
+
+.gate-blurred{filter:blur(7px);user-select:none;pointer-events:none;max-height:520px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, black 0%, black 60%, transparent 100%);mask-image:linear-gradient(to bottom, black 0%, black 60%, transparent 100%)}
+.article-gate{position:relative;margin-top:-80px;padding:60px 20px 10px;text-align:center;background:linear-gradient(to bottom, transparent, var(--night) 55%);z-index:2}
+.article-gate-inner{max-width:420px;margin:0 auto;background:var(--glass);backdrop-filter:blur(16px);border-radius:20px;border:1px solid var(--line);padding:clamp(24px,3.5vw,32px)}
+.article-gate h3{font-family:var(--display);font-size:20px;font-weight:400;color:var(--paper);margin-bottom:8px}
+.article-gate p{color:var(--mist);font-size:13.5px;line-height:1.6;margin-bottom:20px}
+.article-gate .btn{display:inline-block;width:100%;text-align:center;padding:14px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none;margin-bottom:10px;transition:transform .2s,box-shadow .2s}
+.article-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
+.article-gate .gate-login-line{font-size:12.5px;color:var(--mist)}
+.article-gate .gate-login-line a{color:var(--gold);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -200,6 +214,87 @@ footer a{color:var(--gold)}
 </footer>
 
 <script>if(!localStorage.getItem('cookieOk')){}</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+  const FREE_PREVIEW_RATIO = 0.30;
+
+  const artBody = document.querySelector('.art-body');
+  if (!artBody) return;
+
+  const paragraphs = Array.from(artBody.querySelectorAll('p'));
+  if (!paragraphs.length) return;
+
+  function wordCount(el){ return (el.textContent || '').trim().split(/\s+/).filter(Boolean).length; }
+  const totalWords = paragraphs.reduce(function(sum, p){ return sum + wordCount(p); }, 0);
+  const targetWords = totalWords * FREE_PREVIEW_RATIO;
+
+  let runningWords = 0;
+  let cutIndex = paragraphs.length;
+  for (let i = 0; i < paragraphs.length; i++) {
+    runningWords += wordCount(paragraphs[i]);
+    if (runningWords >= targetWords) {
+      cutIndex = i + 1;
+      break;
+    }
+  }
+
+  if (totalWords < 120 || cutIndex >= paragraphs.length) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'gate-blurred';
+  const toWrap = paragraphs.slice(cutIndex);
+  toWrap.forEach(function(p){ wrap.appendChild(p); });
+  artBody.appendChild(wrap);
+
+  const gate = document.createElement('div');
+  gate.className = 'article-gate';
+  const gateTitle = document.createElement('h3');
+  gateTitle.textContent = 'Keep Reading';
+  const gateInner = document.createElement('div');
+  gateInner.className = 'article-gate-inner';
+  gateInner.appendChild(gateTitle);
+
+  const gateText = document.createElement('p');
+  gateText.textContent = "You've reached the free preview. Create a free account to finish this article and unlock full access across the site.";
+  gateInner.appendChild(gateText);
+
+  const createLink = document.createElement('a');
+  createLink.className = 'btn';
+  createLink.id = 'gateCreateLink';
+  createLink.textContent = 'Create Free Account';
+  gateInner.appendChild(createLink);
+
+  const loginLine = document.createElement('p');
+  loginLine.className = 'gate-login-line';
+  loginLine.textContent = 'Already have an account? ';
+  const loginLink = document.createElement('a');
+  loginLink.id = 'gateLoginLink2';
+  loginLink.textContent = 'Sign in';
+  loginLine.appendChild(loginLink);
+  gateInner.appendChild(loginLine);
+
+  gate.appendChild(gateInner);
+  artBody.parentNode.insertBefore(gate, artBody.nextSibling);
+
+  const thisPageUrl = window.location.pathname;
+  createLink.href = '/account.html?next=' + encodeURIComponent(thisPageUrl);
+  loginLink.href = '/account.html?mode=login&next=' + encodeURIComponent(thisPageUrl);
+
+  fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({ type: 'check_session' }),
+  }).then(function(res){ return res.json(); }).then(function(data){
+    if (data && data.loggedIn) {
+      wrap.classList.remove('gate-blurred');
+      gate.remove();
+    }
+  }).catch(function(){});
+})();
+</script>
 
 </body>
 </html>

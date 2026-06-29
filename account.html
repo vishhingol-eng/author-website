@@ -58,6 +58,15 @@ main{max-width:460px;margin:0 auto;padding:130px clamp(20px,5vw,48px) 80px}
 .field input::placeholder{color:rgba(244,238,226,.3)}
 .field-hint{font-size:11px;color:rgba(154,161,199,.6);margin-top:5px}
 
+.remember-row{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--mist);cursor:pointer;margin-bottom:6px;margin-top:-4px}
+.remember-row input{accent-color:var(--gold);width:15px;height:15px;cursor:pointer}
+
+.topic-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.topic-chip{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:100px;border:1px solid rgba(244,238,226,.15);background:rgba(7,10,24,.4);font-size:12.5px;color:var(--mist);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.topic-chip:hover{border-color:rgba(232,187,107,.35)}
+.topic-chip input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
+.topic-chip:has(input:checked),.topic-chip.checked{border-color:var(--gold);color:var(--paper);background:rgba(232,187,107,.08)}
+
 .submit-btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:8px}
 .submit-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
@@ -135,6 +144,21 @@ footer a{color:var(--gold)}
             <input type="tel" id="suPhone" placeholder="+1 555 123 4567">
           </div>
           <div class="field">
+            <label>What are you most interested in? <span style="opacity:.6">(optional, pick any)</span></label>
+            <div class="topic-grid">
+              <label class="topic-chip"><input type="checkbox" value="mindset"> Mindset</label>
+              <label class="topic-chip"><input type="checkbox" value="manifestation"> Manifestation</label>
+              <label class="topic-chip"><input type="checkbox" value="spirituality"> Spirituality</label>
+              <label class="topic-chip"><input type="checkbox" value="habits"> Habits</label>
+              <label class="topic-chip"><input type="checkbox" value="ai-business"> AI &amp; Business</label>
+              <label class="topic-chip"><input type="checkbox" value="personal-growth"> Personal Growth</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="suOtherNotes">Anything else you'd like us to know?</label>
+            <input type="text" id="suOtherNotes" placeholder="Optional — tell us what you're looking for">
+          </div>
+          <div class="field">
             <label for="suPassword">Password *</label>
             <input type="password" id="suPassword" required placeholder="At least 8 characters">
             <p class="field-hint">Minimum 8 characters.</p>
@@ -163,6 +187,10 @@ footer a{color:var(--gold)}
             <label for="liPassword">Password *</label>
             <input type="password" id="liPassword" required placeholder="Your password">
           </div>
+          <label class="remember-row">
+            <input type="checkbox" id="liRememberMe">
+            <span>Remember me on this device</span>
+          </label>
           <button type="submit" class="submit-btn" id="liBtn">Sign In</button>
           <p class="form-msg" id="liMsg" aria-live="polite"></p>
         </form>
@@ -201,6 +229,12 @@ footer a{color:var(--gold)}
   const formsWrap = document.getElementById('formsWrap');
   const successPanel = document.getElementById('successPanel');
   const successMsg = document.getElementById('successMsg');
+
+  document.querySelectorAll('.topic-chip input[type="checkbox"]').forEach(function(input){
+    input.addEventListener('change', function(){
+      input.closest('.topic-chip').classList.toggle('checked', input.checked);
+    });
+  });
 
   tabSignup.addEventListener('click', function(){
     tabSignup.classList.add('active');
@@ -250,7 +284,9 @@ footer a{color:var(--gold)}
     const fullName = document.getElementById('suFullName').value.trim();
     const email = document.getElementById('suEmail').value.trim();
     const phone = document.getElementById('suPhone').value.trim();
+    const otherNotes = document.getElementById('suOtherNotes').value.trim();
     const password = document.getElementById('suPassword').value;
+    const topics = Array.from(signupForm.querySelectorAll('.topic-chip input:checked')).map(function(el){ return el.value; });
 
     if (!email || !email.includes('@')) { suMsg.textContent = 'Please enter a valid email.'; suMsg.classList.add('error'); return; }
     if (!password || password.length < 8) { suMsg.textContent = 'Password must be at least 8 characters.'; suMsg.classList.add('error'); return; }
@@ -263,7 +299,7 @@ footer a{color:var(--gold)}
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ type: 'account_signup', email, password, fullName, phone }),
+        body: JSON.stringify({ type: 'account_signup', email, password, fullName, phone, topics, otherNotes }),
       });
       const data = await res.json().catch(function(){ return {}; });
 
@@ -295,6 +331,7 @@ footer a{color:var(--gold)}
 
     const email = document.getElementById('liEmail').value.trim();
     const password = document.getElementById('liPassword').value;
+    const rememberMe = document.getElementById('liRememberMe').checked;
 
     if (!email || !password) { liMsg.textContent = 'Please enter both email and password.'; liMsg.classList.add('error'); return; }
 
@@ -306,7 +343,7 @@ footer a{color:var(--gold)}
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ type: 'account_login', email, password }),
+        body: JSON.stringify({ type: 'account_login', email, password, rememberMe }),
       });
       const data = await res.json().catch(function(){ return {}; });
 

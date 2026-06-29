@@ -569,5 +569,57 @@ footer a{color:var(--gold)}
 </div>
 <script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
 
+<script>
+// ============================================================
+// Shared "Account" nav swap — drop this script on any page that
+// has an <a href="/account.html">Account</a> link (or similar) in
+// its nav. If the visitor is logged in, this swaps that link's
+// text to their first name and points it at /my-account.html
+// instead. Works regardless of the surrounding nav markup, since
+// it finds the link by href rather than assuming a specific
+// container structure.
+//
+// Include this AFTER your nav HTML, right before </body> (or
+// alongside your other page scripts) on every page that has the
+// Account link in its nav.
+// ============================================================
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) {
+      return; // fail silently — nav just stays as "Account" if the check fails
+    }
+
+    if (!data || !data.loggedIn) return;
+
+    const name = firstName(data.fullName, data.email);
+    // Find every link pointing at account.html, in both desktop and mobile nav blocks
+    const links = document.querySelectorAll('a[href="/account.html"], a[href="account.html"], a[href$="/account.html"]');
+    links.forEach(function(link){
+      link.textContent = name;
+      link.href = '/my-account.html';
+    });
+  }
+
+  applyLoginStateToNav();
+})();
+</script>
+
 </body>
 </html>
