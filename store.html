@@ -345,6 +345,7 @@ button{font-family:var(--body);cursor:pointer}
       <a href="mentor.html">Mentorship</a>
       <a href="blog.html">Blog</a>
       <a href="policies.html" style="color:#E8BB6B">Policies</a>
+      <a href="account.html" id="navAccount">Account</a>
       <a class="home-link" id="authorLink" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
       <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Instagram ↗</a>
       <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:#7DE6FF">Twitter ↗</a>
@@ -415,7 +416,8 @@ window.COVER_BUST = new Date().toISOString().slice(0,10);
     'your-mind-is-the-blueprint':'Your_Mind_Is_Blueprint.jpg',
     'run-your-business-on-ai-playbook':'Run_Your_Business_On_AI.jpg',
     'the-ai-first-competitor':'AI_First_Competitor.jpg',
-    'the-divine-369-manifestation-method':'The_Divine_3-6-9_Manifestation_Method.jpg'
+    'the-divine-369-manifestation-method':'The_Divine_3-6-9_Manifestation_Method.jpg',
+    'the-mechanic-of-redemption':'The%20Mechanic%20Paperdover%20ebook.jpg'
   };
   function genCover(hue, title){
     return `<div class="gen" style="background:
@@ -619,5 +621,48 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 </script>
+<script>
+// ============================================================
+// Account nav swap — same logic as on shop.html/index.html.
+// Shows the customer's first name instead of "Account" when
+// logged in, linking to my-account.html instead.
+// ============================================================
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) {
+      return;
+    }
+
+    if (!data || !data.loggedIn) return;
+
+    const name = firstName(data.fullName, data.email);
+    const links = document.querySelectorAll('#navAccount, a[href="account.html"], a[href="/account.html"]');
+    links.forEach(function(link){
+      link.textContent = name;
+      link.href = 'my-account.html';
+    });
+  }
+
+  applyLoginStateToNav();
+})();
+</script>
+
 </body>
 </html>
