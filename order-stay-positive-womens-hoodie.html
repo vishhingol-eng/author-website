@@ -5,8 +5,8 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TWQE2GSNBD');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order "Stay Positive" Women's Cropped Hoodie | Vishal Hingol</title>
-<meta name="description" content="Order "Stay Positive" Women's Cropped Hoodie — $42.99. Choose your color and size, enter shipping details, and pay securely via PayPal.">
+<title>Order &quot;Stay Positive&quot; Women&#39;s Cropped Hoodie | Vishal Hingol</title>
+<meta name="description" content="Order &quot;Stay Positive&quot; Women&#39;s Cropped Hoodie — $42.99. Choose your color and size, enter shipping details, and pay securely via PayPal.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://vishalhingolauthor.com/order-stay-positive-womens-hoodie.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
@@ -147,7 +147,7 @@ footer a{color:var(--gold)}
   <div class="order-layout">
     <div class="prod-visual">
       <div class="prod-img-box">
-        <img src="/shop/stay-positive-womens-hoodie.jpg" alt=""Stay Positive" Women's Cropped Hoodie" loading="lazy">
+        <img src="/shop/stay-positive-womens-hoodie.jpg" alt="&quot;Stay Positive&quot; Women&#39;s Cropped Hoodie" loading="lazy">
         <span class="prod-badge">WOMEN'S</span>
       </div>
       <h1 class="prod-title">"Stay Positive" Women's Cropped Hoodie</h1>
@@ -293,6 +293,7 @@ footer a{color:var(--gold)}
   const PRODUCT_NAME = "\"Stay Positive\" Women's Cropped Hoodie";
   const PRODUCT_PRICE = "$42.99";
   const PRODUCT_AMOUNT = "42.99";
+  const PRODUCT_CATEGORY = "Women's Hoodie";
   const ORDER_ENDPOINT = "https://subscribe.vishalhingolauthor.com";
 
   const detailsStep = document.getElementById('detailsStep');
@@ -409,6 +410,7 @@ footer a{color:var(--gold)}
                 type: 'product_order',
                 productName: PRODUCT_NAME,
                 productPrice: PRODUCT_PRICE,
+                productCategory: PRODUCT_CATEGORY,
                 color: details.color,
                 size: details.size,
                 fullName: details.fullName,
@@ -436,13 +438,56 @@ footer a{color:var(--gold)}
           successPanel.scrollIntoView({behavior:'smooth', block:'center'});
         });
       },
+      onCancel: function(data){
+        notifyAbandoned('Customer closed the PayPal window before completing payment', data && data.orderID);
+        formMsg.textContent = 'Payment was not completed. You can try again whenever you\'re ready.';
+        formMsg.classList.remove('error');
+        formMsg.classList.add('success');
+      },
       onError: function(err){
+        notifyAbandoned('PayPal reported an error during payment', null);
         formMsg.textContent = 'Payment could not be completed. Please try again or contact contact@vishalhingolauthor.com';
         formMsg.classList.add('error');
         paymentStep.classList.add('visible');
         processingMsg.classList.remove('visible');
       }
     }).render('#paypal-button-container');
+  }
+
+  let abandonedNoticeSent = false;
+  function notifyAbandoned(reason, paypalOrderId){
+    if(abandonedNoticeSent) return; // avoid duplicate notices if multiple events fire
+    abandonedNoticeSent = true;
+    const details = collectDetails();
+    // Send even with partial/no data — the product + category + reason alone
+    // tells Vishal which product had checkout interest, which is useful on its own.
+    const orderRef = 'ABD-' + Date.now().toString(36).toUpperCase();
+    fetch(ORDER_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        type: 'product_order_abandoned',
+        productName: PRODUCT_NAME,
+        productPrice: PRODUCT_PRICE,
+        productCategory: PRODUCT_CATEGORY,
+        color: details.color,
+        size: details.size,
+        fullName: details.fullName,
+        email: details.email,
+        phone: details.phone,
+        country: details.country,
+        addressLine1: details.addressLine1,
+        addressLine2: details.addressLine2,
+        city: details.city,
+        state: details.state,
+        postalCode: details.postalCode,
+        orderRef: orderRef,
+        reason: reason,
+      })
+    }).catch(function(){}); // best-effort, never block the customer's UI
+
+    // Allow a fresh notice if they try again later and abandon again
+    setTimeout(function(){ abandonedNoticeSent = false; }, 5000);
   }
 
   // Render buttons once the SDK script has loaded
