@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TWQE2GSNBD');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In or Create Account | Vishal Hingol</title>
+<meta name="description" content="Sign in to your account or create a new one to track your orders with Signal Fashion.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://vishalhingolauthor.com/account.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Albert+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--night:#070A18;--ink:#121A3E;--glass:rgba(18,26,62,.55);--line:rgba(244,238,226,.10);--gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9BAA;--paper:#F4EEE2;--mist:#9AA1C7;--display:'Fraunces',Georgia,serif;--body:'Albert Sans',system-ui,sans-serif;--tech:'Space Grotesk',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}
+::selection{background:var(--gold);color:var(--night)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,64px);background:rgba(7,10,24,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:18px;text-decoration:none;color:var(--paper)}
+.brand em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;gap:clamp(14px,2.5vw,28px);font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--mist);transition:color .2s}
+.nav-links a:hover{color:var(--paper)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--paper);border-radius:2px}
+.mob-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,10,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mob-overlay.open{display:flex}
+.mob-overlay a{font-family:var(--tech);font-size:16px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);padding:10px 20px}
+.mob-overlay a:hover{color:var(--gold)}
+.mob-overlay .mob-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer}
+@media(max-width:700px){.nav-links{display:none !important}.hamburger{display:flex}}
+
+main{max-width:460px;margin:0 auto;padding:130px clamp(20px,5vw,48px) 80px}
+
+.back-bar{margin-bottom:28px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:rgba(244,238,226,.06);border:1px solid var(--line);padding:10px 18px;border-radius:100px;text-decoration:none;transition:border-color .3s,background .3s}
+.back-btn:hover{border-color:var(--gold);background:rgba(244,238,226,.1);color:var(--gold)}
+
+.auth-card{background:var(--glass);backdrop-filter:blur(16px);border-radius:24px;border:1px solid var(--line);padding:clamp(28px,4vw,40px)}
+
+.tab-row{display:flex;gap:8px;margin-bottom:28px;background:rgba(7,10,24,.5);border-radius:100px;padding:4px}
+.tab-btn{flex:1;text-align:center;padding:11px 0;border-radius:100px;border:none;background:transparent;color:var(--mist);font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.tab-btn.active{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
+
+.auth-title{font-family:var(--display);font-size:clamp(22px,3vw,26px);font-weight:400;margin-bottom:6px}
+.auth-sub{color:var(--mist);font-size:14px;margin-bottom:26px}
+
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;color:var(--mist);margin-bottom:6px;font-family:var(--tech);letter-spacing:.04em}
+.field input{width:100%;padding:13px 15px;border-radius:10px;border:1px solid rgba(244,238,226,.15);background:rgba(7,10,24,.5);color:var(--paper);font-family:var(--body);font-size:14px;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--gold)}
+.field input::placeholder{color:rgba(244,238,226,.3)}
+.field-hint{font-size:11px;color:rgba(154,161,199,.6);margin-top:5px}
+
+.submit-btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:8px}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+.form-msg{font-size:13px;margin-top:14px;text-align:center;min-height:18px}
+.form-msg.error{color:#FF9B9B}
+.form-msg.success{color:var(--cyan)}
+
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0;color:rgba(154,161,199,.5);font-size:11px;font-family:var(--tech);letter-spacing:.1em;text-transform:uppercase}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.google-note{text-align:center;padding:14px;border:1px dashed var(--line);border-radius:12px;color:var(--mist);font-size:12.5px}
+
+.privacy-note{font-size:11.5px;color:rgba(154,161,199,.55);text-align:center;margin-top:24px;line-height:1.6}
+.privacy-note a{color:var(--mist);text-decoration:underline}
+
+.success-panel{display:none;text-align:center;padding:30px 20px}
+.success-panel.visible{display:block}
+.success-panel h3{font-family:var(--display);font-size:22px;color:var(--cyan);margin-bottom:10px;font-weight:400}
+.success-panel p{color:var(--mist);font-size:14px;margin-bottom:20px}
+
+footer{border-top:1px solid var(--line);padding:30px clamp(20px,5vw,64px);max-width:460px;margin:40px auto 0;text-align:center;color:var(--mist);font-size:13px}
+footer a{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="/">Vishal <em>Hingol</em></a>
+  <div class="nav-links">
+    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/shop.html">Signal Fashion</a><a href="/about.html">About</a><a href="/policies.html">Policies</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-overlay" id="mobNav">
+  <button class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')" aria-label="Close">&#10005;</button>
+  <a href="/" onclick="document.getElementById('mobNav').classList.remove('open')">Home</a>
+  <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
+  <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
+  <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
+  <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')">Newsletter</a>
+  <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Signal Fashion</a>
+  <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
+  <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
+</div>
+
+<main>
+  <div class="back-bar">
+    <a class="back-btn" href="/shop.html">&larr; Back to Shop</a>
+  </div>
+
+  <div class="auth-card">
+    <div id="formsWrap">
+      <div class="tab-row">
+        <button class="tab-btn active" id="tabSignup" type="button">Create Account</button>
+        <button class="tab-btn" id="tabLogin" type="button">Sign In</button>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupPanel">
+        <h1 class="auth-title">Create your account</h1>
+        <p class="auth-sub">Save your details once, check out faster every time.</p>
+
+        <form id="signupForm" novalidate>
+          <div class="field">
+            <label for="suFullName">Full Name</label>
+            <input type="text" id="suFullName" placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label for="suEmail">Email *</label>
+            <input type="email" id="suEmail" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="suPhone">Phone Number</label>
+            <input type="tel" id="suPhone" placeholder="+1 555 123 4567">
+          </div>
+          <div class="field">
+            <label for="suPassword">Password *</label>
+            <input type="password" id="suPassword" required placeholder="At least 8 characters">
+            <p class="field-hint">Minimum 8 characters.</p>
+          </div>
+          <button type="submit" class="submit-btn" id="suBtn">Create Account</button>
+          <p class="form-msg" id="suMsg" aria-live="polite"></p>
+        </form>
+
+        <div class="divider">or</div>
+        <div class="google-note">Sign up with Google is coming soon — use email for now.</div>
+
+        <p class="privacy-note">By creating an account, you agree to our <a href="/policies.html">Privacy Policy</a>. We store your name, email, and order details only to process orders and contact you about them — nothing else.</p>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginPanel" style="display:none">
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-sub">Sign in to view your orders and saved details.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="liEmail">Email *</label>
+            <input type="email" id="liEmail" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="liPassword">Password *</label>
+            <input type="password" id="liPassword" required placeholder="Your password">
+          </div>
+          <button type="submit" class="submit-btn" id="liBtn">Sign In</button>
+          <p class="form-msg" id="liMsg" aria-live="polite"></p>
+        </form>
+
+        <div class="divider">or</div>
+        <div class="google-note">Sign in with Google is coming soon — use email for now.</div>
+      </div>
+    </div>
+
+    <div class="success-panel" id="successPanel">
+      <h3>&#10003; You're In</h3>
+      <p id="successMsg">Your account is ready.</p>
+      <a class="submit-btn" href="/shop.html" style="text-decoration:none;display:block">Continue Shopping</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025&ndash;<script>document.write(new Date().getFullYear())</script> Vishal Hingol &middot; <a href="/policies.html">Policies</a> &middot; <a href="/shop.html">Back to Shop</a></p>
+</footer>
+
+<div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
+  This website uses minimal cookies for analytics. <a href="/policies.html#privacy" style="color:#E8BB6B">Privacy Policy</a> &middot;
+  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+  const tabSignup = document.getElementById('tabSignup');
+  const tabLogin = document.getElementById('tabLogin');
+  const signupPanel = document.getElementById('signupPanel');
+  const loginPanel = document.getElementById('loginPanel');
+  const formsWrap = document.getElementById('formsWrap');
+  const successPanel = document.getElementById('successPanel');
+  const successMsg = document.getElementById('successMsg');
+
+  tabSignup.addEventListener('click', function(){
+    tabSignup.classList.add('active');
+    tabLogin.classList.remove('active');
+    signupPanel.style.display = 'block';
+    loginPanel.style.display = 'none';
+  });
+  tabLogin.addEventListener('click', function(){
+    tabLogin.classList.add('active');
+    tabSignup.classList.remove('active');
+    loginPanel.style.display = 'block';
+    signupPanel.style.display = 'none';
+  });
+
+  // Allow ?mode=login to deep-link straight to the login tab (useful from checkout)
+  if (new URLSearchParams(window.location.search).get('mode') === 'login') {
+    tabLogin.click();
+  }
+
+  function showSuccess(message){
+    formsWrap.style.display = 'none';
+    successMsg.textContent = message;
+    successPanel.classList.add('visible');
+    successPanel.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  // ---- SIGNUP ----
+  const signupForm = document.getElementById('signupForm');
+  const suBtn = document.getElementById('suBtn');
+  const suMsg = document.getElementById('suMsg');
+
+  signupForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    suMsg.textContent = '';
+    suMsg.className = 'form-msg';
+
+    const fullName = document.getElementById('suFullName').value.trim();
+    const email = document.getElementById('suEmail').value.trim();
+    const phone = document.getElementById('suPhone').value.trim();
+    const password = document.getElementById('suPassword').value;
+
+    if (!email || !email.includes('@')) { suMsg.textContent = 'Please enter a valid email.'; suMsg.classList.add('error'); return; }
+    if (!password || password.length < 8) { suMsg.textContent = 'Password must be at least 8 characters.'; suMsg.classList.add('error'); return; }
+
+    suBtn.disabled = true;
+    suBtn.textContent = 'Creating account...';
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ type: 'account_signup', email, password, fullName, phone }),
+      });
+      const data = await res.json().catch(function(){ return {}; });
+
+      if (res.ok && data.success) {
+        showSuccess('Welcome' + (fullName ? ', ' + fullName : '') + '! Your account has been created.');
+      } else {
+        suMsg.textContent = data.error || 'Something went wrong. Please try again.';
+        suMsg.classList.add('error');
+        suBtn.disabled = false;
+        suBtn.textContent = 'Create Account';
+      }
+    } catch (err) {
+      suMsg.textContent = 'Network error. Please try again.';
+      suMsg.classList.add('error');
+      suBtn.disabled = false;
+      suBtn.textContent = 'Create Account';
+    }
+  });
+
+  // ---- LOGIN ----
+  const loginForm = document.getElementById('loginForm');
+  const liBtn = document.getElementById('liBtn');
+  const liMsg = document.getElementById('liMsg');
+
+  loginForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    liMsg.textContent = '';
+    liMsg.className = 'form-msg';
+
+    const email = document.getElementById('liEmail').value.trim();
+    const password = document.getElementById('liPassword').value;
+
+    if (!email || !password) { liMsg.textContent = 'Please enter both email and password.'; liMsg.classList.add('error'); return; }
+
+    liBtn.disabled = true;
+    liBtn.textContent = 'Signing in...';
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ type: 'account_login', email, password }),
+      });
+      const data = await res.json().catch(function(){ return {}; });
+
+      if (res.ok && data.success) {
+        showSuccess('Welcome back! You are now signed in.');
+      } else {
+        liMsg.textContent = data.error || 'Incorrect email or password.';
+        liMsg.classList.add('error');
+        liBtn.disabled = false;
+        liBtn.textContent = 'Sign In';
+      }
+    } catch (err) {
+      liMsg.textContent = 'Network error. Please try again.';
+      liMsg.classList.add('error');
+      liBtn.disabled = false;
+      liBtn.textContent = 'Sign In';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
