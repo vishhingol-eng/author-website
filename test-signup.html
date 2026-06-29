@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Account System Test</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
+  h1 { font-size: 20px; }
+  label { display: block; margin-top: 14px; font-size: 13px; font-weight: 600; color: #333; }
+  input { width: 100%; padding: 10px; margin-top: 4px; font-size: 14px; box-sizing: border-box; }
+  button { margin-top: 20px; padding: 12px 24px; font-size: 14px; font-weight: 700; cursor: pointer; background: #222; color: white; border: none; border-radius: 6px; }
+  button:hover { background: #444; }
+  #result { margin-top: 24px; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
+  .success { background: #e8f7ec; border: 1px solid #b8e6c4; color: #1a6b3a; }
+  .error { background: #fdecea; border: 1px solid #f5c2bf; color: #8a1f12; }
+  .pending { background: #f0f0f0; border: 1px solid #ddd; color: #555; }
+</style>
+</head>
+<body>
+
+<h1>Account System Test — Signup Endpoint</h1>
+<p>This sends a real request to your live Worker (<code>subscribe.vishalhingolauthor.com</code>) to test the <code>account_signup</code> flow. It does NOT touch your live site — this is a standalone, throwaway test page. Open it locally in your browser, fill in the form below with a TEST email you can check, and click the button.</p>
+
+<form id="testForm">
+  <label for="email">Test Email</label>
+  <input type="email" id="email" placeholder="test@example.com" required>
+
+  <label for="password">Test Password (min 8 characters)</label>
+  <input type="password" id="password" placeholder="testpassword123" required>
+
+  <label for="fullName">Full Name (optional)</label>
+  <input type="text" id="fullName" placeholder="Test User">
+
+  <label for="phone">Phone (optional)</label>
+  <input type="text" id="phone" placeholder="+1 555 000 0000">
+
+  <button type="submit">Send Test Signup Request</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+
+document.getElementById('testForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const result = document.getElementById('result');
+  result.className = 'pending';
+  result.textContent = 'Sending request to ' + ENDPOINT + ' ...';
+
+  const payload = {
+    type: 'account_signup',
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value,
+    fullName: document.getElementById('fullName').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+  };
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const text = await res.text();
+    let parsed;
+    try { parsed = JSON.parse(text); } catch (e) { parsed = null; }
+
+    const summary = [
+      'HTTP Status: ' + res.status,
+      '',
+      'Raw response body:',
+      text,
+      '',
+      parsed && parsed.success
+        ? '✓ SUCCESS — account_signup worked. Check your email (vishhingol@gmail.com) for a "New Account Created" notification, and check the D1 console (SELECT * FROM accounts;) to confirm the row was inserted.'
+        : '✗ Request did not report success. See error above. Common causes: ACCOUNTS_DB binding missing, schema not run, or a typo in the deployed worker.js.'
+    ].join('\n');
+
+    result.className = (parsed && parsed.success) ? 'success' : 'error';
+    result.textContent = summary;
+  } catch (err) {
+    result.className = 'error';
+    result.textContent = 'Network error — the request never reached the Worker, or CORS blocked it.\n\n' + err.message;
+  }
+});
+</script>
+
+</body>
+</html>
