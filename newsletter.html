@@ -871,17 +871,50 @@ footer a{color:var(--gold)}
 })();
 </script>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAANubAJo-dTNQ60vuge6OgpKtQEBvIBzMIxTU4qABEC7czdzsaSV3HdpYS6FjJWBtCngI9ln9-_LJIk3s&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <script>
-  paypal.Buttons({
-    style: {shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},
-    createSubscription: function(data, actions){
-      return actions.subscription.create({plan_id:'P-7J39705828684221NNJAD3BQ'});
-    },
-    onApprove: function(data, actions){
-      document.getElementById('paypal-button-container-P-7J39705828684221NNJAD3BQ').innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Check your email for confirmation.</p>';
-    }
-  }).render('#paypal-button-container-P-7J39705828684221NNJAD3BQ');
+// Lazy-load the PayPal SDK only when the Deep Signal subscribe button
+// actually scrolls into view, instead of unconditionally on every page
+// load. Most visitors reading an article never reach this section, so
+// this avoids downloading the full SDK for them.
+(function(){
+  const container = document.getElementById('paypal-button-container-P-7J39705828684221NNJAD3BQ');
+  if (!container) return;
+
+  let loaded = false;
+  function loadPaypalAndRender(){
+    if (loaded) return;
+    loaded = true;
+    const script = document.createElement('script');
+    script.src = "https://www.paypal.com/sdk/js?client-id=BAANubAJo-dTNQ60vuge6OgpKtQEBvIBzMIxTU4qABEC7czdzsaSV3HdpYS6FjJWBtCngI9ln9-_LJIk3s&vault=true&intent=subscription";
+    script.setAttribute('data-sdk-integration-source', 'button-factory');
+    script.onload = function(){
+      paypal.Buttons({
+        style: {shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},
+        createSubscription: function(data, actions){
+          return actions.subscription.create({plan_id:'P-7J39705828684221NNJAD3BQ'});
+        },
+        onApprove: function(data, actions){
+          container.innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Check your email for confirmation.</p>';
+        }
+      }).render('#paypal-button-container-P-7J39705828684221NNJAD3BQ');
+    };
+    document.body.appendChild(script);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          loadPaypalAndRender();
+          observer.disconnect();
+        }
+      });
+    }, { rootMargin: '200px' }); // start loading slightly before it's fully in view
+    observer.observe(container);
+  } else {
+    loadPaypalAndRender(); // fallback for very old browsers without IntersectionObserver
+  }
+})();
 </script>
 <script>
 (function(){
@@ -950,95 +983,91 @@ footer a{color:var(--gold)}
   const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
   const FREE_PREVIEW_RATIO = 0.30;
 
-  function wordCount(el){ return (el.textContent || '').trim().split(/\s+/).filter(Boolean).length; }
+  // Count words once per paragraph and cache it — avoids re-running the
+  // same regex split twice (once for the total, once for the cutoff scan).
+  function wordCount(text){ return text.trim().split(/\s+/).filter(Boolean).length; }
 
   function applyGateToArticle(article){
-    // Only gate the actual body paragraphs, not the read-next links block
-    const paragraphs = Array.from(article.querySelectorAll('p')).filter(function(p){
-      return !p.closest('.read-next');
-    });
+    const readNext = article.querySelector('.read-next');
+
+    // Query paragraphs directly under the article, skipping the read-next
+    // subtree entirely via :not(), instead of calling closest() on every <p>.
+    const paragraphs = readNext
+      ? Array.from(article.querySelectorAll('p')).filter(function(p){ return article.contains(p) && !readNext.contains(p); })
+      : Array.from(article.querySelectorAll('p'));
     if (!paragraphs.length) return null;
 
-    const totalWords = paragraphs.reduce(function(sum, p){ return sum + wordCount(p); }, 0);
-    if (totalWords < 120) return null; // too short to meaningfully gate
+    // Cache each paragraph's word count once, reuse for both the total and the scan
+    const counts = paragraphs.map(function(p){ return wordCount(p.textContent || ''); });
+    const totalWords = counts.reduce(function(sum, n){ return sum + n; }, 0);
+    if (totalWords < 120) return null;
 
     const targetWords = totalWords * FREE_PREVIEW_RATIO;
     let runningWords = 0;
     let cutIndex = paragraphs.length;
     for (let i = 0; i < paragraphs.length; i++) {
-      runningWords += wordCount(paragraphs[i]);
+      runningWords += counts[i];
       if (runningWords >= targetWords) { cutIndex = i + 1; break; }
     }
     if (cutIndex >= paragraphs.length) return null;
 
     const wrap = document.createElement('div');
     wrap.className = 'gate-blurred';
-    paragraphs.slice(cutIndex).forEach(function(p){ wrap.appendChild(p); });
-
-    // Also pull the read-next block (if any) inside the blur, since it's
-    // a continuation reward that shouldn't be visible pre-login either
-    const readNext = article.querySelector('.read-next');
-    if (readNext) wrap.appendChild(readNext);
-
+    const frag = document.createDocumentFragment();
+    for (let i = cutIndex; i < paragraphs.length; i++) frag.appendChild(paragraphs[i]);
+    if (readNext) frag.appendChild(readNext);
+    wrap.appendChild(frag);
     article.appendChild(wrap);
 
     const gate = document.createElement('div');
     gate.className = 'article-gate';
-    const gateInner = document.createElement('div');
-    gateInner.className = 'article-gate-inner';
-
-    const gateTitle = document.createElement('h3');
-    gateTitle.textContent = 'Keep Reading';
-    gateInner.appendChild(gateTitle);
-
-    const gateText = document.createElement('p');
-    gateText.textContent = "You've reached the free preview. Create a free account to finish this edition and unlock full access across the site.";
-    gateInner.appendChild(gateText);
-
-    const createLink = document.createElement('a');
-    createLink.className = 'btn';
-    createLink.textContent = 'Create Free Account';
-    gateInner.appendChild(createLink);
-
-    const loginLine = document.createElement('p');
-    loginLine.className = 'gate-login-line';
-    loginLine.textContent = 'Already have an account? ';
-    const loginLink = document.createElement('a');
-    loginLink.textContent = 'Sign in';
-    loginLine.appendChild(loginLink);
-    gateInner.appendChild(loginLine);
-
-    gate.appendChild(gateInner);
-    article.appendChild(gate);
-
     const thisPageUrl = window.location.pathname + (article.id ? ('#' + article.id) : '');
-    createLink.href = '/account.html?next=' + encodeURIComponent(thisPageUrl);
-    loginLink.href = '/account.html?mode=login&next=' + encodeURIComponent(thisPageUrl);
+    gate.innerHTML =
+      '<div class="article-gate-inner">' +
+        '<h3>Keep Reading</h3>' +
+        '<p>You&#39;ve reached the free preview. Create a free account to finish this edition and unlock full access across the site.</p>' +
+        '<a class="btn" href="/account.html?next=' + encodeURIComponent(thisPageUrl) + '">Create Free Account</a>' +
+        '<p class="gate-login-line">Already have an account? <a href="/account.html?mode=login&next=' + encodeURIComponent(thisPageUrl) + '">Sign in</a></p>' +
+      '</div>';
+    article.appendChild(gate);
 
     return { wrap: wrap, gate: gate };
   }
 
-  const articles = Array.from(document.querySelectorAll('.edition-article'));
-  if (!articles.length) return;
+  function runGate(){
+    const articles = document.querySelectorAll('.edition-article');
+    if (!articles.length) return;
 
-  const gated = articles.map(applyGateToArticle).filter(Boolean);
-  if (!gated.length) return;
-
-  fetch(ENDPOINT, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    credentials: 'include',
-    body: JSON.stringify({ type: 'check_session' }),
-  }).then(function(res){ return res.json(); }).then(function(data){
-    if (data && data.loggedIn) {
-      gated.forEach(function(g){
-        g.wrap.classList.remove('gate-blurred');
-        g.gate.remove();
-      });
+    const gated = [];
+    for (let i = 0; i < articles.length; i++) {
+      const result = applyGateToArticle(articles[i]);
+      if (result) gated.push(result);
     }
-  }).catch(function(){
-    // Leave gates in place if the check fails — fail toward protecting content
-  });
+    if (!gated.length) return;
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({ type: 'check_session' }),
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (data && data.loggedIn) {
+        for (let i = 0; i < gated.length; i++) {
+          gated[i].wrap.classList.remove('gate-blurred');
+          gated[i].gate.remove();
+        }
+      }
+    }).catch(function(){});
+  }
+
+  // Defer the DOM-walking/word-counting work until the browser is idle,
+  // so it never competes with the initial render. Falls back to a short
+  // timeout on browsers without requestIdleCallback (e.g. Safari).
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(runGate, { timeout: 1500 });
+  } else {
+    setTimeout(runGate, 200);
+  }
 })();
 </script>
 
