@@ -88,7 +88,7 @@ nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-con
 .fcat.active{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border-color:transparent}
 
 /* post grid */
-.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:clamp(18px,3vw,28px)}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:clamp(18px,3vw,28px);min-height:560px}
 
 /* post card */
 .pcard{
@@ -112,6 +112,18 @@ nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-con
 .book-chip{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;background:rgba(232,187,107,.08);border:1px solid rgba(232,187,107,.25);border-radius:100px;font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;transition:background .2s}
 .book-chip:hover{background:rgba(232,187,107,.16)}
 .book-chip span{font-size:10px;opacity:.75}
+
+/* skeleton loading placeholders — same size/shape as a real .pcard,
+   so there's no visible jump once real content replaces them */
+.pcard-skel{background:var(--glass);border-radius:20px;padding:28px;display:flex;flex-direction:column;min-height:260px}
+.skel-line{background:rgba(244,238,226,.08);border-radius:6px;animation:skelPulse 1.6s ease-in-out infinite}
+@keyframes skelPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+.skel-cat{width:70px;height:11px;margin-bottom:18px}
+.skel-title{width:90%;height:20px;margin-bottom:10px}
+.skel-title-2{width:65%;height:20px;margin-bottom:18px}
+.skel-excerpt{width:100%;height:13px;margin-bottom:8px}
+.skel-excerpt-2{width:85%;height:13px;margin-bottom:24px}
+.skel-meta{width:50%;height:11px;margin-top:auto}
 
 .empty{text-align:center;color:var(--mist);padding:60px 20px;grid-column:1/-1}
 .empty b{font-family:var(--display);font-size:22px;display:block;color:var(--paper);margin-bottom:8px}
@@ -224,7 +236,11 @@ footer a:hover{text-decoration:underline}
     <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
   </div>
   <div class="filter-bar" id="filters"></div>
-  <div class="posts" id="posts"><p style="color:var(--mist)">Loading articles…</p></div>
+  <div class="posts" id="posts">
+    <div class="pcard-skel"><div class="skel-line skel-cat"></div><div class="skel-line skel-title"></div><div class="skel-line skel-title-2"></div><div class="skel-line skel-excerpt"></div><div class="skel-line skel-excerpt-2"></div><div class="skel-line skel-meta"></div></div>
+    <div class="pcard-skel"><div class="skel-line skel-cat"></div><div class="skel-line skel-title"></div><div class="skel-line skel-title-2"></div><div class="skel-line skel-excerpt"></div><div class="skel-line skel-excerpt-2"></div><div class="skel-line skel-meta"></div></div>
+    <div class="pcard-skel"><div class="skel-line skel-cat"></div><div class="skel-line skel-title"></div><div class="skel-line skel-title-2"></div><div class="skel-line skel-excerpt"></div><div class="skel-line skel-excerpt-2"></div><div class="skel-line skel-meta"></div></div>
+  </div>
 </main>
 
 <footer>
