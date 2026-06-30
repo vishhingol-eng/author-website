@@ -327,6 +327,23 @@ footer a{color:var(--gold)}
 .article-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
 .article-gate .gate-login-line{font-size:12.5px;color:var(--mist)}
 .article-gate .gate-login-line a{color:var(--gold);text-decoration:underline}
+
+/* ---- Gold Star Premium promo section ---- */
+.gsp-section{margin-bottom:clamp(48px,8vw,80px)}
+.gsp-card{position:relative;display:block;text-decoration:none;border-radius:28px;overflow:hidden;background:#08060f;border:1px solid rgba(232,187,107,.25);padding:clamp(36px,5vw,56px);text-align:center;isolation:isolate;transition:border-color .35s,box-shadow .35s,transform .35s}
+.gsp-card:hover{transform:translateY(-4px);border-color:rgba(232,187,107,.5);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(232,187,107,.2)}
+.gsp-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
+  radial-gradient(ellipse 90% 80% at 50% 30%, rgba(232,187,107,.55), transparent 68%),
+  radial-gradient(ellipse 60% 55% at 75% 75%, rgba(157,90,255,.4), transparent 65%)}
+@keyframes promoGlowDrift{0%{transform:scale(1);opacity:.92}100%{transform:scale(1.12);opacity:1}}
+.gsp-content{position:relative;z-index:1}
+.gsp-star{font-size:32px;margin-bottom:14px;display:block}
+.gsp-eyebrow{font-family:var(--tech);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:inline-block;padding:6px 16px;border-radius:100px;border:1px solid rgba(232,187,107,.4);background:rgba(232,187,107,.08)}
+.gsp-title{font-family:var(--display);font-size:clamp(26px,4vw,36px);font-weight:400;color:var(--paper);margin-bottom:12px;line-height:1.2}
+.gsp-title em{font-style:italic;color:var(--gold)}
+.gsp-desc{color:#C2C8E8;font-size:15.5px;line-height:1.7;max-width:520px;margin:0 auto 24px}
+.gsp-cta{display:inline-block;padding:15px 36px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);transition:transform .2s,box-shadow .2s}
+.gsp-card:hover .gsp-cta{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.5)}
 </style>
 </head>
 <body>
@@ -436,6 +453,20 @@ footer a{color:var(--gold)}
     </div>
   </div>
 
+  <!-- Gold Star Premium promo -->
+  <div class="gsp-section">
+    <a href="/editions/the-pattern-most-people-never-see.html" class="gsp-card">
+      <div class="gsp-glow"></div>
+      <div class="gsp-content">
+        <span class="gsp-star">⭐</span>
+        <span class="gsp-eyebrow">Gold Star Premium</span>
+        <h2 class="gsp-title">One idea is free. <em>The rest is for the circle.</em></h2>
+        <p class="gsp-desc">A Deep Signal exclusive — read the opening for free, then unlock the full piece, the framework behind it, and every future Gold Star edition with a Deep Signal membership.</p>
+        <span class="gsp-cta">Read the Free Preview →</span>
+      </div>
+    </a>
+  </div>
+
   <!-- Two tiers -->
   <div class="tiers">
     <div class="tier-card">
@@ -543,6 +574,42 @@ footer a{color:var(--gold)}
         <p>Forget goals. Build architecture. The framework I use every December to design the year ahead.</p>
       </div>
       <a href="/power-of-journalling-for-transformation.html" class="edition-badge free-read">Read →</a>
+    </div>
+
+    <div class="edition">
+      <span class="edition-num">#06</span>
+      <div class="edition-info">
+        <h3>The Quiet Discipline</h3>
+        <p>Why the people who actually change their life rarely talk about it.</p>
+      </div>
+      <a href="/editions/the-quiet-discipline.html" class="edition-badge free-read">Read →</a>
+    </div>
+
+    <div class="edition">
+      <span class="edition-num">#07</span>
+      <div class="edition-info">
+        <h3>Why Your Goals Keep Failing in Week Two</h3>
+        <p>It is rarely about motivation. It is almost always about a deadline your brain set without telling you.</p>
+      </div>
+      <a href="/editions/why-your-goals-keep-failing-in-week-two.html" class="edition-badge free-read">Read →</a>
+    </div>
+
+    <div class="edition">
+      <span class="edition-num">#08</span>
+      <div class="edition-info">
+        <h3>Confidence Is a Symptom. You're Treating It Like a Cause.</h3>
+        <p>Why chasing the feeling of certainty keeps you exactly where you are.</p>
+      </div>
+      <a href="/editions/confidence-vs-competence.html" class="edition-badge free-read">Read →</a>
+    </div>
+
+    <div class="edition" style="border-color:rgba(232,187,107,.3)">
+      <span class="edition-num" style="color:var(--gold)">⭐</span>
+      <div class="edition-info">
+        <h3>Why Reading About Change Feels Like Progress (And Isn't)</h3>
+        <p>A Deep Signal exclusive — why consuming self-help content can feel like change while requiring none of the actual work.</p>
+      </div>
+      <a href="/editions/why-reading-about-change-isnt-change.html" class="edition-badge paid-lock" style="color:var(--gold);border-color:rgba(232,187,107,.4)">Premium →</a>
     </div>
   </div>
 
@@ -877,6 +944,7 @@ footer a{color:var(--gold)}
 // load. Most visitors reading an article never reach this section, so
 // this avoids downloading the full SDK for them.
 (function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
   const container = document.getElementById('paypal-button-container-P-7J39705828684221NNJAD3BQ');
   if (!container) return;
 
@@ -894,26 +962,68 @@ footer a{color:var(--gold)}
           return actions.subscription.create({plan_id:'P-7J39705828684221NNJAD3BQ'});
         },
         onApprove: function(data, actions){
-          container.innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Check your email for confirmation.</p>';
+          container.innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Confirming your subscription...</p>';
+          fetch(ENDPOINT, {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            credentials: 'include',
+            body: JSON.stringify({ type: 'confirm_premium_subscription', paypalSubscriptionId: data.subscriptionID }),
+          }).then(function(res){ return res.json(); }).then(function(result){
+            if (result && result.success) {
+              container.innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:15px;margin-top:16px">✓ Welcome to Deep Signal! Check your email for confirmation.</p>';
+            } else {
+              container.innerHTML = '<p style="color:#FF9B9B;text-align:center;font-size:14px;margin-top:16px">Your payment succeeded, but we could not link it to your account. Please email contact@vishalhingolauthor.com with your subscription ID: ' + (data.subscriptionID || '') + '</p>';
+            }
+          }).catch(function(){
+            container.innerHTML = '<p style="color:#FF9B9B;text-align:center;font-size:14px;margin-top:16px">Your payment succeeded, but we could not confirm it here. Please email contact@vishalhingolauthor.com with your subscription ID: ' + (data.subscriptionID || '') + '</p>';
+          });
         }
       }).render('#paypal-button-container-P-7J39705828684221NNJAD3BQ');
     };
     document.body.appendChild(script);
   }
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          loadPaypalAndRender();
-          observer.disconnect();
+  // Deep Signal requires an account, since premium status is tied to
+  // an account record. Check login before rendering the button at all.
+  function checkLoginThenRender(){
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({ type: 'check_session' }),
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (data && data.loggedIn) {
+        if (data.isPremium) {
+          container.innerHTML = '<p style="color:#7DE6FF;text-align:center;font-size:14px;margin-top:8px">✓ You already have Deep Signal access.</p>';
+          return;
         }
-      });
-    }, { rootMargin: '200px' }); // start loading slightly before it's fully in view
-    observer.observe(container);
-  } else {
-    loadPaypalAndRender(); // fallback for very old browsers without IntersectionObserver
+        attachObserver();
+      } else {
+        const nextUrl = window.location.pathname + '#deepSignal';
+        container.innerHTML = '<a href="/account.html?next=' + encodeURIComponent(nextUrl) + '" style="display:block;text-align:center;padding:14px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none">Create Free Account to Subscribe</a>';
+      }
+    }).catch(function(){
+      attachObserver(); // if the check itself fails, fall back to showing the button rather than blocking the page
+    });
   }
+
+  function attachObserver(){
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            loadPaypalAndRender();
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: '200px' }); // start loading slightly before it's fully in view
+      observer.observe(container);
+    } else {
+      loadPaypalAndRender(); // fallback for very old browsers without IntersectionObserver
+    }
+  }
+
+  checkLoginThenRender();
 })();
 </script>
 <script>
