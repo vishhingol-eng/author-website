@@ -211,6 +211,7 @@ footer a:hover{text-decoration:underline}
     <a href="newsletter.html">Newsletter</a>
     <a href="shop.html">Signal Fashion</a>
     <a href="about.html">About</a>
+    <a href="account.html" id="navAccount">Account</a>
     <a href="policies.html" style="color:var(--gold)">Policies</a>
     <a class="nav-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
   </div>
@@ -307,6 +308,34 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
   <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
 </div>
 <script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) { return; }
+    if (!data || !data.loggedIn) return;
+    const name = firstName(data.fullName, data.email);
+    document.querySelectorAll('#navAccount, a[href="account.html"], a[href="/account.html"]').forEach(function(link){
+      link.textContent = name;
+      link.href = 'my-account.html';
+    });
+  }
+  applyLoginStateToNav();
+})();
+</script>
 
 </body>
 </html>

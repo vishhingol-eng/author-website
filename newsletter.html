@@ -318,6 +318,15 @@ footer a{color:var(--gold)}
 .bnw-name{font-family:var(--display);font-size:clamp(18px,2.4vw,21px);font-weight:400;color:var(--paper);margin-bottom:10px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
 .bnw-quote{font-family:var(--display);font-style:italic;font-size:14px;color:#D7DBEE;line-height:1.5;margin-bottom:12px}
 .bnw-why{font-size:13px;color:var(--mist);line-height:1.6;opacity:.92}
+.gate-blurred{filter:blur(7px);user-select:none;pointer-events:none;max-height:520px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, black 0%, black 60%, transparent 100%);mask-image:linear-gradient(to bottom, black 0%, black 60%, transparent 100%)}
+.article-gate{position:relative;margin-top:-80px;padding:60px 20px 10px;text-align:center;background:linear-gradient(to bottom, transparent, var(--night) 55%);z-index:2}
+.article-gate-inner{max-width:420px;margin:0 auto;background:var(--glass);backdrop-filter:blur(16px);border-radius:20px;border:1px solid var(--line);padding:clamp(24px,3.5vw,32px)}
+.article-gate h3{font-family:var(--display);font-size:20px;font-weight:400;color:var(--paper);margin-bottom:8px}
+.article-gate p{color:var(--mist);font-size:13.5px;line-height:1.6;margin-bottom:20px}
+.article-gate .btn{display:inline-block;width:100%;text-align:center;padding:14px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none;margin-bottom:10px;transition:transform .2s,box-shadow .2s}
+.article-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
+.article-gate .gate-login-line{font-size:12.5px;color:var(--mist)}
+.article-gate .gate-login-line a{color:var(--gold);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -332,6 +341,7 @@ footer a{color:var(--gold)}
     <a href="/newsletter.html" class="active">Newsletter</a>
     <a href="/shop.html">Signal Fashion</a>
     <a href="/about.html">About</a>
+    <a href="/account.html" id="navAccount">Account</a>
     <a href="/policies.html" style="color:var(--gold)">Policies</a>
     <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--night);background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px">Amazon ↗</a>
   </div>
@@ -348,6 +358,7 @@ footer a{color:var(--gold)}
   <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Newsletter</a>
   <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
+  <a href="/account.html" id="mobNavAccount" onclick="document.getElementById('mobNav').classList.remove('open')">Account</a>
   <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')">Signal Fashion</a>
   <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
   <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--gold)">Amazon ↗</a>
@@ -902,6 +913,131 @@ footer a{color:var(--gold)}
 
     card.addEventListener('mousemove', onMove);
     card.addEventListener('mouseleave', onLeave);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) { return; }
+    if (!data || !data.loggedIn) return;
+    const name = firstName(data.fullName, data.email);
+    document.querySelectorAll('#navAccount, #mobNavAccount, a[href="/account.html"], a[href="account.html"]').forEach(function(link){
+      link.textContent = name;
+      link.href = '/my-account.html';
+    });
+  }
+  applyLoginStateToNav();
+})();
+</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+  const FREE_PREVIEW_RATIO = 0.30;
+
+  function wordCount(el){ return (el.textContent || '').trim().split(/\s+/).filter(Boolean).length; }
+
+  function applyGateToArticle(article){
+    // Only gate the actual body paragraphs, not the read-next links block
+    const paragraphs = Array.from(article.querySelectorAll('p')).filter(function(p){
+      return !p.closest('.read-next');
+    });
+    if (!paragraphs.length) return null;
+
+    const totalWords = paragraphs.reduce(function(sum, p){ return sum + wordCount(p); }, 0);
+    if (totalWords < 120) return null; // too short to meaningfully gate
+
+    const targetWords = totalWords * FREE_PREVIEW_RATIO;
+    let runningWords = 0;
+    let cutIndex = paragraphs.length;
+    for (let i = 0; i < paragraphs.length; i++) {
+      runningWords += wordCount(paragraphs[i]);
+      if (runningWords >= targetWords) { cutIndex = i + 1; break; }
+    }
+    if (cutIndex >= paragraphs.length) return null;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'gate-blurred';
+    paragraphs.slice(cutIndex).forEach(function(p){ wrap.appendChild(p); });
+
+    // Also pull the read-next block (if any) inside the blur, since it's
+    // a continuation reward that shouldn't be visible pre-login either
+    const readNext = article.querySelector('.read-next');
+    if (readNext) wrap.appendChild(readNext);
+
+    article.appendChild(wrap);
+
+    const gate = document.createElement('div');
+    gate.className = 'article-gate';
+    const gateInner = document.createElement('div');
+    gateInner.className = 'article-gate-inner';
+
+    const gateTitle = document.createElement('h3');
+    gateTitle.textContent = 'Keep Reading';
+    gateInner.appendChild(gateTitle);
+
+    const gateText = document.createElement('p');
+    gateText.textContent = "You've reached the free preview. Create a free account to finish this edition and unlock full access across the site.";
+    gateInner.appendChild(gateText);
+
+    const createLink = document.createElement('a');
+    createLink.className = 'btn';
+    createLink.textContent = 'Create Free Account';
+    gateInner.appendChild(createLink);
+
+    const loginLine = document.createElement('p');
+    loginLine.className = 'gate-login-line';
+    loginLine.textContent = 'Already have an account? ';
+    const loginLink = document.createElement('a');
+    loginLink.textContent = 'Sign in';
+    loginLine.appendChild(loginLink);
+    gateInner.appendChild(loginLine);
+
+    gate.appendChild(gateInner);
+    article.appendChild(gate);
+
+    const thisPageUrl = window.location.pathname + (article.id ? ('#' + article.id) : '');
+    createLink.href = '/account.html?next=' + encodeURIComponent(thisPageUrl);
+    loginLink.href = '/account.html?mode=login&next=' + encodeURIComponent(thisPageUrl);
+
+    return { wrap: wrap, gate: gate };
+  }
+
+  const articles = Array.from(document.querySelectorAll('.edition-article'));
+  if (!articles.length) return;
+
+  const gated = articles.map(applyGateToArticle).filter(Boolean);
+  if (!gated.length) return;
+
+  fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({ type: 'check_session' }),
+  }).then(function(res){ return res.json(); }).then(function(data){
+    if (data && data.loggedIn) {
+      gated.forEach(function(g){
+        g.wrap.classList.remove('gate-blurred');
+        g.gate.remove();
+      });
+    }
+  }).catch(function(){
+    // Leave gates in place if the check fails — fail toward protecting content
   });
 })();
 </script>
