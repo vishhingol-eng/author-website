@@ -82,6 +82,10 @@ footer a{color:var(--gold)}
     <a href="/store.html">Books</a>
     <a href="/blog.html">Blog</a>
     <a href="/mentor.html">Mentorship</a>
+    <a href="/newsletter.html">Newsletter</a>
+    <a href="/shop.html">Signal Fashion</a>
+    <a href="/about.html">About</a>
+    <a href="/account.html" id="navAccount">Account</a>
     <a href="/policies.html" style="color:var(--gold)">Policies</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Open menu">
@@ -95,6 +99,10 @@ footer a{color:var(--gold)}
   <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
   <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
   <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
+  <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')">Newsletter</a>
+  <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')">Signal Fashion</a>
+  <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
+  <a href="/account.html" id="mobNavAccount" onclick="document.getElementById('mobNav').classList.remove('open')">Account</a>
   <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Policies</a>
   <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--gold)">Amazon ↗</a>
   <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Instagram ↗</a>
@@ -103,16 +111,17 @@ footer a{color:var(--gold)}
 
 <main>
   <h1>Policies & <em>Terms</em></h1>
-  <p class="last-updated">Last updated: June 21, 2026</p>
+  <p class="last-updated">Last updated: June 30, 2026</p>
 
   <div class="toc">
     <p class="toc-title">On this page</p>
     <a href="#terms">1. Terms of Service</a>
     <a href="#refund">2. Refund & Cancellation Policy</a>
     <a href="#payment">3. Payment Terms</a>
-    <a href="#privacy">4. Privacy Policy</a>
-    <a href="#disclaimer">5. Disclaimer</a>
-    <a href="#contact">6. Contact</a>
+    <a href="#accounts">4. Customer Accounts & Order Data</a>
+    <a href="#privacy">5. Privacy Policy</a>
+    <a href="#disclaimer">6. Disclaimer</a>
+    <a href="#contact">7. Contact</a>
   </div>
 
   <!-- ===== 1. TERMS OF SERVICE ===== -->
@@ -124,8 +133,9 @@ footer a{color:var(--gold)}
   <p>The Provider offers:</p>
   <ul>
     <li><strong>Books and guided journals</strong> available for purchase on Amazon (Kindle and paperback). These are sold through Amazon and governed by Amazon's own terms and policies.</li>
+    <li><strong>Signal Fashion apparel</strong> — print-on-demand clothing purchased directly through this website and fulfilled by a third-party printing partner. Orders require a free customer account (see Section 4).</li>
     <li><strong>1:1 mentorship sessions</strong> conducted via video call. Sessions are available worldwide in English.</li>
-    <li><strong>Free digital content</strong> such as the lost chapter PDF, blog articles, and newsletter updates.</li>
+    <li><strong>Free digital content</strong> such as the lost chapter PDF, blog articles, and newsletter updates. Some longer articles show a free preview before requiring a free account to continue reading (see Section 4).</li>
   </ul>
 
   <h3>Eligibility</h3>
@@ -216,6 +226,16 @@ footer a{color:var(--gold)}
   <h3>Force majeure</h3>
   <p>If a session cannot be delivered due to circumstances beyond either party's control — including internet outages, illness, natural disasters, or other emergencies — the session will be rescheduled at no cost. No refund will be issued in such cases, as the session will be honoured at a later date.</p>
 
+  <h3>Signal Fashion product orders</h3>
+  <p>Signal Fashion apparel is produced on demand by a third-party printing partner once an order is placed and payment is confirmed. Because each item is printed specifically for you, the following terms apply:</p>
+  <ul>
+    <li><strong>Cancellation:</strong> You may request cancellation by emailing contact@vishalhingolauthor.com within 12 hours of placing the order. Once printing has begun, the order cannot be cancelled.</li>
+    <li><strong>Damaged or defective items:</strong> If your item arrives damaged, defective, or significantly different from what was ordered, contact contact@vishalhingolauthor.com within 14 days of delivery with photos of the issue. We will arrange a replacement or refund.</li>
+    <li><strong>Wrong size or change of mind:</strong> Because items are made to order, we are unable to offer refunds or exchanges for incorrect size selection or change of mind once an order has been printed and shipped.</li>
+    <li><strong>Order not received:</strong> If your order does not arrive within the expected shipping window, contact contact@vishalhingolauthor.com and we will investigate with our fulfilment partner.</li>
+    <li><strong>Payment not completed:</strong> If you begin checkout but do not complete payment, no order is placed and you are not charged. We may follow up by email to see if you'd like help completing your purchase.</li>
+  </ul>
+
   <!-- ===== 3. PAYMENT TERMS ===== -->
   <h2 id="payment">3. Payment Terms</h2>
 
@@ -227,7 +247,7 @@ footer a{color:var(--gold)}
   <p>All prices are displayed in US Dollars (USD) and are accepted from anywhere in the world. The equivalent amount in your local currency will be determined by your bank or card issuer at the time of payment.</p>
 
   <h3>Payment processing</h3>
-  <p>Payments are securely processed through <strong>Razorpay</strong> and <strong>PayPal</strong>, both PCI-DSS compliant payment processors. We accept Visa, Mastercard, American Express, Diners Club, PayPal balance, and other major international payment methods. The Provider does not store, process, or have access to your full card details at any time. All payment data is handled entirely by Razorpay or PayPal — whichever you choose at checkout.</p>
+  <p>Payments are securely processed through <strong>Razorpay</strong> and <strong>PayPal</strong>, both PCI-DSS compliant payment processors. We accept Visa, Mastercard, American Express, Diners Club, PayPal balance, and other major international payment methods. Signal Fashion orders are processed through PayPal. Mentorship sessions accept either Razorpay or PayPal at checkout. The Provider does not store, process, or have access to your full card details at any time. All payment data is handled entirely by Razorpay or PayPal.</p>
 
   <h3>Currency conversion</h3>
   <p>If you are paying in a currency other than USD, your bank or card issuer may apply a currency conversion fee. This is outside the Provider's control and is governed by your financial institution's policies.</p>
@@ -235,14 +255,43 @@ footer a{color:var(--gold)}
   <h3>Failed payments</h3>
   <p>If a payment fails, your session will not be booked. You will not be charged for failed transactions. If an amount is debited but the booking is not confirmed, please contact contact@vishalhingolauthor.com and we will resolve it within 48 hours.</p>
 
-  <!-- ===== 4. PRIVACY POLICY ===== -->
-  <h2 id="privacy">4. Privacy Policy</h2>
+  <!-- ===== 4. CUSTOMER ACCOUNTS & ORDER DATA ===== -->
+  <h2 id="accounts">4. Customer Accounts & Order Data</h2>
+
+  <p>This website offers a free customer account system used for Signal Fashion orders and for reading full-length articles past their free preview. This section explains what we collect through accounts and how it's handled.</p>
+
+  <h3>Creating an account</h3>
+  <p>When you create an account, we collect your <strong>email address</strong> and a <strong>password</strong>. You may optionally provide your <strong>full name</strong>, <strong>phone number</strong>, and topic interests to help us understand what content and products you'd find useful. Passwords are never stored in plain text — they are cryptographically hashed (PBKDF2 with a unique salt per account) before being saved, meaning even we cannot view your actual password.</p>
+
+  <h3>Signing in and sessions</h3>
+  <p>When you sign in, a secure session token is stored as a cookie in your browser so you don't need to log in on every page. If you select "Remember me," this session lasts up to 30 days. If you do not select it, the session ends when you close your browser. You can sign out at any time from your account page, which clears this session immediately.</p>
+
+  <h3>Order history and shipping details</h3>
+  <p>When you place a Signal Fashion order while signed in, we store your order details — product, size, color, price, and the shipping address you provide — so you can view your past orders from your account page and so we can fulfil and reference your order if you contact us about it. This data is retained as part of our standard business and tax record-keeping.</p>
+
+  <h3>Incomplete or abandoned orders</h3>
+  <p>If you begin the checkout process — including selecting a product, entering shipping details, or reaching the payment step — but do not complete payment, we may receive a notification containing whatever information you had already entered (such as your name, email, or the product you were viewing). This helps us identify and resolve technical issues with checkout, and occasionally to follow up directly if it looks like you ran into a problem completing your purchase, including offering assistance or a discount. If you do not wish to be contacted about an incomplete order, you can let us know at contact@vishalhingolauthor.com and we will not follow up on future incomplete orders tied to your email.</p>
+
+  <h3>Free preview / account-gated articles</h3>
+  <p>Some longer articles on this site show roughly the first 30% of the content for free to all visitors, with the remainder visible only to visitors who create a free account or sign in. This is a content access feature, not a paywall — accounts are free and creating one does not involve any payment. The full text of every article remains present in the page itself for search engines and AI tools, so this feature does not affect how the content is indexed or discovered.</p>
+
+  <h3>Editing or deleting your account</h3>
+  <p>You can update your name, phone number, and topic interests at any time from your account page. You can permanently delete your account at any time from your account page. When you delete your account, your login credentials and saved preferences are removed immediately. Past order records are retained (with the account link removed) for our business and tax record-keeping obligations, consistent with the order-history retention described above. To request complete removal of historical order data beyond what we are legally required to retain, email contact@vishalhingolauthor.com.</p>
+
+  <h3>Where account data is stored</h3>
+  <p>Account, session, and order data is stored in Cloudflare D1, a database service operated by Cloudflare, the same infrastructure provider used for this website's security and content delivery (see Section 5).</p>
+
+  <!-- ===== 5. PRIVACY POLICY ===== -->
+  <h2 id="privacy">5. Privacy Policy</h2>
 
   <h3>Information we collect</h3>
   <p>When you interact with this website, we may collect:</p>
   <ul>
-    <li><strong>Email address</strong> — when you subscribe to the newsletter or submit a mentorship inquiry</li>
-    <li><strong>Name and phone number</strong> — when you submit the mentorship contact form</li>
+    <li><strong>Email address</strong> — when you subscribe to the newsletter, submit a mentorship inquiry, or create an account</li>
+    <li><strong>Name and phone number</strong> — when you submit the mentorship contact form, create an account, or place a Signal Fashion order</li>
+    <li><strong>Password</strong> — when you create an account (stored as a cryptographic hash, never in plain text; see Section 4)</li>
+    <li><strong>Shipping address and order details</strong> — when you place a Signal Fashion order</li>
+    <li><strong>Topic interests</strong> — optionally, when you create an account</li>
     <li><strong>Usage data</strong> — anonymous analytics via Google Analytics (pages visited, time on site, device type, approximate location by country)</li>
   </ul>
 
@@ -250,7 +299,10 @@ footer a{color:var(--gold)}
   <ul>
     <li>To deliver the lost chapter PDF and newsletter updates (via Brevo email platform)</li>
     <li>To respond to mentorship inquiries and schedule sessions</li>
-    <li>To process payments (via Razorpay — we never see your card details)</li>
+    <li>To create and maintain your customer account, including keeping you signed in between visits</li>
+    <li>To process, fulfil, and ship Signal Fashion orders, and to show you your order history</li>
+    <li>To follow up on incomplete orders, as described in Section 4</li>
+    <li>To process payments (via Razorpay or PayPal — we never see your card details)</li>
     <li>To understand website traffic patterns and improve the user experience</li>
   </ul>
 
@@ -265,11 +317,12 @@ footer a{color:var(--gold)}
   <p>We use the following trusted third-party services to operate this website:</p>
   <ul>
     <li><strong>Brevo</strong> — email delivery and newsletter management</li>
-    <li><strong>Razorpay</strong> — payment processing (cards, UPI, net banking)</li>
-    <li><strong>PayPal</strong> — payment processing (cards, PayPal balance, international payments)</li>
+    <li><strong>Razorpay</strong> — payment processing for mentorship sessions (cards, UPI, net banking)</li>
+    <li><strong>PayPal</strong> — payment processing for Signal Fashion orders and mentorship sessions (cards, PayPal balance, international payments)</li>
     <li><strong>Google Analytics</strong> — anonymous website traffic analysis</li>
-    <li><strong>Cloudflare</strong> — website security, CDN, and DNS</li>
+    <li><strong>Cloudflare</strong> — website security, CDN, DNS, and the database (Cloudflare D1) used to store customer account and order data described in Section 4</li>
     <li><strong>GitHub Pages</strong> — website hosting</li>
+    <li><strong>Gelato (or successor fulfilment partner)</strong> — printing and shipping of Signal Fashion products; your shipping address and order details are shared with this partner solely to fulfil your order</li>
   </ul>
   <p>Each of these services has its own privacy policy governing how they handle data.</p>
 
@@ -277,7 +330,7 @@ footer a{color:var(--gold)}
   <p>This website uses minimal cookies for analytics purposes (Google Analytics). No advertising or tracking cookies are used. You can disable cookies in your browser settings at any time.</p>
 
   <h3>Data retention</h3>
-  <p>Newsletter subscriber data is retained until you unsubscribe. Mentorship inquiry data is retained for the duration of our working relationship and for up to 12 months after for record-keeping purposes. You may request deletion of your data at any time by emailing contact@vishalhingolauthor.com.</p>
+  <p>Newsletter subscriber data is retained until you unsubscribe. Mentorship inquiry data is retained for the duration of our working relationship and for up to 12 months after for record-keeping purposes. Account data (email, name, phone, preferences) is retained until you delete your account. Order and shipping data is retained as part of our standard business and tax record-keeping, as described in Section 4. You may request deletion of your data at any time by emailing contact@vishalhingolauthor.com.</p>
 
   <h3>Your rights</h3>
   <p>Under applicable data protection laws — including the General Data Protection Regulation (GDPR) for EU/EEA residents, the California Consumer Privacy Act (CCPA) for California residents, and India's Digital Personal Data Protection Act (DPDPA) — you have the right to:</p>
@@ -329,7 +382,7 @@ footer a{color:var(--gold)}
   <p>Contact <strong>contact@vishalhingolauthor.com</strong> for any data-related requests.</p>
 
   <!-- ===== 5. DISCLAIMER ===== -->
-  <h2 id="disclaimer">5. Disclaimer</h2>
+  <h2 id="disclaimer">6. Disclaimer</h2>
 
   <h3>Qualifications</h3>
   <p>Vishal Hingol is an <strong>author, mindset adviser, and personal development mentor</strong>. He is <strong>not</strong> a licensed doctor, therapist, psychologist, counsellor, financial adviser, or legal professional. He does not hold a medical degree or any clinical certification. His expertise comes from 14+ years of professional experience, published research across 17+ books, and deep personal study of human psychology, mindset, and personal transformation.</p>
@@ -356,7 +409,7 @@ footer a{color:var(--gold)}
   <p>The books and articles published by Vishal Hingol are for informational and educational purposes. They reflect the author's personal views, research, and experience. Readers should use their own judgment when applying any concepts to their lives.</p>
 
   <!-- ===== 6. CONTACT ===== -->
-  <h2 id="contact">6. Contact</h2>
+  <h2 id="contact">7. Contact</h2>
 
   <p>For any questions about these policies, refund requests, or data-related inquiries:</p>
 
@@ -371,7 +424,7 @@ footer a{color:var(--gold)}
 
 <footer>
   <span>&copy; <script>document.write(new Date().getFullYear())</script> Vishal Hingol</span>
-  <span><a href="/">Home</a> &middot; <a href="/store.html">Books</a> &middot; <a href="/blog.html">Blog</a> &middot; <a href="/mentor.html">Mentorship</a></span>
+  <span><a href="/">Home</a> &middot; <a href="/store.html">Books</a> &middot; <a href="/blog.html">Blog</a> &middot; <a href="/mentor.html">Mentorship</a> &middot; <a href="/newsletter.html">Newsletter</a> &middot; <a href="/shop.html">Signal Fashion</a></span>
 </footer>
 
 <div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
@@ -380,6 +433,34 @@ footer a{color:var(--gold)}
   <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
 </div>
 <script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
+<script>
+(function(){
+  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
+  function firstName(fullName, email){
+    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
+    if (email) return email.split('@')[0];
+    return 'Account';
+  }
+  async function applyLoginStateToNav(){
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
+        body: JSON.stringify({ type: 'check_session' }),
+      });
+      data = await res.json().catch(function(){ return {}; });
+    } catch (err) { return; }
+    if (!data || !data.loggedIn) return;
+    const name = firstName(data.fullName, data.email);
+    document.querySelectorAll('#navAccount, #mobNavAccount, a[href="/account.html"]').forEach(function(link){
+      link.textContent = name;
+      link.href = '/my-account.html';
+    });
+  }
+  applyLoginStateToNav();
+})();
+</script>
 
 </body>
 </html>
