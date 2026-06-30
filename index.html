@@ -200,9 +200,11 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 
 .g-card{position:relative;display:grid;grid-template-columns:160px 1fr;gap:clamp(16px,3vw,28px);padding:clamp(18px,2.5vw,28px);background:#08060f;border:1px solid rgba(244,238,226,.10);border-radius:20px;overflow:hidden;isolation:isolate;transition:border-color .3s,box-shadow .3s}
 .g-card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 75% 70% at 20% 50%, rgba(157,90,255,.45), transparent 65%)}
+  radial-gradient(ellipse 65% 100% at 15% 50%, rgba(205,70,235,.5), transparent 70%),
+  radial-gradient(ellipse 65% 100% at 85% 50%, rgba(95,40,190,.55), transparent 70%),
+  radial-gradient(ellipse 90% 60% at 50% 50%, rgba(150,60,220,.25), transparent 75%)}
 .g-card>*{position:relative;z-index:1}
-.g-card:hover{border-color:rgba(157,90,255,.4);box-shadow:0 0 40px rgba(157,90,255,.18)}
+.g-card:hover{border-color:rgba(200,80,235,.4);box-shadow:0 0 40px rgba(150,60,220,.2)}
 .g-card .cover{width:160px;aspect-ratio:2/3;border-radius:6px 12px 12px 6px;overflow:hidden;position:relative;box-shadow:10px 14px 36px rgba(0,0,0,.5);flex-shrink:0}
 .g-card .cover img{width:100%;height:100%;object-fit:cover;display:block}
 .g-card .cover .cover-gen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:18px 14px}
@@ -235,8 +237,9 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 /* Spotlight */
 .spotlight{position:relative;display:grid;grid-template-columns:300px 1fr;gap:clamp(28px,5vw,64px);align-items:center;background:#08060f;border:1px solid rgba(244,238,226,.10);border-radius:28px;padding:clamp(28px,4.5vw,56px);margin-bottom:clamp(48px,7vw,84px);overflow:hidden;isolation:isolate}
 .spotlight::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 80% 75% at 25% 50%, rgba(157,90,255,.6), transparent 68%),
-  radial-gradient(ellipse 55% 50% at 80% 70%, rgba(110,40,200,.4), transparent 65%)}
+  radial-gradient(ellipse 60% 100% at 20% 50%, rgba(205,70,235,.55), transparent 70%),
+  radial-gradient(ellipse 65% 100% at 88% 50%, rgba(95,40,190,.6), transparent 70%),
+  radial-gradient(ellipse 90% 60% at 50% 50%, rgba(150,60,220,.22), transparent 75%)}
 .spotlight>*{position:relative;z-index:1}
 @media(max-width:760px){.spotlight{grid-template-columns:1fr;text-align:center}.spot-cover{margin:0 auto}.spot-info .book-tags,.spot-cta{justify-content:center}}
 .spot-cover{width:min(300px,80vw);aspect-ratio:2/3;border-radius:8px 16px 16px 8px;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(232,187,107,.25),20px 26px 60px rgba(0,0,0,.6);transform:rotate(-2deg);transition:transform .4s;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
@@ -265,15 +268,16 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 @media(max-width:840px){.mentor-grid{grid-template-columns:1fr}}
 .mentor-card{position:relative;background:#08060f;border:1px solid rgba(244,238,226,.10);border-radius:20px;padding:clamp(26px,3vw,32px) clamp(22px,2.6vw,28px);overflow:hidden;isolation:isolate;transition:border-color .35s,box-shadow .35s}
 .mentor-card::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 85% 80% at 50% 30%, rgba(157,90,255,.7), transparent 68%),
-  radial-gradient(ellipse 50% 45% at 25% 80%, rgba(110,40,200,.45), transparent 65%)}
-.mentor-card:hover{border-color:rgba(157,90,255,.4);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 50px rgba(157,90,255,.2)}
+  radial-gradient(ellipse 75% 70% at 35% 25%, rgba(205,70,235,.6), transparent 68%),
+  radial-gradient(ellipse 60% 55% at 65% 75%, rgba(95,40,190,.55), transparent 65%)}
+.mentor-card:hover{border-color:rgba(200,80,235,.4);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 50px rgba(150,60,220,.2)}
 .mentor-icon{position:relative;z-index:1;font-family:var(--display);font-size:28px;font-weight:500;color:var(--gold);margin-bottom:16px;display:block}
 .mentor-card h3{position:relative;z-index:1;font-family:var(--display);font-weight:500;font-size:19px;margin-bottom:10px;letter-spacing:-.005em;color:var(--paper)}
 .mentor-card p{position:relative;z-index:1;color:#C2C8E8;font-size:14.5px;line-height:1.65}
 .mentor-cta{text-align:center;max-width:560px;margin:0 auto;padding:clamp(32px,4.5vw,44px) clamp(24px,3vw,36px);position:relative;background:#08060f;border:1px solid rgba(244,238,226,.10);border-radius:24px;overflow:hidden;isolation:isolate}
 .mentor-cta::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 90% 80% at 50% 35%, rgba(157,90,255,.75), transparent 68%)}
+  radial-gradient(ellipse 65% 70% at 35% 35%, rgba(205,70,235,.65), transparent 68%),
+  radial-gradient(ellipse 60% 60% at 70% 65%, rgba(95,40,190,.6), transparent 68%)}
 .mentor-cta-text{position:relative;z-index:1;font-family:var(--display);font-style:italic;font-weight:300;font-size:17px;color:var(--paper);margin-bottom:24px;line-height:1.55}
 .mentor-cta .btn{position:relative;z-index:1}
 .author-photo-wrap{position:relative;border-radius:26px;overflow:hidden;width:100%;max-width:300px;flex-shrink:0;aspect-ratio:3/4;background:linear-gradient(170deg,rgba(23,32,82,.9),rgba(7,10,24,.95))}
@@ -287,8 +291,8 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .band{max-width:1240px;margin:0 auto clamp(60px,8vw,100px);padding:0 clamp(20px,6vw,72px)}
 .band-inner{position:relative;border-radius:30px;overflow:hidden;background:#08060f;border:1px solid rgba(244,238,226,.10);text-align:center;padding:clamp(36px,6vw,64px) 28px;isolation:isolate}
 .band-inner::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 90% 80% at 50% 35%, rgba(157,90,255,.75), transparent 68%),
-  radial-gradient(ellipse 55% 50% at 75% 75%, rgba(110,40,200,.4), transparent 65%)}
+  radial-gradient(ellipse 65% 70% at 35% 35%, rgba(205,70,235,.65), transparent 68%),
+  radial-gradient(ellipse 60% 60% at 72% 68%, rgba(95,40,190,.6), transparent 68%)}
 .band-inner::after{content:none}
 .band-inner>*{position:relative;z-index:1}
 .band-inner h2{margin-bottom:14px}
@@ -317,16 +321,16 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .promo-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate}
 @keyframes promoGlowDrift{0%{transform:scale(1);opacity:.92}100%{transform:scale(1.12);opacity:1}}
 .promo-card.is-newsletter .promo-glow{background:
-  radial-gradient(ellipse 85% 80% at 50% 38%, rgba(157,90,255,.85), transparent 68%),
-  radial-gradient(ellipse 55% 50% at 70% 20%, rgba(125,230,255,.35), transparent 60%),
-  radial-gradient(ellipse 50% 45% at 30% 75%, rgba(110,40,200,.5), transparent 65%)}
+  radial-gradient(ellipse 70% 65% at 38% 35%, rgba(205,70,235,.85), transparent 65%),
+  radial-gradient(ellipse 70% 65% at 65% 65%, rgba(95,40,190,.8), transparent 65%),
+  radial-gradient(ellipse 50% 45% at 75% 20%, rgba(125,230,255,.3), transparent 60%)}
 .promo-card.is-fashion .promo-glow{background:
-  radial-gradient(ellipse 85% 80% at 50% 38%, rgba(168,90,255,.85), transparent 68%),
-  radial-gradient(ellipse 55% 50% at 75% 25%, rgba(200,150,255,.4), transparent 60%),
-  radial-gradient(ellipse 50% 45% at 25% 78%, rgba(110,40,200,.5), transparent 65%)}
+  radial-gradient(ellipse 70% 65% at 35% 38%, rgba(215,80,240,.85), transparent 65%),
+  radial-gradient(ellipse 70% 65% at 68% 62%, rgba(85,35,185,.8), transparent 65%),
+  radial-gradient(ellipse 50% 45% at 78% 22%, rgba(200,150,255,.3), transparent 60%)}
 .promo-card:hover .promo-glow{filter:blur(2px)}
-.promo-card.is-newsletter:hover{border-color:rgba(157,90,255,.45);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 60px rgba(157,90,255,.25)}
-.promo-card.is-fashion:hover{border-color:rgba(168,90,255,.45);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 60px rgba(168,90,255,.25)}
+.promo-card.is-newsletter:hover{border-color:rgba(205,70,235,.45);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 60px rgba(150,60,220,.25)}
+.promo-card.is-fashion:hover{border-color:rgba(215,80,240,.45);box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 60px rgba(150,60,220,.25)}
 
 /* Fixed height + identical layout rules so both cards' visual areas match exactly */
 .promo-visual{position:relative;z-index:1;height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -346,9 +350,9 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 
 /* --- Fashion: real product photo as a CSS background, which never
      collapses to a tiny broken icon the way <img> sizing conflicts can --- */
-.promo-fashion-frame{position:relative;width:min(82%,300px);aspect-ratio:16/11;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);border:1px solid rgba(244,238,226,.3);transform:rotate(-2deg);transition:transform .4s;background:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:14px}
+.promo-fashion-frame{position:relative;width:min(82%,300px);aspect-ratio:16/11;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);border:1px solid rgba(244,238,226,.3);transform:rotate(-2deg);transition:transform .4s}
 .promo-card:hover .promo-fashion-frame{transform:rotate(0deg) scale(1.03)}
-.promo-fashion-bg{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.promo-fashion-bg{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 
 .promo-body{position:relative;z-index:1;padding:clamp(24px,3vw,30px);background:linear-gradient(180deg,rgba(7,10,24,.75),rgba(7,10,24,.92) 25%,rgba(7,10,24,.96))}
 .promo-eyebrow{font-family:'Space Grotesk',monospace;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
