@@ -44,8 +44,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="vishal-hero.webp" fetchpriority="high">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700;1,9..144,800&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700;1,9..144,800&family=Space+Grotesk:wght@400;500;600;700&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -355,9 +355,11 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .promo-fashion-bg{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 
 .promo-body{position:relative;z-index:1;padding:clamp(24px,3vw,30px);background:linear-gradient(180deg,rgba(7,10,24,.75),rgba(7,10,24,.92) 25%,rgba(7,10,24,.96))}
-.promo-eyebrow{font-family:'Space Grotesk',monospace;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
-.promo-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,3vw,27px);color:#F4EEE2;font-weight:400;margin-bottom:11px;line-height:1.28}
-.promo-title-lg{font-size:clamp(24px,3.3vw,30px)}
+.promo-eyebrow{position:relative;display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-size:clamp(18px,2.2vw,22px);font-weight:700;font-style:italic;letter-spacing:.01em;text-transform:none;margin-bottom:14px}
+.promo-eyebrow-text{background:linear-gradient(100deg,#FFE5A8 5%,var(--gold) 40%,#FFB3D9 80%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
+.promo-eyebrow .eyebrow-mark{-webkit-text-fill-color:initial;background:none;color:var(--gold);font-style:normal;font-size:.85em}
+.promo-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,3.2vw,29px);color:#F4EEE2;font-weight:500;margin-bottom:11px;line-height:1.25;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.promo-title-lg{font-size:clamp(26px,3.6vw,32px)}
 .promo-title em{font-style:italic;color:#E8BB6B}
 .promo-desc{font-size:15px;color:#C2C8E8;line-height:1.65;margin-bottom:16px}
 .promo-cta{font-family:'Space Grotesk',monospace;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
@@ -517,7 +519,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
       </div>
     </div>
     <div class="promo-body">
-      <p class="promo-eyebrow" style="color:#7DE6FF">// The Signal Newsletter</p>
+      <p class="promo-eyebrow"><span class="eyebrow-mark">✦</span><span class="promo-eyebrow-text">The Signal Newsletter</span></p>
       <p class="promo-title promo-title-lg">Daily insights for people tuning into <em>themselves.</em></p>
       <p class="promo-desc">Mindset frameworks, manifestation techniques, and behind-the-book stories — delivered to your inbox every day. Join readers in 47+ countries who start each morning with The Signal.</p>
       <span class="promo-cta" style="color:#7DE6FF">Subscribe Free →</span>
@@ -531,7 +533,7 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
       </div>
     </div>
     <div class="promo-body">
-      <p class="promo-eyebrow" style="color:#9D7BFF">// Signal Fashion Wear</p>
+      <p class="promo-eyebrow"><span class="eyebrow-mark">✦</span><span class="promo-eyebrow-text">Signal Fashion Wear</span></p>
       <p class="promo-title promo-title-lg">What you wear shapes what you <em>think.</em></p>
       <p class="promo-desc">Every affirmation you carry on your body rewires your subconscious frequency. Our apparel is designed to shift your aura, anchor your thoughts, and remind you of who you are becoming — every time you get dressed.</p>
       <span class="promo-cta" style="color:#9D7BFF">Explore Collection →</span>
