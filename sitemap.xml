@@ -1,167 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Core pages -->
+  <!-- ══════════════════════════════════════════
+       CORE PAGES
+  ══════════════════════════════════════════ -->
+
   <url>
     <loc>https://vishalhingolauthor.com/</loc>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://vishalhingolauthor.com/mentor.html</loc>
+    <loc>https://vishalhingolauthor.com/about.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vishalhingolauthor.com/store.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vishalhingolauthor.com/newsletter.html</loc>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <url>
+    <loc>https://vishalhingolauthor.com/mentor.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/blog.html</loc>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://vishalhingolauthor.com/store.html</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://vishalhingolauthor.com/shop.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/policies.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://vishalhingolauthor.com/lost-chapter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 
-  <!-- Blog articles — slugs taken exactly from blog.json -->
+  <!-- Lost chapter — lead magnet, high conversion value -->
+  <url>
+    <loc>https://vishalhingolauthor.com/lost-chapter.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://vishalhingolauthor.com/policies.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ══════════════════════════════════════════
+       NEWSLETTER EDITIONS
+       Free editions: 0.8 — fully readable by crawlers
+       Premium editions: 0.7 — free preview still indexable
+       changefreq: never — content is fixed after publish
+  ══════════════════════════════════════════ -->
+
+  <!-- Edition #16 · Gold Star Premium -->
+  <url>
+    <loc>https://vishalhingolauthor.com/editions/confidence-vs-competence.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Edition #15 · Free -->
+  <url>
+    <loc>https://vishalhingolauthor.com/editions/why-your-goals-keep-failing-in-week-two.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Edition #14 · Free -->
+  <url>
+    <loc>https://vishalhingolauthor.com/editions/the-quiet-discipline.html</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Edition #13 · Gold Star Premium -->
+  <url>
+    <loc>https://vishalhingolauthor.com/editions/the-pattern-most-people-never-see.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Edition #12 · Gold Star Premium -->
+  <url>
+    <loc>https://vishalhingolauthor.com/editions/why-reading-about-change-isnt-change.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ══════════════════════════════════════════
+       BLOG ARTICLES
+       Slugs taken exactly from your live blog.json
+       These are the long-tail SEO and GEO engine —
+       keyword-rich standalone pages AI engines cite
+  ══════════════════════════════════════════ -->
+
   <url>
     <loc>https://vishalhingolauthor.com/why-you-keep-self-sabotaging.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/369-manifestation-method-complete-guide.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/digital-sovereignty-reclaim-your-mind.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/best-self-help-books-indian-authors-2026.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/what-is-subconscious-reprogramming.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-rewire-your-brain-for-success.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/law-of-assumption-vs-law-of-attraction.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/morning-routine-subconscious-reprogramming.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-raise-your-vibration-permanently.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/signs-universe-is-guiding-you.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-build-unshakeable-confidence.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-use-ai-tools-for-small-business.html</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/what-is-limiting-beliefs-how-to-overcome.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-manifest-money-abundance.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-find-your-purpose-in-life.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-break-bad-habits-permanently.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/quantum-consciousness-what-it-means.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-develop-emotional-intelligence.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/synchronicity-carl-jung-meaning.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-build-mental-toughness.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-ai-is-changing-business-india-2026.html</loc>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/how-to-meditate-for-beginners.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/lucky-girl-syndrome-does-it-work.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/unshackled-habits-modern-men.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
     <loc>https://vishalhingolauthor.com/power-of-journalling-for-transformation.html</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
