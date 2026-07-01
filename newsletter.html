@@ -889,12 +889,196 @@ footer a{color:var(--gold)}
   <p style="font-size:12px;color:rgba(154,161,199,.5);font-family:var(--tech);letter-spacing:.06em;margin-top:14px;text-align:center">© 2025–<script>document.write(new Date().getFullYear())</script> Vishal Hingol · All rights reserved · <a href="/policies.html" style="color:var(--mist)">Policies</a></p>
 </footer>
 
-<div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
-  This website uses minimal cookies for analytics. No advertising or tracking cookies.
-  <a href="/policies.html#privacy" style="color:#E8BB6B">Privacy Policy</a> ·
-  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
+<!-- ============================================================
+     COOKIE CONSENT BANNER (Mailchimp-style, categorized)
+     ============================================================ -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(244,238,226,.12);padding:clamp(16px,2.5vw,24px) clamp(20px,5vw,48px);font-family:'Albert Sans',system-ui,sans-serif">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px">
+        <p style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E8BB6B;margin-bottom:8px">Cookie Settings</p>
+        <p style="font-size:13.5px;color:#9AA1C7;line-height:1.6;margin-bottom:10px">We use cookies to keep the site working and to understand how people use it. No advertising cookies. No third-party tracking. <a href="/policies.html#privacy" style="color:#E8BB6B;text-decoration:underline">Privacy Policy</a></p>
+        <div id="cookieDetails" style="display:none">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:12px">
+            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Essential</span>
+                <span style="font-size:10px;color:#7DE6FF;font-family:'Space Grotesk',monospace">Always on</span>
+              </div>
+              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Required for the site to function — login sessions, form submissions, security.</p>
+            </div>
+            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Analytics</span>
+                <label style="position:relative;display:inline-block;width:36px;height:20px;cursor:pointer">
+                  <input type="checkbox" id="analyticsToggle" checked style="opacity:0;width:0;height:0">
+                  <span id="analyticsSlider" style="position:absolute;inset:0;background:#E8BB6B;border-radius:100px;transition:background .2s"></span>
+                  <span id="analyticsKnob" style="position:absolute;top:3px;left:3px;width:14px;height:14px;background:#070A18;border-radius:50%;transition:left .2s"></span>
+                </label>
+              </div>
+              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Google Analytics — anonymous traffic data. No personal data.</p>
+            </div>
+            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Preferences</span>
+                <label style="position:relative;display:inline-block;width:36px;height:20px;cursor:pointer">
+                  <input type="checkbox" id="prefsToggle" checked style="opacity:0;width:0;height:0">
+                  <span id="prefsSlider" style="position:absolute;inset:0;background:#E8BB6B;border-radius:100px;transition:background .2s"></span>
+                  <span id="prefsKnob" style="position:absolute;top:3px;left:3px;width:14px;height:14px;background:#070A18;border-radius:50%;transition:left .2s"></span>
+                </label>
+              </div>
+              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Remembers your cookie choices and subscription status.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;padding-top:4px">
+        <button onclick="acceptAllCookies()" style="background:linear-gradient(110deg,#E8BB6B,#F2D49B);color:#070A18;border:none;padding:11px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Accept All</button>
+        <button onclick="toggleCookieDetails()" id="customizeBtn" style="background:transparent;color:#9AA1C7;border:1px solid rgba(244,238,226,.2);padding:10px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Customize Settings</button>
+        <button id="savePrefsBtn" onclick="saveCustomCookies()" style="display:none;background:transparent;color:#E8BB6B;border:1px solid rgba(232,187,107,.4);padding:10px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Save My Choices</button>
+      </div>
+    </div>
+  </div>
 </div>
-<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
+
+<!-- ============================================================
+     NEWSLETTER SIGNUP POPUP (new visitors only)
+     ============================================================ -->
+<div id="nlPopup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,10,24,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px">
+  <div style="position:relative;max-width:480px;width:100%;background:#08060f;border:1px solid rgba(232,187,107,.3);border-radius:24px;padding:clamp(32px,5vw,48px);text-align:center;isolation:isolate;overflow:hidden">
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);background:radial-gradient(ellipse 85% 70% at 50% 20%, rgba(232,187,107,.4), transparent 68%)"></div>
+    <button onclick="closeNlPopup()" style="position:absolute;top:16px;right:18px;background:none;border:none;color:#9AA1C7;font-size:22px;cursor:pointer;z-index:2;line-height:1">✕</button>
+    <div style="position:relative;z-index:1">
+      <p style="font-size:28px;margin-bottom:8px">✦</p>
+      <h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,3.5vw,28px);font-weight:400;color:#F4EEE2;margin-bottom:10px;line-height:1.2">Join <em style="font-style:italic;color:#E8BB6B">The Signal</em></h2>
+      <p style="font-size:14.5px;color:#9AA1C7;line-height:1.65;margin-bottom:24px;max-width:340px;margin-left:auto;margin-right:auto">Daily mindset frameworks, manifestation insights, and behind-the-book stories — read by people in 47+ countries. Free forever.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:10px">
+        <input type="email" id="popupEmail" placeholder="you@example.com" style="flex:1;min-width:180px;padding:13px 18px;border-radius:100px;border:1px solid rgba(244,238,226,.15);background:rgba(7,10,24,.6);color:#F4EEE2;font-family:'Albert Sans',system-ui,sans-serif;font-size:14px;outline:none">
+        <button onclick="submitNlPopup()" style="padding:13px 22px;border-radius:100px;border:none;cursor:pointer;background:linear-gradient(110deg,#E8BB6B,#F2D49B);color:#070A18;font-family:'Space Grotesk',monospace;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Subscribe Free</button>
+      </div>
+      <p id="popupMsg" style="font-size:13px;min-height:18px;color:#7DE6FF"></p>
+      <button onclick="closeNlPopup()" style="margin-top:10px;background:none;border:none;color:#9AA1C7;font-size:13px;cursor:pointer;text-decoration:underline;font-family:'Albert Sans',system-ui,sans-serif">No thanks, maybe later</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SIGN-IN REMINDER (returning logged-out visitors)
+     ============================================================ -->
+<div id="signinReminder" style="display:none;position:fixed;bottom:24px;right:24px;z-index:9997;background:#08060f;border:1px solid rgba(232,187,107,.3);border-radius:18px;padding:18px 22px;max-width:300px;box-shadow:0 20px 50px rgba(0,0,0,.5)">
+  <button onclick="document.getElementById('signinReminder').style.display='none';localStorage.setItem('signinDismissed','1')" style="position:absolute;top:10px;right:12px;background:none;border:none;color:#9AA1C7;font-size:18px;cursor:pointer;line-height:1">✕</button>
+  <p style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E8BB6B;margin-bottom:6px">Welcome back ✦</p>
+  <p style="font-size:13.5px;color:#9AA1C7;line-height:1.55;margin-bottom:14px">Sign in to continue reading gated articles and access your account.</p>
+  <a href="/account.html?mode=login" style="display:block;text-align:center;padding:10px 18px;border-radius:100px;background:linear-gradient(110deg,#E8BB6B,#F2D49B);color:#070A18;font-family:'Space Grotesk',monospace;font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none">Sign In →</a>
+</div>
+
+<script>
+(function(){
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+  if (!localStorage.getItem('cookieOk')) banner.style.display = 'block';
+  ['analytics','prefs'].forEach(function(id){
+    var toggle = document.getElementById(id+'Toggle');
+    var slider = document.getElementById(id+'Slider');
+    var knob   = document.getElementById(id+'Knob');
+    if (!toggle) return;
+    toggle.addEventListener('change', function(){
+      slider.style.background = toggle.checked ? '#E8BB6B' : 'rgba(244,238,226,.15)';
+      knob.style.left = toggle.checked ? '19px' : '3px';
+    });
+  });
+})();
+
+function acceptAllCookies(){
+  localStorage.setItem('cookieOk','1');
+  localStorage.setItem('cookieAnalytics','1');
+  localStorage.setItem('cookiePrefs','1');
+  document.getElementById('cookieBanner').style.display = 'none';
+  maybeShowNlPopup();
+}
+
+function toggleCookieDetails(){
+  var d    = document.getElementById('cookieDetails');
+  var btn  = document.getElementById('customizeBtn');
+  var save = document.getElementById('savePrefsBtn');
+  var isHidden = d.style.display === 'none' || !d.style.display;
+  d.style.display    = isHidden ? 'block' : 'none';
+  btn.textContent    = isHidden ? 'Hide Settings' : 'Customize Settings';
+  save.style.display = isHidden ? 'block' : 'none';
+}
+
+function saveCustomCookies(){
+  localStorage.setItem('cookieOk','1');
+  localStorage.setItem('cookieAnalytics', document.getElementById('analyticsToggle').checked ? '1' : '0');
+  localStorage.setItem('cookiePrefs',     document.getElementById('prefsToggle').checked     ? '1' : '0');
+  document.getElementById('cookieBanner').style.display = 'none';
+  maybeShowNlPopup();
+}
+
+function maybeShowNlPopup(){
+  if (localStorage.getItem('nlSubscribed'))    return;
+  if (localStorage.getItem('nlPopupDismissed')) return;
+  setTimeout(function(){
+    var p = document.getElementById('nlPopup');
+    if (p) p.style.display = 'flex';
+  }, 3000);
+}
+
+function closeNlPopup(){
+  var p = document.getElementById('nlPopup');
+  if (p) p.style.display = 'none';
+  localStorage.setItem('nlPopupDismissed','1');
+}
+
+async function submitNlPopup(){
+  var email = document.getElementById('popupEmail').value.trim();
+  var msg   = document.getElementById('popupMsg');
+  if (!email || !email.includes('@')){
+    msg.style.color = '#FF9B9B';
+    msg.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  msg.style.color = '#9AA1C7';
+  msg.textContent = 'Sending...';
+  try {
+    var res  = await fetch('https://subscribe.vishalhingolauthor.com',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email: email})
+    });
+    var data = await res.json();
+    if (res.ok && data.success){
+      msg.style.color = '#7DE6FF';
+      msg.textContent = '✓ Welcome to The Signal! Check your inbox.';
+      localStorage.setItem('nlSubscribed','1');
+      setTimeout(closeNlPopup, 2500);
+    } else {
+      msg.style.color = '#FF9B9B';
+      msg.textContent = data.error || 'Something went wrong. Try again.';
+    }
+  } catch(e){
+    msg.style.color = '#FF9B9B';
+    msg.textContent = 'Network error. Please try again.';
+  }
+}
+
+// Sign-in reminder for returning logged-out visitors
+(function(){
+  if (!localStorage.getItem('cookieOk'))        return;
+  if (localStorage.getItem('signinDismissed'))  return;
+  fetch('https://subscribe.vishalhingolauthor.com',{
+    method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
+    body: JSON.stringify({type:'check_session'})
+  }).then(function(r){ return r.json(); }).then(function(data){
+    if (data && data.loggedIn) return;
+    setTimeout(function(){
+      var r = document.getElementById('signinReminder');
+      if (r) r.style.display = 'block';
+    }, 5000);
+  }).catch(function(){});
+})();
+
+if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
+</script>
 
 <script>
 (function(){
