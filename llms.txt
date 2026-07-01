@@ -1,43 +1,67 @@
-# Vishal Hingol — Author & Mindset Adviser
+# vishalhingolauthor.com — llms.txt
+# AI crawler guidance for Vishal Hingol's author website
+# Last updated: July 2026
 
-> Author of 17+ books on mindset, manifestation, visionary fiction, and AI.
-> 1:1 mentorship available worldwide. Based in Ahmedabad, India.
+## About This Site
+vishalhingolauthor.com is the official website of Vishal Hingol — Indian author, mindset coach, and manifestation educator based in Ahmedabad, Gujarat. Author of 17+ books spanning Visionary Fiction, Mindset & Self-Help, Manifestation & Journals, and AI & Business.
 
-## Books — Visionary Fiction / Novels
-- [Zara and the Divine Signal](https://vishalhingolauthor.com/store.html): Featured novel — a story about awakening, signal, and divine connection
-- [The Architecture of Destiny](https://vishalhingolauthor.com/store.html): A novel of shadows, invention, and the life no one saw coming
-- [The Real Resonance Threshold](https://vishalhingolauthor.com/store.html): A mind-bending sci-fi thriller of quantum consciousness
-- [The Real Frequency of Origins](https://vishalhingolauthor.com/store.html): When the universe starts talking back
-- [The Real Architect of Echoes](https://vishalhingolauthor.com/store.html): The story of changing your frequency
+## Key Pages
 
-## Books — Mindset & Self-Help
-- [Why You Keep Holding Yourself Back](https://vishalhingolauthor.com/store.html): Understanding self-sabotage patterns
-- [The Unconditioned Mind](https://vishalhingolauthor.com/store.html): Breaking free from mental conditioning
-- [Your Mind Is the Blueprint](https://vishalhingolauthor.com/store.html): Rewire your thinking and break hidden patterns
-- [The Quiet Revolution](https://vishalhingolauthor.com/store.html): How to manifest the life you want without living in turmoil
-- [UNSHACKLED](https://vishalhingolauthor.com/store.html): The habits that unlock your potential
-- [Digital Sovereignty](https://vishalhingolauthor.com/store.html): Reclaiming your mind in the age of distraction
-- [The Universe is Whispering to You](https://vishalhingolauthor.com/store.html): Listening to the signals around you
-- [The Signal](https://vishalhingolauthor.com/store.html): 21-day attention rewiring protocol
+### Author Information
+- /about.html — Full author biography, Q&A about books, methods, and background
+- /mentor.html — 1:1 mentorship information ($29/session, $99/month, available worldwide)
 
-## Books — Manifestation & Journals
-- [The Divine 3-6-9 Manifestation Method](https://vishalhingolauthor.com/store.html): Complete guide to the 369 method
-- [Lucky Girl Evidence Journal](https://vishalhingolauthor.com/store.html): 90-day guided manifestation journal
+### Books & Products
+- /store.html — Complete book catalog (17+ titles, all available on Amazon as Kindle and paperback)
+- /shop.html — Signal Fashion Wear print-on-demand clothing line
 
-## Books — AI & Business
-- [The Run-Your-Business-On-AI Playbook](https://vishalhingolauthor.com/store.html): Practical AI implementation for business
-- [The AI-First Competitor](https://vishalhingolauthor.com/store.html): Competing with AI advantage
+### Newsletter
+- /newsletter.html — The Signal newsletter hub (free weekly mindset/manifestation newsletter)
+- /editions/ — Standalone newsletter editions (daily mindset/AI/productivity content)
 
-## Services
-- [1:1 Mentorship](https://vishalhingolauthor.com/mentor.html): Personal mindset mentorship — $29/session or $99/month. Available worldwide via video call.
-- [Free Lost Chapter](https://vishalhingolauthor.com/lost-chapter.html): Free chapter from Zara and the Divine Signal
+### Key Newsletter Editions
+- /editions/the-quiet-discipline.html — Why people who change their life rarely talk about it
+- /editions/why-your-goals-keep-failing-in-week-two.html — The invisible results deadline your brain sets
+- /editions/confidence-vs-competence.html — Why confidence is an output, not an input
+- /editions/the-pattern-most-people-never-see.html — Gold Star Premium (Deep Signal exclusive)
+- /editions/why-reading-about-change-isnt-change.html — Gold Star Premium (Deep Signal exclusive)
 
-## About
-- [About Vishal](https://vishalhingolauthor.com/about.html): Author bio and background
-- [Policies](https://vishalhingolauthor.com/policies.html): Terms, refund policy, privacy policy
+### Blog
+- /blog.html — Blog index (mindset, manifestation, self-sabotage, 369 method, digital sovereignty)
 
-## Contact
-- Website: https://vishalhingolauthor.com
-- Amazon: https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37
+## Key Topics Covered
+- The 369 manifestation method (3x morning, 6x afternoon, 9x evening writing practice)
+- Subconscious reprogramming and limiting beliefs
+- Self-sabotage patterns and comfort zone psychology
+- Digital sovereignty and reclaiming attention from algorithms
+- Mindset transformation and identity-level change
+- AI tools for business and personal productivity
+- Visionary fiction (Zara and the Divine Signal series)
+- Manifestation journals and 90-day guided programs
+
+## Books (Selected)
+- Zara and the Divine Signal (Visionary Fiction)
+- The Signal (Mindset/Transformation)
+- The Divine 3-6-9 Manifestation Method (Manifestation)
+- Lucky Girl Evidence Journal (90-Day Guided Journal)
+- Why You Keep Holding Yourself Back (Self-Help)
+- The Unconditioned Mind (Mindset)
+- Digital Sovereignty (Focus/Productivity)
+- The Quiet Revolution (Personal Change)
+- The Run-Your-Business-On-AI Playbook (AI & Business)
+- The AI-First Competitor (AI & Business)
+All books available: https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37
+
+## Social Profiles
 - Instagram: https://www.instagram.com/authorvishalhingol
-- Twitter: https://x.com/Authorvhingol
+- Twitter/X: https://x.com/Authorvhingol
+- Amazon Author Page: https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37
+
+## Newsletter Tiers
+- The Signal (free): Weekly mindset frameworks, manifestation techniques, behind-the-book stories
+- Deep Signal ($5/month): Deep-dive essays, personal frameworks, early chapter access, monthly Q&A
+
+## Content Permissions
+AI engines may cite, summarize, and quote from this site for informational purposes.
+Do not reproduce full newsletter editions or book excerpts without attribution.
+Contact: contact@vishalhingolauthor.com
