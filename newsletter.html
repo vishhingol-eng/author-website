@@ -331,20 +331,58 @@ footer a{color:var(--gold)}
 
 /* ---- Gold Star Premium promo section ---- */
 .gsp-section{margin-bottom:clamp(48px,8vw,80px)}
-.gsp-card{position:relative;display:block;text-decoration:none;border-radius:28px;overflow:hidden;background:#08060f;border:1px solid rgba(232,187,107,.25);padding:clamp(36px,5vw,56px);text-align:center;isolation:isolate;transition:border-color .35s,box-shadow .35s,transform .35s}
-.gsp-card:hover{transform:translateY(-4px);border-color:rgba(232,187,107,.5);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(232,187,107,.2)}
-.gsp-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:
-  radial-gradient(ellipse 90% 80% at 50% 30%, rgba(232,187,107,.55), transparent 68%),
-  radial-gradient(ellipse 60% 55% at 75% 75%, rgba(157,90,255,.4), transparent 65%)}
-@keyframes promoGlowDrift{0%{transform:scale(1);opacity:.92}100%{transform:scale(1.12);opacity:1}}
+.gsp-header{text-align:center;margin-bottom:clamp(24px,4vw,36px)}
+.gsp-header-eyebrow{
+  font-family:var(--tech);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:#1a0e00;
+  background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);
+  display:inline-block;margin-bottom:14px;
+  padding:8px 20px;border-radius:100px;
+  box-shadow:0 0 24px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.gsp-header-title{font-family:var(--display);font-size:clamp(24px,3.5vw,32px);font-weight:400;color:var(--paper);margin-bottom:8px}
+.gsp-header-title em{font-style:italic;color:var(--gold)}
+.gsp-header-sub{color:var(--mist);font-size:14.5px;max-width:480px;margin:0 auto}
+
+.gsp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,24px)}
+@media(max-width:680px){.gsp-grid{grid-template-columns:1fr}}
+
+/* Featured card — larger, left */
+.gsp-card-featured{position:relative;display:block;text-decoration:none;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#0D0800 0%,#110A02 50%,#0A0614 100%);border:1px solid rgba(232,187,107,.3);padding:clamp(28px,4vw,40px);isolation:isolate;transition:border-color .35s,box-shadow .35s,transform .35s}
+.gsp-card-featured:hover{transform:translateY(-4px);border-color:rgba(232,187,107,.55);box-shadow:0 28px 64px rgba(0,0,0,.5),0 0 60px rgba(232,187,107,.18)}
+.gsp-glow-featured{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);background:radial-gradient(ellipse 90% 80% at 50% 25%,rgba(232,187,107,.5),transparent 65%),radial-gradient(ellipse 60% 55% at 80% 80%,rgba(157,90,255,.35),transparent 65%);animation:promoGlowDrift 7s ease-in-out infinite alternate}
+@keyframes promoGlowDrift{0%{transform:scale(1);opacity:.92}100%{transform:scale(1.1);opacity:1}}
+.gsp-card-featured>*:not(.gsp-glow-featured){position:relative;z-index:1}
+
+.gsp-featured-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 16px;border-radius:100px;margin-bottom:18px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
+.gsp-featured-title{font-family:var(--display);font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--paper);line-height:1.15;margin-bottom:10px;letter-spacing:-.02em}
+.gsp-featured-title em{font-style:italic;color:var(--gold)}
+.gsp-featured-sub{font-family:var(--display);font-style:italic;font-size:14px;color:var(--mist);margin-bottom:18px;line-height:1.5}
+
+/* Content preview inside the card */
+.gsp-preview{background:rgba(255,255,255,.04);border-radius:14px;padding:16px 18px;margin-bottom:18px;border:1px solid rgba(244,238,226,.07)}
+.gsp-preview-label{font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:10px}
+.gsp-preview-quote{font-family:var(--display);font-style:italic;font-size:14.5px;color:var(--paper);line-height:1.5;border-left:2px solid var(--gold);padding-left:12px}
+.gsp-preview-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.gsp-stat{text-align:center;background:rgba(232,187,107,.06);border-radius:10px;padding:10px}
+.gsp-stat-num{font-family:var(--display);font-size:22px;font-weight:700;color:var(--gold);line-height:1;display:block}
+.gsp-stat-label{font-size:11px;color:var(--mist);line-height:1.4}
+
+.gsp-featured-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
+.gsp-card-featured:hover .gsp-featured-cta{gap:12px}
+
+/* Second card — smaller, right */
+.gsp-card{position:relative;display:block;text-decoration:none;border-radius:24px;overflow:hidden;background:#08060f;border:1px solid rgba(232,187,107,.2);padding:clamp(24px,3.5vw,32px);text-align:center;isolation:isolate;transition:border-color .35s,box-shadow .35s,transform .35s}
+.gsp-card:hover{transform:translateY(-4px);border-color:rgba(232,187,107,.45);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 50px rgba(232,187,107,.15)}
+.gsp-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);animation:promoGlowDrift 7s ease-in-out infinite alternate;background:radial-gradient(ellipse 90% 80% at 50% 30%,rgba(232,187,107,.45),transparent 68%),radial-gradient(ellipse 60% 55% at 75% 75%,rgba(157,90,255,.35),transparent 65%)}
 .gsp-content{position:relative;z-index:1}
-.gsp-star{font-size:32px;margin-bottom:14px;display:block}
-.gsp-eyebrow{font-family:var(--tech);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:inline-block;padding:6px 16px;border-radius:100px;border:1px solid rgba(232,187,107,.4);background:rgba(232,187,107,.08)}
-.gsp-title{font-family:var(--display);font-size:clamp(26px,4vw,36px);font-weight:400;color:var(--paper);margin-bottom:12px;line-height:1.2}
+.gsp-star{font-size:30px;margin-bottom:12px;display:block}
+.gsp-eyebrow{font-family:var(--tech);font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1a0e00;margin-bottom:14px;display:inline-block;padding:7px 16px;border-radius:100px;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);box-shadow:0 0 18px rgba(232,187,107,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.gsp-title{font-family:var(--display);font-size:clamp(18px,2.8vw,24px);font-weight:400;color:var(--paper);margin-bottom:10px;line-height:1.25}
 .gsp-title em{font-style:italic;color:var(--gold)}
-.gsp-desc{color:#C2C8E8;font-size:15.5px;line-height:1.7;max-width:520px;margin:0 auto 24px}
-.gsp-cta{display:inline-block;padding:15px 36px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);transition:transform .2s,box-shadow .2s}
-.gsp-card:hover .gsp-cta{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.5)}
+.gsp-desc{color:#C2C8E8;font-size:13.5px;line-height:1.65;margin-bottom:20px}
+.gsp-cta{display:inline-block;padding:12px 28px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:#070A18 !important;transition:transform .2s,box-shadow .2s}
+.gsp-card:hover .gsp-cta{transform:translateY(-2px);box-shadow:0 0 28px rgba(232,187,107,.45)}
 </style>
 </head>
 <body>
@@ -454,18 +492,55 @@ footer a{color:var(--gold)}
     </div>
   </div>
 
-  <!-- Gold Star Premium promo -->
+  <!-- Gold Star Premium promo — two-card showcase -->
   <div class="gsp-section">
-    <a href="/editions/the-pattern-most-people-never-see.html" class="gsp-card">
-      <div class="gsp-glow"></div>
-      <div class="gsp-content">
-        <span class="gsp-star">⭐</span>
-        <span class="gsp-eyebrow">Gold Star Premium</span>
-        <h2 class="gsp-title">One idea is free. <em>The rest is for the circle.</em></h2>
-        <p class="gsp-desc">A Deep Signal exclusive — read the opening for free, then unlock the full piece, the framework behind it, and every future Gold Star edition with a Deep Signal membership.</p>
-        <span class="gsp-cta">Read the Free Preview →</span>
-      </div>
-    </a>
+    <div class="gsp-header">
+      <span class="gsp-header-eyebrow">⭐ Gold Star Premium · Deep Signal Exclusive</span>
+      <h2 class="gsp-header-title">The editions that go <em>deeper.</em></h2>
+      <p class="gsp-header-sub">Gold Star editions are Deep Signal exclusives — full-depth pieces with animated data visualizations, 4-step practice frameworks, and the mechanisms behind the mindset, not just the surface idea.</p>
+    </div>
+
+    <div class="gsp-grid">
+
+      <!-- FEATURED: Confidence vs Competence — new magazine-style edition -->
+      <a href="/editions/confidence-vs-competence.html" class="gsp-card-featured">
+        <div class="gsp-glow-featured"></div>
+        <span class="gsp-featured-badge">⭐ Latest Gold Star</span>
+        <h3 class="gsp-featured-title">Confidence Is a Symptom.<br><em>You're Treating It Like a Cause.</em></h3>
+        <p class="gsp-featured-sub">Why chasing the feeling of certainty keeps you exactly where you are.</p>
+
+        <!-- Real content preview -->
+        <div class="gsp-preview">
+          <span class="gsp-preview-label">Free preview inside</span>
+          <p class="gsp-preview-quote">Competence is the account. Confidence is the interest it pays out.</p>
+          <div class="gsp-preview-stats">
+            <div class="gsp-stat">
+              <span class="gsp-stat-num">95%</span>
+              <span class="gsp-stat-label">of decisions driven by subconscious belief</span>
+            </div>
+            <div class="gsp-stat">
+              <span class="gsp-stat-num">48h</span>
+              <span class="gsp-stat-label">window before a new behavior embeds or dissolves</span>
+            </div>
+          </div>
+        </div>
+
+        <span class="gsp-featured-cta">Read the Free Preview →</span>
+      </a>
+
+      <!-- SECOND: The Pattern Most People Never See -->
+      <a href="/editions/the-pattern-most-people-never-see.html" class="gsp-card">
+        <div class="gsp-glow"></div>
+        <div class="gsp-content">
+          <span class="gsp-star">⭐</span>
+          <span class="gsp-eyebrow">Gold Star Premium</span>
+          <h3 class="gsp-title">The Pattern Most People <em>Never See</em></h3>
+          <p class="gsp-desc">The one trait that separates people who actually change their life from people who keep reading about changing it — and the 48-hour window where almost everything is decided.</p>
+          <span class="gsp-cta">Read the Free Preview →</span>
+        </div>
+      </a>
+
+    </div>
   </div>
 
   <!-- Two tiers -->
@@ -602,14 +677,14 @@ footer a{color:var(--gold)}
       <a href="/editions/why-your-goals-keep-failing-in-week-two.html" class="edition-badge free-read">Read →</a>
     </div>
 
-    <div class="edition">
-      <span class="edition-num">#08</span>
+    <div class="edition" style="border-color:rgba(232,187,107,.3)">
+      <span class="edition-num" style="color:var(--gold)">⭐</span>
       <div class="edition-info">
         <h3>Confidence Is a Symptom. You're Treating It Like a Cause.</h3>
         <p>Why chasing the feeling of certainty keeps you exactly where you are.</p>
-        <p class="edition-date">Jul 2026</p>
+        <p class="edition-date">Jul 2026 · Gold Star Premium</p>
       </div>
-      <a href="/editions/confidence-vs-competence.html" class="edition-badge free-read">Read →</a>
+      <a href="/editions/confidence-vs-competence.html" class="edition-badge paid-lock" style="color:var(--gold);border-color:rgba(232,187,107,.4)">Premium →</a>
     </div>
 
     <div class="edition" style="border-color:rgba(232,187,107,.3)">

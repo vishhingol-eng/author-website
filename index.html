@@ -314,6 +314,236 @@ h2 em{font-style:italic;font-weight:300;background:linear-gradient(100deg,var(--
 .band-divider{display:flex;align-items:center;gap:14px;max-width:300px;margin:32px auto 24px;color:var(--mist);font-family:var(--tech);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
 .band-divider::before,.band-divider::after{content:"";flex:1;height:1px;background:var(--line)}
 
+/* ══════════════════════════════════════════════
+   GOLD STAR HOMEPAGE FEATURE — Complete Redesign
+   Palette: warm gold-night (#0D0800 base with
+   gold warmth) instead of cold blue-black
+══════════════════════════════════════════════ */
+.gs-feature{
+  position:relative;
+  max-width:1240px;margin:0 auto clamp(40px,6vw,64px);
+  padding:0 clamp(20px,6vw,72px);
+}
+.gs-feature-inner{
+  position:relative;
+  border-radius:32px;overflow:hidden;isolation:isolate;
+  /* WARM GOLD-NIGHT background — not cold blue */
+  background:linear-gradient(145deg,#0D0800 0%,#110A02 40%,#0A0614 70%,#0D0800 100%);
+  border:1.5px solid rgba(232,187,107,.35);
+  min-height:540px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  box-shadow:0 0 80px rgba(232,187,107,.12),0 40px 80px rgba(0,0,0,.6);
+}
+@media(max-width:820px){.gs-feature-inner{grid-template-columns:1fr}}
+
+/* Canvas backgrounds */
+#gs-ring-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+#gs-particle-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}
+
+/* Animated gold border */
+.gs-feature-inner::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:2;pointer-events:none;
+  padding:1.5px;
+  background:linear-gradient(135deg,
+    rgba(232,187,107,.9) 0%,
+    rgba(255,215,120,.6) 25%,
+    rgba(157,123,255,.4) 50%,
+    rgba(232,187,107,.7) 75%,
+    rgba(255,200,100,.9) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:gsBorderShimmer 4s ease-in-out infinite alternate;
+}
+@keyframes gsBorderShimmer{
+  0%{opacity:.7}100%{opacity:1}
+}
+
+/* ── LEFT PANEL ── */
+/* KEY FIX: no background on gs-left at all — the canvas IS the background.
+   Use a very subtle left-side darkening only via a pseudo-element so text
+   is readable without creating any box shape */
+.gs-left{
+  position:relative;z-index:3;
+  padding:clamp(44px,5vw,68px) clamp(40px,5vw,64px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+/* Soft left vignette — dark gold warmth, feathers completely */
+.gs-left::before{
+  content:"";
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 110% 100% at 0% 50%,rgba(40,18,0,.96) 0%,rgba(25,10,0,.85) 35%,rgba(13,8,0,.55) 60%,transparent 85%),
+    radial-gradient(ellipse 60% 80% at 0% 100%,rgba(30,12,0,.6) 0%,transparent 60%);
+}
+.gs-left>*{position:relative;z-index:1}
+
+/* EYEBROW — gold badge, clearly visible */
+.gs-left-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--tech);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:#1a0e00;
+  background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);
+  padding:9px 20px;border-radius:100px;margin-bottom:24px;width:fit-content;
+  box-shadow:0 0 32px rgba(232,187,107,.55),0 4px 16px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* TITLE — large, dominant */
+.gs-left-title{
+  font-family:var(--display);font-size:clamp(34px,5vw,58px);
+  font-weight:700;line-height:1.03;letter-spacing:-.03em;
+  color:#F4EEE2;margin-bottom:14px;
+  text-shadow:0 2px 24px rgba(0,0,0,.7),0 0 60px rgba(232,187,107,.15);
+}
+.gs-left-title em{
+  font-style:italic;
+  background:linear-gradient(110deg,#E8BB6B,#F5D080,#FF9ECF);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* SUBTITLE */
+.gs-left-sub{
+  font-size:clamp(16px,2vw,18px);color:#D4CCBB;
+  line-height:1.7;margin-bottom:28px;max-width:420px;
+}
+
+/* PULL QUOTE — warm gold card */
+.gs-preview-quote{
+  font-family:var(--display);font-style:italic;
+  font-size:clamp(17px,2.2vw,21px);color:#F4EEE2;font-weight:500;
+  line-height:1.5;
+  border-left:3px solid #E8BB6B;
+  padding:16px 20px;margin-bottom:26px;
+  background:rgba(232,187,107,.1);
+  border-radius:0 14px 14px 0;
+  box-shadow:inset 0 0 0 1px rgba(232,187,107,.12);
+}
+
+/* STAT CARDS — warm gold, bigger numbers */
+.gs-stats{display:flex;gap:14px;margin-bottom:30px;flex-wrap:wrap}
+.gs-stat{
+  background:rgba(232,187,107,.1);
+  border:1px solid rgba(232,187,107,.28);
+  border-radius:16px;padding:18px 22px;text-align:center;flex:1;min-width:100px;
+  box-shadow:inset 0 1px 0 rgba(255,215,120,.15);
+}
+.gs-stat-num{
+  font-family:var(--display);font-size:clamp(32px,4.5vw,44px);
+  font-weight:700;color:#E8BB6B;line-height:1;display:block;margin-bottom:6px;
+  text-shadow:0 0 24px rgba(232,187,107,.5);
+}
+.gs-stat-label{font-size:13px;color:#C8BEA8;line-height:1.5;font-weight:500}
+
+/* PRIMARY CTA — larger, more prominent */
+.gs-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:17px 36px;border-radius:100px;
+  background:linear-gradient(110deg,#E8BB6B,#F5D080,#E8BB6B);
+  background-size:200% 100%;
+  color:#060400 !important;font-family:var(--tech);font-weight:800;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;width:fit-content;
+  box-shadow:0 0 32px rgba(232,187,107,.45),0 8px 24px rgba(0,0,0,.4);
+  transition:transform .25s,box-shadow .25s,gap .25s,background-position .4s;
+}
+.gs-cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 52px rgba(232,187,107,.7),0 12px 32px rgba(0,0,0,.5);
+  gap:16px;background-position:100% 0;
+}
+
+/* MEMBERSHIP BADGE — beautiful, prominent, warm */
+.gs-membership{
+  display:inline-flex;align-items:center;gap:0;
+  margin-top:16px;width:fit-content;
+  border-radius:100px;
+  overflow:hidden;
+  border:1.5px solid rgba(232,187,107,.4);
+  box-shadow:0 0 20px rgba(232,187,107,.15);
+}
+.gs-membership-seg{
+  padding:9px 16px;font-family:var(--tech);
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.gs-membership-seg:first-child{
+  background:rgba(232,187,107,.12);color:#E8BB6B;
+  border-right:1px solid rgba(232,187,107,.25);
+}
+.gs-membership-seg:nth-child(2){
+  background:rgba(232,187,107,.07);color:#D4A84A;
+  border-right:1px solid rgba(232,187,107,.2);
+}
+.gs-membership-seg:last-child{
+  background:linear-gradient(110deg,rgba(232,187,107,.2),rgba(232,187,107,.12));
+  color:#F5D080;font-family:var(--display);font-style:italic;font-size:14px;font-weight:700;
+  letter-spacing:.02em;text-transform:none;
+}
+.gs-membership-dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
+
+/* ── RIGHT PANEL ── */
+.gs-right{
+  position:relative;z-index:3;
+  padding:clamp(32px,4vw,52px) clamp(32px,4vw,52px) clamp(32px,4vw,52px) clamp(24px,3vw,40px);
+  display:flex;flex-direction:column;justify-content:center;gap:18px;
+}
+@media(max-width:820px){.gs-right{display:none}}
+
+/* "Inside this edition" — display heading, not tiny mono label */
+.gs-viz-heading{margin-bottom:2px}
+.gs-viz-heading-eyebrow{
+  font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:#7DE6FF;display:block;margin-bottom:8px;
+  text-shadow:0 0 14px rgba(125,230,255,.5);
+}
+.gs-viz-heading-title{
+  font-family:var(--display);font-size:clamp(22px,3vw,30px);
+  font-weight:700;color:#F4EEE2;line-height:1.15;letter-spacing:-.02em;
+}
+.gs-viz-heading-title em{
+  font-style:italic;
+  background:linear-gradient(110deg,#E8BB6B,#F5D080,#FFF0B0);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* VIZ CARD — warm-dark, high contrast */
+.gs-viz-card{
+  background:rgba(6,4,10,.92);
+  border:1px solid rgba(232,187,107,.2);
+  border-radius:18px;overflow:hidden;position:relative;
+  box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 0 1px rgba(232,187,107,.08);
+}
+.gs-viz-card canvas{display:block;width:100%}
+.gs-viz-caption{
+  padding:13px 18px;
+  font-family:var(--display);font-style:italic;
+  font-size:13px;color:rgba(212,204,187,.8);
+  text-align:center;line-height:1.6;
+  border-top:1px solid rgba(232,187,107,.12);
+  background:rgba(13,8,0,.5);
+}
+
+/* Single read-time stat below viz canvas */
+.gs-read-stat{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 20px;
+  background:rgba(125,230,255,.07);
+  border:1px solid rgba(125,230,255,.2);
+  border-radius:14px;
+}
+.gs-read-num{
+  font-family:var(--display);font-size:clamp(32px,4vw,42px);
+  font-weight:700;color:#7DE6FF;line-height:1;
+  text-shadow:0 0 24px rgba(125,230,255,.5);
+  flex-shrink:0;
+}
+.gs-read-text{
+  font-family:var(--tech);font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(125,230,255,.75);
+  line-height:1.4;
+}
+
 /* ---------- Promo cards: Newsletter + Signal Fashion ---------- */
 .promo-row{display:flex;gap:clamp(16px,3vw,24px);max-width:1240px;margin:0 auto clamp(40px,6vw,60px);padding:0 clamp(20px,6vw,72px);flex-wrap:wrap;justify-content:center}
 .promo-card{flex:1;min-width:280px;max-width:560px;display:block;position:relative;text-decoration:none;border-radius:24px;overflow:hidden;background:#08060f;border:1px solid rgba(244,238,226,.10);transition:border-color .35s,box-shadow .35s,transform .35s;isolation:isolate}
@@ -540,6 +770,73 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
     </div>
   </a>
 </div>
+
+<!-- ══════════════════════════════════════════════
+     GOLD STAR PREMIUM — Homepage Feature
+     Two canvas effects: (1) accreting ring system background,
+     (2) interactive particle field overlay
+═══════════════════════════════════════════════ -->
+<div class="gs-feature reveal">
+  <div class="gs-feature-inner">
+
+    <!-- Effect 1: Ambient accreting ring background (full section) -->
+    <canvas id="gs-ring-canvas" aria-hidden="true"></canvas>
+    <!-- Effect 2: Interactive particle field (mouse-reactive overlay) -->
+    <canvas id="gs-particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- LEFT — editorial -->
+    <div class="gs-left">
+      <span class="gs-left-eyebrow"><span style="font-size:14px;line-height:1;filter:drop-shadow(0 0 6px rgba(255,200,0,.8))">⭐</span> Gold Star Premium · Deep Signal</span>
+      <h2 class="gs-left-title">Confidence Is a Symptom.<br><em>You're Treating It Like a Cause.</em></h2>
+      <p class="gs-left-sub">Why chasing the feeling of certainty keeps you exactly where you are — and the real mechanism your brain uses to build lasting confidence.</p>
+      <blockquote class="gs-preview-quote">Competence is the account. Confidence is the interest it pays out.</blockquote>
+      <div class="gs-stats">
+        <div class="gs-stat">
+          <span class="gs-stat-num">95%</span>
+          <span class="gs-stat-label">of decisions driven by subconscious belief</span>
+        </div>
+        <div class="gs-stat">
+          <span class="gs-stat-num">48h</span>
+          <span class="gs-stat-label">window before a behavior embeds or dissolves</span>
+        </div>
+      </div>
+      <a href="/editions/confidence-vs-competence.html" class="gs-cta">Read the Free Preview →</a>
+      <div class="gs-membership">
+        <span class="gs-membership-seg">
+          <span class="gs-membership-dot"></span>
+          Full Edition
+        </span>
+        <span class="gs-membership-seg">Deep Signal Members</span>
+        <span class="gs-membership-seg">$5/month</span>
+      </div>
+    </div>
+
+    <!-- RIGHT — mini visualization preview -->
+    <div class="gs-right">
+
+      <!-- Heading -->
+      <div class="gs-viz-heading">
+        <span class="gs-viz-heading-eyebrow">Inside this edition</span>
+        <p class="gs-viz-heading-title">The most ambitious<br><em>edition we've built.</em></p>
+      </div>
+
+      <!-- Mini VS visualization -->
+      <div class="gs-viz-card">
+        <canvas id="gs-vs-mini" height="180" aria-label="Mini VS visualization preview"></canvas>
+        <div class="gs-viz-caption">Manufactured confidence dissolves under pressure. Earned competence permanently accretes.</div>
+      </div>
+
+      <!-- Single clean read-time stat -->
+      <div class="gs-read-stat">
+        <span class="gs-read-num">6</span>
+        <span class="gs-read-text">Minute<br>Deep Read</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 <main class="veil">
   <section id="books">
     <div class="sec-head reveal" style="text-align:center">
@@ -1338,6 +1635,344 @@ if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
   }
 
   applyLoginStateToNav();
+})();
+</script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   GOLD STAR HOMEPAGE FEATURE — THREE CANVAS EFFECTS
+
+   Effect 1: gs-ring-canvas — Ambient accreting ring system
+   Slow, majestic, cosmic. Gold-violet rings continuously build
+   from the center outward, creating a sense of permanent growth
+   that mirrors the competence-accretes theme of the edition.
+
+   Effect 2: gs-particle-canvas — Interactive particle field
+   Gold particles drift through the section. On mouse move,
+   they repel gently, creating a fluid, living feel that rewards
+   reader interaction before they click through.
+
+   Effect 3: gs-vs-mini — Mini VS preview canvas
+   Compact version of the edition's main VS visualization,
+   teasing what's inside to create curiosity.
+══════════════════════════════════════════════════════════════ */
+
+function makePRNG2(seed) {
+  let s = seed >>> 0;
+  return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 0xffffffff; };
+}
+
+/* ── EFFECT 1: Accreting ring system + wavy sine lines background ── */
+(function() {
+  const canvas = document.getElementById('gs-ring-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dpr;
+  const rng = makePRNG2(88888);
+  let rings = [];
+  const MAX_RINGS = 200;
+  let ringCount = 0;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const parent = canvas.parentElement;
+    W = parent.offsetWidth; H = parent.offsetHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    if (rings.length === 0) initRings();
+  }
+
+  function initRings() {
+    rings = []; ringCount = 0;
+    for (let i = 0; i < MAX_RINGS * 0.65; i++) spawnRing(true);
+  }
+
+  function spawnRing(instant) {
+    const t = ringCount / MAX_RINGS;
+    const cx = W * 0.62, cy = H * 0.5;
+    rings.push({
+      cx, cy,
+      r: 6 + t * Math.min(W, H) * 0.62,
+      jx: (rng() - 0.5) * Math.min(W, H) * 0.05,
+      jy: (rng() - 0.5) * Math.min(W, H) * 0.05,
+      isArc: rng() < 0.5,
+      arcStart: rng() * Math.PI * 2,
+      arcLen: (0.4 + rng() * 1.5) * Math.PI,
+      lw: 0.3 + rng() * 0.65,
+      t,
+      alpha: instant ? (1 - t * 0.55) * 0.38 : 0,
+      targetAlpha: (1 - t * 0.55) * 0.38,
+    });
+    ringCount++;
+  }
+
+  // Wavy sine lines — second effect layered on top of rings
+  const WAVE_COUNT = 12;
+  const waves = Array.from({ length: WAVE_COUNT }, (_, i) => ({
+    amp: 18 + i * 6,
+    freq: 0.006 + i * 0.0012,
+    phase: (i / WAVE_COUNT) * Math.PI * 2,
+    speed: 0.008 + i * 0.003,
+    alpha: 0.04 + (i < 4 ? 0.06 : 0.02),
+    isGold: i % 3 !== 2, // 2/3 gold, 1/3 violet
+    yOffset: H * (0.2 + i * 0.06),
+  }));
+
+  let tick = 0, spawnTimer = 0;
+
+  function draw() {
+    tick++;
+    ctx.clearRect(0, 0, W, H);
+
+    // Warm gold-night fill
+    ctx.fillStyle = 'rgba(13,8,0,0)'; // transparent — CSS handles background
+    ctx.fillRect(0, 0, W, H);
+
+    // ── WAVY SINE LINES (second effect) ──
+    waves.forEach((wave, i) => {
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 3) {
+        const y = wave.yOffset + Math.sin(x * wave.freq + tick * wave.speed + wave.phase) * wave.amp;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = wave.isGold
+        ? `rgba(232,187,107,${wave.alpha})`
+        : `rgba(157,123,255,${wave.alpha * 0.7})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    });
+
+    // ── ACCRETING RINGS ──
+    if (ringCount < MAX_RINGS) {
+      spawnTimer += 0.35;
+      while (spawnTimer >= 1 && ringCount < MAX_RINGS) { spawnRing(false); spawnTimer--; }
+    } else if (tick % 700 === 0) {
+      rings = []; ringCount = 0;
+      for (let i = 0; i < MAX_RINGS * 0.65; i++) spawnRing(true);
+    }
+
+    const breathe = Math.sin(tick * 0.005) * 0.1;
+
+    rings.forEach(ring => {
+      if (ring.alpha < ring.targetAlpha) ring.alpha = Math.min(ring.alpha + 0.006, ring.targetAlpha);
+      // WARM GOLD-NIGHT color: gold center → deep amber → warm violet edges
+      const gt = Math.max(0, 1 - ring.t * 2.0);
+      const warm = Math.max(0, 1 - ring.t * 3.5); // extra warm tone near core
+      const rv = Math.round(232 * gt + 140 * warm + 60 * (1 - gt - warm));
+      const gv = Math.round(187 * gt + 80 * warm + 30 * (1 - gt - warm));
+      const bv = Math.round(107 * gt + 20 * warm + 120 * (1 - gt - warm));
+      ctx.beginPath();
+      if (ring.isArc) ctx.arc(ring.cx + ring.jx, ring.cy + ring.jy, ring.r, ring.arcStart, ring.arcStart + ring.arcLen);
+      else ctx.arc(ring.cx + ring.jx, ring.cy + ring.jy, ring.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${Math.max(0,Math.min(255,rv))},${Math.max(0,Math.min(255,gv))},${Math.max(0,Math.min(255,bv))},${ring.alpha * (1 + breathe)})`;
+      ctx.lineWidth = ring.lw;
+      ctx.stroke();
+    });
+
+    // Core warm glow — gold heart
+    if (rings.length > 10) {
+      const W2 = W * 0.62, H2 = H * 0.5;
+      // Outer warm amber glow
+      const grd1 = ctx.createRadialGradient(W2, H2, 0, W2, H2, 90);
+      grd1.addColorStop(0, 'rgba(232,187,107,.22)');
+      grd1.addColorStop(0.5, 'rgba(200,120,30,.08)');
+      grd1.addColorStop(1, 'transparent');
+      ctx.fillStyle = grd1;
+      ctx.beginPath(); ctx.arc(W2, H2, 90, 0, Math.PI * 2); ctx.fill();
+      // Inner bright gold core
+      const grd2 = ctx.createRadialGradient(W2, H2, 0, W2, H2, 28);
+      grd2.addColorStop(0, 'rgba(255,215,120,.35)');
+      grd2.addColorStop(1, 'transparent');
+      ctx.fillStyle = grd2;
+      ctx.beginPath(); ctx.arc(W2, H2, 28, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  resize();
+  function loop() { draw(); requestAnimationFrame(loop); }
+  loop();
+  window.addEventListener('resize', resize, { passive: true });
+})();
+
+/* ── EFFECT 2: Interactive particle field ── */
+(function() {
+  const canvas = document.getElementById('gs-particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dpr;
+  let mouse = { x: -9999, y: -9999 };
+  const rng = makePRNG2(12345);
+  let particles = [];
+  const N = 80;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const parent = canvas.parentElement;
+    W = parent.offsetWidth; H = parent.offsetHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    if (particles.length === 0) initParticles();
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < N; i++) {
+      particles.push({
+        x: rng() * W, y: rng() * H,
+        vx: (rng() - 0.5) * 0.3, vy: (rng() - 0.5) * 0.3,
+        r: 1 + rng() * 2,
+        alpha: 0.1 + rng() * 0.35,
+        isGold: rng() < 0.4,
+        phase: rng() * Math.PI * 2,
+      });
+    }
+  }
+
+  const parent = document.querySelector('.gs-feature-inner');
+  if (parent) {
+    parent.addEventListener('mousemove', function(e) {
+      const rect = parent.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    }, { passive: true });
+    parent.addEventListener('mouseleave', function() {
+      mouse.x = -9999; mouse.y = -9999;
+    }, { passive: true });
+  }
+
+  let tick = 0;
+  function draw() {
+    tick++;
+    ctx.clearRect(0, 0, W, H);
+
+    particles.forEach(p => {
+      // Drift
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap edges
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+
+      // Mouse repulsion — gentle push away
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100 && dist > 0) {
+        const force = (100 - dist) / 100 * 0.8;
+        p.vx += (dx / dist) * force * 0.12;
+        p.vy += (dy / dist) * force * 0.12;
+      }
+
+      // Dampen velocity
+      p.vx *= 0.98; p.vy *= 0.98;
+      if (Math.abs(p.vx) < 0.05) p.vx += (rng() - 0.5) * 0.06;
+      if (Math.abs(p.vy) < 0.05) p.vy += (rng() - 0.5) * 0.06;
+
+      // Pulse alpha
+      const pulse = 0.85 + 0.15 * Math.sin(tick * 0.03 + p.phase);
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.isGold
+        ? `rgba(232,187,107,${p.alpha * pulse})`
+        : `rgba(157,123,255,${p.alpha * pulse * 0.7})`;
+      ctx.fill();
+
+      // Draw connection lines between close gold particles
+      if (p.isGold && dist < 120 && mouse.x > 0) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(232,187,107,${0.04 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    });
+  }
+
+  resize();
+  function loop() { draw(); requestAnimationFrame(loop); }
+  loop();
+  window.addEventListener('resize', resize, { passive: true });
+})();
+
+/* ── EFFECT 3: Mini VS preview canvas ── */
+(function() {
+  const canvas = document.getElementById('gs-vs-mini');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dpr;
+  const H_FIXED = 180;
+  const rngL = makePRNG2(777), rngR = makePRNG2(1234);
+  const leftRings = [];
+  const LEFT_N = 50;
+  const rightRings = [];
+  const RIGHT_MAX = 140;
+  let rightCount = 0, spawnTimer = 0;
+
+  function spawnLeft() {
+    return { r: 8 + rngL() * 70, lw: 0.4 + rngL() * 0.8, jx: (rngL() - 0.5) * 18, jy: (rngL() - 0.5) * 18, arcStart: rngL() * Math.PI * 2, arcLen: (0.3 + rngL() * 1.6) * Math.PI, maxAlpha: 0.14 + rngL() * 0.22, life: 0, maxLife: 60 + rngL() * 100, phase: rngL() * Math.PI * 2 };
+  }
+  for (let i = 0; i < LEFT_N; i++) { const r = spawnLeft(); r.life = rngL() * r.maxLife; leftRings.push(r); }
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = canvas.offsetWidth; H = H_FIXED;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+  }
+
+  let tick = 0;
+  function draw() {
+    tick++;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(11,16,38,0)'; ctx.fillRect(0, 0, W, H);
+    const mid = W / 2;
+
+    // LEFT
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, mid, H); ctx.clip();
+    const lcx = mid * 0.5, lcy = H * 0.5;
+    leftRings.forEach(ring => {
+      ring.life++;
+      if (ring.life > ring.maxLife) { Object.assign(ring, spawnLeft()); ring.life = 0; }
+      const env = Math.sin(ring.life / ring.maxLife * Math.PI);
+      ctx.beginPath(); ctx.arc(lcx + ring.jx, lcy + ring.jy, ring.r, ring.arcStart, ring.arcStart + ring.arcLen);
+      ctx.strokeStyle = `rgba(180,180,200,${ring.maxAlpha * env * (0.85 + 0.15 * Math.sin(tick * 0.1 + ring.phase))})`;
+      ctx.lineWidth = ring.lw; ctx.stroke();
+    });
+    ctx.font = `600 8px 'Space Grotesk',monospace`; ctx.fillStyle = 'rgba(154,161,199,.3)'; ctx.textAlign = 'center';
+    ctx.fillText('DISSOLVES', lcx, H - 10);
+    ctx.restore();
+
+    // DIVIDER
+    ctx.fillStyle = 'rgba(157,123,255,.4)'; ctx.fillRect(mid - 0.5, H * 0.08, 1, H * 0.84);
+
+    // RIGHT
+    ctx.save(); ctx.beginPath(); ctx.rect(mid, 0, mid, H); ctx.clip();
+    const rcx = mid + mid * 0.5, rcy = H * 0.5;
+    if (rightCount < RIGHT_MAX) { spawnTimer += 1.2; while (spawnTimer >= 1 && rightCount < RIGHT_MAX) { const t = rightCount / RIGHT_MAX; rightRings.push({ r: 4 + t * 80, lw: 0.4 + rngR() * 0.8, jx: (rngR() - 0.5) * 8, jy: (rngR() - 0.5) * 8, isArc: rngR() < 0.5, arcStart: rngR() * Math.PI * 2, arcLen: (0.5 + rngR() * 1.3) * Math.PI, t }); rightCount++; spawnTimer--; } }
+    else if (tick % 300 === 0) { rightRings.length = 0; rightCount = 0; }
+    rightRings.forEach(ring => {
+      const gt = Math.max(0, 1 - ring.t * 2.2);
+      ctx.beginPath();
+      if (ring.isArc) ctx.arc(rcx + ring.jx, rcy + ring.jy, ring.r, ring.arcStart, ring.arcStart + ring.arcLen);
+      else ctx.arc(rcx + ring.jx, rcy + ring.jy, ring.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${Math.round(232*gt+157*(1-gt))},${Math.round(187*gt+123*(1-gt))},${Math.round(107*gt+255*(1-gt))},${(1-ring.t*.5)*.5})`;
+      ctx.lineWidth = ring.lw; ctx.stroke();
+    });
+    if (rightRings.length > 8) { const g = ctx.createRadialGradient(rcx, rcy, 0, rcx, rcy, 30); g.addColorStop(0, 'rgba(232,187,107,.15)'); g.addColorStop(1, 'transparent'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(rcx, rcy, 30, 0, Math.PI * 2); ctx.fill(); }
+    ctx.font = `600 8px 'Space Grotesk',monospace`; ctx.fillStyle = 'rgba(232,187,107,.45)'; ctx.textAlign = 'center';
+    ctx.fillText('ACCRETES', rcx, H - 10);
+    ctx.restore();
+  }
+
+  resize();
+  function loop() { draw(); requestAnimationFrame(loop); }
+  loop();
+  window.addEventListener('resize', resize, { passive: true });
 })();
 </script>
 
