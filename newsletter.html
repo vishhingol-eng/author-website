@@ -172,21 +172,52 @@ main{max-width:900px;margin:0 auto;padding:120px clamp(20px,5vw,48px) 80px}
 .nl-msg.error{color:#FF9B9B}
 
 /* Archive section */
+/* ── DYNAMIC ARCHIVE ── */
 .archive-section{margin-bottom:clamp(48px,8vw,80px)}
 .archive-eyebrow{font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
 .archive-title{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:400;margin-bottom:28px}
 .archive-title em{font-style:italic;color:var(--gold)}
 
-.edition{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(14px,2vw,24px);align-items:center;padding:clamp(16px,2vw,22px);background:var(--glass);backdrop-filter:blur(12px);border-radius:16px;border:1px solid var(--line);margin-bottom:14px;transition:border-color .3s}
-.edition:hover{border-color:rgba(232,187,107,.25)}
-.edition-num{font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--gold);min-width:40px;text-align:center}
+/* Filter + search bar */
+.archive-controls{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.archive-search{flex:1;min-width:180px;background:rgba(18,26,62,.5);border:1px solid var(--line);border-radius:100px;padding:10px 18px;font-family:var(--tech);font-size:12px;color:var(--paper);outline:none;transition:border-color .2s}
+.archive-search::placeholder{color:rgba(154,161,199,.4)}
+.archive-search:focus{border-color:rgba(232,187,107,.35)}
+.archive-filter-btns{display:flex;gap:8px;flex-wrap:wrap}
+.af-btn{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:100px;border:1px solid var(--line);background:transparent;color:var(--mist);cursor:pointer;transition:all .2s}
+.af-btn:hover{border-color:rgba(232,187,107,.3);color:var(--paper)}
+.af-btn.active{background:rgba(232,187,107,.12);border-color:rgba(232,187,107,.4);color:var(--gold)}
+.af-btn.active.type-premium{background:rgba(157,123,255,.1);border-color:rgba(157,123,255,.3);color:var(--violet)}
+.af-btn.active.type-free{background:rgba(125,230,255,.1);border-color:rgba(125,230,255,.3);color:var(--cyan)}
+
+/* Month group */
+.archive-month{margin-bottom:32px}
+.archive-month-label{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(154,161,199,.35);padding:0 4px;margin-bottom:12px;border-left:2px solid rgba(154,161,199,.15);padding-left:10px}
+
+/* Edition row */
+.edition{display:grid;grid-template-columns:52px 1fr auto;gap:clamp(12px,2vw,22px);align-items:center;padding:clamp(14px,2vw,20px) clamp(14px,2vw,20px);background:var(--glass);backdrop-filter:blur(12px);border-radius:16px;border:1px solid var(--line);margin-bottom:10px;transition:border-color .25s,background .25s;text-decoration:none;display:grid}
+.edition:hover{border-color:rgba(232,187,107,.25);background:rgba(18,26,62,.7)}
+.edition.is-premium{border-color:rgba(232,187,107,.18)}
+.edition.is-premium:hover{border-color:rgba(232,187,107,.45)}
+.edition-num{font-family:var(--tech);font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--gold);text-align:center;line-height:1}
+.edition-num .style-dot{width:6px;height:6px;border-radius:50%;display:block;margin:4px auto 0}
 .edition-date{font-family:var(--tech);font-size:10px;color:rgba(154,161,199,.45);letter-spacing:.06em;margin-top:3px}
-.edition-info h3{font-family:var(--display);font-size:clamp(16px,2vw,20px);font-weight:400;margin-bottom:2px}
-.edition-info p{font-size:13px;color:var(--mist)}
-.edition-badge{font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:100px;text-decoration:none;transition:transform .2s}
+.edition-info h3{font-family:var(--display);font-size:clamp(15px,2vw,19px);font-weight:400;margin-bottom:3px;line-height:1.25;color:var(--paper)}
+.edition-info p{font-size:12.5px;color:var(--mist);line-height:1.5}
+.edition-badge{font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:100px;text-decoration:none;transition:transform .2s;white-space:nowrap;flex-shrink:0}
 .edition-badge.free-read{color:var(--cyan);border:1px solid rgba(125,230,255,.3)}
-.edition-badge.paid-lock{color:var(--mist);border:1px solid var(--line)}
-@media(max-width:560px){.edition{grid-template-columns:1fr;text-align:center;gap:10px}.edition-num{min-width:auto}}
+.edition-badge.free-read:hover{transform:translateX(3px)}
+.edition-badge.paid-lock{color:var(--gold);border:1px solid rgba(232,187,107,.35);background:rgba(232,187,107,.06)}
+.edition-badge.paid-lock:hover{transform:translateX(3px);background:rgba(232,187,107,.12)}
+
+/* Count display */
+.archive-count{font-family:var(--tech);font-size:11px;color:rgba(154,161,199,.4);letter-spacing:.06em;margin-bottom:20px}
+.archive-count span{color:var(--gold)}
+
+/* No results */
+.archive-empty{text-align:center;padding:40px;color:rgba(154,161,199,.4);font-family:var(--tech);font-size:13px;letter-spacing:.06em}
+
+@media(max-width:560px){.edition{grid-template-columns:1fr;gap:8px;text-align:center}.edition-num{display:flex;align-items:center;justify-content:center;gap:8px}.edition-num .style-dot{margin:0}.edition-badge{align-self:center}}
 
 /* What you get section */
 .what-section{text-align:center;margin-bottom:clamp(48px,8vw,80px)}
@@ -395,6 +426,7 @@ footer a{color:var(--gold)}
     <a href="/blog.html">Blog</a>
     <a href="/mentor.html">Mentorship</a>
     <a href="/newsletter.html" class="active">Newsletter</a>
+    <a href="/the-signal-archive.html" style="color:var(--gold)">Archive ⭐</a>
     <a href="/shop.html">Signal Fashion</a>
     <a href="/about.html">About</a>
     <a href="/account.html" id="navAccount">Account</a>
@@ -541,6 +573,41 @@ footer a{color:var(--gold)}
       </a>
 
     </div>
+
+    <!-- Browse All Editions — Premium Showcase Card -->
+    <a href="/the-signal-archive.html" style="display:block;margin-top:clamp(28px,4vw,40px);text-decoration:none;position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#0D0800,#110A02,#0A0614);border:1px solid rgba(232,187,107,.3);padding:clamp(28px,4vw,40px);isolation:isolate;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 28px 64px rgba(0,0,0,.5),0 0 60px rgba(232,187,107,.18)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <!-- Glow background -->
+      <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,187,107,.25),transparent 65%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(157,123,255,.2),transparent 60%)"></div>
+      <!-- Gold border top line -->
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#E8BB6B,#F5D080,transparent)"></div>
+
+      <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px">
+        <div>
+          <!-- Eyebrow -->
+          <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);padding:5px 14px;border-radius:100px;margin-bottom:14px;box-shadow:0 0 20px rgba(232,187,107,.3)">
+            ⭐ The Signal · Complete Archive
+          </div>
+          <!-- Title -->
+          <h3 style="font-family:var(--display);font-size:clamp(20px,3vw,28px);font-weight:700;color:#F4EEE2;line-height:1.1;letter-spacing:-.02em;margin-bottom:8px">
+            Every Edition.<br><em style="font-style:italic;background:linear-gradient(110deg,#E8BB6B,#F5D080,#FFF0B0);-webkit-background-clip:text;background-clip:text;color:transparent">All in One Place.</em>
+          </h3>
+          <!-- Description -->
+          <p style="font-size:13.5px;color:#9AA1C7;line-height:1.6;max-width:480px">Daily mindset, manifestation, and frequency — every free and Gold Star Premium edition with animated art, month navigation, and search.</p>
+          <!-- Stats row -->
+          <div style="display:flex;gap:20px;margin-top:16px;flex-wrap:wrap">
+            <div style="font-family:var(--tech);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,187,107,.7)">⭐ Gold Star Premium</div>
+            <div style="font-family:var(--tech);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(125,230,255,.6)">Free Editions</div>
+            <div style="font-family:var(--tech);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(154,161,199,.4)">Month Navigation</div>
+          </div>
+        </div>
+        <!-- Arrow CTA -->
+        <div style="flex-shrink:0;text-align:center">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 28px rgba(232,187,107,.4);margin-bottom:8px">→</div>
+          <div style="font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,187,107,.6)">Browse All</div>
+        </div>
+      </div>
+    </a>
+
   </div>
 
   <!-- Two tiers -->
@@ -602,450 +669,23 @@ footer a{color:var(--gold)}
     </div>
   </div>
 
-  <!-- Newsletter archive -->
+  <!-- Dynamic Newsletter Archive — driven by editions.json -->
   <div class="archive-section">
     <p class="archive-eyebrow">// Past Editions</p>
     <h2 class="archive-title">The Signal <em>Archive</em></h2>
 
-    <div class="edition">
-      <span class="edition-num">#01</span>
-      <div class="edition-info">
-        <h3>The One Pattern Keeping You Stuck</h3>
-        <p>Why self-sabotage isn't a character flaw — it's a frequency mismatch. And how to fix it.</p>
-        <p class="edition-date">Jan 2025</p>
+    <div class="archive-controls">
+      <input class="archive-search" id="archiveSearch" type="text" placeholder="Search editions..." autocomplete="off">
+      <div class="archive-filter-btns">
+        <button class="af-btn active" data-filter="all">All</button>
+        <button class="af-btn type-free" data-filter="free">Free</button>
+        <button class="af-btn type-premium" data-filter="premium">⭐ Premium</button>
       </div>
-      <a href="/why-you-keep-self-sabotaging.html" class="edition-badge free-read">Read →</a>
     </div>
 
-    <div class="edition">
-      <span class="edition-num">#02</span>
-      <div class="edition-info">
-        <h3>The 369 Method Nobody Talks About</h3>
-        <p>The real practice behind the trend. What most people get wrong, and the version that actually works.</p>
-        <p class="edition-date">Feb 2025</p>
-      </div>
-      <a href="/369-manifestation-method-complete-guide.html" class="edition-badge free-read">Read →</a>
-    </div>
-
-    <div class="edition">
-      <span class="edition-num">#03</span>
-      <div class="edition-info">
-        <h3>Your Phone Is Stealing Your Signal</h3>
-        <p>Digital sovereignty isn't about deleting apps. It's about reclaiming the 4 hours your brain loses daily.</p>
-        <p class="edition-date">Mar 2025</p>
-      </div>
-      <a href="/digital-sovereignty-reclaim-your-mind.html" class="edition-badge free-read">Read →</a>
-    </div>
-
-    <div class="edition">
-      <span class="edition-num">#04</span>
-      <div class="edition-info">
-        <h3>What Zara Heard That Night</h3>
-        <p>Behind the scenes of writing the lost chapter. What I cut, what stayed, and why that scene haunts me.</p>
-        <p class="edition-date">Apr 2025</p>
-      </div>
-      <a href="#" onclick="document.getElementById('nlEmail').focus();document.getElementById('nlEmail').scrollIntoView({behavior:'smooth',block:'center'});return false;" class="edition-badge free-read">Subscribe to Read →</a>
-    </div>
-
-    <div class="edition">
-      <span class="edition-num">#05</span>
-      <div class="edition-info">
-        <h3>The Architecture of Your Next Year</h3>
-        <p>Forget goals. Build architecture. The framework I use every December to design the year ahead.</p>
-        <p class="edition-date">Dec 2025</p>
-      </div>
-      <a href="/power-of-journalling-for-transformation.html" class="edition-badge free-read">Read →</a>
-    </div>
-
-    <div class="edition">
-      <span class="edition-num">#06</span>
-      <div class="edition-info">
-        <h3>The Quiet Discipline</h3>
-        <p>Why the people who actually change their life rarely talk about it.</p>
-        <p class="edition-date">Jun 2026</p>
-      </div>
-      <a href="/editions/the-quiet-discipline.html" class="edition-badge free-read">Read →</a>
-    </div>
-
-    <div class="edition">
-      <span class="edition-num">#07</span>
-      <div class="edition-info">
-        <h3>Why Your Goals Keep Failing in Week Two</h3>
-        <p>It is rarely about motivation. It is almost always about a deadline your brain set without telling you.</p>
-        <p class="edition-date">Jun 2026</p>
-      </div>
-      <a href="/editions/why-your-goals-keep-failing-in-week-two.html" class="edition-badge free-read">Read →</a>
-    </div>
-
-    <div class="edition" style="border-color:rgba(232,187,107,.3)">
-      <span class="edition-num" style="color:var(--gold)">⭐</span>
-      <div class="edition-info">
-        <h3>Confidence Is a Symptom. You're Treating It Like a Cause.</h3>
-        <p>Why chasing the feeling of certainty keeps you exactly where you are.</p>
-        <p class="edition-date">Jul 2026 · Gold Star Premium</p>
-      </div>
-      <a href="/editions/confidence-vs-competence.html" class="edition-badge paid-lock" style="color:var(--gold);border-color:rgba(232,187,107,.4)">Premium →</a>
-    </div>
-
-    <div class="edition" style="border-color:rgba(232,187,107,.3)">
-      <span class="edition-num" style="color:var(--gold)">⭐</span>
-      <div class="edition-info">
-        <h3>Why Reading About Change Feels Like Progress (And Isn't)</h3>
-        <p>A Deep Signal exclusive — why consuming self-help content can feel like change while requiring none of the actual work.</p>
-        <p class="edition-date">Jul 2026 · Premium</p>
-      </div>
-      <a href="/editions/why-reading-about-change-isnt-change.html" class="edition-badge paid-lock" style="color:var(--gold);border-color:rgba(232,187,107,.4)">Premium →</a>
-    </div>
+    <p class="archive-count" id="archiveCount"></p>
+    <div id="archiveList"></div>
   </div>
-
-  <!-- Best Newsletters Worth Your Inbox — Editorial Roundup -->
-  <div class="bnw-section">
-    <p class="archive-eyebrow">// Editor's Picks</p>
-    <h2 class="archive-title" style="margin-bottom:6px">The best newsletters worth your <em>inbox space</em> in 2026.</h2>
-    <p style="color:var(--mist);font-size:15px;margin-bottom:8px;max-width:640px">Outside of writing The Signal, I read a lot of other newsletters — most of them badly, half-skimmed between meetings. These are the ones I actually open every time. No sponsorships here, no affiliate links — just the eight that earned a permanent spot in my inbox.</p>
-    <p style="color:var(--mist);font-size:14px;margin-bottom:clamp(24px,4vw,36px);max-width:640px">A good newsletter respects three things: your time, your intelligence, and your inbox. The picks below are sorted by category so you can build your own stack without subscribing to forty things and reading none of them.</p>
-
-    <div class="bnw-grid">
-
-      <a href="/quick-brief.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(232,187,107,.8),rgba(255,158,207,.4),rgba(232,187,107,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(232,187,107,1) 28%,rgba(255,224,160,.7) 62%,transparent 85%);top:-40px;right:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">01</span>
-          <span class="bnw-tag" style="color:var(--gold);border-color:rgba(232,187,107,.4);background:rgba(232,187,107,.08)">Best Overall</span>
-          <h3 class="bnw-name">Quick Brief</h3>
-          <p class="bnw-quote">"Five minutes, every topic that matters, zero filler — the daily digest that gets out of your way."</p>
-          <p class="bnw-why">Why it works: tight editing discipline. Most digests pad word count to look thorough. This one cuts until only the useful sentence survives.</p>
-        </div>
-      </a>
-
-      <a href="/the-daily-ledger.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(125,230,255,.8),rgba(157,123,255,.4),rgba(125,230,255,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(125,230,255,1) 28%,rgba(176,240,255,.7) 62%,transparent 85%);top:-40px;left:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">02</span>
-          <span class="bnw-tag" style="color:var(--cyan);border-color:rgba(125,230,255,.4);background:rgba(125,230,255,.08)">Best for News</span>
-          <h3 class="bnw-name">The Daily Ledger</h3>
-          <p class="bnw-quote">"Pulls from a wide spread of sources and tells you where they disagree, not just what they agree on."</p>
-          <p class="bnw-why">Why it works: it shows its sourcing instead of hiding it. You can see the seam between fact and framing, which is rarer than it should be.</p>
-        </div>
-      </a>
-
-      <a href="/the-boardroom-brief.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(157,123,255,.8),rgba(125,230,255,.4),rgba(157,123,255,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(157,123,255,1) 28%,rgba(196,168,255,.7) 62%,transparent 85%);bottom:-40px;right:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">03</span>
-          <span class="bnw-tag" style="color:var(--violet);border-color:rgba(157,123,255,.4);background:rgba(157,123,255,.08)">Best for Business</span>
-          <h3 class="bnw-name">The Boardroom Brief</h3>
-          <p class="bnw-quote">"Business news written like your smartest friend explaining it over coffee, not a press release."</p>
-          <p class="bnw-why">Why it works: voice. Most business newsletters read like a wire feed. This one has an actual point of view, and tells you when it's guessing.</p>
-        </div>
-      </a>
-
-      <a href="/the-deep-work-dispatch.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(255,158,207,.8),rgba(232,187,107,.4),rgba(255,158,207,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(255,158,207,1) 28%,rgba(255,184,217,.7) 62%,transparent 85%);bottom:-40px;left:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">04</span>
-          <span class="bnw-tag" style="color:#FF9ECF;border-color:rgba(255,158,207,.4);background:rgba(255,158,207,.08)">Best for Focus & Productivity</span>
-          <h3 class="bnw-name">The Deep Work Dispatch</h3>
-          <p class="bnw-quote">"One idea per issue, explained properly, instead of ten ideas explained badly."</p>
-          <p class="bnw-why">Why it works: restraint. It would be easy to cram in five tips. Instead it picks the one worth actually changing your week, and proves it with a real example.</p>
-        </div>
-      </a>
-
-      <a href="/signal-and-circuit.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(232,187,107,.8),rgba(255,158,207,.4),rgba(232,187,107,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(232,187,107,1) 28%,rgba(255,224,160,.7) 62%,transparent 85%);top:-40px;right:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">05</span>
-          <span class="bnw-tag" style="color:var(--gold);border-color:rgba(232,187,107,.4);background:rgba(232,187,107,.08)">Best for Tech & AI</span>
-          <h3 class="bnw-name">Signal & Circuit</h3>
-          <p class="bnw-quote">"Explains what actually shipped this week — not what a press release wants you to think shipped."</p>
-          <p class="bnw-why">Why it works: it separates announcement from availability. In a hype-heavy beat, that distinction alone makes it worth reading.</p>
-        </div>
-      </a>
-
-      <a href="/the-compounding-letter.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(125,230,255,.8),rgba(157,123,255,.4),rgba(125,230,255,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(125,230,255,1) 28%,rgba(176,240,255,.7) 62%,transparent 85%);top:-40px;left:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">06</span>
-          <span class="bnw-tag" style="color:var(--cyan);border-color:rgba(125,230,255,.4);background:rgba(125,230,255,.08)">Best for Money & Investing</span>
-          <h3 class="bnw-name">The Compounding Letter</h3>
-          <p class="bnw-quote">"Long-term thinking about money, written for people who don't want to day-trade their life away."</p>
-          <p class="bnw-why">Why it works: it talks about decades, not days. Most finance content optimizes for urgency. This one optimizes for being right in five years.</p>
-        </div>
-      </a>
-
-      <a href="/the-growth-notebook.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(157,123,255,.8),rgba(125,230,255,.4),rgba(157,123,255,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(157,123,255,1) 28%,rgba(196,168,255,.7) 62%,transparent 85%);bottom:-40px;right:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">07</span>
-          <span class="bnw-tag" style="color:var(--violet);border-color:rgba(157,123,255,.4);background:rgba(157,123,255,.08)">Best for Marketing & Growth</span>
-          <h3 class="bnw-name">The Growth Notebook</h3>
-          <p class="bnw-quote">"Case studies with real numbers attached, not vague 'growth hacks' with none."</p>
-          <p class="bnw-why">Why it works: specificity. Every issue names the channel, the number, and the time frame — the three things most growth content conveniently leaves out.</p>
-        </div>
-      </a>
-
-      <a href="/the-recovery-room.html" class="bnw-card" style="--card-grad:linear-gradient(135deg,rgba(255,158,207,.8),rgba(232,187,107,.4),rgba(255,158,207,.6))">
-        <div class="bnw-glow" style="background:radial-gradient(circle at 30% 26%,#ffffff 0%,rgba(255,158,207,1) 28%,rgba(255,184,217,.7) 62%,transparent 85%);bottom:-40px;left:-40px"></div>
-        <div class="bnw-content">
-          <span class="bnw-rank">08</span>
-          <span class="bnw-tag" style="color:#FF9ECF;border-color:rgba(255,158,207,.4);background:rgba(255,158,207,.08)">Best for Health & Wellness</span>
-          <h3 class="bnw-name">The Recovery Room</h3>
-          <p class="bnw-quote">"Plain-language summaries of actual health research, with the nuance left in instead of stripped out."</p>
-          <p class="bnw-why">Why it works: it resists the urge to oversimplify a nuanced study into a viral claim. Refreshing in a space full of overconfident health takes.</p>
-        </div>
-      </a>
-
-    </div>
-
-    <p style="color:var(--mist);font-size:13.5px;margin-top:24px;max-width:640px">A quick rule of thumb if you're building your own newsletter stack: subscribe to one in each category you actually care about, give each one two weeks, then unsubscribe without guilt from anything that doesn't earn its place. Your inbox is real estate — treat it like it.</p>
-  </div>
-
-  <!-- ===== FULL ARTICLES ===== -->
-  <div style="margin-top:clamp(48px,7vw,72px)">
-    <p class="archive-eyebrow">// Full Editions — Read Now</p>
-    <h2 class="archive-title" style="margin-bottom:clamp(24px,4vw,36px)">Deep dives for the <em>committed.</em></h2>
-
-    <!-- ARTICLE 1: Subconscious Blueprint -->
-    <article class="edition-article" id="art-subconscious">
-      <span class="pick-badge" style="background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);margin-bottom:16px">Edition #06 · Best for Mindset</span>
-      <h3>The Subconscious Blueprint</h3>
-      <p class="art-sub" style="color:var(--gold)">Why 95% of your decisions are made before you wake up — and how to reprogram them.</p>
-      <p>You set the alarm for 5 AM. You planned the workout. You wrote the affirmation. And yet — three days later — you are back to the old pattern. Not because you lack discipline, willpower, or motivation. Because your <strong>subconscious mind</strong> is running a program you never consciously installed.</p>
-      <p>Neuroscience confirms what mindset coaches have known for decades: roughly 95% of your daily decisions, actions, and emotional responses are governed by <strong>subconscious beliefs</strong> formed before the age of seven. These beliefs — about money, self-worth, relationships, success, and what you deserve — operate beneath your conscious awareness like an invisible operating system.</p>
-      <p>This is why <strong>self-sabotage</strong> is not a character flaw. It is a frequency mismatch between what your conscious mind wants and what your subconscious mind believes is safe. Your subconscious does not care about your goals — it cares about keeping you in familiar territory. Change feels like danger. Growth feels like threat. So it pulls you back.</p>
-      <p>The solution is not more discipline. It is <strong>subconscious reprogramming</strong> — replacing the old beliefs at the root level through repetition, identity-level affirmations, and pattern interruption. This is exactly what the <strong>369 manifestation method</strong> does when practised correctly: it bypasses the conscious critic and speaks directly to the subconscious through structured repetition.</p>
-      <p>Three techniques that work: <strong>Morning journaling</strong> before the conscious mind fully activates — the first 20 minutes after waking are a direct line to the subconscious. <strong>Bedtime affirmations</strong> spoken in the present tense ("I am" not "I want"). And <strong>evidence tracking</strong> — the practice of collecting daily proof that your new beliefs are already true. This is the core of the <em class="book-ref">Lucky Girl Evidence Journal</em> method.</p>
-      <p>The book <em class="book-ref">Why You Keep Holding Yourself Back</em> maps this entire process: how childhood conditioning creates invisible limits, how comfort zone addiction keeps you stuck, and the step-by-step framework for rewriting the beliefs that no longer serve you.</p>
-      <p class="art-quote">The gap between who you are and who you want to be is not effort. It is frequency. Change the program, change the person.</p>
-      <div class="read-next">
-        <p class="read-next-label">// Keep Reading on the Blog</p>
-        <a href="/what-is-subconscious-reprogramming.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">What Is Subconscious Reprogramming? <em>→</em></span>
-        </a>
-        <a href="/how-to-rewire-your-brain-for-success.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Rewire Your Brain for Success <em>→</em></span>
-        </a>
-        <a href="/what-is-limiting-beliefs-how-to-overcome.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Overcoming Limiting Beliefs Permanently <em>→</em></span>
-        </a>
-        <a href="/how-to-build-unshakeable-confidence.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Building Unshakeable Confidence <em>→</em></span>
-        </a>
-        <a href="/how-to-build-mental-toughness.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">8 Practices to Build Mental Toughness <em>→</em></span>
-        </a>
-      </div>
-    </article>
-
-    <!-- ARTICLE 2: 369 Decoded -->
-    <article class="edition-article" id="art-369">
-      <span class="pick-badge" style="background:linear-gradient(110deg,var(--violet),#C4A8FF);color:var(--night);margin-bottom:16px">Edition #07 · Best for Manifestation</span>
-      <h3>The 369 Decoded</h3>
-      <p class="art-sub" style="color:var(--violet)">What TikTok got wrong about the 369 method — and the version that actually rewires your brain.</p>
-      <p>The <strong>369 manifestation method</strong> went viral on TikTok. Millions tried it. Most quit within a week. Not because it does not work — but because they were doing it wrong. They treated it as magic when it is actually <strong>applied neuroscience</strong>.</p>
-      <p>Here is what the trend missed: the power of 3-6-9 is not in the numbers themselves. It is in <strong>spaced repetition</strong> — writing your affirmation 3 times in the morning, 6 times in the afternoon, and 9 times at night. This pattern mirrors how your brain consolidates long-term memory. You are not "asking the universe" — you are <strong>rewiring your reticular activating system</strong> (RAS), the part of your brain that decides what to notice and what to ignore.</p>
-      <p>When you write "I am financially abundant" 18 times a day for 33 days, your RAS starts filtering reality differently. You notice opportunities you previously overlooked. You respond to situations with confidence instead of scarcity. The <strong>law of attraction</strong> is not supernatural — it is selective attention trained through disciplined repetition.</p>
-      <p>The key most people miss: your affirmation must be written in <strong>present tense</strong> ("I am" not "I will be"), it must feel <strong>emotionally true</strong> (not forced), and it must be <strong>specific</strong> enough to visualise. "I attract money" is vague. "I receive unexpected income of $5,000 this month through opportunities I love" gives your subconscious a clear target.</p>
-      <p>In <em class="book-ref">The Divine 3-6-9 Manifestation Method</em>, the complete daily structure is laid out: morning intention (3x), afternoon reinforcement (6x), evening surrender (9x). Combined with gratitude journaling and evidence tracking from the <em class="book-ref">Lucky Girl Evidence Journal</em>, this creates a <strong>90-day rewiring protocol</strong> that does not just change what you think — it changes what you <strong>expect</strong>.</p>
-      <p class="art-quote">Manifestation is not wishing. It is repetition until belief becomes identity. Identity becomes action. Action becomes reality.</p>
-      <div class="read-next">
-        <p class="read-next-label">// Keep Reading on the Blog</p>
-        <a href="/law-of-assumption-vs-law-of-attraction.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Law of Assumption vs Law of Attraction <em>→</em></span>
-        </a>
-        <a href="/how-to-manifest-money-abundance.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Manifest Money &amp; Abundance <em>→</em></span>
-        </a>
-        <a href="/lucky-girl-syndrome-does-it-work.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Lucky Girl Syndrome: Does It Work? <em>→</em></span>
-        </a>
-        <a href="/how-to-raise-your-vibration-permanently.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Raise Your Vibration Permanently <em>→</em></span>
-        </a>
-        <a href="/best-self-help-books-indian-authors-2026.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Best Self-Help Books by Indian Authors <em>→</em></span>
-        </a>
-      </div>
-    </article>
-
-    <!-- ARTICLE 3: Frequency Protocol -->
-    <article class="edition-article" id="art-frequency">
-      <span class="pick-badge" style="background:linear-gradient(110deg,var(--cyan),#B0F0FF);color:var(--night);margin-bottom:16px">Edition #08 · Best for Transformation</span>
-      <h3>The Frequency Protocol</h3>
-      <p class="art-sub" style="color:var(--cyan)">A 21-day system for clearing the noise, raising your signal, and becoming who you already are.</p>
-      <p>Every person alive is broadcasting a <strong>frequency</strong>. Not metaphorically — literally. Your thoughts produce electromagnetic signals. Your emotions alter your heart rate variability. Your state of being influences how people respond to you, which opportunities you notice, and what outcomes you attract. This is the premise behind <em class="book-ref">The Signal</em> — and the 21-day protocol inside it.</p>
-      <p><strong>Low frequency</strong> feels like brain fog, procrastination, anxiety, comparison, doom-scrolling, and the sense that life is happening to you. <strong>High frequency</strong> feels like clarity, purpose, synchronicity, creative flow, deep focus, and the quiet confidence that you are exactly where you need to be.</p>
-      <p>The difference is not talent or luck. It is <strong>signal-to-noise ratio</strong>. Most people's daily input — social media, news cycles, toxic relationships, digital distraction — is pure noise. The signal — your intuition, your purpose, your creative power — gets buried. The 21-day protocol is designed to systematically raise the signal and reduce the noise.</p>
-      <p><strong>Week 1: Clear the interference.</strong> Digital detox windows, morning silence before screen, evening journaling. Your job is not to add anything — it is to stop drowning the signal in noise. <strong>Week 2: Tune in.</strong> Meditation, body awareness, synchronicity tracking. You learn to notice what your signal has been trying to tell you. <strong>Week 3: Transmit.</strong> Aligned action, intentional creation, identity-level living. You stop waiting for permission and start broadcasting who you actually are.</p>
-      <p>This protocol draws from <em class="book-ref">Digital Sovereignty</em> (reclaiming your mind from algorithmic control), <em class="book-ref">The Unconditioned Mind</em> (dissolving inherited belief systems), and <em class="book-ref">Zara and the Divine Signal</em> (the fictional journey of a child who learns to hear what the noise was hiding).</p>
-      <p class="art-quote">The signal was always there. You just had too much noise to hear it. Clear the interference — and everything changes.</p>
-      <div class="read-next">
-        <p class="read-next-label">// Keep Reading on the Blog</p>
-        <a href="/signs-universe-is-guiding-you.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">11 Signs the Universe Is Guiding You <em>→</em></span>
-        </a>
-        <a href="/quantum-consciousness-what-it-means.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Quantum Consciousness Explained <em>→</em></span>
-        </a>
-        <a href="/synchronicity-carl-jung-meaning.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Synchronicity: Carl Jung's Theory <em>→</em></span>
-        </a>
-        <a href="/how-to-meditate-for-beginners.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Meditate for Beginners <em>→</em></span>
-        </a>
-        <a href="/how-to-find-your-purpose-in-life.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Find Your Purpose in Life <em>→</em></span>
-        </a>
-      </div>
-    </article>
-
-    <!-- ARTICLE 4: Digital Sovereignty -->
-    <article class="edition-article" id="art-sovereignty">
-      <span class="pick-badge" style="background:linear-gradient(110deg,#FF9ECF,#FFB8D9);color:var(--night);margin-bottom:16px">Edition #09 · Best for Focus</span>
-      <h3>The Digital Sovereignty Playbook</h3>
-      <p class="art-sub" style="color:#FF9ECF">How to reclaim your mind from algorithms, notifications, and noise.</p>
-      <p>Your attention is the most valuable asset you own — and it is being <strong>farmed</strong>. Every app on your phone was designed by teams of behavioural psychologists whose sole job is to keep you scrolling. Every notification is an interruption engineered to pull you out of depth and into reaction. Every algorithm is a mirror designed to show you exactly what keeps you hooked — not what makes you grow.</p>
-      <p>The average person checks their phone <strong>96 times per day</strong>. That is 96 interruptions to your train of thought, your creative process, your ability to sit with discomfort long enough to transform it. This is not a willpower problem. It is a <strong>design problem</strong> — and the system was not designed in your favour.</p>
-      <p><strong>Digital sovereignty</strong> is the practice of consciously choosing what enters your mind, when it enters, and how much of your attention it receives. It is not about deleting all your apps or moving to a cabin. It is about building <strong>intentional boundaries</strong> between you and the noise machine.</p>
-      <p>Three practices that shift everything: <strong>Morning sovereignty</strong> — the first 60 minutes of your day belong to you, not your inbox. No phone, no news, no social media until you have journaled, moved your body, or sat in silence. <strong>Notification audit</strong> — turn off every notification except calls and messages from people you love. Everything else can wait. <strong>Evening wind-down</strong> — no screens 90 minutes before bed. Your subconscious processes the last inputs of the day while you sleep — feed it intention, not TikTok.</p>
-      <p>The book <em class="book-ref">Digital Sovereignty</em> goes deeper: how algorithms hijack your decision-making, how social comparison destroys self-worth, how constant connectivity kills the deep thinking that builds real success, and the complete framework for building a life of <strong>depth, meaning, and intentional focus</strong> in a world designed to keep you shallow.</p>
-      <p>Pair this with <em class="book-ref">The Unconditioned Mind</em> for dissolving the inherited beliefs that keep you reaching for distraction, and <em class="book-ref">The Signal</em> for the 21-day protocol that replaces noise with clarity.</p>
-      <p class="art-quote">The system profits when you obey. You win when you think. Reclaim the one asset no algorithm can buy — your undivided attention.</p>
-      <div class="read-next">
-        <p class="read-next-label">// Keep Reading on the Blog</p>
-        <a href="/morning-routine-subconscious-reprogramming.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">The Best Morning Reprogramming Routine <em>→</em></span>
-        </a>
-        <a href="/how-to-break-bad-habits-permanently.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Break Bad Habits Permanently <em>→</em></span>
-        </a>
-        <a href="/how-to-use-ai-tools-for-small-business.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">AI Tools for Small Business <em>→</em></span>
-        </a>
-        <a href="/how-ai-is-changing-business-india-2026.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How AI Is Changing Business in India <em>→</em></span>
-        </a>
-        <a href="/how-to-develop-emotional-intelligence.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">How to Develop Emotional Intelligence <em>→</em></span>
-        </a>
-        <a href="/unshackled-habits-modern-men.html">
-          <span class="rn-tag">Blog</span>
-          <span class="rn-title">Hidden Habits Keeping Men Stuck <em>→</em></span>
-        </a>
-      </div>
-    </article>
-
-  </div>
-
-</main>
-
-<footer>
-  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center;justify-content:center">
-    <a href="/" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Home</a>
-    <a href="/store.html" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Books</a>
-    <a href="/blog.html" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Blog</a>
-    <a href="/newsletter.html" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Newsletter</a>
-    <a href="/shop.html" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Signal Fashion</a>
-    <a href="/mentor.html" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none">Mentorship</a>
-    <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none">Amazon ↗</a>
-    <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);text-decoration:none">Instagram ↗</a>
-    <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);text-decoration:none">Twitter ↗</a>
-  </div>
-  <p style="font-size:12px;color:rgba(154,161,199,.5);font-family:var(--tech);letter-spacing:.06em;margin-top:14px;text-align:center">© 2025–<script>document.write(new Date().getFullYear())</script> Vishal Hingol · All rights reserved · <a href="/policies.html" style="color:var(--mist)">Policies</a></p>
-</footer>
-
-<!-- ============================================================
-     COOKIE CONSENT BANNER (Mailchimp-style, categorized)
-     ============================================================ -->
-<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(244,238,226,.12);padding:clamp(16px,2.5vw,24px) clamp(20px,5vw,48px);font-family:'Albert Sans',system-ui,sans-serif">
-  <div style="max-width:1100px;margin:0 auto">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap">
-      <div style="flex:1;min-width:280px">
-        <p style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E8BB6B;margin-bottom:8px">Cookie Settings</p>
-        <p style="font-size:13.5px;color:#9AA1C7;line-height:1.6;margin-bottom:10px">We use cookies to keep the site working and to understand how people use it. No advertising cookies. No third-party tracking. <a href="/policies.html#privacy" style="color:#E8BB6B;text-decoration:underline">Privacy Policy</a></p>
-        <div id="cookieDetails" style="display:none">
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:12px">
-            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Essential</span>
-                <span style="font-size:10px;color:#7DE6FF;font-family:'Space Grotesk',monospace">Always on</span>
-              </div>
-              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Required for the site to function — login sessions, form submissions, security.</p>
-            </div>
-            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Analytics</span>
-                <label style="position:relative;display:inline-block;width:36px;height:20px;cursor:pointer">
-                  <input type="checkbox" id="analyticsToggle" checked style="opacity:0;width:0;height:0">
-                  <span id="analyticsSlider" style="position:absolute;inset:0;background:#E8BB6B;border-radius:100px;transition:background .2s"></span>
-                  <span id="analyticsKnob" style="position:absolute;top:3px;left:3px;width:14px;height:14px;background:#070A18;border-radius:50%;transition:left .2s"></span>
-                </label>
-              </div>
-              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Google Analytics — anonymous traffic data. No personal data.</p>
-            </div>
-            <div style="background:rgba(244,238,226,.04);border:1px solid rgba(244,238,226,.1);border-radius:12px;padding:12px 14px">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <span style="font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#F4EEE2">Preferences</span>
-                <label style="position:relative;display:inline-block;width:36px;height:20px;cursor:pointer">
-                  <input type="checkbox" id="prefsToggle" checked style="opacity:0;width:0;height:0">
-                  <span id="prefsSlider" style="position:absolute;inset:0;background:#E8BB6B;border-radius:100px;transition:background .2s"></span>
-                  <span id="prefsKnob" style="position:absolute;top:3px;left:3px;width:14px;height:14px;background:#070A18;border-radius:50%;transition:left .2s"></span>
-                </label>
-              </div>
-              <p style="font-size:12px;color:#9AA1C7;line-height:1.55">Remembers your cookie choices and subscription status.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;padding-top:4px">
-        <button onclick="acceptAllCookies()" style="background:linear-gradient(110deg,#E8BB6B,#F2D49B);color:#070A18;border:none;padding:11px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Accept All</button>
-        <button onclick="toggleCookieDetails()" id="customizeBtn" style="background:transparent;color:#9AA1C7;border:1px solid rgba(244,238,226,.2);padding:10px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Customize Settings</button>
-        <button id="savePrefsBtn" onclick="saveCustomCookies()" style="display:none;background:transparent;color:#E8BB6B;border:1px solid rgba(232,187,107,.4);padding:10px 24px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Save My Choices</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================
-     NEWSLETTER SIGNUP POPUP (new visitors only)
-     ============================================================ -->
-<div id="nlPopup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,10,24,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px">
-  <div style="position:relative;max-width:480px;width:100%;background:#08060f;border:1px solid rgba(232,187,107,.3);border-radius:24px;padding:clamp(32px,5vw,48px);text-align:center;isolation:isolate;overflow:hidden">
-    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);background:radial-gradient(ellipse 85% 70% at 50% 20%, rgba(232,187,107,.4), transparent 68%)"></div>
-    <button onclick="closeNlPopup()" style="position:absolute;top:16px;right:18px;background:none;border:none;color:#9AA1C7;font-size:22px;cursor:pointer;z-index:2;line-height:1">✕</button>
-    <div style="position:relative;z-index:1">
-      <p style="font-size:28px;margin-bottom:8px">✦</p>
-      <h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(22px,3.5vw,28px);font-weight:400;color:#F4EEE2;margin-bottom:10px;line-height:1.2">Join <em style="font-style:italic;color:#E8BB6B">The Signal</em></h2>
-      <p style="font-size:14.5px;color:#9AA1C7;line-height:1.65;margin-bottom:24px;max-width:340px;margin-left:auto;margin-right:auto">Daily mindset frameworks, manifestation insights, and behind-the-book stories — read by people in 47+ countries. Free forever.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:10px">
-        <input type="email" id="popupEmail" placeholder="you@example.com" style="flex:1;min-width:180px;padding:13px 18px;border-radius:100px;border:1px solid rgba(244,238,226,.15);background:rgba(7,10,24,.6);color:#F4EEE2;font-family:'Albert Sans',system-ui,sans-serif;font-size:14px;outline:none">
-        <button onclick="submitNlPopup()" style="padding:13px 22px;border-radius:100px;border:none;cursor:pointer;background:linear-gradient(110deg,#E8BB6B,#F2D49B);color:#070A18;font-family:'Space Grotesk',monospace;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Subscribe Free</button>
-      </div>
-      <p id="popupMsg" style="font-size:13px;min-height:18px;color:#7DE6FF"></p>
-      <button onclick="closeNlPopup()" style="margin-top:10px;background:none;border:none;color:#9AA1C7;font-size:13px;cursor:pointer;text-decoration:underline;font-family:'Albert Sans',system-ui,sans-serif">No thanks, maybe later</button>
-    </div>
-  </div>
-</div>
 
 <!-- ============================================================
      SIGN-IN REMINDER (returning logged-out visitors)
@@ -1450,5 +1090,135 @@ if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
 })();
 </script>
 
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   DYNAMIC ARCHIVE — reads editions.json, renders with
+   month grouping, filter buttons, and live search.
+   To add a new edition: add one entry to editions.json
+   at the TOP of the array. No other changes needed.
+══════════════════════════════════════════════════════════ */
+(function(){
+  const STYLE_COLORS = {
+    rings:   '#E8BB6B',
+    waves:   '#7DE6FF',
+    embers:  '#FF9A5C',
+    growth:  '#7DFFB3',
+    flow:    '#FF9ECF',
+    crystal: '#9D7BFF',
+  };
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function formatDate(iso){
+    const d = new Date(iso);
+    return MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function monthKey(iso){
+    const d = new Date(iso);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+  }
+
+  function monthLabel(key){
+    const [y,m] = key.split('-');
+    return MONTHS[parseInt(m)-1] + ' ' + y;
+  }
+
+  let allEditions = [];
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function render(){
+    const list = document.getElementById('archiveList');
+    const countEl = document.getElementById('archiveCount');
+    if(!list) return;
+
+    // Filter
+    let filtered = allEditions.filter(e => {
+      const matchFilter = activeFilter === 'all' || e.type === activeFilter;
+      const hay = (e.title + ' ' + e.subtitle + ' ' + e.tag).toLowerCase();
+      const matchSearch = !searchQuery || hay.includes(searchQuery.toLowerCase());
+      return matchFilter && matchSearch;
+    });
+
+    // Update count
+    const total = allEditions.length;
+    const shown = filtered.length;
+    countEl.innerHTML = `Showing <span>${shown}</span> of ${total} editions`;
+
+    if(!filtered.length){
+      list.innerHTML = '<div class="archive-empty">No editions match your search.</div>';
+      return;
+    }
+
+    // Group by month
+    const groups = {};
+    const groupOrder = [];
+    filtered.forEach(e => {
+      const key = monthKey(e.date);
+      if(!groups[key]){ groups[key] = []; groupOrder.push(key); }
+      groups[key].push(e);
+    });
+
+    list.innerHTML = groupOrder.map(key => {
+      const rows = groups[key].map(e => {
+        const isPremium = e.type === 'premium';
+        const color = STYLE_COLORS[e.style] || '#E8BB6B';
+        const numDisplay = isPremium ? '⭐' : '#' + String(e.num).padStart(2,'0');
+        const badge = isPremium
+          ? `<a href="/editions/${e.slug}.html" class="edition-badge paid-lock">Premium →</a>`
+          : `<a href="/editions/${e.slug}.html" class="edition-badge free-read">Read →</a>`;
+        return `
+        <div class="edition${isPremium ? ' is-premium' : ''}">
+          <div class="edition-num">
+            ${numDisplay}
+            <span class="style-dot" style="background:${color}" title="${e.style}"></span>
+          </div>
+          <div class="edition-info">
+            <h3>${e.title}</h3>
+            <p>${e.subtitle}</p>
+            <p class="edition-date">${formatDate(e.date)} · ${e.tag} · ${e.readTime} min</p>
+          </div>
+          ${badge}
+        </div>`;
+      }).join('');
+      return `<div class="archive-month"><p class="archive-month-label">${monthLabel(key)}</p>${rows}</div>`;
+    }).join('');
+  }
+
+  // Filter buttons
+  document.querySelectorAll('.af-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.af-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeFilter = this.dataset.filter;
+      render();
+    });
+  });
+
+  // Search
+  const searchEl = document.getElementById('archiveSearch');
+  if(searchEl){
+    searchEl.addEventListener('input', function(){
+      searchQuery = this.value.trim();
+      render();
+    });
+  }
+
+  // Load editions.json
+  fetch('/editions.json?v=' + Date.now(), {cache:'no-store'})
+    .then(r => r.json())
+    .then(data => {
+      allEditions = (data.editions || []).sort((a,b) => new Date(b.date) - new Date(a.date));
+      render();
+    })
+    .catch(() => {
+      // Fallback: show a static message if JSON fails
+      const list = document.getElementById('archiveList');
+      if(list) list.innerHTML = '<div class="archive-empty">Archive loading… <a href="/newsletter.html" style="color:var(--gold)">Refresh to try again</a></div>';
+    });
+})();
+</script>
 </body>
 </html>
