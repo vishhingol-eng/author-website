@@ -72,66 +72,6 @@
       "tag": "Behaviour",
       "readTime": 5,
       "featured": false
-    },
-    {
-      "num": 11,
-      "slug": "the-architecture-of-your-next-year",
-      "title": "The Architecture of Your Next Year",
-      "subtitle": "Forget goals. Build architecture. The framework I use every December to design the year ahead.",
-      "date": "2025-12-01",
-      "type": "free",
-      "style": "crystal",
-      "tag": "Planning",
-      "readTime": 8,
-      "featured": false
-    },
-    {
-      "num": 10,
-      "slug": "what-zara-heard-that-night",
-      "title": "What Zara Heard That Night",
-      "subtitle": "Behind the scenes of writing the lost chapter. What I cut, what stayed, and why that scene haunts me.",
-      "date": "2025-04-01",
-      "type": "free",
-      "style": "rings",
-      "tag": "Behind the Book",
-      "readTime": 6,
-      "featured": false
-    },
-    {
-      "num": 9,
-      "slug": "your-phone-is-stealing-your-signal",
-      "title": "Your Phone Is Stealing Your Signal",
-      "subtitle": "Digital sovereignty isn't about deleting apps. It's about reclaiming the 4 hours your brain loses daily.",
-      "date": "2025-03-01",
-      "type": "free",
-      "style": "waves",
-      "tag": "Focus",
-      "readTime": 7,
-      "featured": false
-    },
-    {
-      "num": 8,
-      "slug": "the-369-method-nobody-talks-about",
-      "title": "The 369 Method Nobody Talks About",
-      "subtitle": "The real practice behind the trend. What most people get wrong, and the version that actually works.",
-      "date": "2025-02-01",
-      "type": "free",
-      "style": "embers",
-      "tag": "Manifestation",
-      "readTime": 9,
-      "featured": false
-    },
-    {
-      "num": 7,
-      "slug": "the-one-pattern-keeping-you-stuck",
-      "title": "The One Pattern Keeping You Stuck",
-      "subtitle": "Why self-sabotage isn't a character flaw — it's a frequency mismatch. And how to fix it.",
-      "date": "2025-01-01",
-      "type": "free",
-      "style": "growth",
-      "tag": "Mindset",
-      "readTime": 8,
-      "featured": false
     }
   ]
 }
