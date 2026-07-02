@@ -316,7 +316,7 @@ footer{border-top:1px solid var(--line);padding:clamp(32px,5vw,56px) clamp(20px,
       <div class="ph-stat-divider"></div>
       <div class="ph-stat">
         <span class="ph-stat-num" id="statPremium">—</span>
-        <span class="ph-stat-label">Gold Star Premium</span>
+        <span class="ph-stat-label">⭐ Gold Star Premium</span>
       </div>
       <div class="ph-stat-divider"></div>
       <div class="ph-stat">
@@ -600,16 +600,16 @@ function buildHeroCard(e){
 function buildCard(e){
   const isPrem=e.type==='premium';
   const st=STYLES[e.style]||STYLES.rings;
-  const seed=e.num*17+3;
+  const displayNum=e.numDisplay||(isPrem?'Premium #'+e.num:'Free #'+e.num);
   return `
   <div class="ed-card style-${e.style} ${isPrem?'is-premium':''} reveal" onclick="window.location='/editions/${e.slug}.html'">
     <div class="card-canvas-wrap" style="background:${st.bg}">
-      <canvas id="card-cv-${e.num}"></canvas>
+      <canvas id="card-cv-${e.slug}"></canvas>
       <div class="card-canvas-scrim"></div>
     </div>
     <div class="card-body">
       <div class="card-top-row">
-        <span class="card-num" style="color:${st.accent}">#${String(e.num).padStart(2,'0')} · ${e.tag}</span>
+        <span class="card-num" style="color:${st.accent}">${displayNum} · ${e.tag}</span>
         <span class="card-type-badge ${isPrem?'premium':'free'}">${isPrem?'⭐ Premium':'Free'}</span>
       </div>
       <h3 class="card-title" style="--accent:${st.accent}">${e.title}</h3>
@@ -695,8 +695,8 @@ function renderAll(){
     container.innerHTML='';
   } else {
     // Split by type for section labels
-    const premiumItems = pageItems.filter(e=>e.type==='premium');
-    const freeItems = pageItems.filter(e=>e.type==='free');
+    const premiumItems = pageItems.filter(e=>e.type==='premium').sort((a,b)=>a.num-b.num);
+    const freeItems = pageItems.filter(e=>e.type==='free').sort((a,b)=>a.num-b.num);
 
     let html = '';
 
@@ -742,7 +742,7 @@ function renderAll(){
     // Start live canvas animations for each card
     requestAnimationFrame(()=>{
       pageItems.forEach(e=>{
-        const cv=document.getElementById(`card-cv-${e.num}`);
+        const cv=document.getElementById('card-cv-'+e.slug);
         if(!cv)return;
         const st=STYLES[e.style]||STYLES.rings;
         const dpr=window.devicePixelRatio||1;

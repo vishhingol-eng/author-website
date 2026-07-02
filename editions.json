@@ -14,7 +14,7 @@
   },
   "editions": [
     {
-      "num": 16,
+      "num": 3,
       "slug": "confidence-vs-competence",
       "title": "Confidence Is a Symptom. You're Treating It Like a Cause.",
       "subtitle": "Why chasing the feeling of certainty keeps you exactly where you are.",
@@ -23,10 +23,12 @@
       "style": "rings",
       "tag": "Self-Awareness",
       "readTime": 6,
-      "featured": true
+      "featured": true,
+      "numLabel": "P3",
+      "numDisplay": "Premium #3"
     },
     {
-      "num": 15,
+      "num": 2,
       "slug": "why-your-goals-keep-failing-in-week-two",
       "title": "Why Your Goals Keep Failing in Week Two",
       "subtitle": "It is rarely about motivation. It is almost always about a deadline your brain set without telling you.",
@@ -35,10 +37,12 @@
       "style": "waves",
       "tag": "Habits",
       "readTime": 5,
-      "featured": false
+      "featured": false,
+      "numLabel": "F2",
+      "numDisplay": "Free #2"
     },
     {
-      "num": 14,
+      "num": 1,
       "slug": "the-quiet-discipline",
       "title": "The Quiet Discipline",
       "subtitle": "Why the people who actually change their life rarely talk about it.",
@@ -47,10 +51,12 @@
       "style": "growth",
       "tag": "Discipline",
       "readTime": 7,
-      "featured": false
+      "featured": false,
+      "numLabel": "F1",
+      "numDisplay": "Free #1"
     },
     {
-      "num": 13,
+      "num": 2,
       "slug": "the-pattern-most-people-never-see",
       "title": "The Pattern Most People Never See",
       "subtitle": "The one trait that separates people who actually change their life from people who keep reading about changing it.",
@@ -59,10 +65,12 @@
       "style": "embers",
       "tag": "Self-Sabotage",
       "readTime": 6,
-      "featured": true
+      "featured": true,
+      "numLabel": "P2",
+      "numDisplay": "Premium #2"
     },
     {
-      "num": 12,
+      "num": 1,
       "slug": "why-reading-about-change-isnt-change",
       "title": "Why Reading About Change Isn't Change",
       "subtitle": "Why consuming self-help content can feel like change while requiring none of the actual work.",
@@ -71,7 +79,9 @@
       "style": "flow",
       "tag": "Behaviour",
       "readTime": 5,
-      "featured": false
+      "featured": false,
+      "numLabel": "P1",
+      "numDisplay": "Premium #1"
     }
   ]
 }
