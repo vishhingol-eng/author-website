@@ -1,8 +1,8 @@
 {
-  "_comment": "Single source of truth for all Signal newsletter editions. Add new entries at the TOP of the array. newsletter.html reads this automatically — no manual HTML edits needed.",
+  "_comment": "Single source of truth for all Signal newsletter editions. Add new entries at the TOP of the array. newsletter.html reads this automatically \u2014 no manual HTML edits needed.",
   "_fields": {
     "num": "Edition number (integer)",
-    "slug": "URL slug — matches editions/<slug>.html filename",
+    "slug": "URL slug \u2014 matches editions/<slug>.html filename",
     "title": "Full edition title",
     "subtitle": "One-line hook/description",
     "date": "ISO date string YYYY-MM-DD",
@@ -13,6 +13,20 @@
     "featured": "true if this edition should appear in the Gold Star showcase on newsletter.html"
   },
   "editions": [
+    {
+      "num": 4,
+      "numLabel": "P4",
+      "numDisplay": "Premium #4",
+      "slug": "the-369-method-the-real-practice",
+      "title": "The 369 Method: The Real Practice",
+      "subtitle": "What most people get completely wrong \u2014 and the version that actually rewires your subconscious.",
+      "date": "2026-07-03",
+      "type": "premium",
+      "style": "magnetic",
+      "tag": "Manifestation",
+      "readTime": 7,
+      "featured": true
+    },
     {
       "num": 3,
       "slug": "confidence-vs-competence",
