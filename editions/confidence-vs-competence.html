@@ -960,6 +960,8 @@ function makePRNG(seed) {
         if(d&&d.loggedIn&&d.isPremium){
           wrap.classList.remove('gate-blurred');
           gate.remove();
+          // Scroll to start of premium content smoothly
+          gs.scrollIntoView({behavior:'smooth', block:'start'});
         }
       }).catch(()=>{});
   }
