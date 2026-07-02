@@ -199,7 +199,7 @@ async function doLogin(){
       showStatus('success','✓ Access granted — all premium content unlocked.');
       setTimeout(()=>{ showLoggedIn('chudasama493@gmail.com'); }, 800);
     } else {
-      showStatus('error', '✗ Wrong key. Try again.');
+      showStatus('error', '✗ Debug: ' + JSON.stringify(d));
       btn.disabled = false;
       btn.textContent = 'Access My Site →';
     }
