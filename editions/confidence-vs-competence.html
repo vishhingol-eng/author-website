@@ -234,7 +234,7 @@ nav{
 
 /* Fixed canvas heights via CSS — prevents layout shift */
 #ras-canvas{height:300px}   /* FIX #5: was 240px, too cramped */
-#accum-canvas{height:280px}
+#accum-canvas{height:340px}
 
 /* ── ACCUMULATION PANEL ── */
 .accum-panel{margin:clamp(28px,4vw,44px) 0;border-radius:18px;overflow:hidden;border:1px solid rgba(244,238,226,.06);background:linear-gradient(145deg,rgba(11,16,38,.9),rgba(5,7,21,.95))}
@@ -850,7 +850,7 @@ function makePRNG(seed) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, dpr;
-  const H_TARGET = 240;
+  const H_TARGET = 340;
   const stages = [
     {label:'1 rep',maxN:12,col:[157,123,255],maxR:null},
     {label:'10 reps',maxN:45,col:[190,140,255],maxR:null},
@@ -866,13 +866,16 @@ function makePRNG(seed) {
     canvas.width=W*dpr; canvas.height=H*dpr;
     canvas.style.height=H+'px';
     ctx.scale(dpr,dpr);
-    // Compute maxR dynamically — each stage gets W/4 wide slot
-    // max circle must fit within slot with 12px padding each side
-    const slotR = Math.min(W/4/2 - 12, H/2 - 16);
-    stages[0].maxR = Math.max(20, slotR * 0.45);
-    stages[1].maxR = Math.max(28, slotR * 0.62);
-    stages[2].maxR = Math.max(36, slotR * 0.78);
-    stages[3].maxR = Math.max(44, slotR * 0.92);
+    // Each stage slot = W/4. Max radius = slot half-width minus padding
+    // Use H center minus label space (40px bottom) for vertical fit
+    const slotW = W/4;
+    const maxByW = slotW/2 - 16;
+    const maxByH = (H - 60) / 2 - 8;
+    const slotR = Math.min(maxByW, maxByH);
+    stages[0].maxR = Math.max(22, slotR * 0.42);
+    stages[1].maxR = Math.max(32, slotR * 0.60);
+    stages[2].maxR = Math.max(44, slotR * 0.78);
+    stages[3].maxR = Math.max(56, slotR * 0.96);
   }
 
   function init(){ rngA=makePRNG(4242); stageRings=stages.map(()=>[]); totalSpawned=0; }
@@ -881,17 +884,25 @@ function makePRNG(seed) {
   function draw() {
     tick++;
     ctx.clearRect(0,0,W,H); ctx.fillStyle='#07091A'; ctx.fillRect(0,0,W,H);
-    const PW=W/4, CY=H*.46;
+    // Center circles in upper portion, leave 48px for labels at bottom
+    const PW=W/4, CY=(H-48)*0.50 + 4;
     const interval=Math.max(1,Math.floor(3-totalSpawned/TOTAL_RINGS*2.5));
-    if(tick%interval===0){ for(let si=0;si<stages.length;si++){ if(stageRings[si].length<stages[si].maxN){ const st=stages[si], i=stageRings[si].length, t=i/st.maxN; stageRings[si].push({r:3+t*st.maxR, jx:(rngA()-.5)*st.maxR*.12, jy:(rngA()-.5)*st.maxR*.12, isArc:rngA()<.5, arcStart:rngA()*Math.PI*2, arcLen:(.5+rngA()*1.4)*Math.PI, lw:.4+rngA()*.85, t}); totalSpawned++; break; } } }
+    if(tick%interval===0){ for(let si=0;si<stages.length;si++){ if(stageRings[si].length<stages[si].maxN){ const st=stages[si], i=stageRings[si].length, t=i/st.maxN; stageRings[si].push({r:3+t*st.maxR, jx:(rngA()-.5)*st.maxR*.1, jy:(rngA()-.5)*st.maxR*.1, isArc:rngA()<.5, arcStart:rngA()*Math.PI*2, arcLen:(.5+rngA()*1.4)*Math.PI, lw:.4+rngA()*.85, t}); totalSpawned++; break; } } }
     if(stageRings.every((sr,i)=>sr.length>=stages[i].maxN)&&tick%300===0){ init(); }
     stages.forEach((st,si)=>{
       const cx=PW*si+PW*.5, rings=stageRings[si];
       rings.forEach(ring=>{ const gt=Math.max(0,1-ring.t*1.8); const [r0,g0,b0]=st.col; ctx.beginPath(); if(ring.isArc) ctx.arc(cx+ring.jx,CY+ring.jy,ring.r,ring.arcStart,ring.arcStart+ring.arcLen); else ctx.arc(cx+ring.jx,CY+ring.jy,ring.r,0,Math.PI*2); ctx.strokeStyle=`rgba(${Math.round(r0*gt+50*(1-gt))},${Math.round(g0*gt+50*(1-gt))},${Math.round(b0*gt+80*(1-gt))},${(1-ring.t*.45)*.65})`; ctx.lineWidth=ring.lw; ctx.stroke(); });
-      if(rings.length>st.maxN*.3){ const gR=Math.min(rings.length/st.maxN*st.maxR*.5,30); const [r0,g0,b0]=st.col; const g=ctx.createRadialGradient(cx,CY,0,cx,CY,gR); g.addColorStop(0,`rgba(${r0},${g0},${b0},.15)`); g.addColorStop(1,'transparent'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,CY,gR,0,Math.PI*2); ctx.fill(); }
-      if(si<stages.length-1){ const ax=cx+PW*.42, op=si<stageRings.filter(s=>s.length>0).length?.4:.12; ctx.strokeStyle=`rgba(154,161,199,${op})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(ax-6,CY); ctx.lineTo(ax+6,CY); ctx.stroke(); ctx.beginPath(); ctx.moveTo(ax+2,CY-4); ctx.lineTo(ax+6,CY); ctx.lineTo(ax+2,CY+4); ctx.stroke(); }
-      const [r0,g0,b0]=st.col; ctx.font=`500 9.5px 'Space Grotesk',monospace`; ctx.fillStyle=rings.length>=st.maxN?`rgba(${r0},${g0},${b0},.75)`:'rgba(154,161,199,.3)'; ctx.textAlign='center'; ctx.fillText(st.label,cx,H-12);
-      if(rings.length>0){ ctx.beginPath(); ctx.arc(cx,H-28,3,0,Math.PI*2*rings.length/st.maxN); ctx.strokeStyle=`rgba(${r0},${g0},${b0},.6)`; ctx.lineWidth=2; ctx.stroke(); }
+      if(rings.length>st.maxN*.3){ const gR=Math.min(rings.length/st.maxN*st.maxR*.55,38); const [r0,g0,b0]=st.col; const g=ctx.createRadialGradient(cx,CY,0,cx,CY,gR); g.addColorStop(0,`rgba(${r0},${g0},${b0},.18)`); g.addColorStop(1,'transparent'); ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,CY,gR,0,Math.PI*2); ctx.fill(); }
+      // Arrow between stages
+      if(si<stages.length-1){ const ax=cx+PW*.42, op=si<stageRings.filter(s=>s.length>0).length?.45:.12; ctx.strokeStyle=`rgba(154,161,199,${op})`; ctx.lineWidth=1.2; ctx.beginPath(); ctx.moveTo(ax-7,CY); ctx.lineTo(ax+7,CY); ctx.stroke(); ctx.beginPath(); ctx.moveTo(ax+2,CY-5); ctx.lineTo(ax+7,CY); ctx.lineTo(ax+2,CY+5); ctx.stroke(); }
+      // Label at bottom
+      const [r0,g0,b0]=st.col;
+      ctx.font=`600 11px 'Space Grotesk',monospace`;
+      ctx.fillStyle=rings.length>=st.maxN?`rgba(${r0},${g0},${b0},.85)`:'rgba(154,161,199,.35)';
+      ctx.textAlign='center';
+      ctx.fillText(st.label,cx,H-14);
+      // Progress arc under label
+      if(rings.length>0){ ctx.beginPath(); ctx.arc(cx,H-30,4,0,Math.PI*2*rings.length/st.maxN); ctx.strokeStyle=`rgba(${r0},${g0},${b0},.65)`; ctx.lineWidth=2; ctx.stroke(); }
     });
   }
 
