@@ -1,46 +1,8 @@
-# robots.txt — vishalhingolauthor.com
-# Last updated: July 2026
-
-# ── Standard search engines ──
 User-agent: *
 Allow: /
 
-# Block internal/utility pages from indexing
-Disallow: /account.html
-Disallow: /my-account.html
-Disallow: /test-signup.html
-Disallow: /agreement.html
+# Block private/utility paths
+Disallow: /cdn-cgi/
 
-# ── AI crawlers — explicitly allowed for GEO visibility ──
-# These power ChatGPT, Perplexity, Google AI Overviews,
-# Claude citations, and other AI answer engines.
-
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-# ── Sitemap location ──
+# Sitemap
 Sitemap: https://vishalhingolauthor.com/sitemap.xml
