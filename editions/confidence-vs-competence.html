@@ -538,20 +538,20 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
 
     <div class="section-divider reveal"><span class="sd-icon">📚</span><span class="sd-label">From the Archive</span></div>
 
-    <nav class="archive-grid reveal" aria-label="Related articles">
-      <a class="archive-card" href="/why-you-keep-self-sabotaging.html">
-        <span class="archive-tag">Blog</span>
-        <span class="archive-title">Why You Keep Self-Sabotaging</span>
+    <nav class="archive-grid reveal" aria-label="Related editions">
+      <a class="archive-card" href="/editions/the-369-method-the-real-practice.html">
+        <span class="archive-tag">Premium #4</span>
+        <span class="archive-title">The 369 Method: The Real Practice</span>
         <span class="archive-arrow">→</span>
       </a>
-      <a class="archive-card" href="/how-to-build-unshakeable-confidence.html">
-        <span class="archive-tag">Blog</span>
-        <span class="archive-title">Building Unshakeable Confidence</span>
+      <a class="archive-card" href="/editions/the-pattern-most-people-never-see.html">
+        <span class="archive-tag">Premium #2</span>
+        <span class="archive-title">The Pattern Most People Never See</span>
         <span class="archive-arrow">→</span>
       </a>
-      <a class="archive-card" href="/how-to-build-mental-toughness.html">
-        <span class="archive-tag">Blog</span>
-        <span class="archive-title">8 Practices to Build Mental Toughness</span>
+      <a class="archive-card" href="/editions/the-quiet-discipline.html">
+        <span class="archive-tag">Free #1</span>
+        <span class="archive-title">The Quiet Discipline</span>
         <span class="archive-arrow">→</span>
       </a>
     </nav>
@@ -957,11 +957,21 @@ function makePRNG(seed) {
     // Check session — only unlock if isPremium is true
     fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
       .then(r=>r.json()).then(d=>{
-        if(d&&d.loggedIn&&d.isPremium){
+        // Robust check — handles isPremium, isPaid, plan, subscription fields
+        const hasPremium = d && d.loggedIn && (
+          d.isPremium === true ||
+          d.isPaid === true ||
+          d.isAdmin === true ||
+          d.plan === 'premium' ||
+          d.subscription === 'active' ||
+          d.subscriptionActive === true
+        );
+        if(hasPremium){
           wrap.classList.remove('gate-blurred');
           gate.remove();
           // Scroll to start of premium content smoothly
-          gs.scrollIntoView({behavior:'smooth', block:'start'});
+          window.scrollTo({top: 0, behavior: 'smooth'});
+          setTimeout(() => gs.scrollIntoView({behavior:'smooth', block:'start'}), 100);
         }
       }).catch(()=>{});
   }
