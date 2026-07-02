@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Access — Vishal Hingol</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#050715;--night:#070A18;--paper:#F4EEE2;--mist:#9AA1C7;
+  --gold:#E8BB6B;--line:rgba(244,238,226,.09);
+  --tech:'Space Grotesk',monospace;--display:'Fraunces',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--void);color:var(--paper);font-family:var(--tech);min-height:100vh;display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased}
+
+/* Cosmic background */
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 40%,rgba(157,123,255,.08),transparent 70%);pointer-events:none}
+
+.card{
+  background:linear-gradient(145deg,#0D0800,#110A02,#0A0614);
+  border:1px solid rgba(232,187,107,.25);
+  border-radius:28px;padding:clamp(36px,5vw,52px);
+  width:100%;max-width:420px;
+  margin:20px;
+  position:relative;overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 60px rgba(232,187,107,.08);
+}
+.card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,187,107,.2),transparent 65%);
+}
+.card>*{position:relative;z-index:1}
+
+.star{font-size:36px;display:block;text-align:center;margin-bottom:18px;filter:drop-shadow(0 0 12px rgba(255,200,0,.6))}
+h1{font-family:var(--display);font-size:26px;font-weight:400;font-style:italic;text-align:center;color:var(--paper);margin-bottom:6px}
+.subtitle{font-size:13px;color:var(--mist);text-align:center;margin-bottom:32px;letter-spacing:.04em}
+
+.input-group{margin-bottom:18px}
+.input-group label{display:block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px}
+.input-group input{
+  width:100%;background:rgba(11,16,38,.8);
+  border:1px solid rgba(244,238,226,.12);
+  border-radius:12px;padding:13px 16px;
+  font-family:var(--tech);font-size:15px;color:var(--paper);
+  outline:none;transition:border-color .2s;
+  letter-spacing:.08em;
+}
+.input-group input:focus{border-color:rgba(232,187,107,.4)}
+.input-group input::placeholder{color:rgba(154,161,199,.3);letter-spacing:0}
+
+.btn{
+  width:100%;padding:15px;border:none;border-radius:100px;
+  background:linear-gradient(110deg,#B8842A,#E8BB6B,#F5D080,#FFF0B0);
+  color:#1a0e00;font-family:var(--tech);font-weight:800;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:transform .2s,box-shadow .2s;
+  box-shadow:0 0 24px rgba(232,187,107,.35);
+  margin-top:8px;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(232,187,107,.55)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+
+.status{
+  margin-top:20px;padding:13px 16px;border-radius:12px;
+  font-size:13px;text-align:center;line-height:1.5;
+  display:none;
+}
+.status.success{background:rgba(125,255,179,.1);border:1px solid rgba(125,255,179,.25);color:#7DFFB3}
+.status.error{background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.25);color:#FF8080}
+
+.divider{height:1px;background:var(--line);margin:28px 0}
+
+.info{font-size:12px;color:rgba(154,161,199,.45);text-align:center;line-height:1.7}
+.info strong{color:rgba(154,161,199,.7)}
+
+/* Redirect countdown */
+.redirect-msg{font-size:12px;color:var(--mist);text-align:center;margin-top:14px}
+.redirect-msg span{color:var(--gold);font-weight:700}
+
+/* Already logged in state */
+.logged-in-box{display:none;text-align:center}
+.logged-in-box .check{font-size:40px;margin-bottom:14px}
+.logged-in-box h2{font-family:var(--display);font-size:22px;font-weight:400;font-style:italic;color:var(--paper);margin-bottom:8px}
+.logged-in-box p{font-size:13px;color:var(--mist);margin-bottom:22px;line-height:1.6}
+.nav-links{display:flex;flex-direction:column;gap:10px}
+.nav-link{
+  display:block;padding:12px 18px;border-radius:12px;
+  background:rgba(244,238,226,.04);border:1px solid var(--line);
+  color:var(--paper);text-decoration:none;font-size:13px;font-weight:500;
+  transition:border-color .2s,background .2s;text-align:center;
+}
+.nav-link:hover{border-color:rgba(232,187,107,.3);background:rgba(244,238,226,.07);color:var(--gold)}
+.nav-link.premium{border-color:rgba(232,187,107,.2);color:var(--gold)}
+.logout-btn{
+  background:none;border:1px solid var(--line);border-radius:100px;
+  color:var(--mist);font-family:var(--tech);font-size:11px;
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 20px;cursor:pointer;transition:border-color .2s,color .2s;
+  margin-top:14px;width:100%;
+}
+.logout-btn:hover{border-color:rgba(255,80,80,.4);color:#FF8080}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <span class="star">⭐</span>
+  <h1>Admin Access</h1>
+  <p class="subtitle">vishalhingolauthor.com · Owner Portal</p>
+
+  <!-- LOGIN FORM -->
+  <div id="loginForm">
+    <div class="input-group">
+      <label>Secret Admin Key</label>
+      <input type="password" id="keyInput" placeholder="Enter your secret key" autocomplete="off">
+    </div>
+    <button class="btn" id="loginBtn" onclick="doLogin()">Access My Site →</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- LOGGED IN STATE -->
+  <div class="logged-in-box" id="loggedInBox">
+    <div class="check">✅</div>
+    <h2>You're in, Vishal.</h2>
+    <p id="loggedInDesc">Logged in as admin · All premium content unlocked</p>
+    <div class="nav-links">
+      <a href="/" class="nav-link">🏠 Homepage</a>
+      <a href="/newsletter.html" class="nav-link">📧 Newsletter</a>
+      <a href="/the-signal-archive.html" class="nav-link premium">⭐ Signal Archive</a>
+      <a href="/editions/confidence-vs-competence.html" class="nav-link premium">⭐ Confidence Is a Symptom</a>
+      <a href="/editions/the-pattern-most-people-never-see.html" class="nav-link premium">⭐ The Pattern Most People Never See</a>
+      <a href="/store.html" class="nav-link">📚 Store</a>
+      <a href="/mentor.html" class="nav-link">🎯 Mentorship</a>
+      <a href="/signal-styles.html" class="nav-link">🎨 Style Library</a>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+  </div>
+
+  <div class="divider"></div>
+  <p class="info">
+    <strong>Bookmark this page.</strong><br>
+    Enter your secret key to get instant admin access.<br>
+    All premium gates unlock. Session lasts 30 days.
+  </p>
+</div>
+
+<script>
+const EP = 'https://subscribe.vishalhingolauthor.com';
+
+// Check if already logged in on page load
+(async function(){
+  try {
+    const res = await fetch(EP, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      credentials:'include',
+      body: JSON.stringify({type:'check_session'})
+    });
+    const d = await res.json();
+    if(d && d.loggedIn && d.isAdmin) {
+      showLoggedIn(d.email);
+    }
+  } catch(e){}
+})();
+
+function showLoggedIn(email){
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('loggedInBox').style.display = 'block';
+  if(email){
+    document.getElementById('loggedInDesc').textContent =
+      `Logged in as ${email} · All premium content unlocked`;
+  }
+}
+
+async function doLogin(){
+  const key = document.getElementById('keyInput').value.trim();
+  const btn = document.getElementById('loginBtn');
+  const status = document.getElementById('status');
+
+  if(!key){ showStatus('error','Please enter your secret key.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Verifying...';
+  status.style.display = 'none';
+
+  try {
+    const res = await fetch(EP, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      credentials:'include',
+      body: JSON.stringify({type:'admin_access', key})
+    });
+    const d = await res.json();
+
+    if(d && d.success){
+      showStatus('success','✓ Access granted — all premium content unlocked.');
+      setTimeout(()=>{ showLoggedIn('chudasama493@gmail.com'); }, 800);
+    } else {
+      showStatus('error', '✗ Wrong key. Try again.');
+      btn.disabled = false;
+      btn.textContent = 'Access My Site →';
+    }
+  } catch(e){
+    showStatus('error','Connection error. Check your internet and try again.');
+    btn.disabled = false;
+    btn.textContent = 'Access My Site →';
+  }
+}
+
+async function doLogout(){
+  try {
+    await fetch(EP, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      credentials:'include',
+      body: JSON.stringify({type:'account_logout'})
+    });
+  } catch(e){}
+  document.getElementById('loggedInBox').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('keyInput').value = '';
+}
+
+function showStatus(type, msg){
+  const el = document.getElementById('status');
+  el.className = 'status ' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// Allow pressing Enter on the input
+document.getElementById('keyInput').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') doLogin();
+});
+</script>
+</body>
+</html>
