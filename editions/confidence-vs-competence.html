@@ -234,7 +234,7 @@ nav{
 
 /* Fixed canvas heights via CSS — prevents layout shift */
 #ras-canvas{height:300px}   /* FIX #5: was 240px, too cramped */
-#accum-canvas{height:240px} /* FIX #5: was 220px */
+#accum-canvas{height:280px}
 
 /* ── ACCUMULATION PANEL ── */
 .accum-panel{margin:clamp(28px,4vw,44px) 0;border-radius:18px;overflow:hidden;border:1px solid rgba(244,238,226,.06);background:linear-gradient(145deg,rgba(11,16,38,.9),rgba(5,7,21,.95))}
@@ -852,10 +852,10 @@ function makePRNG(seed) {
   let W, H, dpr;
   const H_TARGET = 240;
   const stages = [
-    {label:'1 rep',maxN:12,col:[157,123,255],maxR:38},
-    {label:'10 reps',maxN:45,col:[190,140,255],maxR:55},
-    {label:'100 reps',maxN:130,col:[220,175,110],maxR:68},
-    {label:'1,000 reps',maxN:300,col:[232,187,107],maxR:78},
+    {label:'1 rep',maxN:12,col:[157,123,255],maxR:null},
+    {label:'10 reps',maxN:45,col:[190,140,255],maxR:null},
+    {label:'100 reps',maxN:130,col:[220,175,110],maxR:null},
+    {label:'1,000 reps',maxN:300,col:[232,187,107],maxR:null},
   ];
   let rngA=makePRNG(4242), stageRings=[], totalSpawned=0;
   const TOTAL_RINGS=stages.reduce((s,st)=>s+st.maxN,0);
@@ -866,6 +866,13 @@ function makePRNG(seed) {
     canvas.width=W*dpr; canvas.height=H*dpr;
     canvas.style.height=H+'px';
     ctx.scale(dpr,dpr);
+    // Compute maxR dynamically — each stage gets W/4 wide slot
+    // max circle must fit within slot with 12px padding each side
+    const slotR = Math.min(W/4/2 - 12, H/2 - 16);
+    stages[0].maxR = Math.max(20, slotR * 0.45);
+    stages[1].maxR = Math.max(28, slotR * 0.62);
+    stages[2].maxR = Math.max(36, slotR * 0.78);
+    stages[3].maxR = Math.max(44, slotR * 0.92);
   }
 
   function init(){ rngA=makePRNG(4242); stageRings=stages.map(()=>[]); totalSpawned=0; }
