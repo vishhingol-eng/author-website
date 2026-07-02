@@ -51,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:cent
 .mob-overlay .mob-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer}
 @media(max-width:700px){.nav-links{display:none !important}.hamburger{display:flex}}
 
-main{max-width:760px;margin:0 auto;padding:120px clamp(20px,5vw,48px) 80px}
+main{max-width:760px;margin:0 auto;padding:0 0 80px}.main-inner{padding:0 clamp(20px,5vw,48px)}
 
 .back-bar{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-wrap:wrap}
 .back-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:rgba(244,238,226,.06);border:1px solid var(--line);padding:10px 18px;border-radius:100px;text-decoration:none;transition:border-color .3s,background .3s}
@@ -103,7 +103,7 @@ footer a{color:var(--gold)}
 .article-gate .gate-login-line{font-size:12.5px;color:var(--mist)}
 .article-gate .gate-login-line a{color:var(--gold);text-decoration:underline}
 
-.hero-canvas-wrap{position:relative;width:100%;height:clamp(420px,65vh,680px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-canvas-wrap{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;height:clamp(480px,70vh,720px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:60px}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(7,10,24,.25) 0%,rgba(7,10,24,.6) 60%,var(--night) 100%)}
 .hero-content{position:relative;z-index:2;max-width:780px;padding:0 clamp(20px,5vw,48px)}
@@ -156,6 +156,7 @@ footer a{color:var(--gold)}
 </div>
 
 <main>
+  <div class="main-inner">
   <div class="back-bar"><a class="back-btn" href="/newsletter.html">← Back to Newsletter</a></div>
   <div class="hero-canvas-wrap" aria-label="Branching growth tree — discipline compounding silently over time">
   <canvas id="hero-canvas"></canvas>
@@ -211,6 +212,7 @@ footer a{color:var(--gold)}
         </div>
       </div>
     </div>
+  </div>
   </div>
 </main>
 

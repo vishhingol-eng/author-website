@@ -91,7 +91,7 @@ footer a{color:var(--gold)}
 .premium-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
 .premium-gate .gate-price{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
 
-.hero-canvas-wrap{position:relative;width:100%;height:clamp(420px,65vh,680px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-canvas-wrap{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;height:clamp(480px,70vh,720px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:60px}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(7,10,24,.25) 0%,rgba(7,10,24,.6) 60%,var(--night) 100%)}
 .hero-content{position:relative;z-index:2;max-width:780px;padding:0 clamp(20px,5vw,48px)}
@@ -144,6 +144,7 @@ footer a{color:var(--gold)}
 </div>
 
 <main>
+  <div class="main-inner">
   <div class="back-bar"><a class="back-btn" href="/newsletter.html">← Back to Newsletter</a></div>
   <div class="hero-canvas-wrap" aria-label="Ember field visualization — motivation as a burning resource">
   <canvas id="hero-canvas"></canvas>
@@ -180,6 +181,7 @@ footer a{color:var(--gold)}
         <p>The decision is never the hard part. The 48 hours after it — where most people wait for readiness that never arrives — is where almost everything is actually decided.</p>
       </div>
     </div>
+  </div>
   </div>
 </main>
 
