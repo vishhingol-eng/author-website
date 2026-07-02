@@ -90,6 +90,22 @@ footer a{color:var(--gold)}
 .premium-gate .btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none;margin-bottom:12px;transition:transform .2s,box-shadow .2s}
 .premium-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
 .premium-gate .gate-price{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
+
+.hero-canvas-wrap{position:relative;width:100%;height:clamp(420px,65vh,680px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(7,10,24,.25) 0%,rgba(7,10,24,.6) 60%,var(--night) 100%)}
+.hero-content{position:relative;z-index:2;max-width:780px;padding:0 clamp(20px,5vw,48px)}
+.hero-eyebrow{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#FF9A5C;display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px;opacity:0;animation:fadeUp .8s .3s ease forwards}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";width:28px;height:1px;background:#FF9A5C;opacity:.5}
+.hero-h1{font-family:var(--display);font-size:clamp(34px,6vw,68px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--paper);margin-bottom:16px;opacity:0;animation:fadeUp .9s .5s ease forwards}
+.hero-h1 em{font-style:italic;background:linear-gradient(110deg,#FF9A5C,#FFD08A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--mist);line-height:1.65;max-width:500px;margin:0 auto 28px;opacity:0;animation:fadeUp .9s .7s ease forwards}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s ease forwards}
+.meta-pill{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 18px;border-radius:100px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
+.meta-tag{font-family:var(--tech);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(154,161,199,.5)}
+.meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(244,238,226,.15)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
 </style>
 </head>
 <body>
@@ -128,14 +144,23 @@ footer a{color:var(--gold)}
 </div>
 
 <main>
-  <div class="back-bar">
-    <a class="back-btn" href="/newsletter.html">← Back to Newsletter</a>
+  <div class="back-bar"><a class="back-btn" href="/newsletter.html">← Back to Newsletter</a></div>
+  <div class="hero-canvas-wrap" aria-label="Ember field visualization — motivation as a burning resource">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Gold Star Premium · Self-Awareness · Jul 2026</div>
+    <h1 class="hero-h1">The Pattern Most People<br><em>Never See.</em></h1>
+    <p class="hero-sub">The one trait that separates people who change their life from people who keep reading about changing it.</p>
+    <div class="hero-meta">
+      <span class="meta-pill">⭐ Gold Star Premium</span>
+      <div class="meta-dot"></div>
+      <span class="meta-tag">6 min read</span>
+      <div class="meta-dot"></div>
+      <span class="meta-tag">Deep Signal</span>
+    </div>
   </div>
-
-  <span class="art-badge">⭐ Gold Star Premium · Deep Signal Exclusive</span>
-  <h1 class="art-title">The Pattern Most People Never See</h1>
-  <p class="art-sub">The one trait that actually separates people who change their life from people who just talk about it.</p>
-  <p class="art-meta">8 min read · Deep Signal Exclusive</p>
+</div>
 
   <p class="art-hook"><strong>This is the pattern</strong> I almost never write about publicly, because once you see it, you cannot stop noticing it in everyone — including yourself.</p>
 
@@ -268,5 +293,60 @@ footer a{color:var(--gold)}
 })();
 </script>
 
+<script>
+
+function _prng(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/0xffffffff};}
+function _lerp(a,b,t){return a+(b-a)*t;}
+function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+
+(function(){
+  const cv=document.getElementById('hero-canvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  let W,H,dpr,tick=0;
+  const rng=_prng(5555);
+  const EMBERS=[];
+  const MAX_EMBERS=220;
+  function spawnEmber(){
+    EMBERS.push({x:rng()*W*.9+W*.05,y:H+10,vx:(rng()-.5)*1.2,vy:-(0.5+rng()*2.5),
+      size:1.2+rng()*3.5,life:0,lifeMax:80+rng()*200,wobble:rng()*Math.PI*2,
+      wobbleSpeed:0.03+rng()*0.04,isLarge:rng()<0.12});
+  }
+  function resize(){
+    dpr=devicePixelRatio||1;W=cv.offsetWidth;H=cv.offsetHeight;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
+    EMBERS.length=0;
+    for(let i=0;i<MAX_EMBERS;i++){spawnEmber();EMBERS[i].y=rng()*H;EMBERS[i].life=rng()*EMBERS[i].lifeMax;}
+  }
+  function draw(){
+    tick++;
+    ctx.globalAlpha=0.18;
+    const bg=ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0,'#030408');bg.addColorStop(.5,'#06030A');bg.addColorStop(1,'#120504');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
+    if(EMBERS.length<MAX_EMBERS&&tick%3===0)spawnEmber();
+    EMBERS.forEach(e=>{
+      e.life++;
+      if(e.life>=e.lifeMax){e.life=0;e.x=rng()*W*.8+W*.1;e.y=H+10;e.vy=-(0.5+rng()*2.5);e.lifeMax=80+rng()*200;return;}
+      const t=e.life/e.lifeMax;
+      const env=t<0.3?t/0.3:1-(t-0.3)/0.7;
+      e.wobble+=e.wobbleSpeed;e.x+=e.vx+Math.sin(e.wobble)*.4;e.y+=e.vy;e.vy*=.995;
+      const r=255,g=Math.round(_lerp(240,_lerp(140,20,Math.min(1,t*2)),t)),b=Math.round(_lerp(200,_lerp(20,0,Math.min(1,t*2)),t));
+      if(e.isLarge){
+        const gr=ctx.createRadialGradient(e.x,e.y,0,e.x,e.y,e.size*4*env);
+        gr.addColorStop(0,`rgba(${r},${g},${b},${env*.9})`);gr.addColorStop(1,'transparent');
+        ctx.fillStyle=gr;ctx.beginPath();ctx.arc(e.x,e.y,e.size*4*env,0,Math.PI*2);ctx.fill();
+      }
+      ctx.beginPath();ctx.arc(e.x,e.y,e.size*env,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${r},${g},${b},${env*.8})`;ctx.fill();
+    });
+  }
+  resize();
+  (function loop(){draw();requestAnimationFrame(loop);})();
+  window.addEventListener('resize',resize,{passive:true});
+})();
+
+</script>
 </body>
 </html>

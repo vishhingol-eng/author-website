@@ -90,6 +90,22 @@ footer a{color:var(--gold)}
 .premium-gate .btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none;margin-bottom:12px;transition:transform .2s,box-shadow .2s}
 .premium-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
 .premium-gate .gate-price{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
+
+.hero-canvas-wrap{position:relative;width:100%;height:clamp(420px,65vh,680px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(7,10,24,.25) 0%,rgba(7,10,24,.6) 60%,var(--night) 100%)}
+.hero-content{position:relative;z-index:2;max-width:780px;padding:0 clamp(20px,5vw,48px)}
+.hero-eyebrow{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px;opacity:0;animation:fadeUp .8s .3s ease forwards}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";width:28px;height:1px;background:var(--rose);opacity:.5}
+.hero-h1{font-family:var(--display);font-size:clamp(34px,6vw,68px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--paper);margin-bottom:16px;opacity:0;animation:fadeUp .9s .5s ease forwards}
+.hero-h1 em{font-style:italic;background:linear-gradient(110deg,var(--rose),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--mist);line-height:1.65;max-width:500px;margin:0 auto 28px;opacity:0;animation:fadeUp .9s .7s ease forwards}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s ease forwards}
+.meta-pill{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 18px;border-radius:100px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
+.meta-tag{font-family:var(--tech);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(154,161,199,.5)}
+.meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(244,238,226,.15)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
 </style>
 </head>
 <body>
@@ -128,14 +144,23 @@ footer a{color:var(--gold)}
 </div>
 
 <main>
-  <div class="back-bar">
-    <a class="back-btn" href="/newsletter.html">← Back to Newsletter</a>
+  <div class="back-bar"><a class="back-btn" href="/newsletter.html">← Back to Newsletter</a></div>
+  <div class="hero-canvas-wrap" aria-label="Vector flow field — direction versus motion, effort finding its path">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Gold Star Premium · Behaviour Change · Jun 2026</div>
+    <h1 class="hero-h1">Why Reading About Change<br><em>Isn't Change.</em></h1>
+    <p class="hero-sub">Why consuming self-help content can feel like change while requiring none of the actual work.</p>
+    <div class="hero-meta">
+      <span class="meta-pill">⭐ Gold Star Premium</span>
+      <div class="meta-dot"></div>
+      <span class="meta-tag">5 min read</span>
+      <div class="meta-dot"></div>
+      <span class="meta-tag">Deep Signal</span>
+    </div>
   </div>
-
-  <span class="art-badge">⭐ Gold Star Premium · Deep Signal Exclusive</span>
-  <h1 class="art-title">Why Reading About Change Feels Like Progress (And Isn't)</h1>
-  <p class="art-sub">The uncomfortable truth about consuming self-help content — including this newsletter.</p>
-  <p class="art-meta">6 min read · Deep Signal Exclusive</p>
+</div>
 
   <p class="art-hook"><strong>You can finish this entire newsletter and still change nothing</strong> — and the fact that you're reading it right now is not evidence against that.</p>
 
@@ -267,5 +292,53 @@ footer a{color:var(--gold)}
 })();
 </script>
 
+<script>
+
+function _prng(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/0xffffffff};}
+function _lerp(a,b,t){return a+(b-a)*t;}
+function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+
+(function(){
+  const cv=document.getElementById('hero-canvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  let W,H,dpr,tick=0;
+  const rng=_prng(3141);
+  let particles=[];
+  const PCOUNT=280;
+  function fieldAngle(x,y,t){
+    const nx=x/W,ny=y/H;
+    return Math.sin(nx*4+t*.3)*Math.cos(ny*3+t*.2)*1.8+Math.cos(nx*2.5-ny*3.5+t*.15)*1.2+Math.sin(nx*ny*6+t*.25)*.8;
+  }
+  function resize(){
+    dpr=devicePixelRatio||1;W=cv.offsetWidth;H=cv.offsetHeight;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
+    particles=[];
+    for(let i=0;i<PCOUNT;i++)particles.push({x:rng()*W,y:rng()*H,life:rng()*120,maxLife:60+rng()*120,speed:.8+rng()*1.4,size:.6+rng()*1.2,hue:rng()});
+  }
+  function draw(){
+    tick++;
+    ctx.fillStyle='rgba(5,5,18,0.15)';ctx.fillRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.life++;
+      if(p.life>p.maxLife){p.x=rng()*W;p.y=rng()*H;p.life=0;p.maxLife=60+rng()*120;p.speed=.8+rng()*1.4;return;}
+      const t=p.life/p.maxLife;
+      const env=t<.1?t/.1:t>.85?(1-t)/.15:1;
+      const ang=fieldAngle(p.x,p.y,tick*.018);
+      const px=p.x,py=p.y;
+      p.x+=Math.cos(ang)*p.speed;p.y+=Math.sin(ang)*p.speed;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      const hue=((ang/(Math.PI*2)*360)+290)%360;
+      ctx.strokeStyle=`hsla(${hue},${70+p.hue*25}%,${55+p.hue*20}%,${env*.6})`;
+      ctx.lineWidth=p.size*env;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(p.x,p.y);ctx.stroke();
+    });
+  }
+  resize();
+  (function loop(){draw();requestAnimationFrame(loop);})();
+  window.addEventListener('resize',resize,{passive:true});
+})();
+
+</script>
 </body>
 </html>
