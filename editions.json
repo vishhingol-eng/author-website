@@ -1,0 +1,77 @@
+{
+  "_comment": "Single source of truth for all Signal newsletter editions. Add new entries at the TOP of the array. newsletter.html reads this automatically — no manual HTML edits needed.",
+  "_fields": {
+    "num": "Edition number (integer)",
+    "slug": "URL slug — matches editions/<slug>.html filename",
+    "title": "Full edition title",
+    "subtitle": "One-line hook/description",
+    "date": "ISO date string YYYY-MM-DD",
+    "type": "free | premium",
+    "style": "rings | waves | embers | growth | flow | crystal",
+    "tag": "Primary topic tag shown in archive",
+    "readTime": "Integer minutes",
+    "featured": "true if this edition should appear in the Gold Star showcase on newsletter.html"
+  },
+  "editions": [
+    {
+      "num": 16,
+      "slug": "confidence-vs-competence",
+      "title": "Confidence Is a Symptom. You're Treating It Like a Cause.",
+      "subtitle": "Why chasing the feeling of certainty keeps you exactly where you are.",
+      "date": "2026-07-02",
+      "type": "premium",
+      "style": "rings",
+      "tag": "Self-Awareness",
+      "readTime": 6,
+      "featured": true
+    },
+    {
+      "num": 15,
+      "slug": "why-your-goals-keep-failing-in-week-two",
+      "title": "Why Your Goals Keep Failing in Week Two",
+      "subtitle": "It is rarely about motivation. It is almost always about a deadline your brain set without telling you.",
+      "date": "2026-06-20",
+      "type": "free",
+      "style": "waves",
+      "tag": "Habits",
+      "readTime": 5,
+      "featured": false
+    },
+    {
+      "num": 14,
+      "slug": "the-quiet-discipline",
+      "title": "The Quiet Discipline",
+      "subtitle": "Why the people who actually change their life rarely talk about it.",
+      "date": "2026-06-15",
+      "type": "free",
+      "style": "growth",
+      "tag": "Discipline",
+      "readTime": 7,
+      "featured": false
+    },
+    {
+      "num": 13,
+      "slug": "the-pattern-most-people-never-see",
+      "title": "The Pattern Most People Never See",
+      "subtitle": "The one trait that separates people who actually change their life from people who keep reading about changing it.",
+      "date": "2026-06-10",
+      "type": "premium",
+      "style": "embers",
+      "tag": "Self-Sabotage",
+      "readTime": 6,
+      "featured": true
+    },
+    {
+      "num": 12,
+      "slug": "why-reading-about-change-isnt-change",
+      "title": "Why Reading About Change Isn't Change",
+      "subtitle": "Why consuming self-help content can feel like change while requiring none of the actual work.",
+      "date": "2026-06-05",
+      "type": "premium",
+      "style": "flow",
+      "tag": "Behaviour",
+      "readTime": 5,
+      "featured": false
+    }
+  ]
+}
