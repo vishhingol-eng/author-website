@@ -251,6 +251,22 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
 </head>
 <body>
 
+<script>
+/* IMMEDIATE gate — runs before page renders */
+(function(){
+  document.documentElement.classList.add('gate-active');
+  fetch('https://subscribe.vishalhingolauthor.com',{
+    method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',
+    body:JSON.stringify({type:'check_session'})
+  }).then(r=>r.json()).then(d=>{
+    const ok=d&&d.loggedIn&&(d.isPremium||d.isPaid||d.isAdmin||d.plan==='premium');
+    if(ok){document.documentElement.classList.remove('gate-active');document.documentElement.classList.add('gate-unlocked');}
+    window._gateChecked=true;window._gateOpen=!!ok;
+    document.dispatchEvent(new Event('gateReady'));
+  }).catch(()=>{window._gateChecked=true;window._gateOpen=false;document.dispatchEvent(new Event('gateReady'));});
+})();
+</script>
+
 <div id="progress-bar"></div>
 
 <nav>
@@ -479,26 +495,6 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
       <p class="member-close-body">This is the practice behind the book — the full Frequency-First mechanism, the 5-step implementation, the common failure patterns, and the evidence-tracking loop that most practitioners never discover. Every Gold Star edition goes this deep.</p>
       <a href="/the-signal-archive.html" class="member-close-cta">Browse All Premium Editions →</a>
     </div>
-
-    <div class="section-divider reveal"><span class="sd-icon">📚</span><span class="sd-label">Continue Reading</span></div>
-
-    <nav class="archive-grid reveal" aria-label="Related editions">
-      <a class="archive-card" href="/editions/confidence-vs-competence.html">
-        <span class="archive-tag">Premium #3</span>
-        <span class="archive-title">Confidence Is a Symptom. You're Treating It Like a Cause.</span>
-        <span class="archive-arrow">→</span>
-      </a>
-      <a class="archive-card" href="/editions/the-pattern-most-people-never-see.html">
-        <span class="archive-tag">Premium #2</span>
-        <span class="archive-title">The Pattern Most People Never See</span>
-        <span class="archive-arrow">→</span>
-      </a>
-      <a class="archive-card" href="/editions/the-quiet-discipline.html">
-        <span class="archive-tag">Free #1</span>
-        <span class="archive-title">The Quiet Discipline</span>
-        <span class="archive-arrow">→</span>
-      </a>
-    </nav>
 
   </div>
 </div><!-- /premiumGatedSection -->
@@ -902,8 +898,8 @@ function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
         }
       }).catch(()=>{});
   }
-  if('requestIdleCallback' in window)requestIdleCallback(applyGate,{timeout:1500});
-  else setTimeout(applyGate,200);
+  if(window._gateChecked){applyGateCheck();}else{document.addEventListener('gateReady',applyGateCheck,{once:true});}
+  function applyGateCheck(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
 })();
 </script>
 </body>
