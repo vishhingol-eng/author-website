@@ -5,13 +5,14 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TWQE2GSNBD');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>The Signal Archive — Every Edition · Vishal Hingol</title>
+<title>⭐ The Elite Archive — Every Edition · Vishal Hingol</title>
 <meta name="description" content="Every edition of The Signal — Vishal Hingol's daily newsletter on mindset, manifestation, and frequency. Free and Gold Star Premium editions.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://vishalhingolauthor.com/the-signal-archive.html">
-<meta property="og:title" content="The Signal Archive — Every Edition">
+<meta property="og:title" content="⭐ The Elite Archive — Every Edition">
 <meta property="og:description" content="Daily mindset, manifestation, and frequency — every edition in one place.">
 <meta property="og:url" content="https://vishalhingolauthor.com/the-signal-archive.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>"><link rel="alternate icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Albert+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -305,7 +306,7 @@ footer{border-top:1px solid var(--line);padding:clamp(32px,5vw,56px) clamp(20px,
   <canvas id="header-canvas" aria-hidden="true"></canvas>
   <div class="page-header-scrim"></div>
   <div class="page-header-content">
-    <div class="ph-eyebrow">The Signal · Complete Archive</div>
+    <div class="ph-eyebrow">⭐ The Elite Archive · Every Edition</div>
     <h1>Every Edition.<br><em>All in One Place.</em></h1>
     <p>Daily mindset, manifestation, and frequency — free editions and Gold Star Premium exclusives. Your personal library of signal.</p>
     <div class="ph-stats" id="phStats">
@@ -401,6 +402,7 @@ const STYLES = {
   growth:  {accent:'#7DFFB3', accent2:'#E8BB6B', bg:'#030A05'},
   flow:    {accent:'#FF9ECF', accent2:'#9D7BFF', bg:'#050715'},
   crystal: {accent:'#9D7BFF', accent2:'#7DE6FF', bg:'#050715'},
+  magnetic:{accent:'#4A9EFF', accent2:'#E8BB6B', bg:'#06081A'},
 };
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -509,7 +511,40 @@ function drawCrystal(cv,W,H,seed){
   }
 }
 
-const RENDERERS = {rings:drawRings,waves:drawWaves,embers:drawEmbers,growth:drawGrowth,flow:drawFlow,crystal:drawCrystal};
+function drawMagnetic(cv,W,H,seed){
+  const ctx=cv.getContext('2d'),rng=mkPRNG(seed);
+  ctx.fillStyle='#06081A';ctx.fillRect(0,0,W,H);
+  const CX=W*.5,CY=H*.5;
+  // Spiral arms
+  for(let a=0;a<3;a++){
+    const armAngle=(a/3)*Math.PI*2;
+    ctx.beginPath();
+    for(let t=0;t<200;t++){
+      const r=t*Math.min(W,H)*.0022+10;
+      const ang=armAngle+(t/200)*Math.PI*5;
+      const x=CX+Math.cos(ang)*r,y=CY+Math.sin(ang)*r;
+      const gt=1-t/200;
+      if(t===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=`rgba(74,158,255,${0.15})`;ctx.lineWidth=0.8;ctx.stroke();
+  }
+  // Particles
+  for(let i=0;i<80;i++){
+    const ang=rng()*Math.PI*2,dist=20+rng()*Math.min(W,H)*.45;
+    const x=CX+Math.cos(ang)*dist,y=CY+Math.sin(ang)*dist;
+    const isGold=rng()<.28,size=0.5+rng()*2.2;
+    const gr=ctx.createRadialGradient(x,y,0,x,y,size*3);
+    gr.addColorStop(0,isGold?'rgba(232,187,107,.8)':'rgba(74,158,255,.7)');
+    gr.addColorStop(1,'transparent');
+    ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,size*3,0,Math.PI*2);ctx.fill();
+  }
+  // Golden core
+  const gr=ctx.createRadialGradient(CX,CY,0,CX,CY,18);
+  gr.addColorStop(0,'rgba(255,240,120,1)');gr.addColorStop(.5,'rgba(232,187,107,.8)');gr.addColorStop(1,'transparent');
+  ctx.fillStyle=gr;ctx.beginPath();ctx.arc(CX,CY,18,0,Math.PI*2);ctx.fill();
+}
+
+const RENDERERS = {rings:drawRings,waves:drawWaves,embers:drawEmbers,growth:drawGrowth,flow:drawFlow,crystal:drawCrystal,magnetic:drawMagnetic};
 
 function renderCanvas(cv,style,seed){
   if(!cv)return;
@@ -667,7 +702,26 @@ function renderAll(){
     heroSlot.innerHTML=html;
     requestAnimationFrame(()=>{
       const cv=document.getElementById('hero-art');
-      if(cv){cv.style.width='100%';cv.style.height='100%';renderCanvas(cv,hero.style,seed);}
+      if(cv){
+        cv.style.width='100%';cv.style.height='100%';
+        const dpr=window.devicePixelRatio||1;
+        const ctx=cv.getContext('2d');
+        let W,H,tick=0;
+        const rng=mkPRNG(seed);
+        function resizeHero(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);}
+        resizeHero();
+        // Live animation for hero
+        const heroData=initAnimData(hero.style,mkPRNG(seed+1));
+        const heroSt=STYLES[hero.style]||STYLES.rings;
+        function heroLoop(){
+          tick++;
+          ctx.clearRect(0,0,W,H);
+          drawCardStyle(ctx,hero.style,W,H,tick,heroSt,heroData,mkPRNG(seed+tick));
+          requestAnimationFrame(heroLoop);
+        }
+        heroLoop();
+        window.addEventListener('resize',resizeHero,{passive:true});
+      }
       setTimeout(()=>heroSlot.querySelector('.hero-card')?.classList.add('visible'),50);
     });
   } else {
@@ -840,6 +894,17 @@ const revealObserver=new IntersectionObserver(entries=>{
 
 /* ── Live card canvas animation helpers ── */
 function initAnimData(style,rng){
+  if(style==='magnetic'){
+    const particles=[];
+    for(let i=0;i<80;i++) particles.push({
+      angle:rng()*Math.PI*2,dist:40+rng()*220,
+      speed:(0.004+rng()*.008)*(rng()<.5?1:-1),
+      pull:0.015+rng()*.02,size:0.5+rng()*2.5,
+      isGold:rng()<.28,opacity:0.4+rng()*.6,
+      jitter:rng()*Math.PI*2,jitterSpeed:.02+rng()*.04,trail:[]
+    });
+    return {particles};
+  }
   if(style==='rings'||style==='crystal'){
     // Pre-generate ring positions
     const rings=[];
@@ -870,7 +935,47 @@ function drawCardStyle(ctx,style,W,H,tick,st,data,rng){
   const [ar,ag,ab]=hexToRgb(st.accent);
   const [br,bg2,bb]=hexToRgb(st.accent2);
 
-  if(style==='rings'){
+  if(style==='magnetic'){
+    const CX=W*.5,CY=H*.5,breathe=Math.sin(tick*.009)*.06;
+    if(!data.particles)return;
+    // Spiral arms
+    for(let a=0;a<3;a++){
+      const armOff=(tick*.004+a*(Math.PI*2/3));
+      ctx.beginPath();
+      for(let t=0;t<120;t++){
+        const r=t*Math.min(W,H)*.004+8;
+        const ang=(a/3)*Math.PI*2+armOff+(t/120)*Math.PI*4;
+        const x=CX+Math.cos(ang)*r,y=CY+Math.sin(ang)*r;
+        if(r>Math.min(W,H)*.48)break;
+        if(t===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle=`rgba(${ar},${ag},${ab},.08)`;ctx.lineWidth=0.6;ctx.stroke();
+    }
+    // Particles
+    data.particles.forEach(p=>{
+      p.angle+=p.speed;p.jitter+=p.jitterSpeed;
+      p.dist-=p.pull*(0.8+Math.sin(p.jitter)*.2);
+      if(p.dist<5){p.dist=30+Math.random()*Math.min(W,H)*.4;p.trail=[];}
+      const x=CX+Math.cos(p.angle)*p.dist*(1+Math.sin(p.jitter)*.03);
+      const y=CY+Math.sin(p.angle)*p.dist*(1+Math.cos(p.jitter)*.03);
+      p.trail.push({x,y});if(p.trail.length>8)p.trail.shift();
+      if(p.trail.length>2){
+        for(let t=1;t<p.trail.length;t++){
+          const tp=t/p.trail.length,tr=p.trail[t],trp=p.trail[t-1];
+          ctx.beginPath();ctx.moveTo(trp.x,trp.y);ctx.lineTo(tr.x,tr.y);
+          ctx.strokeStyle=p.isGold?`rgba(232,187,107,${tp*.3*p.opacity})`:`rgba(74,158,255,${tp*.25*p.opacity})`;
+          ctx.lineWidth=p.size*.35*tp;ctx.stroke();
+        }
+      }
+      ctx.beginPath();ctx.arc(x,y,p.size*(1+breathe*.2),0,Math.PI*2);
+      ctx.fillStyle=p.isGold?`rgba(255,215,100,${p.opacity*.9})`:`rgba(100,172,255,${p.opacity*.8})`;ctx.fill();
+    });
+    // Core
+    const cg=ctx.createRadialGradient(CX,CY,0,CX,CY,14+breathe*4);
+    cg.addColorStop(0,'rgba(255,230,120,.95)');cg.addColorStop(.5,'rgba(232,187,107,.7)');cg.addColorStop(1,'transparent');
+    ctx.fillStyle=cg;ctx.beginPath();ctx.arc(CX,CY,14+breathe*4,0,Math.PI*2);ctx.fill();
+  }
+  else if(style==='rings'){
     const cx=W*.62,cy=H*.5,breathe=Math.sin(tick*.008)*.08;
     data.rings.forEach(ring=>{
       const gt=Math.max(0,1-ring.t*2.2);
