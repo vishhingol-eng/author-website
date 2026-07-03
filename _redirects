@@ -1,0 +1,27 @@
+# 301 redirects — old URLs from a prior site restructure that Google Search
+# Console flagged as 404s. Sends both search engines and anyone with an old
+# bookmark/backlink to the current equivalent page instead of a dead end.
+
+/digital-minimalism-guide.html              /digital-sovereignty-reclaim-your-mind.html      301
+/visionary-fiction-books.html               /store.html                                       301
+/morning-routine-for-manifestation.html     /morning-routine-subconscious-reprogramming.html  301
+/how-to-stop-overthinking.html              /how-to-build-mental-toughness.html               301
+/abundance-mindset-guide.html               /how-to-manifest-money-abundance.html             301
+/self-help-books-that-actually-work.html    /best-self-help-books-indian-authors-2026.html    301
+/daily-habits-for-manifestation.html        /369-manifestation-method-complete-guide.html     301
+/overcome-fear-of-failure.html              /how-to-build-unshakeable-confidence.html         301
+/how-to-break-self-sabotage-patterns.html   /why-you-keep-self-sabotaging.html                301
+/manifestation-journal-guide.html           /power-of-journalling-for-transformation.html     301
+/how-to-reprogram-subconscious-mind.html    /what-is-subconscious-reprogramming.html          301
+/books-about-personal-transformation.html   /store.html                                       301
+/mindset-shifts-for-success.html            /how-to-rewire-your-brain-for-success.html        301
+/power-of-writing-things-down.html          /power-of-journalling-for-transformation.html     301
+/how-to-manifest-money.html                 /how-to-manifest-money-abundance.html             301
+/how-to-use-ai-for-small-business.html      /how-to-use-ai-tools-for-small-business.html      301
+/best-self-help-books-indian-authors.html   /best-self-help-books-indian-authors-2026.html    301
+/guided-journal-vs-blank-journal.html       /store.html                                       301
+/signs-universe-is-talking-to-you.html      /signs-universe-is-guiding-you.html               301
+/law-of-attraction-for-beginners.html       /law-of-assumption-vs-law-of-attraction.html      301
+/how-to-find-your-purpose.html              /how-to-find-your-purpose-in-life.html            301
+/why-most-people-stay-stuck.html            /why-you-keep-self-sabotaging.html                301
+/what-is-frequency-in-manifestation.html    /how-to-raise-your-vibration-permanently.html     301
