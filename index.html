@@ -1199,7 +1199,9 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
     H = c.height = innerHeight * devicePixelRatio;
     c.style.width = innerWidth+'px'; c.style.height = innerHeight+'px';
     const isMobile = innerWidth < 700;
-    const n = isMobile ? Math.min(80, Math.floor(innerWidth*innerHeight/14000)) : Math.min(220, Math.floor(innerWidth*innerHeight/9000));
+    const isLowEnd = (navigator.hardwareConcurrency||8) <= 4 || ((navigator.deviceMemory||8) <= 4);
+    const maxStars = isMobile ? 60 : (isLowEnd ? 100 : 180);
+    const n = Math.min(maxStars, Math.floor(innerWidth*innerHeight/(isMobile?14000:9000)));
     stars = Array.from({length:n},()=>({
       x:Math.random()*W, y:Math.random()*H,
       r:(Math.random()*1.4+.4)*devicePixelRatio,
@@ -1286,7 +1288,9 @@ window.COVER_BUST = new Date().toISOString().slice(0,10); // busts CDN/browser c
         x.fill();
       }
     }
-    requestAnimationFrame(frame);
+    if (_animPaused) { setTimeout(() => requestAnimationFrame(frame), 500); }
+    else if (isLowEnd && tick % 2 === 0) { requestAnimationFrame(frame); }  // 30fps on low-end
+    else { requestAnimationFrame(frame); }
   }
   frame();
 })();
@@ -1643,6 +1647,18 @@ if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
    GOLD STAR HOMEPAGE FEATURE — THREE CANVAS EFFECTS
 
    Effect 1: gs-ring-canvas — Ambient accreting ring system
+
+// ─── Pause GS canvases when scrolled out of view ───
+let _gsVisible = true;
+(function(){
+  const gsCanvas = document.getElementById('gs-ring-canvas');
+  if(gsCanvas){
+    const gsObs = new IntersectionObserver(entries => {
+      _gsVisible = entries[0].isIntersecting;
+    }, {threshold: 0.01, rootMargin: '200px'});
+    gsObs.observe(gsCanvas);
+  }
+})();
    Slow, majestic, cosmic. Gold-violet rings continuously build
    from the center outward, creating a sense of permanent growth
    that mirrors the competence-accretes theme of the edition.
@@ -1789,7 +1805,7 @@ function makePRNG2(seed) {
   }
 
   resize();
-  function loop() { draw(); requestAnimationFrame(loop); }
+  function loop() { if(!_animPaused && _gsVisible) draw(); requestAnimationFrame(loop); }
   loop();
   window.addEventListener('resize', resize, { passive: true });
 })();
@@ -1803,7 +1819,8 @@ function makePRNG2(seed) {
   let mouse = { x: -9999, y: -9999 };
   const rng = makePRNG2(12345);
   let particles = [];
-  const N = 80;
+  const isLowEnd2 = (navigator.hardwareConcurrency||8) <= 4;
+  const N = isLowEnd2 ? 40 : 80;
 
   function resize() {
     dpr = window.devicePixelRatio || 1;
@@ -1893,7 +1910,7 @@ function makePRNG2(seed) {
   }
 
   resize();
-  function loop() { draw(); requestAnimationFrame(loop); }
+  function loop() { if(!_animPaused && _gsVisible) draw(); requestAnimationFrame(loop); }
   loop();
   window.addEventListener('resize', resize, { passive: true });
 })();
@@ -1907,7 +1924,7 @@ function makePRNG2(seed) {
   const H_FIXED = 180;
   const rngL = makePRNG2(777), rngR = makePRNG2(1234);
   const leftRings = [];
-  const LEFT_N = 50;
+  const LEFT_N = (navigator.hardwareConcurrency||8) <= 4 ? 25 : 50;
   const rightRings = [];
   const RIGHT_MAX = 140;
   let rightCount = 0, spawnTimer = 0;
@@ -1970,11 +1987,21 @@ function makePRNG2(seed) {
   }
 
   resize();
-  function loop() { draw(); requestAnimationFrame(loop); }
+  function loop() { if(!_animPaused && _gsVisible) draw(); requestAnimationFrame(loop); }
   loop();
   window.addEventListener('resize', resize, { passive: true });
 })();
 </script>
 
+
+<script>
+/* ── Performance: pause all canvas animations when tab is hidden ── */
+let _animPaused = false;
+document.addEventListener('visibilitychange', () => {
+  _animPaused = document.hidden;
+});
+/* ── Performance: pause when page scrolled far past canvas ── */
+window._canvasPause = false;
+</script>
 </body>
 </html>
