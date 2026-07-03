@@ -134,13 +134,13 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .p-stars{position:absolute;inset:0}.p-stars::before,.p-stars::after{content:"";position:absolute;inset:0}
 .p-stars::before{background-image:radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 18% 35%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 28% 8%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 38% 52%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 48% 22%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 58% 68%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 68% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 78% 42%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 88% 28%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 95% 60%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 12% 65%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 25% 78%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 42% 85%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 62% 90%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 82% 75%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 15% 25%,rgba(232,187,107,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 35% 45%,rgba(255,255,255,.85) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 55% 18%,rgba(125,230,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 72% 55%,rgba(232,187,107,.55) 0%,transparent 100%),radial-gradient(2px 2px at 22% 18%,rgba(125,230,255,.9) 0%,transparent 100%),radial-gradient(2px 2px at 50% 38%,rgba(255,255,255,1) 0%,transparent 100%),radial-gradient(2px 2px at 76% 22%,rgba(157,123,255,.85) 0%,transparent 100%)}
 .p-stars::after{animation:pTwinkle 3.5s ease-in-out infinite alternate;background-image:radial-gradient(1.5px 1.5px at 5% 45%,rgba(125,230,255,.8) 0%,transparent 100%),radial-gradient(2px 2px at 58% 48%,rgba(157,123,255,.9) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 92% 15%,rgba(255,255,255,.8) 0%,transparent 100%)}
-.p-fall{position:absolute;width:1px;height:80px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.7),transparent);animation:pFall linear infinite;opacity:0}
+.p-fall{position:absolute;top:0;width:1px;height:80px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.7),transparent);animation:pFall linear infinite;opacity:0;will-change:transform,opacity}
 .p-fall:nth-child(2){left:15%;animation-duration:6s;animation-delay:0s}
 .p-fall:nth-child(3){left:40%;animation-duration:8s;animation-delay:2.5s;background:linear-gradient(to bottom,transparent,rgba(232,187,107,.6),transparent)}
 .p-fall:nth-child(4){left:65%;animation-duration:7s;animation-delay:1s}
 .p-fall:nth-child(5){left:85%;animation-duration:9s;animation-delay:4s;background:linear-gradient(to bottom,transparent,rgba(125,230,255,.5),transparent)}
 @keyframes pTwinkle{0%{opacity:.5}100%{opacity:1}}
-@keyframes pFall{0%{top:-100px;opacity:0}10%{opacity:1}90%{opacity:.8}100%{top:110%;opacity:0}}
+@keyframes pFall{0%{transform:translateY(-100px);opacity:0}10%{opacity:1}90%{opacity:.8}100%{transform:translateY(110vh);opacity:0}}
 @media(max-width:700px){#sky{display:none!important}.phone-sky{display:block}}
 .veil{position:relative;z-index:1}
 
@@ -173,6 +173,7 @@ nav.scrolled{background:rgba(7,10,24,.85);backdrop-filter:blur(24px) saturate(1.
 .hero-text .hero-cta{justify-content:center}
 @media(max-width:840px){.hero-text .hero-sub{text-align:center;margin-left:auto;margin-right:auto}.hero-text .hero-cta{justify-content:center}}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(54px,11vw,124px);line-height:1.02;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 25%,var(--gold) 48%,var(--rose) 64%,var(--cyan) 82%,var(--paper) 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
+@media(max-width:700px){h1{animation:none;background-position:35% center}}
 @keyframes sheen{to{background-position:220% center}}
 .hero-sub{max-width:540px;margin:30px auto 0;color:var(--mist);font-size:clamp(16px,2vw,19px)}
 .hero-cta{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;justify-content:center}
@@ -674,8 +675,6 @@ footer{border-top:1px solid var(--line);padding:28px clamp(20px,6vw,72px);displa
 /* ===== END MOBILE NAV ===== */
 </style>
 <base target="_blank">
-<link rel="preload" as="image" href="vishal-hero.webp" type="image/webp" media="(min-width:701px)">
-<link rel="preload" as="image" href="vishal-hero.webp" type="image/webp" media="(max-width:700px)">
 </head>
 <body>
 
@@ -1689,6 +1688,7 @@ function makePRNG2(seed) {
 (function() {
   const canvas = document.getElementById('gs-ring-canvas');
   if (!canvas) return;
+  if (window.innerWidth <= 700) return; // skip on phones — static gradient background is enough
   const ctx = canvas.getContext('2d');
   let W, H, dpr;
   const rng = makePRNG2(88888);
@@ -1821,6 +1821,7 @@ function makePRNG2(seed) {
 (function() {
   const canvas = document.getElementById('gs-particle-canvas');
   if (!canvas) return;
+  if (window.innerWidth <= 700) return; // skip on phones — static gradient background is enough
   const ctx = canvas.getContext('2d');
   let W, H, dpr;
   let mouse = { x: -9999, y: -9999 };
@@ -1993,8 +1994,11 @@ function makePRNG2(seed) {
   }
 
   resize();
-  function loop() { draw(); requestAnimationFrame(loop); }
-  loop();
+  if (window.innerWidth <= 700) {
+    draw(); // phones get one static frame instead of a continuous RAF loop
+  } else {
+    (function loop() { draw(); requestAnimationFrame(loop); })();
+  }
   window.addEventListener('resize', resize, { passive: true });
 })();
 </script>
