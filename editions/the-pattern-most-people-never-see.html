@@ -4,125 +4,236 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TWQE2GSNBD');</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Pattern Most People Never See — Gold Star Premium | Vishal Hingol</title>
-<meta name="description" content="A Deep Signal exclusive: the one pattern that separates people who actually change their life from people who just talk about changing it.">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Pattern Most People Never See — The Signal · Gold Star Premium | Vishal Hingol</title>
+<meta name="description" content="The one trait that separates people who change their life from people who keep reading about changing it — and the 48-hour window where almost everything is decided.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Vishal Hingol">
 <link rel="canonical" href="https://vishalhingolauthor.com/editions/the-pattern-most-people-never-see.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The Pattern Most People Never See — Gold Star Premium">
-<meta property="og:description" content="A Deep Signal exclusive: the one pattern that separates people who actually change their life from people who just talk about changing it.">
+<meta property="og:title" content="The Pattern Most People Never See — The Signal · Gold Star Premium">
+<meta property="og:description" content="The one trait that separates people who change their life from people who keep reading about changing it.">
 <meta property="og:url" content="https://vishalhingolauthor.com/editions/the-pattern-most-people-never-see.html">
+<meta property="og:image" content="https://vishalhingolauthor.com/vishal-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Authorvhingol">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Albert+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Albert+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ── TOKENS ── */
 :root{
-  --night:#070A18;--night-2:#0B1026;--ink:#121A3E;
-  --glass:rgba(18,26,62,.55);--line:rgba(244,238,226,.10);
-  --gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9ECF;
+  --void:#050715;--night:#070A18;--night2:#0B1026;
   --paper:#F4EEE2;--mist:#9AA1C7;
+  --gold:#E8BB6B;--violet:#9D7BFF;--cyan:#7DE6FF;--rose:#FF9ECF;--orange:#FF9A5C;
+  --line:rgba(244,238,226,.09);--glass:rgba(11,16,38,.55);
   --display:'Fraunces',Georgia,serif;
   --body:'Albert Sans',system-ui,sans-serif;
   --tech:'Space Grotesk',monospace;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--void)}
 a{color:var(--gold)}
-::selection{background:var(--gold);color:var(--night)}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,64px);background:rgba(7,10,24,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.brand{font-family:var(--display);font-size:18px;text-decoration:none;color:var(--paper)}
-.brand em{font-style:italic;color:var(--gold)}
-.nav-links{display:flex;gap:clamp(14px,2.5vw,28px);font-size:14px;font-weight:500}
-.nav-links a{text-decoration:none;color:var(--mist);transition:color .2s}
+/* ── PROGRESS BAR ── */
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--orange),var(--gold),#FFF0B0);z-index:300;transition:width .1s linear;box-shadow:0 0 10px rgba(255,154,92,.5)}
+
+/* ── NAV ── */
+nav{position:fixed;top:3px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(7,10,24,.88);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
+.nav-brand{font-family:var(--display);font-size:17px;text-decoration:none;color:var(--paper);letter-spacing:-.01em}
+.nav-brand em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;gap:clamp(12px,2vw,24px);align-items:center}
+.nav-links a{text-decoration:none;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);transition:color .2s}
 .nav-links a:hover{color:var(--paper)}
-.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
-.hamburger span{display:block;width:22px;height:2px;background:var(--paper);border-radius:2px}
-.mob-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,10,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:100px;transition:border-color .2s,color .2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:20px;height:2px;background:var(--paper);border-radius:2px}
+.mob-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,7,21,.97);flex-direction:column;align-items:center;justify-content:center;gap:22px}
 .mob-overlay.open{display:flex}
-.mob-overlay a{font-family:var(--tech);font-size:16px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);padding:10px 20px}
+.mob-overlay a{font-family:var(--tech);font-size:15px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);padding:10px 20px}
 .mob-overlay a:hover{color:var(--gold)}
-.mob-overlay .mob-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer}
-@media(max-width:700px){.nav-links{display:none !important}.hamburger{display:flex}}
+.mob-close-btn{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:26px;cursor:pointer}
+@media(max-width:700px){.nav-links{display:none!important}.hamburger{display:flex}}
 
-main{max-width:720px;margin:0 auto;padding:120px clamp(20px,5vw,48px) 80px}
-
-.back-bar{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-wrap:wrap}
-.back-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:rgba(244,238,226,.06);border:1px solid var(--line);padding:10px 18px;border-radius:100px;text-decoration:none;transition:border-color .3s,background .3s}
-.back-btn:hover{border-color:var(--gold);background:rgba(244,238,226,.1);color:var(--gold)}
-
-.art-badge{font-family:var(--tech);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)}
-h1.art-title{font-family:var(--display);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.12;margin-bottom:14px}
-.art-sub{font-family:var(--display);font-style:italic;font-size:clamp(16px,2vw,19px);color:var(--gold);margin-bottom:8px}
-.art-meta{font-family:var(--tech);font-size:12px;color:var(--mist);letter-spacing:.08em;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-
-.art-hook{font-family:var(--display);font-size:clamp(18px,2.3vw,21px);font-weight:500;line-height:1.5;color:var(--paper);background:rgba(232,187,107,.06);border-left:3px solid var(--gold);padding:16px 22px;border-radius:0 14px 14px 0;margin:24px 0 32px}
-.art-hook strong{color:var(--gold)}
-
-.art-body p{color:var(--mist);font-size:16.5px;line-height:1.8;margin-bottom:18px}
-.art-body p strong{color:var(--paper)}
-.art-body em.book-ref{color:var(--gold);font-style:italic}
-
-.takeaway-box{background:rgba(232,187,107,.07);border-left:3px solid var(--gold);padding:18px 22px;border-radius:0 12px 12px 0;margin:32px 0}
-.takeaway-box .tb-label{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
-.takeaway-box p{color:var(--paper);margin:0;font-size:16px;line-height:1.65}
-
-footer{border-top:1px solid var(--line);padding:30px clamp(20px,5vw,64px);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;color:var(--mist);font-size:13px;max-width:720px;margin:40px auto 0}
-footer a{color:var(--gold)}
-
-/* ---- Premium gate — visually distinct from the free-account gate,
-       using gold instead of the cyan/violet free-gate styling, and
-       explicitly says "Deep Signal" not "free account" ---- */
-.gate-blurred{filter:blur(7px);user-select:none;pointer-events:none;max-height:480px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%);mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%)}
-.premium-gate{position:relative;margin-top:-70px;padding:60px 20px 10px;text-align:center;background:linear-gradient(to bottom, transparent, var(--night) 55%);z-index:2}
-.premium-gate-inner{max-width:440px;margin:0 auto;background:#08060f;border:1px solid rgba(232,187,107,.3);border-radius:22px;padding:clamp(28px,4vw,36px);position:relative;overflow:hidden;isolation:isolate}
-.premium-gate-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);background:radial-gradient(ellipse 90% 80% at 50% 20%, rgba(232,187,107,.4), transparent 68%)}
-.premium-gate-inner>*{position:relative;z-index:1}
-.premium-gate-star{font-size:26px;margin-bottom:10px;display:block}
-.premium-gate h3{font-family:var(--display);font-size:22px;font-weight:400;color:var(--paper);margin-bottom:10px}
-.premium-gate p{color:#C2C8E8;font-size:14px;line-height:1.65;margin-bottom:22px}
-.premium-gate .btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none;margin-bottom:12px;transition:transform .2s,box-shadow .2s}
-.premium-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.4)}
-.premium-gate .gate-price{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
-
-.hero-canvas-wrap{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;height:clamp(480px,70vh,720px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:60px}
+/* ── HERO — full width, ember style ── */
+.hero{position:relative;width:100%;height:clamp(520px,75vh,720px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding-top:60px}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(7,10,24,.25) 0%,rgba(7,10,24,.6) 60%,var(--night) 100%)}
-.hero-content{position:relative;z-index:2;max-width:780px;padding:0 clamp(20px,5vw,48px)}
-.hero-eyebrow{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#FF9A5C;display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px;opacity:0;animation:fadeUp .8s .3s ease forwards}
-.hero-eyebrow::before,.hero-eyebrow::after{content:"";width:28px;height:1px;background:#FF9A5C;opacity:.5}
-.hero-h1{font-family:var(--display);font-size:clamp(34px,6vw,68px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--paper);margin-bottom:16px;opacity:0;animation:fadeUp .9s .5s ease forwards}
-.hero-h1 em{font-style:italic;background:linear-gradient(110deg,#FF9A5C,#FFD08A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(5,7,21,.2) 0%,rgba(5,7,21,.65) 65%,var(--night) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 clamp(20px,5vw,48px)}
+.hero-eyebrow{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s ease forwards}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";width:28px;height:1px;background:var(--orange);opacity:.55}
+.hero-h1{font-family:var(--display);font-size:clamp(36px,6.5vw,72px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--paper);margin-bottom:clamp(12px,2vw,20px);opacity:0;animation:fadeUp .9s .5s ease forwards}
+.hero-h1 em{font-style:italic;background:linear-gradient(110deg,var(--orange),#FFD08A,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-sub{font-size:clamp(15px,2vw,18px);color:var(--mist);line-height:1.65;max-width:500px;margin:0 auto 28px;opacity:0;animation:fadeUp .9s .7s ease forwards}
 .hero-meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s ease forwards}
-.meta-pill{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 18px;border-radius:100px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
+.meta-pill{font-family:var(--tech);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 18px;border-radius:100px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
 .meta-tag{font-family:var(--tech);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(154,161,199,.5)}
 .meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(244,238,226,.15)}
+.hero-scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--tech);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(154,161,199,.35);opacity:0;animation:fadeUp .7s 1.4s ease forwards}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(154,161,199,.35),transparent);animation:scrollPulse 2.2s 2s infinite ease}
+@keyframes scrollPulse{0%,100%{opacity:.35}50%{opacity:.85}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── ARTICLE LAYOUT ── */
+.article-container{max-width:720px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.wide-container{max-width:1020px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+/* ── HOOK ── */
+.hook-section{padding:clamp(40px,6vw,64px) 0 clamp(28px,4vw,44px)}
+.hook-quote{font-family:var(--display);font-size:clamp(20px,3.5vw,28px);font-weight:400;font-style:italic;line-height:1.45;color:var(--paper);border-left:3px solid var(--orange);padding:clamp(14px,2vw,22px) clamp(22px,4vw,36px);position:relative}
+.hook-quote::before{content:'"';font-family:var(--display);font-size:100px;font-weight:700;color:rgba(255,154,92,.08);position:absolute;top:-16px;left:28px;line-height:1;pointer-events:none}
+.hook-quote strong{color:var(--orange);font-style:normal;font-weight:600}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{display:flex;align-items:center;gap:14px;margin:clamp(40px,6vw,64px) 0 clamp(24px,3.5vw,36px)}
+.sd-icon{font-size:14px;opacity:.75}
+.sd-label{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+.section-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ── BODY TEXT ── */
+.body-p{color:var(--mist);font-size:16.5px;line-height:1.82;margin-bottom:24px}
+.body-p strong{color:var(--paper);font-weight:500}
+.body-p em{font-style:italic;color:rgba(244,238,226,.75)}
+.body-p .book-ref{color:var(--gold);font-style:italic}
+
+/* ── PULL QUOTE ── */
+.pull-quote-block{margin:clamp(32px,5vw,52px) 0;padding:clamp(22px,3.5vw,36px) clamp(26px,4.5vw,44px);border-radius:18px;background:rgba(11,16,38,.85);border:1px solid rgba(255,154,92,.2);position:relative;overflow:hidden}
+.pull-quote-block::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),var(--gold),var(--rose))}
+.pull-quote-block::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold),var(--orange))}
+.pq-mark{font-family:var(--display);font-size:60px;font-weight:700;color:rgba(255,154,92,.13);line-height:.85;display:block;margin-bottom:-6px}
+.pq-text{font-family:var(--display);font-style:italic;font-size:clamp(17px,2.8vw,24px);font-weight:300;line-height:1.45;color:var(--paper);margin-bottom:16px}
+.pq-attr{font-family:var(--tech);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:clamp(28px,4vw,44px) 0}
+@media(max-width:480px){.stat-grid{grid-template-columns:1fr}}
+.stat-card{background:rgba(11,16,38,.65);border:1px solid rgba(244,238,226,.07);border-radius:16px;padding:clamp(20px,3vw,28px);text-align:center;position:relative;overflow:hidden}
+.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:.4}
+.stat-number{font-family:var(--display);font-size:clamp(34px,5.5vw,52px);font-weight:700;color:var(--orange);line-height:1;margin-bottom:10px;letter-spacing:-.02em;text-shadow:0 0 24px rgba(255,154,92,.4)}
+.stat-label{font-size:13px;color:var(--mist);line-height:1.55}
+
+/* ── KEY CONCEPT BOX ── */
+.key-concept{display:flex;gap:16px;align-items:flex-start;margin:clamp(24px,4vw,40px) 0;padding:clamp(18px,3vw,26px) clamp(20px,3.5vw,28px);background:rgba(255,154,92,.04);border-radius:16px;border:1px solid rgba(255,154,92,.14)}
+.kc-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:rgba(255,154,92,.1);display:flex;align-items:center;justify-content:center;font-size:18px;margin-top:2px}
+.kc-label{font-family:var(--tech);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px}
+.kc-text{font-size:14.5px;color:var(--mist);line-height:1.65}
+.kc-text strong{color:var(--paper);font-weight:500}
+
+/* ── INSIGHT BOX ── */
+.insight-box{margin:clamp(28px,4vw,44px) 0;padding:clamp(22px,3.5vw,32px);border-radius:18px;background:linear-gradient(135deg,rgba(255,154,92,.07),rgba(232,187,107,.04));border:1px solid rgba(255,154,92,.2);position:relative;overflow:hidden}
+.insight-box::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--orange),var(--gold))}
+.insight-eyebrow{font-family:var(--tech);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:12px}
+.insight-title{font-family:var(--display);font-size:clamp(17px,2.5vw,22px);font-weight:600;color:var(--paper);margin-bottom:10px;line-height:1.3}
+.insight-body{font-size:14.5px;color:var(--mist);line-height:1.7}
+.insight-body strong{color:var(--paper)}
+
+/* ── CANVAS PANEL ── */
+.panel{margin:clamp(28px,4vw,44px) 0;border-radius:16px;overflow:hidden;border:1px solid rgba(244,238,226,.06)}
+.panel-header{padding:12px 20px;background:rgba(11,16,38,.75);border-bottom:1px solid rgba(244,238,226,.05);display:flex;align-items:center;justify-content:space-between}
+.panel-header-label{font-family:var(--tech);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.panel-header-tag{font-family:var(--tech);font-size:9px;color:rgba(154,161,199,.35);letter-spacing:.06em}
+.panel canvas{display:block;width:100%}
+.panel-footer{padding:12px 20px;background:rgba(11,16,38,.75);border-top:1px solid rgba(244,238,226,.05);font-family:var(--tech);font-size:10px;color:rgba(154,161,199,.4);text-align:center;letter-spacing:.04em;line-height:1.65}
+#timeline-canvas{height:220px}
+
+/* ── PRACTICE LIST ── */
+.practice-list{margin:clamp(28px,4vw,44px) 0;display:flex;flex-direction:column;gap:14px}
+.practice-item{display:flex;gap:16px;align-items:flex-start;padding:clamp(16px,2.5vw,22px);background:rgba(11,16,38,.5);border-radius:14px;border:1px solid rgba(244,238,226,.07)}
+.practice-num{font-family:var(--display);font-size:24px;font-weight:700;color:var(--orange);line-height:1;flex-shrink:0;min-width:30px;margin-top:2px;text-shadow:0 0 16px rgba(255,154,92,.4)}
+.practice-title{font-family:var(--display);font-size:17px;font-weight:600;color:var(--paper);margin-bottom:5px}
+.practice-desc{font-size:13.5px;color:var(--mist);line-height:1.65}
+
+/* ── TAKEAWAY ── */
+.takeaway{margin:clamp(36px,5vw,56px) 0;padding:clamp(22px,4vw,34px) clamp(24px,4vw,38px);border-left:3px solid var(--orange);border-radius:0 16px 16px 0;background:rgba(255,154,92,.07)}
+.takeaway-label{font-family:var(--tech);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:12px}
+.takeaway-text{font-family:var(--display);font-size:clamp(16px,2.5vw,20px);font-weight:600;color:var(--paper);line-height:1.5;letter-spacing:-.005em}
+
+/* ── MEMBER CLOSING ── */
+.member-close{margin:clamp(32px,5vw,52px) 0;padding:clamp(24px,4vw,36px);border-radius:20px;background:linear-gradient(145deg,#0D0800,#110A02,#0A0614);border:1px solid rgba(232,187,107,.25);text-align:center;position:relative;overflow:hidden}
+.member-close::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,154,92,.18),transparent 70%);pointer-events:none}
+.member-close>*{position:relative;z-index:1}
+.member-close-star{font-size:32px;display:block;margin-bottom:12px;filter:drop-shadow(0 0 12px rgba(255,200,0,.6))}
+.member-close-title{font-family:var(--display);font-size:clamp(18px,2.8vw,24px);font-weight:600;color:var(--paper);margin-bottom:10px}
+.member-close-body{font-size:14px;color:var(--mist);line-height:1.7;max-width:480px;margin:0 auto 20px}
+.member-close-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(232,187,107,.3);padding:10px 22px;border-radius:100px;text-decoration:none;transition:border-color .2s,background .2s}
+.member-close-cta:hover{border-color:var(--gold);background:rgba(232,187,107,.08)}
+
+/* ── ARCHIVE LINKS ── */
+.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(22px,3.5vw,32px)}
+@media(max-width:580px){.archive-grid{grid-template-columns:1fr}}
+.archive-card{display:flex;flex-direction:column;gap:8px;padding:clamp(14px,2vw,18px);border-radius:14px;background:rgba(244,238,226,.03);border:1px solid var(--line);text-decoration:none;transition:border-color .25s,background .25s}
+.archive-card:hover{border-color:rgba(255,154,92,.35);background:rgba(244,238,226,.05)}
+.archive-tag{font-family:var(--tech);font-size:8.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(255,154,92,.1);border:1px solid rgba(255,154,92,.25);border-radius:100px;padding:3px 10px;width:fit-content}
+.archive-title{font-size:12.5px;font-weight:500;color:var(--paper);line-height:1.45}
+.archive-arrow{font-size:11px;color:var(--mist);margin-top:auto}
+
+/* ── PREMIUM GATE ── */
+.gate-blurred{filter:blur(7px);user-select:none;pointer-events:none;max-height:540px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,black 0%,black 52%,transparent 100%);mask-image:linear-gradient(to bottom,black 0%,black 52%,transparent 100%)}
+.premium-gate{position:relative;margin-top:-90px;padding:65px 20px 10px;text-align:center;background:linear-gradient(to bottom,transparent,var(--night) 55%);z-index:2}
+.premium-gate-inner{max-width:460px;margin:0 auto;background:#08060f;border:1px solid rgba(232,187,107,.3);border-radius:24px;padding:clamp(28px,4vw,38px);position:relative;overflow:hidden;isolation:isolate}
+.premium-gate-glow{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(3px);background:radial-gradient(ellipse 90% 80% at 50% 20%,rgba(255,154,92,.4),transparent 65%),radial-gradient(ellipse 60% 55% at 80% 80%,rgba(232,187,107,.25),transparent 65%);animation:gateGlow 7s ease-in-out infinite alternate}
+@keyframes gateGlow{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.1);opacity:1}}
+.premium-gate-inner>*{position:relative;z-index:1}
+.gate-star{font-size:28px;margin-bottom:10px;display:block;filter:drop-shadow(0 0 8px rgba(255,200,0,.7))}
+.premium-gate h3{font-family:var(--display);font-size:22px;font-weight:400;color:var(--paper);margin-bottom:10px}
+.premium-gate p{color:#C2C8E8;font-size:14px;line-height:1.65;margin-bottom:22px}
+.premium-gate .btn{display:block;width:100%;text-align:center;padding:15px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);color:#1a0e00;text-decoration:none;margin-bottom:12px;transition:transform .2s,box-shadow .2s}
+.premium-gate .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(232,187,107,.45)}
+.gate-price{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
+
+/* ── COOKIE BAR ── */
+#cookieBar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(5,7,21,.96);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:14px clamp(20px,5vw,40px);font-size:14px;color:var(--mist);text-align:center}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-slow{opacity:0;transform:translateY(14px);transition:opacity .95s ease,transform .95s ease}
+.reveal-slow.visible{opacity:1;transform:translateY(0)}
+
+/* ── FOOTER ── */
+footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5vw,60px);border-top:1px solid var(--line);text-align:center}
+.footer-brand{font-family:var(--display);font-size:19px;font-style:italic;color:rgba(244,238,226,.45);display:block;margin-bottom:14px}
+.footer-brand strong{font-style:normal;color:var(--paper)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:10px}
+.footer-links a{font-family:var(--tech);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:12.5px;color:rgba(154,161,199,.35)}
+@media(prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 
+<script>
+/* IMMEDIATE gate — runs before page renders */
+(function(){
+  document.documentElement.classList.add('gate-active');
+  fetch('https://subscribe.vishalhingolauthor.com',{
+    method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',
+    body:JSON.stringify({type:'check_session'})
+  }).then(r=>r.json()).then(d=>{
+    const ok=d&&d.loggedIn&&(d.isPremium||d.isPaid||d.isAdmin||d.plan==='premium');
+    if(ok){document.documentElement.classList.remove('gate-active');document.documentElement.classList.add('gate-unlocked');}
+    window._gateChecked=true;window._gateOpen=!!ok;
+    document.dispatchEvent(new Event('gateReady'));
+  }).catch(()=>{window._gateChecked=true;window._gateOpen=false;document.dispatchEvent(new Event('gateReady'));});
+})();
+</script>
+
+<div id="progress-bar"></div>
+
+<!-- ── NAV ── -->
 <nav>
-  <a class="brand" href="/">Vishal <em>Hingol</em></a>
+  <a class="nav-brand" href="/">Vishal <em>Hingol</em></a>
   <div class="nav-links">
-    <a href="/">Home</a>
+      <a href="/newsletter.html" class="nav-back">← Newsletter</a>
+    <a href="/the-signal-archive.html" style="font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:100px;transition:border-color .2s,color .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='';this.style.color=''">⭐ Elite Archive</a>
     <a href="/store.html">Books</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/mentor.html">Mentorship</a>
-    <a href="/newsletter.html" style="color:var(--gold)">Newsletter</a>
-    <a href="/shop.html">Signal Fashion</a>
-    <a href="/about.html">About</a>
+    <a href="/the-signal-archive.html">⭐ Elite Archive</a>
     <a href="/account.html" id="navAccount">Account</a>
-    <a href="/policies.html">Policies</a>
-    <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--night);background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px">Amazon ↗</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -130,27 +241,23 @@ footer a{color:var(--gold)}
 </nav>
 
 <div class="mob-overlay" id="mobNav">
-  <button class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')" aria-label="Close menu">✕</button>
+  <button class="mob-close-btn" onclick="document.getElementById('mobNav').classList.remove('open')">✕</button>
   <a href="/" onclick="document.getElementById('mobNav').classList.remove('open')">Home</a>
   <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
-  <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
-  <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Newsletter</a>
-  <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')">Signal Fashion</a>
-  <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
+  <a href="/the-signal-archive.html" onclick="document.getElementById('mobNav').classList.remove('open')">⭐ Elite Archive</a>
+  <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
   <a href="/account.html" id="mobNavAccount" onclick="document.getElementById('mobNav').classList.remove('open')">Account</a>
-  <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
-  <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" style="color:var(--gold)">Amazon ↗</a>
 </div>
 
-<main>
-  <div class="main-inner">
-  <div class="back-bar"><a class="back-btn" href="/newsletter.html">← Back to Newsletter</a></div>
-  <div class="hero-canvas-wrap" aria-label="Ember field visualization — motivation as a burning resource">
-  <canvas id="hero-canvas"></canvas>
+<!-- ══════════════════════════════════
+     HERO — Ember Field canvas
+═══════════════════════════════════ -->
+<section class="hero" aria-label="Ember field — motivation as a burning resource">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-scrim"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Gold Star Premium · Self-Awareness · Jul 2026</div>
+    <div class="hero-eyebrow">Gold Star Premium · Self-Awareness · Jun 2026</div>
     <h1 class="hero-h1">The Pattern Most People<br><em>Never See.</em></h1>
     <p class="hero-sub">The one trait that separates people who change their life from people who keep reading about changing it.</p>
     <div class="hero-meta">
@@ -158,197 +265,356 @@ footer a{color:var(--gold)}
       <div class="meta-dot"></div>
       <span class="meta-tag">6 min read</span>
       <div class="meta-dot"></div>
-      <span class="meta-tag">Deep Signal</span>
+      <span class="meta-tag">Deep Signal Exclusive</span>
     </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Read</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FREE PREVIEW — visible to everyone
+═══════════════════════════════════ -->
+<div class="hook-section">
+  <div class="article-container">
+    <blockquote class="hook-quote reveal">
+      <strong>This is the pattern</strong> I almost never write about publicly — because once you see it, you cannot stop noticing it in everyone, including yourself.
+    </blockquote>
   </div>
 </div>
 
-  <p class="art-hook"><strong>This is the pattern</strong> I almost never write about publicly, because once you see it, you cannot stop noticing it in everyone — including yourself.</p>
+<div class="article-container">
 
-  <div class="art-body">
-    <p>Every year I get messages from readers asking some version of the same question: what is actually different about the people who follow through, compared to the people who read the same books, attend the same calls, and somehow still end up exactly where they started?</p>
-    <p>For a long time I assumed it was discipline. Then I assumed it was clarity of goals. Both matter, but neither is the actual dividing line. After watching this pattern across hundreds of conversations, mentorship sessions, and my own years of getting it wrong, **the real difference is something much smaller and much less discussed.**</p>
-    <p>It shows up in the first 48 hours after a decision is made — not in the decision itself.</p>
+  <div class="section-divider reveal"><span class="sd-icon">🔥</span><span class="sd-label">The Signal</span></div>
 
-    <div id="premiumGatedSection">
-      <p>Here is the pattern: people who actually change direction take one small, often unglamorous action within 48 hours of deciding something matters — before the motivation has a chance to fade, before the doubt has time to organize itself into an argument, before the old identity has a chance to reassert what is "normal" for them.</p>
-      <p>The people who do not change direction wait for the right moment, the right amount of motivation, or the right plan before acting. That waiting period is exactly where the decision quietly dies — not from failure, but from never actually beginning.</p>
-      <p>This is the entire premise behind the **48-hour rule** I use with every mentorship client: whatever the decision is, something — anything, however small — has to happen within two days, while the decision is still emotionally alive. Not the whole plan. Not the perfect first step. Just movement.</p>
-      <p>In [[The Quiet Revolution]], this exact mechanic is what separates the chapters on real change from the chapters on the fantasy of change — the gap is never intention. It is always the 48 hours immediately after.</p>
+  <p class="body-p reveal">Every year I get messages from readers asking some version of the same question: what is actually different about the people who follow through, compared to the people who read the same books, attend the same calls, and somehow still end up exactly where they started?</p>
 
-      <div class="takeaway-box">
-        <span class="tb-label">The takeaway</span>
-        <p>The decision is never the hard part. The 48 hours after it — where most people wait for readiness that never arrives — is where almost everything is actually decided.</p>
-      </div>
+  <p class="body-p reveal">For a long time I assumed it was discipline. Then I assumed it was clarity of goals. Both matter, but neither is the actual dividing line. After watching this pattern across hundreds of conversations, mentorship sessions, and my own years of getting it wrong — <strong>the real difference is something much smaller and much less discussed.</strong></p>
+
+  <p class="body-p reveal">It shows up in the first 48 hours after a decision is made. Not in the decision itself.</p>
+
+  <div class="pull-quote-block reveal-slow">
+    <span class="pq-mark" aria-hidden="true">"</span>
+    <p class="pq-text">The decision is never the hard part. The 48 hours after it — where most people wait for readiness that never arrives — is where almost everything is actually decided.</p>
+    <span class="pq-attr">— The Signal · Vishal Hingol</span>
+  </div>
+
+  <div class="stat-grid reveal">
+    <div class="stat-card">
+      <div class="stat-number">48h</div>
+      <div class="stat-label">window after a decision where the pattern either locks in or quietly dies</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">96%</div>
+      <div class="stat-label">of decisions that feel important never produce a single action within two days</div>
     </div>
   </div>
+
+  <div class="key-concept reveal">
+    <div class="kc-icon">⏱️</div>
+    <div>
+      <span class="kc-label">Key Concept · The 48-Hour Window</span>
+      <p class="kc-text">The period immediately after a decision is made is the only moment when <strong>motivation, novelty, and identity disruption align</strong>. After 48 hours, the old identity reasserts itself and waiting for "the right moment" becomes the permanent state.</p>
+    </div>
   </div>
-</main>
+
+</div>
+
+<!-- ══════════════════════════════════
+     PREMIUM GATED SECTION
+═══════════════════════════════════ -->
+<div id="premiumGatedSection">
+
+  <div class="article-container">
+
+    <p class="body-p reveal">Here is the pattern: people who actually change direction take one small, often unglamorous action within 48 hours of deciding something matters — before the motivation has a chance to fade, before the doubt has time to organize itself into an argument, before the old identity has a chance to reassert what is normal for them.</p>
+
+    <p class="body-p reveal">The people who do not change direction wait for the right moment, the right amount of motivation, or the right plan before acting. That waiting period is exactly where the decision quietly dies — not from failure, but from never actually beginning.</p>
+
+    <p class="body-p reveal">This is the entire premise behind the <strong>48-hour rule</strong> I use with every mentorship client: whatever the decision is, something — anything, however small — has to happen within two days, while the decision is still emotionally alive. Not the whole plan. Not the perfect first step. Just movement. Movement is the only thing that converts a decision from thought into identity.</p>
+
+    <div class="insight-box reveal">
+      <span class="insight-eyebrow">The Real Distinction</span>
+      <h3 class="insight-title">Motion vs. Movement — why they feel identical but aren't</h3>
+      <p class="insight-body"><strong>Motion</strong> is activity that feels like progress: reading about the change, planning it, talking about it, researching it. <strong>Movement</strong> is any action that changes your external reality, however slightly. Motion is comfortable because it carries no risk of failure. Movement is uncomfortable because it immediately tells you something real. Most people live entirely in motion and call it working on themselves.</p>
+    </div>
+
+  </div>
+
+  <!-- Timeline canvas — wide -->
+  <div class="wide-container">
+    <div class="panel reveal">
+      <div class="panel-header">
+        <span class="panel-header-label">The 48-Hour Decision Window · Live Simulation</span>
+        <span class="panel-header-tag">what happens after you decide</span>
+      </div>
+      <canvas id="timeline-canvas" aria-label="Timeline showing how motivation decays and old identity reasserts after 48 hours without action"></canvas>
+      <div class="panel-footer">Orange: motivation after decision. Gold line: old identity pull. The window where action is possible narrows fast — and most people miss it entirely.</div>
+    </div>
+  </div>
+
+  <div class="article-container">
+
+    <p class="body-p reveal">The reason this pattern stays invisible to most people is that waiting <em>feels</em> like wisdom. It feels like you are being thoughtful, strategic, realistic. The internal narrative sounds like: "I want to make sure I do this right." What it actually is: your existing identity protecting itself from the disruption that real change requires.</p>
+
+    <p class="body-p reveal">In <em class="book-ref">The Quiet Revolution</em>, this distinction is the backbone of the entire book — the gap between intention and identity is never bridged by more planning. It is only ever bridged by a single small action taken before readiness arrives. Readiness, it turns out, is not a precondition for action. It is a <strong>consequence</strong> of it.</p>
+
+    <div class="section-divider reveal"><span class="sd-icon">⚡</span><span class="sd-label">Put It Into Practice</span></div>
+
+    <div class="practice-list reveal">
+      <div class="practice-item">
+        <span class="practice-num">1</span>
+        <div>
+          <p class="practice-title">Name the 48-hour action, not the goal</p>
+          <p class="practice-desc">When you make a decision, immediately ask: what is the one thing I can do in the next 48 hours that costs less than 10 minutes and moves this from thought to reality? Write it down. Not the plan — just the single next action. The goal can wait. The window cannot.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-num">2</span>
+        <div>
+          <p class="practice-title">Distinguish motion from movement in your daily review</p>
+          <p class="practice-desc">At the end of each day, write two columns: what you did that changed something externally (movement), and what you did that felt productive but changed nothing (motion). Most people are shocked by the ratio. The awareness alone shifts behavior within a week.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-num">3</span>
+        <div>
+          <p class="practice-title">Treat the urge to plan as a warning signal</p>
+          <p class="practice-desc">The moment you feel the pull to research more, plan more, or prepare more before starting — pause. Ask honestly: am I planning because it's necessary, or because acting feels risky? If the answer is the second one, the plan is a comfort mechanism, not a productivity tool. Act first. Refine after.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="practice-num">4</span>
+        <div>
+          <p class="practice-title">Shrink the action until resistance disappears</p>
+          <p class="practice-desc">If the 48-hour action still feels too large to start, halve it. Then halve it again. The goal is not to find the perfect first step — it is to find the smallest possible action that is still real movement. Send the email without editing it. Write one sentence. Make one call. The size is irrelevant. The act of beginning is everything.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="takeaway reveal-slow">
+      <span class="takeaway-label">The takeaway</span>
+      <p class="takeaway-text">The pattern most people never see is this: the people who change their lives are not more motivated, more disciplined, or more certain than you. They just stopped waiting for readiness and moved within the window. The window is 48 hours. It is open right now.</p>
+    </div>
+
+    <!-- Member closing card -->
+    <div class="member-close reveal-slow">
+      <span class="member-close-star">⭐</span>
+      <h3 class="member-close-title">You're a Deep Signal Member</h3>
+      <p class="member-close-body">Every Gold Star edition goes this deep — the mechanism behind the idea, the practice framework, the canvas visualization, and the thing most people miss. Next edition drops soon.</p>
+      <a href="/the-signal-archive.html" class="member-close-cta">⭐ Browse Elite Archive →</a>
+    </div>
+
+      </div>
+</div><!-- /premiumGatedSection -->
 
 <footer>
-  <span>© 2025–<script>document.write(new Date().getFullYear())</script> Vishal Hingol · <a href="/policies.html">Policies</a> · <a href="/newsletter.html">Back to Newsletter</a></span>
+  <span class="footer-brand"><strong>Vishal Hingol</strong> · The Signal</span>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/newsletter.html">Newsletter</a>
+    <a href="/the-signal-archive.html">⭐ Elite Archive</a>
+    <a href="/store.html">Books</a>
+    <a href="/policies.html">Policies</a>
+  </div>
+  <p class="footer-copy">© 2025–<script>document.write(new Date().getFullYear())</script> Vishal Hingol · All rights reserved</p>
 </footer>
 
-<script>if(!localStorage.getItem('cookieOk')){}</script>
+<!-- ── COOKIE BAR ── -->
+<div id="cookieBar">
+  This site uses minimal analytics cookies. <a href="/policies.html#privacy" style="color:var(--gold)">Privacy Policy</a>
+  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:var(--gold);color:var(--void);border:none;padding:7px 18px;border-radius:100px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:10px">Accept</button>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
 
 <script>
-// ---- Account nav swap ----
+/* ── Reading progress ── */
+const bar=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  bar.style.width=Math.min(h.scrollTop/(h.scrollHeight-h.clientHeight)*100,100)+'%';
+},{passive:true});
+
+/* ── Scroll reveal ── */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.reveal,.reveal-slow').forEach(el=>observer.observe(el));
+
+/* ── Account nav swap ── */
 (function(){
-  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
-  function firstName(fullName, email){
-    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
-    if (email) return email.split('@')[0];
-    return 'Account';
-  }
-  async function applyLoginStateToNav(){
-    let data;
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
-        body: JSON.stringify({ type: 'check_session' }),
-      });
-      data = await res.json().catch(function(){ return {}; });
-    } catch (err) { return; }
-    if (!data || !data.loggedIn) return;
-    const name = firstName(data.fullName, data.email);
-    document.querySelectorAll('#navAccount, #mobNavAccount, a[href="/account.html"]').forEach(function(link){
-      link.textContent = name;
-      link.href = '/my-account.html';
-    });
-  }
-  applyLoginStateToNav();
+  const EP='https://subscribe.vishalhingolauthor.com';
+  function fn(n,e){return(n&&n.trim())?n.trim().split(/\s+/)[0]:e?e.split('@')[0]:'Account';}
+  fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
+    .then(r=>r.json()).then(d=>{if(d&&d.loggedIn){const name=fn(d.fullName,d.email);document.querySelectorAll('#navAccount,#mobNavAccount').forEach(l=>{l.textContent=name;l.href='/my-account.html';});}}).catch(()=>{});
 })();
-</script>
 
-<script>
-// ---- Premium gate: requires isPremium === true, not just logged in ----
-(function(){
-  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
-
-  function applyPremiumGate(){
-    const gatedSection = document.getElementById('premiumGatedSection');
-    if (!gatedSection) return;
-
-    const wrap = document.createElement('div');
-    wrap.className = 'gate-blurred';
-    while (gatedSection.firstChild) { wrap.appendChild(gatedSection.firstChild); }
-    gatedSection.appendChild(wrap);
-
-    const gate = document.createElement('div');
-    gate.className = 'premium-gate';
-
-    const inner = document.createElement('div');
-    inner.className = 'premium-gate-inner';
-
-    const glow = document.createElement('div');
-    glow.className = 'premium-gate-glow';
-    inner.appendChild(glow);
-
-    const star = document.createElement('span');
-    star.className = 'premium-gate-star';
-    star.textContent = '⭐';
-    inner.appendChild(star);
-
-    const heading = document.createElement('h3');
-    heading.textContent = 'This is a Deep Signal Exclusive';
-    inner.appendChild(heading);
-
-    const desc = document.createElement('p');
-    desc.textContent = "You've read the free preview. The rest of this edition — and every future Gold Star Premium piece — is reserved for Deep Signal members.";
-    inner.appendChild(desc);
-
-    const cta = document.createElement('a');
-    cta.className = 'btn';
-    cta.href = '/newsletter.html#deepSignal';
-    cta.textContent = 'Join Deep Signal — $5/month';
-    inner.appendChild(cta);
-
-    const priceNote = document.createElement('p');
-    priceNote.className = 'gate-price';
-    priceNote.textContent = 'Cancel anytime. Includes every future premium edition.';
-    inner.appendChild(priceNote);
-
-    gate.appendChild(inner);
-    gatedSection.appendChild(gate);
-
-    fetch(ENDPOINT, {
-      method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
-      body: JSON.stringify({ type: 'check_session' }),
-    }).then(function(res){ return res.json(); }).then(function(data){
-      // Premium gate checks isPremium specifically — being logged in
-      // alone is NOT enough to unlock this content, unlike the free
-      // 30% gate used elsewhere on the site.
-      if (data && data.loggedIn && data.isPremium) {
-        wrap.classList.remove('gate-blurred');
-        gate.remove();
-      }
-    }).catch(function(){
-      // Fail toward keeping the gate in place if the check fails
-    });
-  }
-
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(applyPremiumGate, { timeout: 1500 });
-  } else {
-    setTimeout(applyPremiumGate, 200);
-  }
-})();
-</script>
-
-<script>
-
+/* ── PRNG ── */
 function _prng(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/0xffffffff};}
 function _lerp(a,b,t){return a+(b-a)*t;}
 function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 
-
+/* ── HERO CANVAS — Ember Field ── */
 (function(){
   const cv=document.getElementById('hero-canvas');
   if(!cv)return;
   const ctx=cv.getContext('2d');
   let W,H,dpr,tick=0;
   const rng=_prng(5555);
-  const EMBERS=[];
-  const MAX_EMBERS=220;
-  function spawnEmber(){
-    EMBERS.push({x:rng()*W*.9+W*.05,y:H+10,vx:(rng()-.5)*1.2,vy:-(0.5+rng()*2.5),
-      size:1.2+rng()*3.5,life:0,lifeMax:80+rng()*200,wobble:rng()*Math.PI*2,
-      wobbleSpeed:0.03+rng()*0.04,isLarge:rng()<0.12});
-  }
+  const EMBERS=[];const MAX=220;
+  function sp(){EMBERS.push({x:rng()*W*.9+W*.05,y:H+10,vx:(rng()-.5)*1.2,vy:-(0.5+rng()*2.5),size:1.2+rng()*3.5,life:0,lifeMax:80+rng()*200,wobble:rng()*Math.PI*2,wobbleSpeed:.03+rng()*.04,isLarge:rng()<.12});}
   function resize(){
     dpr=devicePixelRatio||1;W=cv.offsetWidth;H=cv.offsetHeight;
     cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
-    EMBERS.length=0;
-    for(let i=0;i<MAX_EMBERS;i++){spawnEmber();EMBERS[i].y=rng()*H;EMBERS[i].life=rng()*EMBERS[i].lifeMax;}
+    EMBERS.length=0;for(let i=0;i<MAX;i++){sp();EMBERS[i].y=rng()*H;EMBERS[i].life=rng()*EMBERS[i].lifeMax;}
   }
   function draw(){
     tick++;
-    ctx.globalAlpha=0.18;
-    const bg=ctx.createLinearGradient(0,0,0,H);
-    bg.addColorStop(0,'#030408');bg.addColorStop(.5,'#06030A');bg.addColorStop(1,'#120504');
+    ctx.globalAlpha=.18;
+    const bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#030408');bg.addColorStop(.5,'#06030A');bg.addColorStop(1,'#120504');
     ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
-    if(EMBERS.length<MAX_EMBERS&&tick%3===0)spawnEmber();
+    if(EMBERS.length<MAX&&tick%3===0)sp();
     EMBERS.forEach(e=>{
       e.life++;
       if(e.life>=e.lifeMax){e.life=0;e.x=rng()*W*.8+W*.1;e.y=H+10;e.vy=-(0.5+rng()*2.5);e.lifeMax=80+rng()*200;return;}
-      const t=e.life/e.lifeMax;
-      const env=t<0.3?t/0.3:1-(t-0.3)/0.7;
+      const t=e.life/e.lifeMax,env=t<.3?t/.3:1-(t-.3)/.7;
       e.wobble+=e.wobbleSpeed;e.x+=e.vx+Math.sin(e.wobble)*.4;e.y+=e.vy;e.vy*=.995;
       const r=255,g=Math.round(_lerp(240,_lerp(140,20,Math.min(1,t*2)),t)),b=Math.round(_lerp(200,_lerp(20,0,Math.min(1,t*2)),t));
-      if(e.isLarge){
-        const gr=ctx.createRadialGradient(e.x,e.y,0,e.x,e.y,e.size*4*env);
-        gr.addColorStop(0,`rgba(${r},${g},${b},${env*.9})`);gr.addColorStop(1,'transparent');
-        ctx.fillStyle=gr;ctx.beginPath();ctx.arc(e.x,e.y,e.size*4*env,0,Math.PI*2);ctx.fill();
-      }
-      ctx.beginPath();ctx.arc(e.x,e.y,e.size*env,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${r},${g},${b},${env*.8})`;ctx.fill();
+      if(e.isLarge){const gr=ctx.createRadialGradient(e.x,e.y,0,e.x,e.y,e.size*4*env);gr.addColorStop(0,`rgba(${r},${g},${b},${env*.9})`);gr.addColorStop(1,'transparent');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(e.x,e.y,e.size*4*env,0,Math.PI*2);ctx.fill();}
+      ctx.beginPath();ctx.arc(e.x,e.y,e.size*env,0,Math.PI*2);ctx.fillStyle=`rgba(${r},${g},${b},${env*.8})`;ctx.fill();
     });
+    const haze=ctx.createLinearGradient(0,H-80,0,H);haze.addColorStop(0,'transparent');haze.addColorStop(1,'rgba(255,80,0,.05)');
+    ctx.fillStyle=haze;ctx.fillRect(0,H-80,W,80);
   }
   resize();
   (function loop(){draw();requestAnimationFrame(loop);})();
   window.addEventListener('resize',resize,{passive:true});
 })();
 
+/* ── TIMELINE CANVAS — 48-hour decision window ── */
+(function(){
+  const cv=document.getElementById('timeline-canvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  let W,H,dpr,tick=0;
+  const H_FIXED=220;
+  function resize(){
+    dpr=devicePixelRatio||1;W=cv.offsetWidth;H=H_FIXED;
+    cv.width=W*dpr;cv.height=H*dpr;canvas_H=H;
+    canvas_W=W;cv.style.height=H+'px';ctx.scale(dpr,dpr);
+  }
+  let canvas_W=0,canvas_H=0;
+  function draw(){
+    tick++;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#070A18';ctx.fillRect(0,0,W,H);
+    const PAD=clamp(W*.08,24,60);
+    const GW=W-PAD*2,GH=H-50;
+    const GX=PAD,GY=20;
+
+    // Grid lines
+    for(let i=0;i<=4;i++){
+      const y=GY+GH*(1-i/4);
+      ctx.beginPath();ctx.moveTo(GX,y);ctx.lineTo(GX+GW,y);
+      ctx.strokeStyle='rgba(244,238,226,.05)';ctx.lineWidth=1;ctx.stroke();
+    }
+
+    // Time labels (hours)
+    ['0h','12h','24h','36h','48h','72h+'].forEach((label,i)=>{
+      const x=GX+GW*(i/5);
+      ctx.font=`400 9px 'Space Grotesk',monospace`;ctx.fillStyle='rgba(154,161,199,.4)';
+      ctx.textAlign='center';ctx.fillText(label,x,H-8);
+    });
+
+    const animT=(_clamp(tick/180,0,1));
+
+    // Motivation curve — orange, decays exponentially
+    ctx.beginPath();
+    for(let px=0;px<=GW*animT;px++){
+      const t=px/GW;
+      const motiv=Math.exp(-t*2.8)*0.95+0.02;
+      const y=GY+GH*(1-motiv);
+      if(px===0)ctx.moveTo(GX+px,y);else ctx.lineTo(GX+px,y);
+    }
+    ctx.strokeStyle='rgba(255,154,92,.8)';ctx.lineWidth=2.5;ctx.stroke();
+
+    // Identity pull curve — gold, rises after 48h
+    ctx.beginPath();
+    for(let px=0;px<=GW*animT;px++){
+      const t=px/GW;
+      const identity=_clamp(Math.pow(t,1.8)*0.9,0,0.92);
+      const y=GY+GH*(1-identity);
+      if(px===0)ctx.moveTo(GX+px,y);else ctx.lineTo(GX+px,y);
+    }
+    ctx.strokeStyle='rgba(232,187,107,.6)';ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);
+
+    // 48h marker
+    const x48=GX+GW*(48/72);
+    if(animT>48/72){
+      ctx.beginPath();ctx.moveTo(x48,GY);ctx.lineTo(x48,GY+GH);
+      ctx.strokeStyle='rgba(255,154,92,.35)';ctx.lineWidth=1;ctx.stroke();
+      ctx.font=`600 9px 'Space Grotesk',monospace`;ctx.fillStyle='rgba(255,154,92,.7)';
+      ctx.textAlign='center';ctx.fillText('48h',x48,GY+12);
+    }
+
+    // Action zone shading
+    const x0=GX,x48e=GX+GW*(48/72);
+    if(animT>0){
+      const grad=ctx.createLinearGradient(x0,0,x48e,0);
+      grad.addColorStop(0,'rgba(255,154,92,.08)');grad.addColorStop(1,'rgba(255,154,92,.01)');
+      ctx.fillStyle=grad;ctx.fillRect(x0,GY,Math.min(x48e-x0,GW*animT),GH);
+    }
+
+    // Legend
+    ctx.font=`500 9.5px 'Space Grotesk',monospace`;
+    ctx.fillStyle='rgba(255,154,92,.7)';ctx.textAlign='left';ctx.fillText('── Motivation after decision',PAD,GY-6);
+    ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(PAD+200,GY-10);ctx.lineTo(PAD+216,GY-10);ctx.strokeStyle='rgba(232,187,107,.6)';ctx.lineWidth=1.5;ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='rgba(232,187,107,.55)';ctx.fillText('Old identity reassertion',PAD+220,GY-6);
+
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  }
+  resize();
+  (function loop(){draw();requestAnimationFrame(loop);})();
+  window.addEventListener('resize',resize,{passive:true});
+})();
+
+function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+/* ── PREMIUM GATE — requires isPremium ── */
+(function(){
+  const EP='https://subscribe.vishalhingolauthor.com';
+  function applyGate(){
+    const gs=document.getElementById('premiumGatedSection');
+    if(!gs)return;
+    const wrap=document.createElement('div');wrap.className='gate-blurred';
+    while(gs.firstChild)wrap.appendChild(gs.firstChild);
+    gs.appendChild(wrap);
+    const gate=document.createElement('div');gate.className='premium-gate';
+    const inner=document.createElement('div');inner.className='premium-gate-inner';
+    const glow=document.createElement('div');glow.className='premium-gate-glow';inner.appendChild(glow);
+    const star=document.createElement('span');star.className='gate-star';star.textContent='⭐';inner.appendChild(star);
+    const h=document.createElement('h3');h.textContent='This is a Deep Signal Exclusive';inner.appendChild(h);
+    const p=document.createElement('p');p.textContent="You've read the free preview. The full article — the 48-hour mechanism, the motion vs movement framework, the 4-step practice, and the canvas visualization — is reserved for Deep Signal members.";inner.appendChild(p);
+    const btn=document.createElement('a');btn.className='btn';btn.href='/newsletter.html#deepSignal';btn.textContent='Join Deep Signal — $5/month';inner.appendChild(btn);
+    const price=document.createElement('p');price.className='gate-price';price.textContent='Cancel anytime · Includes every future Gold Star Premium edition';inner.appendChild(price);
+    gate.appendChild(inner);gs.appendChild(gate);
+    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
+      .then(r=>r.json()).then(d=>{
+        if(d&&d.loggedIn&&d.isPremium){wrap.classList.remove('gate-blurred');gate.remove();}
+      }).catch(()=>{});
+  }
+  if(window._gateChecked){_doGate();}else{document.addEventListener('gateReady',_doGate,{once:true});}
+  function _doGate(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
+})();
 </script>
+
+<!-- Floating back bar -->
+<div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:10px;background:rgba(7,10,24,.92);backdrop-filter:blur(18px);border:1px solid rgba(244,238,226,.12);border-radius:100px;padding:10px 20px;box-shadow:0 8px 32px rgba(0,0,0,.4)" class="back-bar-float">
+  <a href="/newsletter.html" style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9AA1C7;text-decoration:none;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:100px;transition:color .2s" onmouseover="this.style.color='#F4EEE2'" onmouseout="this.style.color='#9AA1C7'">← Newsletter</a>
+  <span style="color:rgba(244,238,226,.15);font-size:14px">|</span>
+  <a href="/the-signal-archive.html" style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E8BB6B;text-decoration:none;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:100px;transition:color .2s" onmouseover="this.style.color='#FFF0B0'" onmouseout="this.style.color='#E8BB6B'">⭐ Elite Archive</a>
+</div>
 </body>
 </html>

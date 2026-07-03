@@ -66,7 +66,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:200;display:flex;align-items:c
 .hero-eyebrow{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s ease forwards}
 .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:28px;height:1px;background:var(--blue);opacity:.55}
 .hero-h1{font-family:var(--display);font-size:clamp(36px,6.5vw,72px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--paper);margin-bottom:clamp(12px,2vw,20px);opacity:0;animation:fadeUp .9s .5s ease forwards}
-.hero-h1 em{font-style:italic;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 28%,#FFFFFF 45%,#FFFFFF 65%,#F5D080 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-h1 em{font-style:italic;background:linear-gradient(110deg,var(--blue),var(--indigo),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-sub{font-size:clamp(15px,2vw,18px);color:var(--mist);line-height:1.65;max-width:540px;margin:0 auto 28px;opacity:0;animation:fadeUp .9s .7s ease forwards}
 .hero-meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s ease forwards}
 .meta-pill{font-family:var(--tech);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A 0%,#E8BB6B 40%,#F5D080 70%,#FFF0B0 100%);padding:7px 18px;border-radius:100px;box-shadow:0 0 20px rgba(232,187,107,.4),inset 0 1px 0 rgba(255,255,255,.3)}
@@ -272,8 +272,9 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
 <nav>
   <a class="nav-brand" href="/">Vishal <em>Hingol</em></a>
   <div class="nav-links">
-    <a href="/newsletter.html" class="nav-back">← Newsletter</a>
-    <a href="/the-signal-archive.html">Archive</a>
+      <a href="/newsletter.html" class="nav-back">← Newsletter</a>
+    <a href="/the-signal-archive.html" style="font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:100px;transition:border-color .2s,color .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='';this.style.color=''">⭐ Elite Archive</a>
+    <a href="/the-signal-archive.html">⭐ Elite Archive</a>
     <a href="/store.html">Books</a>
     <a href="/account.html" id="navAccount">Account</a>
   </div>
@@ -286,7 +287,7 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
   <button class="mob-close-btn" onclick="document.getElementById('mobNav').classList.remove('open')">✕</button>
   <a href="/" onclick="document.getElementById('mobNav').classList.remove('open')">Home</a>
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Newsletter</a>
-  <a href="/the-signal-archive.html" onclick="document.getElementById('mobNav').classList.remove('open')">Archive</a>
+  <a href="/the-signal-archive.html" onclick="document.getElementById('mobNav').classList.remove('open')">⭐ Elite Archive</a>
   <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
   <a href="/account.html" id="mobNavAccount" onclick="document.getElementById('mobNav').classList.remove('open')">Account</a>
 </div>
@@ -493,7 +494,7 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
       <span class="member-close-star">✦</span>
       <h3 class="member-close-title">You're a Deep Signal Member</h3>
       <p class="member-close-body">This is the practice behind the book — the full Frequency-First mechanism, the 5-step implementation, the common failure patterns, and the evidence-tracking loop that most practitioners never discover. Every Gold Star edition goes this deep.</p>
-      <a href="/the-signal-archive.html" class="member-close-cta">Browse All Premium Editions →</a>
+      <a href="/the-signal-archive.html" class="member-close-cta">⭐ Browse Elite Archive →</a>
     </div>
 
   </div>
@@ -504,7 +505,7 @@ footer{margin-top:clamp(56px,8vw,96px);padding:clamp(36px,5vw,56px) clamp(20px,5
   <div class="footer-links">
     <a href="/">Home</a>
     <a href="/newsletter.html">Newsletter</a>
-    <a href="/the-signal-archive.html">Archive</a>
+    <a href="/the-signal-archive.html">⭐ Elite Archive</a>
     <a href="/store.html">Books</a>
     <a href="/mentor.html">Mentorship</a>
     <a href="/policies.html">Policies</a>
@@ -948,5 +949,12 @@ function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
   function applyGateCheck(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
 })();
 </script>
+
+<!-- Floating back bar -->
+<div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:10px;background:rgba(7,10,24,.92);backdrop-filter:blur(18px);border:1px solid rgba(244,238,226,.12);border-radius:100px;padding:10px 20px;box-shadow:0 8px 32px rgba(0,0,0,.4)" class="back-bar-float">
+  <a href="/newsletter.html" style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9AA1C7;text-decoration:none;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:100px;transition:color .2s" onmouseover="this.style.color='#F4EEE2'" onmouseout="this.style.color='#9AA1C7'">← Newsletter</a>
+  <span style="color:rgba(244,238,226,.15);font-size:14px">|</span>
+  <a href="/the-signal-archive.html" style="font-family:'Space Grotesk',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E8BB6B;text-decoration:none;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:100px;transition:color .2s" onmouseover="this.style.color='#FFF0B0'" onmouseout="this.style.color='#E8BB6B'">⭐ Elite Archive</a>
+</div>
 </body>
 </html>
