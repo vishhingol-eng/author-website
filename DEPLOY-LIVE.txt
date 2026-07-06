@@ -1,0 +1,25 @@
+LIVE DEPLOYMENT — vishalhingolauthor.com (one-shot package)
+
+BEFORE:
+- Download current live index.html and robots.txt as backups.
+
+UPLOAD everything in this package to the repo ROOT (alongside your existing files):
+  index.html                        (new homepage — replaces old)
+  assets/css/main.css, assets/js/main.js
+  hero-bg.mp4, band-library.mp4, band-author.mp4, hero-poster.jpg
+  robots.txt                        (replaces old — opens AI search crawlers, keeps CCBot blocked)
+  404.html                          (cosmic not-found page, GitHub Pages uses it automatically)
+  how-to-build-discipline-without-motivation.html   (dead-link fix → redirects to blog)
+  the-comfort-zone-trap.html                        (dead-link fix → redirects to blog)
+  morning-routines-that-actually-work.html          (dead-link fix → redirects to blog)
+
+DO NOT delete: covers/, editions/, shop/, blog.json, editions.json, or any other existing page.
+
+AFTER:
+1. Cloudflare dashboard -> Caching -> Purge Everything.
+2. Hard refresh (Ctrl+Shift+R); phone: incognito tab.
+3. Test: hero slides, real-email subscribe (Lost Chapter arrives), cookie banner -> popup,
+   5 book cards -> Amazon, Gold Star scroll smoothness, both cine-bands, mobile menu, Policies link.
+4. Run pagespeed.web.dev on the live URL (Mobile + Desktop) and save both scores.
+
+ROLLBACK: re-upload backed-up index.html / robots.txt, purge Cloudflare again.

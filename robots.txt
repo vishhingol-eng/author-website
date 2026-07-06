@@ -1,8 +1,30 @@
+# vishalhingolauthor.com — LIVE robots.txt
+# Strategy: open to AI search engines for GEO discovery; block bulk training scrapers.
+
 User-agent: *
 Allow: /
 
-# Block private/utility paths
-Disallow: /cdn-cgi/
+# --- AI search & answer engines: ALLOWED (so ChatGPT, Claude, Perplexity, Gemini can find & cite you) ---
+User-agent: GPTBot
+Allow: /
 
-# Sitemap
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Bulk training scraper: BLOCKED (content protection line) ---
+User-agent: CCBot
+Disallow: /
+
 Sitemap: https://vishalhingolauthor.com/sitemap.xml

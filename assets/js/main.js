@@ -4,6 +4,8 @@
 (function(){
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var eco = (navigator.hardwareConcurrency||8) <= 4 || ((navigator.deviceMemory||8) <= 4);
+  if(eco){ document.documentElement.classList.add("eco"); }
 
   /* ---------- nav ---------- */
   var nav = document.getElementById("nav");
@@ -83,8 +85,13 @@
   function setSlide(i){
     curSlide = i;
     slides.forEach(function(s,k){
-      s.classList.toggle("is-on", k===i);
-      s.setAttribute("aria-hidden", k===i ? "false" : "true");
+      var on = (k===i);
+      s.classList.toggle("is-on", on);
+      s.setAttribute("aria-hidden", on ? "false" : "true");
+      try{ s.inert = !on; }catch(e){}
+      s.querySelectorAll("a,button").forEach(function(el){
+        if(on){ el.removeAttribute("tabindex"); } else { el.setAttribute("tabindex","-1"); }
+      });
     });
     pills.forEach(function(p,k){
       p.classList.remove("active");
@@ -200,8 +207,9 @@
   /* ══ SKY ENGINE v2 — same visuals, half the GPU: DPR cap, 30fps, hidden-pause ══ */
   (function(){
     if(window.innerWidth <= 700){ return; }
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     var lowEnd = (navigator.hardwareConcurrency||8) <= 4 || ((navigator.deviceMemory||8) <= 4);
+    if(lowEnd){ return; } /* eco devices: CSS phone-sky aesthetics not needed, skip canvas entirely */
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     var c = document.getElementById('sky');
     var x = c.getContext('2d');
     var DPR = Math.min(devicePixelRatio||1, 1.5);

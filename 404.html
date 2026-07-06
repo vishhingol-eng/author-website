@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost in the Void — Vishal Hingol</title>
+<meta name="robots" content="noindex, follow">
+<style>
+:root{--void:#050715;--gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--paper:#F4EEE2;--mist:#9AA1C7}
+*{margin:0;box-sizing:border-box}
+body{background:radial-gradient(70% 55% at 50% 0%,#0E0B1E,var(--void) 60%);color:var(--paper);
+ font-family:Georgia,serif;min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:24px}
+.stars{position:fixed;inset:0;pointer-events:none;background-image:
+ radial-gradient(1px 1px at 12% 20%,rgba(255,255,255,.7),transparent),
+ radial-gradient(1px 1px at 32% 65%,rgba(232,187,107,.7),transparent),
+ radial-gradient(1.5px 1.5px at 55% 30%,rgba(255,255,255,.9),transparent),
+ radial-gradient(1px 1px at 72% 75%,rgba(125,230,255,.7),transparent),
+ radial-gradient(1.5px 1.5px at 88% 25%,rgba(157,123,255,.8),transparent);
+ background-size:420px 420px;animation:tw 4s ease-in-out infinite alternate}
+@keyframes tw{to{opacity:.55}}
+.code{font-size:clamp(5rem,18vw,10rem);line-height:1;
+ background:linear-gradient(100deg,#F7E2B4,var(--gold) 45%,var(--cyan) 90%);
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-weight:400;font-size:clamp(1.3rem,3.5vw,2rem);margin:14px 0 10px}
+h1 em{font-style:italic;color:var(--gold)}
+p{color:var(--mist);font-family:system-ui,sans-serif;font-size:.95rem;max-width:44ch;margin:0 auto 28px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-family:system-ui,sans-serif}
+a{display:inline-block;padding:13px 26px;border-radius:100px;text-decoration:none;font-size:.8rem;
+ letter-spacing:.12em;text-transform:uppercase}
+.g{background:linear-gradient(110deg,#F3D9A4,var(--gold) 60%,#C89448);color:#1A1206;font-weight:700}
+.o{border:1px solid rgba(244,238,226,.3);color:var(--paper)}
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<main>
+ <div class="code">404</div>
+ <h1>This page drifted <em>out of frequency.</em></h1>
+ <p>The signal you followed doesn't broadcast from here anymore — but the universe is still transmitting.</p>
+ <div class="row">
+  <a class="g" href="index.html">Return home</a>
+  <a class="o" href="store.html">Browse the books</a>
+  <a class="o" href="blog.html">Read the blog</a>
+ </div>
+</main>
+</body>
+</html>
