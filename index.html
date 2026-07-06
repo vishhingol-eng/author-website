@@ -664,7 +664,8 @@ main,header,footer{position:relative;z-index:1}
   radial-gradient(ellipse 65% 100% at 15% 50%, rgba(205,70,235,.5), transparent 70%),
   radial-gradient(ellipse 65% 100% at 85% 50%, rgba(95,40,190,.55), transparent 70%),
   radial-gradient(ellipse 90% 60% at 50% 50%, rgba(150,60,220,.25), transparent 75%)}
-.book>a{position:relative;z-index:1;display:block}
+.book>a{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
+.book .fmt{margin-top:auto;padding-top:.9rem} /* pins formats+byline+button+note to the bottom */
 .book:hover{transform:translateY(-9px);border-color:rgba(200,80,235,.4);
   box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 50px rgba(150,60,220,.25)}
 .book .cover{aspect-ratio:2/3;border-radius:10px;position:relative;overflow:hidden;width:56%;margin-bottom:1rem;
@@ -675,13 +676,13 @@ main,header,footer{position:relative;z-index:1}
 .book h4{font-family:var(--font-display);font-weight:400;font-size:1.16rem;line-height:1.28;margin:0 0 .3rem}
 .book .sub{font-family:var(--font-display);font-style:italic;font-size:.86rem;color:var(--rose);margin-bottom:.55rem}
 .book p.desc{font-size:.85rem;color:#D5CFEA;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.book .fmt{display:flex;gap:.45rem;flex-wrap:wrap;margin:.9rem 0 .5rem}
+.book .fmt{display:flex;gap:.45rem;flex-wrap:wrap;margin:0 0 .5rem}
 .book .fmt span{font-family:var(--font-utility);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--paper);border:1px solid rgba(244,238,226,.25);border-radius:100px;padding:.32rem .7rem;background:rgba(7,10,24,.5)}
 .book .by{font-size:.78rem;color:#CFC9EE}
 .book .by b{color:var(--paper);font-weight:600}
 .book .buy{font-family:var(--font-utility);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
-  display:flex;justify-content:center;align-items:center;gap:.5rem;margin-top:.95rem;
+  display:flex;justify-content:center;align-items:center;gap:.5rem;margin-top:.95rem;min-height:44px;white-space:nowrap;
   border-radius:100px;padding:.8rem 1rem;color:#3A2A0C;font-weight:500;
   background:linear-gradient(120deg,#F7E2B4,var(--gold) 60%,#D9A85C);
   box-shadow:0 12px 28px -12px rgba(232,187,107,.55);
