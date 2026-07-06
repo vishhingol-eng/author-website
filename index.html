@@ -315,6 +315,44 @@ main,header,footer{position:relative;z-index:1}
 .hero .lede{margin:var(--s-3) auto var(--s-4);font-size:clamp(1.02rem,1.4vw,1.22rem);max-width:60ch}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;align-items:center}
 .hero-soon{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.3rem}
+/* Apple-style rotating showcase — synced to the 3-act video */
+.show-stage{display:grid;margin-top:var(--s-3);min-height:190px}
+.show-slide{grid-area:1/1;opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.show-slide.is-on{opacity:1;transform:none;pointer-events:auto}
+.show-eyebrow{font-family:var(--font-utility);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)}
+.show-line{font-family:var(--font-display);font-weight:400;font-size:clamp(1.35rem,3.2vw,2.3rem);line-height:1.25;max-width:26ch}
+.show-line em{font-style:italic;background:linear-gradient(100deg,#F7E2B4,var(--gold) 55%,var(--rose));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.show-slide .hero-ctas{margin-top:1.1rem}
+.show-progress{display:flex;gap:.6rem;justify-content:center;margin-top:1.7rem}
+.show-pill{width:64px;height:5px;border-radius:100px;border:none;padding:0;cursor:pointer;
+  background:rgba(244,238,226,.16);overflow:hidden;transition:background .3s}
+.show-pill:hover{background:rgba(244,238,226,.3)}
+.show-pill .fill{display:block;height:100%;width:0;border-radius:inherit;
+  background:linear-gradient(90deg,var(--gold),var(--cyan))}
+.show-pill.active .fill{animation:pillFill linear forwards}
+@keyframes pillFill{from{width:0}to{width:100%}}
+.hero-quiet{display:flex;gap:.9rem;justify-content:center;align-items:center;margin-top:1.5rem;
+  font-family:var(--font-utility);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.hero-quiet a{color:var(--mist);border-bottom:1px solid rgba(154,161,199,.35);padding-bottom:2px;transition:color .3s,border-color .3s}
+.hero-quiet a:hover{color:var(--gold);border-color:var(--gold)}
+.hero-quiet span{color:var(--mist);opacity:.5}
+
+/* hero buttons — enlarged for visibility over the video */
+.hero-ctas .btn{padding:1.35rem 2.9rem;font-size:.98rem;letter-spacing:.17em}
+.hero-ctas .btn-gold{
+  box-shadow:0 0 46px -4px rgba(232,187,107,.6),0 16px 40px -12px rgba(0,0,0,.55);
+  animation:heroPulse 3.2s ease-in-out infinite}
+@keyframes heroPulse{0%,100%{box-shadow:0 0 46px -4px rgba(232,187,107,.6),0 16px 40px -12px rgba(0,0,0,.55)}
+  50%{box-shadow:0 0 68px 2px rgba(232,187,107,.85),0 16px 40px -12px rgba(0,0,0,.55)}}
+.hero-ctas .btn-ghost{background:rgba(7,10,24,.55);border-color:rgba(244,238,226,.42);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.6),inset 0 1px 0 rgba(244,238,226,.15)}
+@media (max-width:700px){.hero-ctas .btn{padding:1.15rem 2rem;font-size:.88rem;width:100%;justify-content:center}
+  .hero-ctas{flex-direction:column;align-items:stretch}
+  .hero-ctas .btn-gold{animation:none}}
+
 /* audiobook teaser chip with live waveform */
 .cta-ebook{color:var(--gold);border-color:rgba(232,187,107,.55);background:rgba(232,187,107,.05)}
 .cta-audio{display:inline-flex;align-items:center;gap:.8rem;cursor:default;
@@ -333,19 +371,13 @@ main,header,footer{position:relative;z-index:1}
 
 /* ---------- hero video background + effect overlays ---------- */
 .hero-video{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:var(--void)}
-.hero-video video{width:100%;height:100%;object-fit:cover;object-position:center 40%;
-  transform:scale(1.06);filter:saturate(1.12) brightness(.78) contrast(1.06)}
-.hv-grade{ /* cosmic color grade — blends the footage into the brand palette */
-  position:absolute;inset:0;mix-blend-mode:overlay;
-  background:radial-gradient(70% 60% at 28% 22%,rgba(157,123,255,.55),transparent 70%),
-             radial-gradient(60% 55% at 76% 72%,rgba(232,187,107,.45),transparent 70%),
-             radial-gradient(50% 50% at 60% 30%,rgba(125,230,255,.3),transparent 70%);
-  animation:hvGrade 14s ease-in-out infinite alternate}
-@keyframes hvGrade{to{transform:scale(1.09) translate(2%,-2%)}}
-.hv-fade{ /* readability vignette — melts video into the void */
+.hero-video video{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.hv-fade{ /* vignette + brand tint — single cheap layer, no blend modes */
   position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(5,7,21,.94) 0%,rgba(5,7,21,.4) 20%,rgba(5,7,21,.28) 55%,var(--void) 97%),
-  radial-gradient(125% 95% at 50% 45%,transparent 52%,rgba(5,7,21,.8) 100%)}
+  radial-gradient(125% 95% at 50% 45%,transparent 52%,rgba(5,7,21,.8) 100%),
+  radial-gradient(60% 55% at 24% 20%,rgba(157,123,255,.10),transparent 70%),
+  radial-gradient(55% 50% at 78% 70%,rgba(232,187,107,.08),transparent 70%)}
 .hv-shine{ /* slow light sweep across the footage */
   position:absolute;inset:0;
   background:linear-gradient(112deg,transparent 42%,rgba(244,238,226,.06) 50%,transparent 58%);
@@ -362,7 +394,7 @@ main,header,footer{position:relative;z-index:1}
   .svc .glow,.gs-feature-inner::before{animation:none!important}
   .svc::before{opacity:.55}
   .editions-banner{backdrop-filter:none;-webkit-backdrop-filter:none}
-  .hv-grade,.hv-fade,.hv-shine{display:none}
+  .hv-fade,.hv-shine{display:none}
   .hero h1 .grad-name{animation:none}
 }
 
@@ -551,6 +583,34 @@ main,header,footer{position:relative;z-index:1}
 .attn-card h3 em{color:#CBB8FF;font-style:italic}
 .attn-card p{color:#CFC9EE;font-size:.92rem;max-width:52ch;margin-top:.4rem}
 .attn-card .btn-gold{flex:none}
+/* ============================================================
+   CINE-BANDS — cinematic chapter dividers (lazy, desktop video)
+   ============================================================ */
+.cine-band{position:relative;height:min(52vh,430px);overflow:hidden;margin-top:var(--s-6);
+  display:flex;align-items:center;justify-content:center;isolation:isolate}
+.band-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.band-veil{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,var(--void) 0%,rgba(5,7,21,.25) 26%,rgba(5,7,21,.3) 70%,var(--void) 100%),
+  radial-gradient(120% 100% at 50% 50%,transparent 45%,rgba(5,7,21,.8) 100%)}
+.band-text{position:relative;z-index:2;text-align:center;padding:0 6%}
+.band-eyebrow{font-family:var(--font-utility);font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1rem}
+.band-text h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,4.6vw,3.2rem);line-height:1.12;
+  text-shadow:0 4px 34px rgba(0,0,0,.8)}
+.band-text h3 em{font-style:italic;background:linear-gradient(100deg,#F7E2B4,var(--gold) 45%,var(--rose) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.cine-band.cool .band-text h3 em{background:linear-gradient(100deg,var(--cyan),var(--violet) 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+@media (max-width:700px){
+  .cine-band{height:38vh;min-height:230px}
+  .band-vid{display:none}
+  .cine-band{background:radial-gradient(90% 120% at 50% 100%,rgba(232,187,107,.16),transparent 60%),
+    radial-gradient(90% 120% at 50% 0%,rgba(157,123,255,.2),transparent 60%),var(--night)}
+  .cine-band.cool{background:radial-gradient(90% 120% at 50% 100%,rgba(125,230,255,.14),transparent 60%),
+    radial-gradient(90% 120% at 50% 0%,rgba(157,123,255,.22),transparent 60%),var(--night)}
+}
+@media (prefers-reduced-motion:reduce){.band-vid{display:none}}
+
 /* featured purple card (live) */
 .feat-card{display:grid;grid-template-columns:320px 1fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:center;
   border-radius:28px;padding:clamp(1.8rem,4vw,3rem);margin-bottom:4.5rem;position:relative;overflow:hidden;isolation:isolate;
@@ -791,7 +851,6 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
     <video id="heroVid" muted loop playsinline preload="none">
       <source src="hero-bg.mp4" type="video/mp4">
     </video>
-    <div class="hv-grade"></div>
     <div class="hv-fade"></div>
     <div class="hv-shine"></div>
   </div>
@@ -799,11 +858,30 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
     <div class="hero-inner">
       <p class="eyebrow rv">Author · Self-Help · Guided Journals</p>
       <h1 class="rv rv-d1"><span class="grad-name">Vishal Hingol</span></h1>
-      <p class="lede rv rv-d2">Books and 90-day guided journals for people who are done waiting for change — and ready to write it into existence, one page at a time.</p>
-      <div class="hero-ctas rv rv-d3">
-        <a class="btn btn-gold" href="#library">Browse the Books <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="mentor.html">Free Mentor Call</a>
-        <a class="btn btn-ghost" href="about.html">About Vishal Hingol</a>
+      <div class="show-stage rv rv-d2">
+        <div class="show-slide is-on" aria-hidden="false">
+          <p class="show-eyebrow">// The Library</p>
+          <p class="show-line">Books &amp; 90-day guided journals for people <em>done waiting for change.</em></p>
+          <div class="hero-ctas"><a class="btn btn-gold" href="#library">Browse the Books <span class="arr">→</span></a></div>
+        </div>
+        <div class="show-slide" aria-hidden="true">
+          <p class="show-eyebrow">⭐ Gold Star Premium · Deep Signal</p>
+          <p class="show-line">Member editions that go <em>deeper than books.</em></p>
+          <div class="hero-ctas"><a class="btn btn-gold" href="#deepsignal">Explore Premium — $5/month <span class="arr">→</span></a></div>
+        </div>
+        <div class="show-slide" aria-hidden="true">
+          <p class="show-eyebrow">// Work With Vishal · 1 : 1</p>
+          <p class="show-line">Reading helped. <em>Talking it through helps more.</em></p>
+          <div class="hero-ctas"><a class="btn btn-gold" href="mentor.html">Book Your Free Intro Call <span class="arr">→</span></a></div>
+        </div>
+      </div>
+      <div class="show-progress rv rv-d3" role="tablist" aria-label="Hero highlights">
+        <button class="show-pill active" role="tab" aria-label="Highlight 1: The Library"><span class="fill"></span></button>
+        <button class="show-pill" role="tab" aria-label="Highlight 2: Deep Signal Premium"><span class="fill"></span></button>
+        <button class="show-pill" role="tab" aria-label="Highlight 3: Mind Coaching"><span class="fill"></span></button>
+      </div>
+      <div class="hero-quiet rv rv-d3">
+        <a href="mentor.html">Free Mentor Call</a><span>·</span><a href="about.html">About Vishal Hingol</a>
       </div>
       <div class="hero-soon rv rv-d3">
         <span class="cta-audio" title="Audiobooks are coming to the universe">
@@ -942,6 +1020,16 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
 </section>
 
 <!-- ================= THE LIBRARY ================= -->
+<!-- ============ CINE-BAND: enter the library ============ -->
+<section class="cine-band" aria-label="Enter the library">
+  <video class="band-vid" muted loop playsinline preload="none" data-src="band-library.mp4" aria-hidden="true"></video>
+  <div class="band-veil" aria-hidden="true"></div>
+  <div class="band-text rv">
+    <p class="band-eyebrow">// Enter the Library</p>
+    <h3>Eighteen doors.<br><em>One universe.</em></h3>
+  </div>
+</section>
+
 <section class="library" id="library">
   <div class="wrap" style="text-align:center">
     <p class="eyebrow rv" style="justify-content:center">// The Library</p>
@@ -1333,6 +1421,16 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
   </div>
 </section>
 
+<!-- ============ CINE-BAND: meet the author ============ -->
+<section class="cine-band cool" aria-label="Meet the author">
+  <video class="band-vid" muted loop playsinline preload="none" data-src="band-author.mp4" aria-hidden="true"></video>
+  <div class="band-veil" aria-hidden="true"></div>
+  <div class="band-text rv">
+    <p class="band-eyebrow">// Meet the Author</p>
+    <h3>The signal has <em>a source.</em></h3>
+  </div>
+</section>
+
 <!-- ================= ORIGIN ================= -->
 <section class="origin" id="about">
   <div class="wrap">
@@ -1476,15 +1574,90 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
   });
 
 
+  /* ---------- cine-bands: lazy video, plays only in view ---------- */
+  (function(){
+    var bands = document.querySelectorAll(".band-vid");
+    if(!bands.length) return;
+    if(window.innerWidth <= 700 || reduced){
+      bands.forEach(function(v){ v.remove(); });
+      return;
+    }
+    if(!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v = en.target;
+        if(en.isIntersecting){
+          if(!v.src){ v.src = v.dataset.src; }
+          v.play().catch(function(){});
+        } else {
+          v.pause();
+        }
+      });
+    },{rootMargin:"260px 0px", threshold:0});
+    bands.forEach(function(v){ io.observe(v); });
+    document.addEventListener("visibilitychange", function(){
+      if(document.hidden) bands.forEach(function(v){ v.pause(); });
+    });
+  })();
+
+  /* ---------- Apple-style showcase: slides follow the video's 3 acts ---------- */
+  var ACTS = [0, 4.65, 8.95, 13.62]; /* act boundaries in the 3-act hero video */
+  var slides = document.querySelectorAll(".show-slide");
+  var pills  = document.querySelectorAll(".show-pill");
+  var curSlide = 0, showTimer = null;
+  function setSlide(i){
+    curSlide = i;
+    slides.forEach(function(s,k){
+      s.classList.toggle("is-on", k===i);
+      s.setAttribute("aria-hidden", k===i ? "false" : "true");
+    });
+    pills.forEach(function(p,k){
+      p.classList.remove("active");
+      var f = p.querySelector(".fill");
+      f.style.animation = "none"; void f.offsetWidth; f.style.animation = "";
+      if(k===i){
+        f.style.animationDuration = (ACTS[i+1]-ACTS[i]) + "s";
+        p.classList.add("active");
+      }
+    });
+  }
+  function startTimerLoop(){ /* phones / no video: 5s per slide */
+    clearTimeout(showTimer);
+    ACTS = [0,5,10,15];
+    (function tick(){
+      showTimer = setTimeout(function(){
+        setSlide((curSlide+1)%slides.length); tick();
+      }, (ACTS[curSlide+1]-ACTS[curSlide])*1000);
+    })();
+  }
+  setSlide(0);
+
   /* ---------- hero video: desktop only — phones never load a byte ---------- */
   var hv = document.getElementById("heroVid");
   if(hv && (window.innerWidth <= 700 || reduced)){
     hv.parentElement.remove(); hv = null;
   }
+  if(!hv){
+    startTimerLoop();
+    pills.forEach(function(p,k){
+      p.addEventListener("click", function(){ setSlide(k); startTimerLoop(); });
+    });
+  }
   if(hv){
     hv.preload = "metadata";
     hv.autoplay = true;
     hv.play().catch(function(){});
+    hv.addEventListener("timeupdate", function(){
+      var t = hv.currentTime;
+      var i = t < ACTS[1] ? 0 : (t < ACTS[2] ? 1 : 2);
+      if(i !== curSlide) setSlide(i);
+    });
+    pills.forEach(function(p,k){
+      p.addEventListener("click", function(){
+        hv.currentTime = ACTS[k] + 0.05;
+        setSlide(k);
+      });
+    });
     var hvWrap = hv.parentElement;
     hv.addEventListener("error", function(){ hvWrap.style.display = "none"; }, true);
     var srcEl = hv.querySelector("source");
