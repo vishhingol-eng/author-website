@@ -5,13 +5,13 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TWQE2GSNBD');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>⭐ The Elite Archive — Every Premium Edition · Vishal Hingol</title>
-<meta name="description" content="The premium Gold Star editions of The Signal by Vishal Hingol — full-depth pieces with animated data visualizations, 4-step practice frameworks, and the mechanisms behind the mindset. $5/month.">
+<title>The Signal — Every Free Edition · Vishal Hingol</title>
+<meta name="description" content="Every free edition of The Signal by Vishal Hingol — weekly mindset, manifestation, the 369 method, subconscious reprogramming, and frequency. Free forever.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://vishalhingolauthor.com/the-signal-archive.html">
-<meta property="og:title" content="⭐ The Elite Archive — Premium Editions">
-<meta property="og:description" content="Every Gold Star Premium edition in one place. Deep-dive mindset, manifestation, and frequency.">
-<meta property="og:url" content="https://vishalhingolauthor.com/the-signal-archive.html">
+<link rel="canonical" href="https://vishalhingolauthor.com/free-newsletter.html">
+<meta property="og:title" content="The Signal — Free Editions">
+<meta property="og:description" content="Every free edition in one place. Weekly mindset, manifestation, and frequency — free forever.">
+<meta property="og:url" content="https://vishalhingolauthor.com/free-newsletter.html">
 <meta property="og:image" content="https://vishalhingolauthor.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -313,29 +313,35 @@ footer{border-top:1px solid var(--line);padding:clamp(32px,5vw,56px) clamp(20px,
   <canvas id="header-canvas" aria-hidden="true"></canvas>
   <div class="page-header-scrim"></div>
   <div class="page-header-content">
-    <div class="ph-eyebrow">⭐ The Elite Archive · Premium Editions</div>
-    <h1>Every Premium Edition.<br><em>In One Place.</em></h1>
-    <p>Full-depth Gold Star exclusives — the mechanisms behind the mindset, animated data visualizations, and 4-step practice frameworks. Your premium signal library.</p>
+    <div class="ph-eyebrow">The Signal · Free Editions</div>
+    <h1>Every Free Edition.<br><em>In One Place.</em></h1>
+    <p>Weekly mindset, manifestation, and frequency — free forever. Your complete free signal library: no cost, no filler, no algorithm.</p>
     <div class="ph-stats" id="phStats">
       <div class="ph-stat">
         <span class="ph-stat-num" id="statTotal">—</span>
-        <span class="ph-stat-label">⭐ Premium Editions</span>
+        <span class="ph-stat-label">Free Editions</span>
       </div>
     </div>
     </div>
 </header>
 
+<!-- Latest Premium Edition — auto-updating upsell teaser -->
+<section id="premiumTeaserSection" style="max-width:1380px;margin:0 auto;padding:clamp(20px,3vw,32px) clamp(20px,4vw,48px) 0;display:none">
+  <p style="font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 12px">⭐ Latest from Deep Signal Premium</p>
+  <div id="premiumTeaserSlot"></div>
+</section>
+
 <!-- Subscribe band -->
 <section style="max-width:1200px;margin:clamp(20px,4vw,36px) auto 0;padding:0 clamp(20px,5vw,60px)">
-  <div style="border-radius:20px;border:1px solid rgba(232,187,107,.22);background:linear-gradient(145deg,rgba(232,187,107,.06),rgba(157,123,255,.05));padding:clamp(20px,3.5vw,30px)">
+  <div style="border-radius:20px;border:1px solid rgba(125,230,255,.22);background:linear-gradient(145deg,rgba(125,230,255,.06),rgba(157,123,255,.05));padding:clamp(20px,3.5vw,30px)">
     <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center">
       <div style="min-width:220px">
-        <p style="font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 6px">⭐ Deep Signal Premium</p>
-        <p style="color:var(--paper);font-size:15px;line-height:1.5;margin:0">Get every premium edition in your inbox. A free account is required to read full editions. <a href="/free-newsletter.html" style="color:var(--gold);text-decoration:none;white-space:nowrap">Looking for free editions? &rarr;</a></p>
+        <p style="font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:0 0 6px">The Signal · Free Weekly</p>
+        <p style="color:var(--paper);font-size:15px;line-height:1.5;margin:0">Get every free edition in your inbox. Free forever, five minutes a week. <a href="/the-signal-archive.html" style="color:var(--cyan);text-decoration:none;white-space:nowrap">Want premium editions? &rarr;</a></p>
       </div>
       <form id="arcNlForm" style="display:flex;gap:8px;flex-wrap:wrap">
         <input id="arcNlEmail" type="email" required placeholder="you@email.com" style="flex:1;min-width:180px;padding:12px 16px;border-radius:100px;border:1px solid var(--line);background:rgba(5,7,21,.6);color:var(--paper);font-size:14px;outline:none">
-        <button type="submit" id="arcNlBtn" style="padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night)">Subscribe</button>
+        <button type="submit" id="arcNlBtn" style="padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--cyan),#B0F0FF);color:var(--night)">Subscribe</button>
       </form>
     </div>
     <p id="arcNlMsg" style="font-size:13px;margin:10px 2px 0;min-height:18px"></p>
@@ -1110,10 +1116,50 @@ function hexToRgb(hex){
 /* ════════════════════════════════════════════
    LOAD DATA & INIT
 ════════════════════════════════════════════ */
+function buildPremiumTeaserCard(e){
+  var slug=e.slug;
+  return `
+  <div class="hero-card style-${e.style} is-premium reveal" id="premium-teaser-card" onclick="window.location='/editions/${slug}.html'">
+    <canvas id="premium-teaser-art" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+    <div class="hero-scrim"></div>
+    <span class="hero-popular-badge">\u2b50 Latest Premium</span>
+    <div class="hero-content">
+      <div class="hero-meta-row">
+        <span class="hero-badge">\u2b50 Gold Star Premium</span>
+        <span class="hero-edition-num">Edition #${e.num}</span>
+        <span class="hero-tag">${e.tag}</span>
+      </div>
+      <h2 class="hero-title">${e.title.replace(/\*(.+?)\*/g,'<em>$1</em>')}</h2>
+      <p class="hero-subtitle">${e.subtitle}</p>
+      <div class="hero-cta-row">
+        <a href="/editions/${slug}.html" class="hero-cta premium" onclick="event.stopPropagation()">Read Premium Preview \u2192</a>
+        <span class="hero-read-time">${e.readTime} min read \u00b7 ${fmtDate(e.date)}</span>
+      </div>
+    </div>
+  </div>`;
+}
+function initPremiumTeaserAnim(e){
+  var cv=document.getElementById('premium-teaser-art'); if(!cv)return;
+  var seed=e.num*31+7, dpr=window.devicePixelRatio||1, ctx=cv.getContext('2d'), W,H,tick=0;
+  function rs(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  rs();
+  var data=initAnimData(e.style,mkPRNG(seed+1));
+  var st=STYLES[e.style]||STYLES.rings;
+  (function loop(){tick++;ctx.clearRect(0,0,W,H);drawCardStyle(ctx,e.style,W,H,tick,st,data,mkPRNG(seed+tick));requestAnimationFrame(loop);})();
+  window.addEventListener('resize',rs,{passive:true});
+  setTimeout(function(){var c=document.getElementById('premium-teaser-card');if(c)c.classList.add('visible');},50);
+}
+
 fetch('/editions.json?v='+Date.now(),{cache:'no-store'})
   .then(r=>r.json())
   .then(data=>{
-    allEditions=(data.editions||[]).filter(function(e){return e.type==='premium';}).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    var _raw=(data.editions||[]);
+    var _prem=_raw.filter(function(e){return e.type==='premium';}).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    if(_prem.length){
+      var _sec=document.getElementById('premiumTeaserSection'), _slot=document.getElementById('premiumTeaserSlot');
+      if(_sec&&_slot){ _slot.innerHTML=buildPremiumTeaserCard(_prem[0]); _sec.style.display='block'; requestAnimationFrame(function(){initPremiumTeaserAnim(_prem[0]);}); }
+    }
+    allEditions=_raw.filter(function(e){return e.type==='free';}).sort((a,b)=>new Date(b.date)-new Date(a.date));
 
     // Update header stats
     const prem=allEditions.filter(e=>e.type==='premium').length;
