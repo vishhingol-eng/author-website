@@ -44,22 +44,34 @@ a{color:inherit;text-decoration:none}
 .style-flow   {--accent:var(--rose);  --accent2:var(--violet)}
 .style-crystal{--accent:var(--violet);--accent2:var(--cyan)}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(5,7,21,.88);backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
-.nav-brand{font-family:var(--display);font-size:17px;color:var(--paper);letter-spacing:-.01em}
-.nav-brand em{font-style:italic;color:var(--gold)}
-.nav-links{display:flex;gap:clamp(12px,2vw,24px);align-items:center}
-.nav-links a{font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--paper)}
-.nav-links a.active{color:var(--gold)}
-.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
-.hamburger span{display:block;width:20px;height:2px;background:var(--paper);border-radius:2px}
-.mob-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,7,21,.97);flex-direction:column;align-items:center;justify-content:center;gap:20px}
-.mob-overlay.open{display:flex}
-.mob-overlay a{font-family:var(--tech);font-size:15px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);padding:10px}
-.mob-overlay a:hover{color:var(--gold)}
-.mob-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--paper);font-size:26px;cursor:pointer}
-@media(max-width:700px){.nav-links{display:none!important}.hamburger{display:flex}}
+/* ── SITE NAV (matches index.html) ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s cubic-bezier(.22,1,.36,1),backdrop-filter .5s cubic-bezier(.22,1,.36,1);border-bottom:1px solid transparent}
+.nav.solid{background:rgba(5,7,21,.72);backdrop-filter:blur(18px);border-color:var(--line)}
+.nav-in{width:min(1280px,94%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;padding:1.05rem 0}
+.brand{font-family:var(--display);font-size:1.22rem;letter-spacing:.01em;color:var(--paper);text-decoration:none}
+.brand em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:1.35rem;list-style:none;margin:0;padding:0}
+.nav-links a{font-family:var(--tech);font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);position:relative;padding:.35rem 0;transition:color .35s;text-decoration:none}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:linear-gradient(90deg,var(--gold),var(--cyan));transition:width .45s cubic-bezier(.22,1,.36,1)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{border:1px solid rgba(232,187,107,.45);color:var(--gold)!important;padding:.55rem 1.25rem!important;border-radius:100px;transition:background .35s,color .35s}
+.nav-cta:hover{background:var(--gold);color:#1A1206!important}
+.nav-cta::after{display:none}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:40px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--paper);transition:.35s cubic-bezier(.22,1,.36,1)}
+.burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:26px}
+.burger.x span:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0}
+.burger.x span:nth-child(3){top:20px;transform:rotate(-45deg)}
+@media (max-width:1180px){
+  .nav-links{position:fixed;inset:0;background:rgba(5,7,21,.96);backdrop-filter:blur(24px);flex-direction:column;justify-content:center;gap:2.4rem;opacity:0;pointer-events:none;transition:opacity .45s cubic-bezier(.22,1,.36,1)}
+  .nav-links.open{opacity:1;pointer-events:auto}
+  .nav-links a{font-size:1rem}
+  .burger{display:block;z-index:70}
+}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:8px 16px;transition:color .25s,border-color .25s}
+.back-btn:hover{color:var(--paper);border-color:rgba(232,187,107,.4)}
 
 /* ── PAGE HEADER ── */
 .page-header{padding:clamp(110px,14vw,160px) clamp(20px,6vw,80px) clamp(32px,5vw,56px);text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -273,46 +285,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .reveal.visible{opacity:1;transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.reveal,.hero-card,.ed-card{transition:none!important;opacity:1!important;transform:none!important}}
 
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--line);padding:clamp(32px,5vw,56px) clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
-.footer-brand{font-family:var(--display);font-size:17px;color:rgba(244,238,226,.45)}
-.footer-brand strong{color:var(--paper);font-style:normal}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a{font-family:var(--tech);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);transition:color .2s}
-.footer-links a:hover{color:var(--gold)}
+/* ── SITE FOOTER (matches index.html) ── */
+.wrap{width:min(1180px,92%);margin-inline:auto}
+footer{border-top:1px solid var(--line);padding:4rem 0 2.5rem;background:linear-gradient(180deg,transparent,rgba(7,10,24,.8));margin-top:clamp(48px,8vw,90px)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem}
+.foot-grid h5{font-family:var(--tech);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;font-weight:500}
+.foot-grid ul{list-style:none;display:grid;gap:.6rem;margin:0;padding:0}
+.foot-grid a{color:var(--mist);font-size:.9rem;transition:color .3s;text-decoration:none}
+.foot-grid a:hover{color:var(--paper)}
+.foot-brand p{color:var(--mist);font-size:.9rem;max-width:34ch;margin-top:.8rem}
+.foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-family:var(--tech);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist)}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a class="nav-brand" href="/">Vishal <em>Hingol</em></a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/store.html">Books</a>
-    <a href="/newsletter.html" class="active">Newsletter</a>
-    <a href="/mentor.html">Mentorship</a>
-    <a href="/account.html" id="navAccount">Account</a>
+<!-- ── SITE NAV (matches index.html) ── -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Vishal <em>Hingol</em></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#library">Books</a></li>
+        <li><a href="/store.html">Store</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/mentor.html">Mentorship</a></li>
+        <li><a href="/newsletter.html">Newsletter</a></li>
+        <li><a href="/shop.html">Fashion</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/account.html" id="navAccount">Account</a></li>
+        <li><a href="/policies.html" style="color:var(--gold)">Policies</a></li>
+        <li><a class="nav-cta" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon&nbsp;↗</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mob-overlay" id="mobNav">
-  <button class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')">✕</button>
-  <a href="/" onclick="document.getElementById('mobNav').classList.remove('open')">Home</a>
-  <a href="/store.html" onclick="document.getElementById('mobNav').classList.remove('open')">Books</a>
-  <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Newsletter</a>
-  <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
-  <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
-</div>
+</header>
 
 <!-- ── PAGE HEADER ── -->
 <header class="page-header">
   <canvas id="header-canvas" aria-hidden="true"></canvas>
   <div class="page-header-scrim"></div>
   <div class="page-header-content">
+    <a class="back-btn" href="/newsletter.html" style="margin-bottom:20px">← Back to Newsletter</a>
     <div class="ph-eyebrow">The Signal · Free Editions</div>
     <h1>Every Free Edition.<br><em>In One Place.</em></h1>
     <p>Weekly mindset, manifestation, and frequency — free forever. Your complete free signal library: no cost, no filler, no algorithm.</p>
@@ -381,14 +398,44 @@ footer{border-top:1px solid var(--line);padding:clamp(32px,5vw,56px) clamp(20px,
   </main>
 </div>
 
+<!-- ── SITE FOOTER (matches index.html) ── -->
 <footer>
-  <span class="footer-brand"><strong>Vishal Hingol</strong> · The Signal</span>
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/newsletter.html">Subscribe</a>
-    <a href="/store.html">Books</a>
-    <a href="/mentor.html">Mentorship</a>
-    <a href="/policies.html">Policies</a>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">Vishal <em>Hingol</em></a>
+        <p>Author of mindset, manifestation, visionary fiction and AI for business. Available worldwide on Amazon.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="/store.html">Bookstore</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/mentor.html">Mentorship</a></li>
+          <li><a href="/shop.html">Signal Fashion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a></li>
+          <li><a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="https://x.com/Authorvhingol" target="_blank" rel="noopener">Twitter ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Account</h5>
+        <ul>
+          <li><a href="/account.html">My account</a></li>
+          <li><a href="/newsletter.html">Newsletter</a></li>
+          <li><a href="/policies.html">Policies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Vishal Hingol. All rights reserved.</span>
+      <span>Ahmedabad, Gujarat, India · Writing for the world</span>
+    </div>
   </div>
 </footer>
 
@@ -1191,6 +1238,17 @@ fetch('/editions.json?v='+Date.now(),{cache:'no-store'})
       }).catch(function(){msg.style.color='#FF9B9B';msg.textContent='Network error. Please try again.';})
       .finally(function(){btn.disabled=false;btn.textContent='Subscribe';});
   });
+})();
+</script>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){ var onScroll=function(){nav.classList.toggle('solid',window.scrollY>24);}; window.addEventListener('scroll',onScroll,{passive:true}); onScroll(); }
+  var burger=document.getElementById('burger'), links=document.getElementById('navLinks');
+  if(burger&&links){
+    burger.addEventListener('click',function(){var open=links.classList.toggle('open');burger.classList.toggle('x',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');});
+    links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');burger.classList.remove('x');burger.setAttribute('aria-expanded','false');}});
+  }
 })();
 </script>
 </body>
