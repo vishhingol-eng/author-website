@@ -463,6 +463,42 @@ footer a{color:var(--gold)}
     <p class="hero-sub">Weekly mindset frameworks, manifestation techniques, and behind-the-book stories from the author of 17+ books — read by people in 47+ countries who are done scrolling and ready to think. Free forever. Five minutes a week. No fluff, no filler, no algorithm deciding what you see.</p>
   </div>
 
+  <!-- Two Archives — animated chooser -->
+  <div style="margin-bottom:clamp(48px,8vw,80px)">
+    <p class="hero-eyebrow" style="text-align:center">// Two Archives</p>
+    <h2 class="archive-title" style="text-align:center;margin-bottom:8px">Explore the <em>Signal.</em></h2>
+    <p style="color:var(--mist);font-size:15px;text-align:center;max-width:560px;margin:0 auto clamp(24px,4vw,34px)">Every edition, organized in one place. Read free forever &mdash; or unlock the premium Elite Archive.</p>
+    <div class="tiers" style="margin-bottom:0">
+
+      <!-- ELITE ARCHIVE (premium) -->
+      <a href="/the-signal-archive.html" class="arch-card" data-accent="gold" style="position:relative;display:block;text-decoration:none;border-radius:22px;overflow:hidden;min-height:280px;border:1px solid rgba(232,187,107,.32);background:#0A0614;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 26px 64px rgba(0,0,0,.5),0 0 60px rgba(232,187,107,.18)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <canvas class="arch-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,15,.15),rgba(5,5,15,.55) 60%,rgba(5,5,15,.88))"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#E8BB6B,#F5D080,transparent);z-index:2"></div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;justify-content:flex-end;padding:clamp(24px,3.5vw,32px)">
+          <span style="align-self:flex-start;font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);padding:5px 12px;border-radius:100px;margin-bottom:14px">⭐ Premium</span>
+          <h3 style="font-family:var(--display);font-size:clamp(24px,3.4vw,32px);font-weight:400;color:var(--paper);line-height:1.08;margin-bottom:8px">The Elite <em style="font-style:italic;background:linear-gradient(110deg,#E8BB6B,#F5D080,#FFF0B0);-webkit-background-clip:text;background-clip:text;color:transparent">Archive</em></h3>
+          <p style="font-size:14px;color:#C9CEE6;line-height:1.55;margin-bottom:18px;max-width:38ch">Gold Star editions &mdash; full-depth deep-dives with the mechanisms behind the mindset, animated and exclusive.</p>
+          <span style="font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)">Open Elite Archive →</span>
+        </div>
+      </a>
+
+      <!-- FREE ARCHIVE -->
+      <a href="/free-newsletter.html" class="arch-card" data-accent="cyan" style="position:relative;display:block;text-decoration:none;border-radius:22px;overflow:hidden;min-height:280px;border:1px solid rgba(125,230,255,.28);background:#050A12;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 26px 64px rgba(0,0,0,.45),0 0 54px rgba(125,230,255,.14)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <canvas class="arch-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,18,.15),rgba(5,7,18,.55) 60%,rgba(5,7,18,.88))"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7DE6FF,transparent);z-index:2"></div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;justify-content:flex-end;padding:clamp(24px,3.5vw,32px)">
+          <span style="align-self:flex-start;font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--night);background:linear-gradient(110deg,var(--cyan),#B0F0FF);padding:5px 12px;border-radius:100px;margin-bottom:14px">Free</span>
+          <h3 style="font-family:var(--display);font-size:clamp(24px,3.4vw,32px);font-weight:400;color:var(--paper);line-height:1.08;margin-bottom:8px">Free <em style="font-style:italic;color:var(--cyan)">Archive</em></h3>
+          <p style="font-size:14px;color:#C9CEE6;line-height:1.55;margin-bottom:18px;max-width:38ch">Every free edition &mdash; weekly mindset, manifestation, and frequency. Free forever, no account needed.</p>
+          <span style="font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)">Open Free Archive →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
   <!-- Editor's Top Picks — Holographic Glass Cards -->
   <div class="picks-section">
     <p class="archive-eyebrow">// Editor's Top Picks</p>
@@ -525,23 +561,6 @@ footer a{color:var(--gold)}
 
     </div>
   </div>
-
-  <!-- Deep Signal Premium — teaser (full showcase lives on /premium-newsletter.html) -->
-  <a href="/premium-newsletter.html" class="gsp-section" style="display:block;text-decoration:none;position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#0D0800,#110A02,#0A0614);border:1px solid rgba(232,187,107,.3);padding:clamp(28px,4vw,42px);margin-bottom:clamp(48px,8vw,80px);isolation:isolate;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 28px 64px rgba(0,0,0,.5),0 0 60px rgba(232,187,107,.18)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,187,107,.22),transparent 65%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(157,123,255,.18),transparent 60%)"></div>
-    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#E8BB6B,#F5D080,transparent)"></div>
-    <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1a0e00;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);padding:5px 14px;border-radius:100px;margin-bottom:14px">&#11088; Gold Star Premium</div>
-        <h2 style="font-family:var(--display);font-size:clamp(22px,3.4vw,32px);font-weight:700;color:#F4EEE2;line-height:1.12;letter-spacing:-.02em;margin-bottom:10px">Want to go <em style="font-style:italic;background:linear-gradient(110deg,#E8BB6B,#F5D080,#FFF0B0);-webkit-background-clip:text;background-clip:text;color:transparent">deeper?</em></h2>
-        <p style="font-size:14.5px;color:#9AA1C7;line-height:1.6;max-width:520px">Deep Signal unlocks full-depth Gold Star editions, the &#11088; Elite Archive, animated data visualizations, and monthly Q&amp;A &mdash; the mechanisms behind the mindset, not just the surface idea. $5/month.</p>
-      </div>
-      <div style="flex-shrink:0;text-align:center">
-        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(110deg,#B8842A,#E8BB6B,#FFF0B0);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 28px rgba(232,187,107,.4);margin-bottom:8px">&rarr;</div>
-        <div style="font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,187,107,.6)">Explore Premium</div>
-      </div>
-    </div>
-  </a>
 
   <!-- Two tiers -->
   <div class="tiers">
@@ -1151,6 +1170,33 @@ if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
       const list = document.getElementById('archiveList');
       if(list) list.innerHTML = '<div class="archive-empty">Archive loading… <a href="/newsletter.html" style="color:var(--gold)">Refresh to try again</a></div>';
     });
+})();
+</script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('.arch-card').forEach(function(card){
+    var cv=card.querySelector('.arch-canvas'); if(!cv)return;
+    var gold=card.getAttribute('data-accent')==='gold';
+    var A=gold?[232,187,107]:[125,230,255], B=[157,123,255];
+    var ctx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W=1,H=1,t=0,parts=[];
+    function rs(){W=cv.offsetWidth||1;H=cv.offsetHeight||1;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+    rs();
+    for(var i=0;i<46;i++)parts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.4,s:Math.random()*.28+.05,o:Math.random()*.5+.18,p:Math.random()*6.28});
+    function frame(){
+      t+=0.006; ctx.clearRect(0,0,W,H);
+      var cx=W*0.5+Math.sin(t)*W*0.08, cy=H*0.4+Math.cos(t*0.8)*H*0.06;
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.62);
+      g.addColorStop(0,'rgba('+A[0]+','+A[1]+','+A[2]+',0.30)');
+      g.addColorStop(0.5,'rgba('+B[0]+','+B[1]+','+B[2]+',0.10)');
+      g.addColorStop(1,'rgba('+A[0]+','+A[1]+','+A[2]+',0)');
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){var p=parts[i];p.y-=p.s;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}var tw=(p.o*(0.55+0.45*Math.sin(t*3+p.p))).toFixed(3);ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fillStyle='rgba('+A[0]+','+A[1]+','+A[2]+','+tw+')';ctx.fill();}
+      if(!reduce)requestAnimationFrame(frame);
+    }
+    frame();
+    window.addEventListener('resize',rs,{passive:true});
+  });
 })();
 </script>
 </body>

@@ -296,6 +296,11 @@ footer{border-top:1px solid var(--line);padding:4rem 0 2.5rem;background:linear-
 .foot-brand p{color:var(--mist);font-size:.9rem;max-width:34ch;margin-top:.8rem}
 .foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-family:var(--tech);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mist)}
 @media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+/* ── Premium paywall: blur until subscribed ── */
+body.ea-locked #editionsContainer,
+body.ea-locked #heroSlot{filter:blur(8px) brightness(.72);pointer-events:none;user-select:none;transition:filter .4s}
+.ea-paywall{max-width:660px;margin:0 auto clamp(26px,4vw,40px);text-align:center;border:1px solid rgba(232,187,107,.32);border-radius:20px;padding:clamp(24px,4vw,34px);background:linear-gradient(145deg,rgba(232,187,107,.08),rgba(10,14,34,.55))}
 </style>
 </head>
 <body>
@@ -1203,6 +1208,28 @@ fetch('/editions.json?v='+Date.now(),{cache:'no-store'})
     burger.addEventListener('click',function(){var open=links.classList.toggle('open');burger.classList.toggle('x',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');});
     links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');burger.classList.remove('x');burger.setAttribute('aria-expanded','false');}});
   }
+})();
+</script>
+<script>
+(function(){
+  var EP='https://subscribe.vishalhingolauthor.com';
+  function lock(){
+    if(document.body.classList.contains('ea-locked'))return;
+    document.body.classList.add('ea-locked');
+    var host=document.getElementById('heroSlot'); if(!host||document.querySelector('.ea-paywall'))return;
+    var b=document.createElement('div'); b.className='ea-paywall';
+    b.innerHTML='<p style="font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 10px">\uD83D\uDD12 Elite Archive \u00b7 Members only</p>'+
+      '<h3 style="font-family:var(--display);font-weight:400;font-size:clamp(20px,3vw,27px);color:var(--paper);margin:0 0 8px">Subscribe to unlock every premium edition</h3>'+
+      '<p style="color:var(--mist);font-size:14px;line-height:1.55;margin:0 auto 18px;max-width:44ch">These Gold Star editions \u2014 and every future one \u2014 unlock the moment you become a Deep Signal member. $5/month, cancel anytime.</p>'+
+      '<a href="/premium-newsletter.html" style="display:inline-block;padding:13px 28px;border-radius:100px;font-family:var(--tech);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);text-decoration:none">Unlock the Elite Archive \u2192</a>';
+    host.parentNode.insertBefore(b,host);
+  }
+  try{
+    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
+      .then(function(r){return r.json();})
+      .then(function(d){ var ok=d&&d.loggedIn&&d.isPremium!==false; if(ok)return; lock(); })
+      .catch(function(){ lock(); });
+  }catch(e){ lock(); }
 })();
 </script>
 </body>
