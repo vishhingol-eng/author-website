@@ -7,6 +7,36 @@
   var eco = (navigator.hardwareConcurrency||8) <= 4 || ((navigator.deviceMemory||8) <= 4);
   if(eco){ document.documentElement.classList.add("eco"); }
 
+  /* ---- live GPU/compositor probe ----
+     hardwareConcurrency/deviceMemory tell you nothing about GPU headroom, which is
+     what the aurora blend-mode blobs + nav backdrop-filter actually cost. Instead,
+     measure real frame times for ~1s right after load; if the page can't hold a
+     healthy pace even doing nothing yet, mark it "gpu-weak" and the CSS strips the
+     two most expensive effects (see main.css eco-mode block). */
+  if(!reduced && !eco && "requestAnimationFrame" in window){
+    var probeFrames = 0, probeStart = null, probeBad = 0;
+    (function probe(now){
+      if(probeStart === null) probeStart = now;
+      probeFrames++;
+      if(probeFrames > 1){
+        var dt = now - probe.last;
+        if(dt > 26) probeBad++; /* a healthy 60fps frame is ~16.6ms; ~26ms+ means the device is straining even at idle */
+      }
+      probe.last = now;
+      if(now - probeStart < 900){
+        requestAnimationFrame(probe);
+      } else if(probeBad / probeFrames > 0.35){
+        document.documentElement.classList.add("gpu-weak");
+      }
+    })();
+  }
+
+  /* pause fixed, always-on decorations (aurora) the instant the tab is backgrounded —
+     CSS animations keep ticking in background tabs otherwise */
+  document.addEventListener("visibilitychange", function(){
+    document.documentElement.classList.toggle("tab-hidden", document.hidden);
+  });
+
   /* ---------- nav ---------- */
   var nav = document.getElementById("nav");
   var onScroll = function(){ nav.classList.toggle("solid", window.scrollY > 24); };
@@ -332,8 +362,16 @@ function makePRNG2(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+10139
   let W,H,dpr;const rng=makePRNG2(88888);let rings=[];const MAX_RINGS=150;let ringCount=0;let gsOn=false;
   const gsHost=document.querySelector('.gs-feature-inner');
   if(gsHost&&'IntersectionObserver'in window){new IntersectionObserver(es=>{es.forEach(e=>{gsOn=e.isIntersecting})},{threshold:.05}).observe(gsHost)}else{gsOn=true}
+  var glowGrd1=null,glowGrd2=null;
+  function buildGlowGradients(){
+    const W2=W*0.62,H2=H*0.5;
+    glowGrd1=ctx.createRadialGradient(W2,H2,0,W2,H2,90);
+    glowGrd1.addColorStop(0,'rgba(232,187,107,.22)');glowGrd1.addColorStop(0.5,'rgba(200,120,30,.08)');glowGrd1.addColorStop(1,'transparent');
+    glowGrd2=ctx.createRadialGradient(W2,H2,0,W2,H2,28);
+    glowGrd2.addColorStop(0,'rgba(255,215,120,.35)');glowGrd2.addColorStop(1,'transparent');
+  }
   function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);const parent=canvas.parentElement;W=parent.offsetWidth;H=parent.offsetHeight;
-    canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr);if(rings.length===0)initRings()}
+    canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr);if(rings.length===0)initRings();buildGlowGradients()}
   function initRings(){rings=[];ringCount=0;for(let i=0;i<MAX_RINGS*0.65;i++)spawnRing(true)}
   function spawnRing(instant){const t=ringCount/MAX_RINGS;const cx=W*0.62,cy=H*0.5;
     rings.push({cx,cy,r:6+t*Math.min(W,H)*0.62,jx:(rng()-0.5)*Math.min(W,H)*0.05,jy:(rng()-0.5)*Math.min(W,H)*0.05,
@@ -359,12 +397,19 @@ function makePRNG2(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+10139
       ctx.strokeStyle=`rgba(${Math.max(0,Math.min(255,rv))},${Math.max(0,Math.min(255,gv))},${Math.max(0,Math.min(255,bv))},${ring.alpha*(1+breathe)})`;
       ctx.lineWidth=ring.lw;ctx.stroke()});
     if(rings.length>10){const W2=W*0.62,H2=H*0.5;
-      const grd1=ctx.createRadialGradient(W2,H2,0,W2,H2,90);grd1.addColorStop(0,'rgba(232,187,107,.22)');grd1.addColorStop(0.5,'rgba(200,120,30,.08)');grd1.addColorStop(1,'transparent');
-      ctx.fillStyle=grd1;ctx.beginPath();ctx.arc(W2,H2,90,0,Math.PI*2);ctx.fill();
-      const grd2=ctx.createRadialGradient(W2,H2,0,W2,H2,28);grd2.addColorStop(0,'rgba(255,215,120,.35)');grd2.addColorStop(1,'transparent');
-      ctx.fillStyle=grd2;ctx.beginPath();ctx.arc(W2,H2,28,0,Math.PI*2);ctx.fill()}}
+      if(!glowGrd1)buildGlowGradients();
+      ctx.fillStyle=glowGrd1;ctx.beginPath();ctx.arc(W2,H2,90,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=glowGrd2;ctx.beginPath();ctx.arc(W2,H2,28,0,Math.PI*2);ctx.fill()}}
   resize();initWaves();
-  function loop(){if(gsOn&&!document.hidden)draw();requestAnimationFrame(loop)}loop();
+  var last1=0,INTERVAL1=1000/30; /* match the sky engine's 30fps cap — half the redraw cost, same look */
+  function loop(now){
+    requestAnimationFrame(loop);
+    if(!gsOn||document.hidden) return;
+    if(now-last1<INTERVAL1) return;
+    last1=now;
+    draw();
+  }
+  requestAnimationFrame(loop);
   window.addEventListener('resize',()=>{resize();initWaves()},{passive:true});
 })();
 
@@ -399,7 +444,15 @@ function makePRNG2(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+10139
       if(p.isGold&&dist<120&&mouse.x>0){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);
         ctx.strokeStyle=`rgba(232,187,107,${0.04*(1-dist/120)})`;ctx.lineWidth=0.5;ctx.stroke()}})}
   resize();
-  function loop(){if(gsOn2&&!document.hidden)draw();requestAnimationFrame(loop)}loop();
+  var last2=0,INTERVAL2=1000/30;
+  function loop(now){
+    requestAnimationFrame(loop);
+    if(!gsOn2||document.hidden) return;
+    if(now-last2<INTERVAL2) return;
+    last2=now;
+    draw();
+  }
+  requestAnimationFrame(loop);
   window.addEventListener('resize',resize,{passive:true});
 })();
 
@@ -416,8 +469,13 @@ function makePRNG2(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+10139
   for(let i=0;i<LEFT_N;i++){const r=spawnLeft();r.life=rngL()*r.maxLife;leftRings.push(r)}
   let vsOn=false;
   if('IntersectionObserver'in window){new IntersectionObserver(es=>{es.forEach(e=>{vsOn=e.isIntersecting})},{threshold:.05}).observe(canvas)}else{vsOn=true}
+  let rightGlow=null;
   function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);W=canvas.offsetWidth;H=H_FIXED;
-    canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.height=H+'px';ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr)}
+    canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.height=H+'px';ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr);
+    const mid=W/2,rcx=mid+mid*0.5,rcy=H*0.5;
+    rightGlow=ctx.createRadialGradient(rcx,rcy,0,rcx,rcy,30);
+    rightGlow.addColorStop(0,'rgba(232,187,107,.15)');rightGlow.addColorStop(1,'transparent');
+  }
   let tick=0;
   function draw(){tick++;ctx.clearRect(0,0,W,H);const mid=W/2;
     ctx.save();ctx.beginPath();ctx.rect(0,0,mid,H);ctx.clip();
@@ -443,12 +501,21 @@ function makePRNG2(seed){let s=seed>>>0;return()=>{s=(Math.imul(s,1664525)+10139
       else ctx.arc(rcx+ring.jx,rcy+ring.jy,ring.r,0,Math.PI*2);
       ctx.strokeStyle=`rgba(${Math.round(232*gt+157*(1-gt))},${Math.round(187*gt+123*(1-gt))},${Math.round(107*gt+255*(1-gt))},${(1-ring.t*.5)*.5})`;
       ctx.lineWidth=ring.lw;ctx.stroke()});
-    if(rightRings.length>8){const g=ctx.createRadialGradient(rcx,rcy,0,rcx,rcy,30);g.addColorStop(0,'rgba(232,187,107,.15)');g.addColorStop(1,'transparent');
-      ctx.fillStyle=g;ctx.beginPath();ctx.arc(rcx,rcy,30,0,Math.PI*2);ctx.fill()}
+    if(rightRings.length>8){if(!rightGlow)resize();
+      ctx.fillStyle=rightGlow;ctx.beginPath();ctx.arc(rcx,rcy,30,0,Math.PI*2);ctx.fill()}
     ctx.font="600 8px 'Space Grotesk',monospace";ctx.fillStyle='rgba(232,187,107,.45)';ctx.textAlign='center';
     ctx.fillText('ACCRETES',rcx,H-10);ctx.restore()}
   resize();
-  if(window.innerWidth<=700){draw()}else{(function loop(){if(vsOn&&!document.hidden)draw();requestAnimationFrame(loop)})()}
+  if(window.innerWidth<=700){draw()}else{
+    var last3=0,INTERVAL3=1000/30;
+    (function loop(now){
+      requestAnimationFrame(loop);
+      if(!vsOn||document.hidden) return;
+      if(now-last3<INTERVAL3) return;
+      last3=now;
+      draw();
+    })();
+  }
   window.addEventListener('resize',resize,{passive:true});
 })();
 
@@ -537,44 +604,43 @@ async function submitNlPopup(){
     msg.textContent = 'Network error. Please try again.';
   }
 }
+/* ---- shared session check ----
+   Both the sign-in reminder and the nav name-swap used to each fire their own
+   independent POST to /check_session on every page load. Same endpoint, same
+   body, same moment — now fetched once and reused by both. */
+function getSessionOnce(){
+  if(!window.__sessionPromise){
+    window.__sessionPromise = fetch('https://subscribe.vishalhingolauthor.com', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({type:'check_session'})
+    }).then(function(r){ return r.json(); }).catch(function(){ return {}; });
+  }
+  return window.__sessionPromise;
+}
+
 (function(){
   if (!localStorage.getItem('cookieOk')) return;
   if (localStorage.getItem('signinDismissed')) return;
-  var ENDPOINT = 'https://subscribe.vishalhingolauthor.com';
-  fetch(ENDPOINT, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    credentials: 'include',
-    body: JSON.stringify({type:'check_session'})
-  }).then(function(r){ return r.json(); }).then(function(data){
+  getSessionOnce().then(function(data){
     if (data && data.loggedIn) return;
     setTimeout(function(){
       var reminder = document.getElementById('signinReminder');
       if (reminder) reminder.style.display = 'block';
     }, 5000);
-  }).catch(function(){});
+  });
 })();
 if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
 
 /* Account nav swap — logged-in visitors see their first name */
 (function(){
-  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
   function firstName(fullName, email){
     if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
     if (email) return email.split('@')[0];
     return 'Account';
   }
-  async function applyLoginStateToNav(){
-    let data;
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        credentials: 'include',
-        body: JSON.stringify({ type: 'check_session' }),
-      });
-      data = await res.json().catch(function(){ return {}; });
-    } catch (err) { return; }
+  getSessionOnce().then(function(data){
     if (!data || !data.loggedIn) return;
     const name = firstName(data.fullName, data.email);
     const links = document.querySelectorAll('#navAccount, a[href="account.html"], a[href="/account.html"]');
@@ -582,6 +648,5 @@ if (localStorage.getItem('cookieOk')) { maybeShowNlPopup(); }
       link.textContent = name;
       link.href = 'my-account.html';
     });
-  }
-  applyLoginStateToNav();
+  });
 })();
