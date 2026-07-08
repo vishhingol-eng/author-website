@@ -112,10 +112,12 @@ h2 em{font-style:italic;
    SKY — desktop canvas + mobile CSS universe (existing pattern)
    ============================================================ */
 .aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;opacity:.5}
-.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:55vw;height:55vw;left:-10%;top:-12%;background:radial-gradient(circle,rgba(157,123,255,.5),transparent 65%);animation:auro1 26s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:48vw;height:48vw;right:-8%;top:18%;background:radial-gradient(circle,rgba(125,230,255,.34),transparent 65%);animation:auro2 32s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:60vw;height:60vw;left:22%;bottom:-22%;background:radial-gradient(circle,rgba(232,187,107,.3),transparent 65%);animation:auro3 38s ease-in-out infinite alternate}
+.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen;will-change:transform}
+.aurora i:nth-child(1){width:38vw;height:38vw;left:-10%;top:-12%;background:radial-gradient(circle,rgba(157,123,255,.5),transparent 65%);animation:auro1 26s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:34vw;height:34vw;right:-8%;top:18%;background:radial-gradient(circle,rgba(125,230,255,.34),transparent 65%);animation:auro2 32s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:42vw;height:42vw;left:22%;bottom:-22%;background:radial-gradient(circle,rgba(232,187,107,.3),transparent 65%);animation:auro3 38s ease-in-out infinite alternate}
+/* pause every fixed decoration the instant the tab is backgrounded — toggled by JS on visibilitychange */
+html.tab-hidden .aurora i{animation-play-state:paused}
 @keyframes auro1{to{transform:translate(9vw,7vh) scale(1.15)}}
 @keyframes auro2{to{transform:translate(-8vw,10vh) scale(.9)}}
 @keyframes auro3{to{transform:translate(-6vw,-9vh) scale(1.12)}}
@@ -149,7 +151,7 @@ main,header,footer{position:relative;z-index:1}
   transition:background .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s var(--ease);
   border-bottom:1px solid transparent;
 }
-.nav.solid{background:rgba(5,7,21,.72);backdrop-filter:blur(18px);border-color:var(--line)}
+.nav.solid{background:rgba(5,7,21,.82);backdrop-filter:blur(9px);border-color:var(--line)}
 .nav-in{width:min(1280px,94%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;padding:1.05rem 0}
 .brand{font-family:var(--font-display);font-size:1.22rem;letter-spacing:.01em}
 .brand em{font-style:italic;color:var(--gold)}
@@ -698,13 +700,22 @@ footer{border-top:1px solid var(--line);padding:var(--s-5) 0 var(--s-4);backgrou
   .signal path{stroke-dashoffset:0}
 }
 
-/* ══ ECO MODE — auto-applied on weak devices (≤4 cores or ≤4GB): freeze decoration ══ */
-html.eco .aurora i,
+/* ══ ECO MODE — auto-applied on weak devices (≤4 cores or ≤4GB) OR a JS-measured
+   weak GPU (html.gpu-weak, set after a live frame-time probe — hardwareConcurrency/
+   deviceMemory say nothing about GPU/compositor headroom, which is what the aurora
+   blend-mode blobs and nav backdrop-filter actually stress): freeze decoration ══ */
+html.eco .aurora i, html.gpu-weak .aurora i,
 html.eco .book::before,html.eco .feat-card::before,html.eco .step::before,
+html.gpu-weak .book::before,html.gpu-weak .feat-card::before,html.gpu-weak .step::before,
 html.eco .mentor-close::before,html.eco .freq-card::before,
+html.gpu-weak .mentor-close::before,html.gpu-weak .freq-card::before,
 html.eco .svc::before,html.eco .svc .ic,html.eco .svc .ic::after,html.eco .svc .sp,
-html.eco .hero-ctas .btn-gold::after,
-html.eco .gs-feature-inner::before{animation:none!important}
-html.eco .hero h1 .grad-name{animation:none}
-html.eco .hv-shine{display:none}
-html.eco .svc::before{opacity:.5}
+html.gpu-weak .svc::before,html.gpu-weak .svc .ic,html.gpu-weak .svc .ic::after,html.gpu-weak .svc .sp,
+html.eco .hero-ctas .btn-gold::after,html.gpu-weak .hero-ctas .btn-gold::after,
+html.eco .gs-feature-inner::before,html.gpu-weak .gs-feature-inner::before{animation:none!important}
+html.eco .hero h1 .grad-name,html.gpu-weak .hero h1 .grad-name{animation:none}
+html.eco .hv-shine,html.gpu-weak .hv-shine{display:none}
+html.eco .svc::before,html.gpu-weak .svc::before{opacity:.5}
+/* the two heaviest compositor costs on the page — drop them outright on weak GPUs */
+html.gpu-weak .aurora{display:none}
+html.gpu-weak .nav.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(5,7,21,.92)}
