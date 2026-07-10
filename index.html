@@ -99,17 +99,16 @@
 .brand em{font-style:italic;background:linear-gradient(100deg,#E8BB6B 0%,#F2D49B 40%,#FF9ECF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;transition:filter .3s}
 .brand:hover em{filter:brightness(1.35) drop-shadow(0 0 14px rgba(232,187,107,.7))}
 .hero h1{
-  text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6);
+  text-shadow:none;
   overflow:visible!important;
-  padding:.15em .4em .35em .1em!important;
-  margin:0 -.1em;
+  padding:0;margin:0;
   font-weight:800;
   letter-spacing:-.02em;
   line-height:1.1;
   display:block;
 }
-/* overflow visible all the way up the hero stack so nothing clips */
-.hero,.hero .wrap,.hero-inner{overflow:visible!important}
+/* overflow visible all the way up — belt + suspenders */
+.hero,.hero .wrap,.hero-inner,.h1-wrap{overflow:visible!important}
 .show-line{text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 60px rgba(5,7,21,.5);color:rgba(244,238,226,.92)}
 .show-line strong{color:#FFFFFF;font-weight:600;text-shadow:0 0 30px rgba(255,255,255,.25)}
 .show-eyebrow{text-shadow:0 1px 12px rgba(0,0,0,.5)}
@@ -117,132 +116,160 @@
 /* .hero-meta text-shadow handled in liquid glass block below */
 .hero-quiet a{text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .hv-fade{background:linear-gradient(to bottom,rgba(5,7,21,.45) 0%,rgba(5,7,21,.25) 30%,rgba(5,7,21,.35) 60%,rgba(5,7,21,.75) 100%)!important}
-.grad-name{
-  background:linear-gradient(110deg,#E8BB6B 0%,#F5D080 35%,#FFFFFF 55%,#F5D080 75%,#E8BB6B 100%);
+/* h1 wrapper — gives extra room on all sides so nothing clips */
+.h1-wrap{
+  overflow:visible!important;
+  padding:.1em .5em .4em .05em;
+  margin:0 -.05em;
+  display:block;
+  line-height:1;
+}
+.grad-vishal{
+  display:inline-block;
+  padding:.05em .06em .12em .04em;
+  background:linear-gradient(110deg,#9D7BFF 0%,#7EB8FF 35%,#E8BB6B 65%,#F5D080 100%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
-  display:inline;
+  font-weight:800;
 }
-.grad-name-em{
+.grad-hingol{
+  display:inline-block;
+  /* extra right padding = italic l tail room, bottom = g descender */
+  padding:.05em .55em .18em .04em;
   font-style:italic;
-  background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 40%,#FF9ECF 80%,#E8BB6B 100%);
+  background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 38%,#FF9ECF 72%,#E8BB6B 100%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
-  display:inline;
+  font-weight:800;
 }
-.hero h1 .grad-name{text-shadow:none}
+.grad-hingol em{font-style:italic;display:inline}
+
 
 /* ══════════════════════════════════════════
-   APPLE LIQUID GLASS — SVG feDisplacementMap
-   Works in Chrome/Edge fully; Safari/Firefox
-   gracefully degrade to clean backdrop-filter
+   TRUE APPLE OS LIQUID GLASS
+   Exact macOS/iOS vibrancy: near-zero tint,
+   extreme blur, single bright specular line
    ══════════════════════════════════════════ */
 
-/* Hero stats bar — liquid glass pill */
+/* ── Hero stats bar ── */
 .hero-meta{
   display:inline-flex;align-items:center;gap:0;
   margin-top:clamp(20px,3vw,28px);
-  position:relative;overflow:hidden;isolation:isolate;
+  position:relative;isolation:isolate;
   border-radius:980px;
-  padding:14px 32px;
-  width:auto;
-  /* SVG backdrop-filter for Chrome — true displacement refraction */
-  backdrop-filter:url(#lg-filter) blur(0.5px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 2px 20px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.2) inset;
+  padding:13px 30px;
+  /* Apple vibrancy: almost no tint, pure blur */
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(48px) saturate(220%) brightness(1.15);
+  -webkit-backdrop-filter:blur(48px) saturate(220%) brightness(1.15);
+  /* hairline border — barely visible */
+  border:1px solid rgba(255,255,255,.20);
+  /* no heavy shadow — Apple keeps it super light */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.30) inset,
+    0 0 0 0.5px rgba(255,255,255,.08) inset,
+    0 4px 24px rgba(0,0,0,.18);
+  overflow:hidden;
 }
-/* specular top edge */
+/* THE Apple signature: razor specular line at very top */
 .hero-meta::before{
-  content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-  pointer-events:none;z-index:3;
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,.0) 8%,
+    rgba(255,255,255,.7) 30%,
+    rgba(255,255,255,.9) 50%,
+    rgba(255,255,255,.7) 70%,
+    rgba(255,255,255,.0) 92%,
+    transparent 100%);
+  pointer-events:none;z-index:2;
 }
-/* upper half inner light */
+/* subtle upper lens — catches the light like curved glass */
 .hero-meta::after{
-  content:"";position:absolute;top:0;left:0;right:0;height:52%;
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:45%;
   border-radius:980px 980px 0 0;
-  background:linear-gradient(to bottom,rgba(255,255,255,.07),transparent);
-  pointer-events:none;z-index:3;
+  background:linear-gradient(180deg,
+    rgba(255,255,255,.09) 0%,
+    rgba(255,255,255,.02) 60%,
+    transparent 100%);
+  pointer-events:none;z-index:1;
 }
 .hero-meta .stat{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:0 24px;white-space:nowrap;position:relative;z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:0 22px;white-space:nowrap;position:relative;z-index:3;
 }
 .hero-meta .stat b{
   font-family:'Fraunces',Georgia,serif;
-  font-size:clamp(17px,2.2vw,21px);font-weight:700;
-  color:#FFFFFF;letter-spacing:-.02em;
-  text-shadow:0 1px 6px rgba(0,0,0,.35);
+  font-size:clamp(16px,2vw,20px);font-weight:700;
+  color:rgba(255,255,255,.95);letter-spacing:-.02em;
+  text-shadow:0 1px 4px rgba(0,0,0,.2);
 }
+/* gold accent on 17+ and 369 only */
 .hero-meta .stat:nth-child(1) b,
 .hero-meta .stat:nth-child(3) b{
-  background:linear-gradient(110deg,#E8BB6B,#F5D490);
+  background:linear-gradient(110deg,#E8BB6B 0%,#F5D490 100%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;
 }
 .hero-meta .stat span{
   font-family:'Space Grotesk',monospace;
-  font-size:9px;font-weight:500;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.48);
+  font-size:8.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.42);
 }
+/* Apple-style divider: barely there */
 .hero-meta .div{
-  width:1px;height:30px;flex-shrink:0;z-index:4;
-  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.24),transparent);
+  width:0.5px;height:28px;flex-shrink:0;z-index:3;
+  background:linear-gradient(to bottom,
+    transparent 0%,rgba(255,255,255,.3) 25%,
+    rgba(255,255,255,.3) 75%,transparent 100%);
 }
 @media(max-width:640px){
   .hero-meta{padding:10px 14px;border-radius:24px;flex-wrap:wrap;justify-content:center}
   .hero-meta .stat{padding:5px 12px}
-  .hero-meta .stat b{font-size:14px}
+  .hero-meta .stat b{font-size:13px}
   .hero-meta .div{display:none}
 }
 
-/* ── NAV liquid glass buttons ── */
-/* All nav links: invisible by default, text white */
+/* ── NAV liquid glass pill buttons on hover ── */
 .nav-links li a:not(.nav-cta){
   position:relative;
-  color:rgba(244,238,226,.78);
+  color:rgba(244,238,226,.75);
   font-size:11.5px;
   padding:6px 13px;
   border-radius:980px;
-  transition:color .22s ease;
-  /* glass pill — hidden until hover */
+  transition:color .2s ease;
+  text-decoration:none;
 }
+/* glass pill — hidden, springs in on hover */
 .nav-links li a:not(.nav-cta)::before{
   content:"";
   position:absolute;inset:0;
   border-radius:980px;
-  backdrop-filter:url(#lg-filter) blur(0.5px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 1px 12px rgba(0,0,0,.2),0 1px 0 rgba(255,255,255,.18) inset;
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
+  -webkit-backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 2px 12px rgba(0,0,0,.12);
   opacity:0;
-  transform:scale(.88);
-  transition:opacity .22s ease,transform .22s cubic-bezier(.34,1.56,.64,1);
+  transform:scale(.84) translateY(1px);
+  transition:opacity .18s ease,transform .2s cubic-bezier(.34,1.56,.64,1);
   pointer-events:none;
-  z-index:-1;
+  z-index:0;
 }
-/* top specular on nav glass pill */
+/* specular top line on nav pill */
 .nav-links li a:not(.nav-cta)::after{
   content:"";
-  position:absolute;top:0;left:15%;right:15%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
-  border-radius:1px;
+  position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
   opacity:0;
-  transition:opacity .22s ease;
-  pointer-events:none;
+  transition:opacity .18s ease;
+  pointer-events:none;z-index:1;
 }
-.nav-links li a:not(.nav-cta):hover{
-  color:#E8BB6B;
-}
-.nav-links li a:not(.nav-cta):hover::before{
-  opacity:1;transform:scale(1);
-}
-.nav-links li a:not(.nav-cta):hover::after{
-  opacity:1;
-}
+.nav-links li a:not(.nav-cta):hover{color:#E8BB6B;}
+.nav-links li a:not(.nav-cta):hover::before{opacity:1;transform:scale(1) translateY(0);}
+.nav-links li a:not(.nav-cta):hover::after{opacity:1;}
 .vision{padding:clamp(80px,12vw,140px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
 @media(max-width:768px){.vision-grid{grid-template-columns:1fr;gap:40px}}
@@ -340,7 +367,11 @@
   <div class="wrap">
     <div class="hero-inner">
       <p class="eyebrow rv">Author · Self-Help · Guided Journals</p>
-      <h1 class="rv rv-d1"><span class="grad-name">Vishal <em class="grad-name-em">Hingol</em></span></h1>
+      <div class="h1-wrap">
+        <h1 class="rv rv-d1">
+          <span class="grad-vishal">Vishal</span> <span class="grad-hingol"><em>Hingol</em></span>
+        </h1>
+      </div>
       <div class="show-stage rv rv-d2">
         <div class="show-slide is-on" aria-hidden="false">
           <p class="show-eyebrow">// 19 Books · Mindset · Manifestation · Fiction</p>
