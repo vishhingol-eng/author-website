@@ -151,39 +151,35 @@
    extreme blur, single bright specular line
    ══════════════════════════════════════════ */
 
-/* ── Hero stats bar ── */
+/* ── Hero stats bar — true Apple OS vibrancy ── */
 .hero-meta{
   display:inline-flex;align-items:center;gap:0;
   margin-top:clamp(20px,3vw,28px);
   position:relative;isolation:isolate;
   border-radius:980px;
   padding:13px 30px;
-  /* Apple vibrancy: almost no tint, pure blur */
   background:rgba(255,255,255,.10);
-  backdrop-filter:blur(48px) saturate(220%) brightness(1.15);
-  -webkit-backdrop-filter:blur(48px) saturate(220%) brightness(1.15);
-  /* hairline border — barely visible */
-  border:1px solid rgba(255,255,255,.20);
-  /* no heavy shadow — Apple keeps it super light */
+  backdrop-filter:blur(48px) saturate(220%) brightness(1.18);
+  -webkit-backdrop-filter:blur(48px) saturate(220%) brightness(1.18);
+  border:1px solid rgba(255,255,255,.22);
+  /* ONLY bottom inset highlight + outer shadow — no top dark band */
   box-shadow:
-    0 1px 0 rgba(255,255,255,.30) inset,
-    0 0 0 0.5px rgba(255,255,255,.08) inset,
-    0 4px 24px rgba(0,0,0,.18);
+    0 -1px 0 rgba(255,255,255,.0) inset,
+    0 4px 24px rgba(0,0,0,.14);
   overflow:hidden;
 }
-/* THE Apple signature: razor specular line at very top */
+/* Apple specular: thin bright highlight along top edge */
 .hero-meta::before{
   content:"";
-  position:absolute;top:0;left:0;right:0;height:1px;
+  position:absolute;top:1px;left:8%;right:8%;height:1px;
   background:linear-gradient(90deg,
     transparent 0%,
-    rgba(255,255,255,.0) 8%,
-    rgba(255,255,255,.7) 30%,
-    rgba(255,255,255,.9) 50%,
-    rgba(255,255,255,.7) 70%,
-    rgba(255,255,255,.0) 92%,
+    rgba(255,255,255,.85) 25%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,.85) 75%,
     transparent 100%);
   pointer-events:none;z-index:2;
+  border-radius:1px;
 }
 /* subtle upper lens — catches the light like curved glass */
 .hero-meta::after{
@@ -232,44 +228,33 @@
   .hero-meta .div{display:none}
 }
 
-/* ── NAV liquid glass pill buttons on hover ── */
+/* ── NAV liquid glass pill — appears ONLY on hover, no bleed ── */
 .nav-links li a:not(.nav-cta){
-  position:relative;
-  color:rgba(244,238,226,.75);
+  display:inline-block;
+  color:rgba(244,238,226,.72);
   font-size:11.5px;
-  padding:6px 13px;
+  padding:6px 14px;
   border-radius:980px;
-  transition:color .2s ease;
   text-decoration:none;
+  border:1px solid transparent;
+  background:transparent;
+  /* transition all glass properties */
+  transition:
+    color .18s ease,
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
 }
-/* glass pill — hidden, springs in on hover */
-.nav-links li a:not(.nav-cta)::before{
-  content:"";
-  position:absolute;inset:0;
-  border-radius:980px;
-  background:rgba(255,255,255,.10);
-  backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
-  -webkit-backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 2px 12px rgba(0,0,0,.12);
-  opacity:0;
-  transform:scale(.84) translateY(1px);
-  transition:opacity .18s ease,transform .2s cubic-bezier(.34,1.56,.64,1);
-  pointer-events:none;
-  z-index:0;
+.nav-links li a:not(.nav-cta):hover{
+  color:#E8BB6B;
+  background:rgba(255,255,255,.09);
+  backdrop-filter:blur(32px) saturate(180%) brightness(1.14);
+  -webkit-backdrop-filter:blur(32px) saturate(180%) brightness(1.14);
+  border-color:rgba(255,255,255,.18);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.25) inset,
+    0 2px 10px rgba(0,0,0,.08);
 }
-/* specular top line on nav pill */
-.nav-links li a:not(.nav-cta)::after{
-  content:"";
-  position:absolute;top:0;left:12%;right:12%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);
-  opacity:0;
-  transition:opacity .18s ease;
-  pointer-events:none;z-index:1;
-}
-.nav-links li a:not(.nav-cta):hover{color:#E8BB6B;}
-.nav-links li a:not(.nav-cta):hover::before{opacity:1;transform:scale(1) translateY(0);}
-.nav-links li a:not(.nav-cta):hover::after{opacity:1;}
 .vision{padding:clamp(80px,12vw,140px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
 @media(max-width:768px){.vision-grid{grid-template-columns:1fr;gap:40px}}
@@ -294,30 +279,7 @@
 </head>
 <body>
 
-<!-- ══ LIQUID GLASS SVG FILTER — Apple feDisplacementMap ══ -->
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
-  <defs>
-    <filter id="lg-filter" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-      <!-- blur the source slightly before displacement -->
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <!-- generate organic turbulence as displacement map -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="3" seed="5" result="noise"/>
-      <!-- displacement: bends background pixels at edges -->
-      <feDisplacementMap in="blur" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-      <!-- color matrix: boost saturation + slight brightness -->
-      <feColorMatrix in="displaced" type="saturate" values="1.6" result="saturated"/>
-      <!-- composite displaced with original — glass lens effect -->
-      <feComposite in="saturated" in2="SourceGraphic" operator="over"/>
-    </filter>
-    <!-- smaller version for nav pills — tighter displacement -->
-    <filter id="lg-nav" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.025 0.03" numOctaves="2" seed="8" result="noise"/>
-      <feDisplacementMap in="blur" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-      <feColorMatrix in="displaced" type="saturate" values="1.5"/>
-    </filter>
-  </defs>
-</svg>
+<!-- glass uses pure CSS backdrop-filter — no SVG filter needed -->
 
 <!-- live background: aurora + star canvas (desktop) + falling-star sky (phones) -->
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
