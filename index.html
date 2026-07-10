@@ -98,40 +98,69 @@
 .brand{font-weight:700!important}
 .brand em{font-style:italic;background:linear-gradient(100deg,#E8BB6B 0%,#F2D49B 40%,#FF9ECF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;transition:filter .3s}
 .brand:hover em{filter:brightness(1.35) drop-shadow(0 0 14px rgba(232,187,107,.7))}
-.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6)}
+.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6);overflow:visible;padding-right:.25em;font-weight:800;letter-spacing:-.03em}
 .show-line{text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 60px rgba(5,7,21,.5)}
 .show-eyebrow{text-shadow:0 1px 12px rgba(0,0,0,.5)}
 .hero .eyebrow{text-shadow:0 1px 16px rgba(0,0,0,.5)}
 /* .hero-meta text-shadow handled in liquid glass block below */
 .hero-quiet a{text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .hv-fade{background:linear-gradient(to bottom,rgba(5,7,21,.45) 0%,rgba(5,7,21,.25) 30%,rgba(5,7,21,.35) 60%,rgba(5,7,21,.75) 100%)!important}
-.grad-name{background:linear-gradient(110deg,#E8BB6B 0%,#F5D080 35%,#FFFFFF 55%,#F5D080 75%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 24px rgba(232,187,107,.5))}
-.grad-name-em{font-style:italic;background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 40%,#FF9ECF 80%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 28px rgba(255,158,207,.45))}
+.grad-name{background:linear-gradient(110deg,#E8BB6B 0%,#F5D080 35%,#FFFFFF 55%,#F5D080 75%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;padding-right:.12em}
+.grad-name-em{font-style:italic;background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 40%,#FF9ECF 80%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;padding-right:.12em}
+/* glow via h1 wrapper — avoids filter clip on italic descenders */
+.hero h1 .grad-name{text-shadow:none}
+.hero-inner{overflow:visible}
 /* ── Liquid glass hero-meta bar ── */
 .hero-meta{
   display:flex;align-items:center;gap:0;
   margin-top:clamp(20px,3vw,28px);
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(18px) saturate(160%);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);
-  border:1px solid rgba(255,255,255,.14);
+  background:rgba(5,7,21,.52);
+  backdrop-filter:blur(28px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter:blur(28px) saturate(180%) brightness(1.08);
+  border:1px solid rgba(255,255,255,.18);
+  border-top:1px solid rgba(255,255,255,.28);
   border-radius:100px;
-  padding:10px 24px;
+  padding:12px 28px;
   width:fit-content;
-  box-shadow:0 4px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,0,0,.2);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,.55),
+    0 2px 0 rgba(255,255,255,.08) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset,
+    0 0 0 1px rgba(232,187,107,.08) inset;
   position:relative;
   overflow:hidden;
+  isolation:isolate;
 }
+/* top-edge glass sheen */
 .hero-meta::before{
-  content:"";position:absolute;inset:0;border-radius:100px;
-  background:linear-gradient(135deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.02) 50%,rgba(232,187,107,.06) 100%);
-  pointer-events:none;
+  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  pointer-events:none;z-index:1;
 }
-.hero-meta .stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 20px;white-space:nowrap}
-.hero-meta .stat b{font-size:clamp(15px,2vw,18px);font-weight:700;color:#F4EEE2;letter-spacing:-.01em;text-shadow:0 0 16px rgba(232,187,107,.6)}
-.hero-meta .stat:first-child .stat b,.hero-meta .stat:nth-child(3) b{background:linear-gradient(110deg,#E8BB6B,#F2D49B);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.hero-meta .div{width:1px;height:32px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.18),transparent);flex-shrink:0}
-@media(max-width:600px){.hero-meta{border-radius:20px;padding:10px 12px;gap:0}.hero-meta .stat{padding:0 10px}.hero-meta .stat b{font-size:13px}}
+/* subtle inner light */
+.hero-meta::after{
+  content:"";position:absolute;inset:0;border-radius:100px;
+  background:linear-gradient(160deg,rgba(255,255,255,.07) 0%,transparent 55%,rgba(232,187,107,.05) 100%);
+  pointer-events:none;z-index:0;
+}
+.hero-meta .stat{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 22px;white-space:nowrap;position:relative;z-index:2}
+.hero-meta .stat b{font-size:clamp(16px,2.2vw,20px);font-weight:700;color:#F4EEE2;letter-spacing:-.01em;text-shadow:0 0 20px rgba(232,187,107,.7),0 1px 3px rgba(0,0,0,.6)}
+.hero-meta .stat span{font-family:'Space Grotesk',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,238,226,.55)}
+/* gold highlight on 17+ and 369 */
+.hero-meta .stat:nth-child(1) b,
+.hero-meta .stat:nth-child(3) b{
+  background:linear-gradient(110deg,#E8BB6B,#F2D49B);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  text-shadow:none;filter:drop-shadow(0 0 10px rgba(232,187,107,.5))
+}
+.hero-meta .div{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.22),transparent);flex-shrink:0;position:relative;z-index:2}
+@media(max-width:600px){
+  .hero-meta{border-radius:20px;padding:10px 14px;gap:0;flex-wrap:wrap;justify-content:center}
+  .hero-meta .stat{padding:6px 12px}
+  .hero-meta .stat b{font-size:14px}
+  .hero-meta .div{display:none}
+}
 .vision{padding:clamp(80px,12vw,140px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
 @media(max-width:768px){.vision-grid{grid-template-columns:1fr;gap:40px}}
@@ -241,13 +270,13 @@
         </span>
       </div>
       <div class="hero-meta rv rv-d3">
-        <div class="stat"><b>17+</b>Books published</div>
+        <div class="stat"><b>17+</b><span>Books published</span></div>
         <div class="div" aria-hidden="true"></div>
-        <div class="stat"><b>369</b>The core method</div>
+        <div class="stat"><b>369</b><span>The core method</span></div>
         <div class="div" aria-hidden="true"></div>
-        <div class="stat"><b>∞</b>One universe</div>
+        <div class="stat"><b>∞</b><span>One universe</span></div>
         <div class="div" aria-hidden="true"></div>
-        <div class="stat"><b>Worldwide</b>Amazon &amp; Kindle</div>
+        <div class="stat"><b>Worldwide</b><span>Amazon &amp; Kindle</span></div>
       </div>
 
     </div>
