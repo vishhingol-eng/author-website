@@ -115,6 +115,30 @@
 .hero .eyebrow{text-shadow:0 1px 16px rgba(0,0,0,.5)}
 /* .hero-meta text-shadow handled in liquid glass block below */
 .hero-quiet a{text-shadow:0 1px 10px rgba(0,0,0,.5)}
+/* ── hero-quiet links — clearly visible ── */
+.hero-quiet{
+  display:flex;align-items:center;gap:10px;
+  margin-top:14px;
+}
+.hero-quiet a{
+  color:rgba(255,255,255,.88)!important;
+  font-family:'Space Grotesk',monospace;
+  font-size:12px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;
+  text-shadow:0 1px 10px rgba(0,0,0,.6)!important;
+  transition:color .18s ease;
+  border-bottom:1px solid rgba(255,255,255,.25);
+  padding-bottom:1px;
+}
+.hero-quiet a:hover{
+  color:#E8BB6B!important;
+  border-bottom-color:rgba(232,187,107,.5);
+}
+.hero-quiet span{
+  color:rgba(255,255,255,.35);
+  font-size:12px;
+}
 .hv-fade{background:linear-gradient(to bottom,rgba(5,7,21,.45) 0%,rgba(5,7,21,.25) 30%,rgba(5,7,21,.35) 60%,rgba(5,7,21,.75) 100%)!important}
 /* h1 wrapper — gives extra room on all sides so nothing clips */
 .h1-wrap{
@@ -146,85 +170,82 @@
 
 
 /* ══════════════════════════════════════════
-   TRUE APPLE OS LIQUID GLASS
-   Exact macOS/iOS vibrancy: near-zero tint,
-   extreme blur, single bright specular line
+   APPLE OS LIQUID GLASS — hero stats bar
    ══════════════════════════════════════════ */
-
-/* ── Hero stats bar — true Apple OS vibrancy ── */
 .hero-meta{
-  display:inline-flex;align-items:center;gap:0;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:0!important;
   margin-top:clamp(20px,3vw,28px);
-  position:relative;isolation:isolate;
-  border-radius:980px;
-  padding:13px 30px;
-  background:rgba(255,255,255,.10);
-  backdrop-filter:blur(48px) saturate(220%) brightness(1.18);
-  -webkit-backdrop-filter:blur(48px) saturate(220%) brightness(1.18);
-  border:1px solid rgba(255,255,255,.22);
-  /* ONLY bottom inset highlight + outer shadow — no top dark band */
-  box-shadow:
-    0 -1px 0 rgba(255,255,255,.0) inset,
-    0 4px 24px rgba(0,0,0,.14);
+  position:relative;
+  isolation:isolate;
+  border-radius:980px!important;
+  padding:14px 32px!important;
+  /* FORCE transparent — override any main.css dark background */
+  background:rgba(255,255,255,.12)!important;
+  backdrop-filter:blur(60px) saturate(240%) brightness(1.22)!important;
+  -webkit-backdrop-filter:blur(60px) saturate(240%) brightness(1.22)!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  box-shadow:0 4px 28px rgba(0,0,0,.12)!important;
   overflow:hidden;
 }
-/* Apple specular: thin bright highlight along top edge */
+/* razor-thin specular highlight — the Apple signature */
 .hero-meta::before{
   content:"";
-  position:absolute;top:1px;left:8%;right:8%;height:1px;
+  position:absolute;top:1px;left:6%;right:6%;height:1px;
   background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,.85) 25%,
+    transparent,rgba(255,255,255,.9) 30%,
     rgba(255,255,255,1) 50%,
-    rgba(255,255,255,.85) 75%,
-    transparent 100%);
+    rgba(255,255,255,.9) 70%,transparent);
   pointer-events:none;z-index:2;
-  border-radius:1px;
 }
-/* subtle upper lens — catches the light like curved glass */
+/* upper-half glass lens sheen */
 .hero-meta::after{
   content:"";
-  position:absolute;top:0;left:0;right:0;height:45%;
+  position:absolute;top:0;left:0;right:0;height:50%;
   border-radius:980px 980px 0 0;
-  background:linear-gradient(180deg,
-    rgba(255,255,255,.09) 0%,
-    rgba(255,255,255,.02) 60%,
-    transparent 100%);
+  background:linear-gradient(180deg,rgba(255,255,255,.10) 0%,transparent 100%);
   pointer-events:none;z-index:1;
 }
 .hero-meta .stat{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-  padding:0 22px;white-space:nowrap;position:relative;z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:0 24px;white-space:nowrap;position:relative;z-index:3;
 }
+/* values — bright white, clearly readable */
 .hero-meta .stat b{
   font-family:'Fraunces',Georgia,serif;
-  font-size:clamp(16px,2vw,20px);font-weight:700;
-  color:rgba(255,255,255,.95);letter-spacing:-.02em;
-  text-shadow:0 1px 4px rgba(0,0,0,.2);
+  font-size:clamp(17px,2.2vw,22px);font-weight:700;
+  color:#FFFFFF;letter-spacing:-.02em;
+  text-shadow:0 1px 8px rgba(0,0,0,.45);
 }
-/* gold accent on 17+ and 369 only */
+/* gold on 17+ and 369 */
 .hero-meta .stat:nth-child(1) b,
 .hero-meta .stat:nth-child(3) b{
-  background:linear-gradient(110deg,#E8BB6B 0%,#F5D490 100%);
+  background:linear-gradient(110deg,#E8BB6B,#F5D490);
   -webkit-background-clip:text;background-clip:text;
-  color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;
+  color:transparent;-webkit-text-fill-color:transparent;
+  text-shadow:none;
+  filter:drop-shadow(0 1px 4px rgba(232,187,107,.4));
 }
+/* labels — visible but secondary */
 .hero-meta .stat span{
   font-family:'Space Grotesk',monospace;
-  font-size:8.5px;font-weight:500;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.42);
+  font-size:9px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+  text-shadow:0 1px 4px rgba(0,0,0,.3);
 }
-/* Apple-style divider: barely there */
+/* dividers */
 .hero-meta .div{
-  width:0.5px;height:28px;flex-shrink:0;z-index:3;
+  width:1px;height:30px;flex-shrink:0;z-index:3;
   background:linear-gradient(to bottom,
-    transparent 0%,rgba(255,255,255,.3) 25%,
-    rgba(255,255,255,.3) 75%,transparent 100%);
+    transparent,rgba(255,255,255,.28) 30%,
+    rgba(255,255,255,.28) 70%,transparent);
 }
 @media(max-width:640px){
-  .hero-meta{padding:10px 14px;border-radius:24px;flex-wrap:wrap;justify-content:center}
-  .hero-meta .stat{padding:5px 12px}
-  .hero-meta .stat b{font-size:13px}
+  .hero-meta{padding:10px 16px!important;border-radius:24px!important;flex-wrap:wrap;justify-content:center}
+  .hero-meta .stat{padding:6px 12px}
+  .hero-meta .stat b{font-size:14px!important}
   .hero-meta .div{display:none}
 }
 
@@ -377,10 +398,6 @@
         <div class="stat"><b>∞</b><span>One universe</span></div>
         <div class="div" aria-hidden="true"></div>
         <div class="stat"><b>Worldwide</b><span>Amazon &amp; Kindle</span></div>
-        <div class="div" aria-hidden="true"></div>
-        <div class="stat"><b style="font-size:clamp(10px,1.2vw,12px);letter-spacing:.05em;opacity:.7">Audiobooks</b><span>Coming soon</span></div>
-        <div class="div" aria-hidden="true"></div>
-        <div class="stat"><b style="font-size:clamp(10px,1.2vw,12px);letter-spacing:.05em;opacity:.7">eBooks</b><span>Coming soon</span></div>
       </div>
 
     </div>
