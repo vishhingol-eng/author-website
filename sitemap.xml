@@ -48,7 +48,7 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- BLOG ARTICLES — all 25 verified live -->
+  <!-- BLOG ARTICLES — all 35 verified live -->
   <url>
     <loc>https://vishalhingolauthor.com/why-you-keep-self-sabotaging.html</loc>
     <lastmod>2026-06-18</lastmod>
@@ -196,6 +196,67 @@
   <url>
     <loc>https://vishalhingolauthor.com/power-of-journalling-for-transformation.html</loc>
     <lastmod>2026-07-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+    <url>
+    <loc>https://vishalhingolauthor.com/why-affirmations-fail.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/the-5am-myth.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/your-body-keeps-score.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/attention-is-your-currency.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/visualization-without-action.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/the-evening-routine.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/the-frequency-you-carry.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/corporate-politics-decoded.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/ai-is-your-co-pilot.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/corporate-ai-advantage.html</loc>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
