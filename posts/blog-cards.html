@@ -1,0 +1,347 @@
+<!-- 
+  BLOG CARDS — paste this into your blog.html where the posts grid goes.
+  Each card has a unique visual identity matching its subject.
+  Also add the <style> block to your blog.html <head>.
+-->
+
+<style>
+/* ── BLOG CARDS — 10 unique designs ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+@media(max-width:720px){.blog-grid{grid-template-columns:1fr;gap:18px}}
+
+.blog-card{position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(244,238,226,.08);background:#0A0C1A;text-decoration:none;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;cursor:pointer}
+.blog-card:hover{transform:translateY(-6px);border-color:rgba(232,187,107,.3);box-shadow:0 24px 64px rgba(0,0,0,.4)}
+
+/* Card art — unique per topic */
+.card-art{position:relative;height:180px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card-art::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,#0A0C1A,transparent);pointer-events:none}
+
+/* Card body */
+.card-body{padding:0 clamp(20px,3vw,28px) clamp(22px,3vw,28px);flex:1;display:flex;flex-direction:column}
+.card-cat{font-family:'Space Grotesk',monospace;font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border-radius:100px;width:fit-content;margin-bottom:12px;margin-top:-14px;position:relative;z-index:2}
+.card-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(18px,2.5vw,22px);font-weight:500;color:#F4EEE2;line-height:1.22;margin-bottom:10px;letter-spacing:-.01em}
+.card-title em{font-style:italic}
+.card-sub{font-size:14px;color:#9AA1C7;line-height:1.6;margin-bottom:16px;flex:1}
+.card-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid rgba(244,238,226,.06)}
+.card-author{font-size:12.5px;color:rgba(154,161,199,.6)}
+.card-read{font-family:'Space Grotesk',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E8BB6B;display:flex;align-items:center;gap:6px;transition:gap .25s}
+.blog-card:hover .card-read{gap:10px}
+
+/* ══════════════════════════════
+   10 UNIQUE CARD ART STYLES
+═══════════════════════════════ */
+
+/* 1. Manifestation — golden starburst */
+.art-manifest{background:radial-gradient(circle at 50% 60%,#1A1200 0%,#0A0C1A 70%)}
+.art-manifest .orb{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(232,187,107,.8) 0%,rgba(232,187,107,0) 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbPulse 3s ease-in-out infinite}
+.art-manifest .ray{position:absolute;top:50%;left:50%;width:1px;height:60px;background:linear-gradient(to top,transparent,rgba(232,187,107,.4),transparent);transform-origin:bottom center}
+.art-manifest .ray:nth-child(1){transform:translate(-50%,-100%) rotate(0deg)}
+.art-manifest .ray:nth-child(2){transform:translate(-50%,-100%) rotate(45deg)}
+.art-manifest .ray:nth-child(3){transform:translate(-50%,-100%) rotate(90deg)}
+.art-manifest .ray:nth-child(4){transform:translate(-50%,-100%) rotate(135deg)}
+.art-manifest .ray:nth-child(5){transform:translate(-50%,-100%) rotate(180deg)}
+.art-manifest .ray:nth-child(6){transform:translate(-50%,-100%) rotate(225deg)}
+.art-manifest .ray:nth-child(7){transform:translate(-50%,-100%) rotate(270deg)}
+.art-manifest .ray:nth-child(8){transform:translate(-50%,-100%) rotate(315deg)}
+.cat-manifest{background:rgba(232,187,107,.12);color:#E8BB6B;border:1px solid rgba(232,187,107,.25)}
+@keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-50%) scale(1.3);opacity:1}}
+
+/* 2. Morning Routine — sunrise gradient horizon */
+.art-morning{background:linear-gradient(180deg,#0A0C1A 0%,#0D1035 30%,#1A1545 50%,#3D1F3A 70%,#6B3528 85%,#C87020 100%)}
+.art-morning .sun{position:absolute;bottom:20%;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#FFD080,#E8BB6B);box-shadow:0 0 40px rgba(232,187,107,.6),0 0 80px rgba(232,187,107,.3);animation:sunRise 4s ease-in-out infinite alternate}
+.art-morning .horizon{position:absolute;bottom:20%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(232,187,107,.4) 50%,transparent 90%)}
+.cat-morning{background:rgba(125,230,255,.1);color:#7DE6FF;border:1px solid rgba(125,230,255,.2)}
+@keyframes sunRise{0%{transform:translateX(-50%) translateY(10px);opacity:.7}100%{transform:translateX(-50%) translateY(-5px);opacity:1}}
+
+/* 3. Health — heartbeat pulse line */
+.art-health{background:linear-gradient(145deg,#1A0A15 0%,#0A0C1A 100%)}
+.art-health .pulse-line{position:absolute;top:50%;left:5%;right:5%;height:2px;background:rgba(255,158,207,.15)}
+.art-health .pulse{position:absolute;top:50%;left:0;width:100%;height:60px;transform:translateY(-50%)}
+.art-health .pulse svg{width:100%;height:100%;stroke:#FF9ECF;stroke-width:2;fill:none;filter:drop-shadow(0 0 8px rgba(255,158,207,.5))}
+.art-health .heart{position:absolute;top:25%;right:15%;font-size:28px;animation:heartBeat 1.2s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(255,158,207,.6))}
+.cat-health{background:rgba(255,158,207,.1);color:#FF9ECF;border:1px solid rgba(255,158,207,.2)}
+@keyframes heartBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+
+/* 4. Focus — concentric target rings */
+.art-focus{background:radial-gradient(circle at 50% 50%,#120E28 0%,#0A0C1A 70%)}
+.art-focus .ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(157,123,255,.2);transform:translate(-50%,-50%)}
+.art-focus .ring:nth-child(1){width:30px;height:30px;border-color:rgba(157,123,255,.6);background:rgba(157,123,255,.15);animation:focusPulse 2s ease-in-out infinite}
+.art-focus .ring:nth-child(2){width:70px;height:70px;border-color:rgba(157,123,255,.35);animation:focusPulse 2s .3s ease-in-out infinite}
+.art-focus .ring:nth-child(3){width:110px;height:110px;border-color:rgba(157,123,255,.2);animation:focusPulse 2s .6s ease-in-out infinite}
+.art-focus .ring:nth-child(4){width:150px;height:150px;border-color:rgba(157,123,255,.1);animation:focusPulse 2s .9s ease-in-out infinite}
+.art-focus .dot{position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;background:#9D7BFF;transform:translate(-50%,-50%);box-shadow:0 0 12px rgba(157,123,255,.8)}
+.cat-focus{background:rgba(157,123,255,.1);color:#9D7BFF;border:1px solid rgba(157,123,255,.25)}
+@keyframes focusPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+
+/* 5. Visualization — prism light split */
+.art-prism{background:linear-gradient(135deg,#0A0C1A 0%,#0D0A18 100%)}
+.art-prism .triangle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:52px solid rgba(244,238,226,.08);filter:drop-shadow(0 0 8px rgba(244,238,226,.1))}
+.art-prism .beam-in{position:absolute;top:50%;left:10%;width:35%;height:2px;background:linear-gradient(90deg,transparent,rgba(244,238,226,.7));transform:translateY(-1px)}
+.art-prism .beam-r{position:absolute;right:10%;height:1.5px;transform-origin:left center}
+.art-prism .beam-r:nth-child(3){top:30%;background:linear-gradient(90deg,rgba(255,80,80,.6),transparent);width:30%;transform:rotate(-5deg)}
+.art-prism .beam-r:nth-child(4){top:40%;background:linear-gradient(90deg,rgba(232,187,107,.6),transparent);width:35%;transform:rotate(-2deg)}
+.art-prism .beam-r:nth-child(5){top:50%;background:linear-gradient(90deg,rgba(125,230,255,.6),transparent);width:33%;transform:rotate(0deg)}
+.art-prism .beam-r:nth-child(6){top:60%;background:linear-gradient(90deg,rgba(157,123,255,.6),transparent);width:30%;transform:rotate(3deg)}
+.art-prism .beam-r:nth-child(7){top:70%;background:linear-gradient(90deg,rgba(255,158,207,.6),transparent);width:28%;transform:rotate(6deg)}
+.cat-prism{background:rgba(232,187,107,.12);color:#E8BB6B;border:1px solid rgba(232,187,107,.25)}
+
+/* 6. Evening — crescent moon + stars */
+.art-evening{background:linear-gradient(180deg,#05071A 0%,#0A0E28 40%,#0D1030 100%)}
+.art-evening .moon{position:absolute;top:25%;right:25%;width:50px;height:50px;border-radius:50%;background:transparent;box-shadow:inset -12px 4px 0 0 rgba(244,238,226,.85);filter:drop-shadow(0 0 16px rgba(244,238,226,.3))}
+.art-evening .e-star{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(244,238,226,.7);animation:eTwinkle 2s ease-in-out infinite alternate}
+.art-evening .e-star:nth-child(2){top:20%;left:20%;animation-delay:.3s}
+.art-evening .e-star:nth-child(3){top:35%;left:35%;width:2px;height:2px;animation-delay:.8s}
+.art-evening .e-star:nth-child(4){top:15%;left:55%;animation-delay:1.2s}
+.art-evening .e-star:nth-child(5){top:45%;left:15%;width:2px;height:2px;animation-delay:.5s}
+.art-evening .e-star:nth-child(6){top:30%;left:70%;animation-delay:1.5s}
+.cat-evening{background:rgba(125,230,255,.08);color:#7DE6FF;border:1px solid rgba(125,230,255,.15)}
+@keyframes eTwinkle{0%{opacity:.3;transform:scale(1)}100%{opacity:1;transform:scale(1.4)}}
+
+/* 7. Frequency — sound wave */
+.art-wave{background:radial-gradient(circle at 30% 50%,#1A1200 0%,#0A0C1A 60%)}
+.art-wave .w-bar{position:absolute;bottom:30%;width:3px;border-radius:3px;background:linear-gradient(to top,rgba(232,187,107,.8),rgba(232,187,107,.2));animation:waveBar 1.5s ease-in-out infinite alternate}
+.art-wave .w-bar:nth-child(1){left:25%;height:20px;animation-delay:0s}
+.art-wave .w-bar:nth-child(2){left:30%;height:40px;animation-delay:.1s}
+.art-wave .w-bar:nth-child(3){left:35%;height:60px;animation-delay:.2s}
+.art-wave .w-bar:nth-child(4){left:40%;height:80px;animation-delay:.3s}
+.art-wave .w-bar:nth-child(5){left:45%;height:55px;animation-delay:.4s}
+.art-wave .w-bar:nth-child(6){left:50%;height:70px;animation-delay:.5s}
+.art-wave .w-bar:nth-child(7){left:55%;height:45px;animation-delay:.6s}
+.art-wave .w-bar:nth-child(8){left:60%;height:65px;animation-delay:.7s}
+.art-wave .w-bar:nth-child(9){left:65%;height:35px;animation-delay:.8s}
+.art-wave .w-bar:nth-child(10){left:70%;height:50px;animation-delay:.9s}
+.cat-wave{background:rgba(232,187,107,.12);color:#E8BB6B;border:1px solid rgba(232,187,107,.25)}
+@keyframes waveBar{0%{transform:scaleY(.5);opacity:.5}100%{transform:scaleY(1.2);opacity:1}}
+
+/* 8. Corporate — geometric grid */
+.art-corp{background:linear-gradient(145deg,#0E0A22 0%,#0A0C1A 100%)}
+.art-corp .grid-line{position:absolute;background:rgba(157,123,255,.12)}
+.art-corp .grid-line.h{left:10%;right:10%;height:1px}
+.art-corp .grid-line.v{top:10%;bottom:10%;width:1px}
+.art-corp .grid-line:nth-child(1){top:25%}
+.art-corp .grid-line:nth-child(2){top:50%}
+.art-corp .grid-line:nth-child(3){top:75%}
+.art-corp .grid-line:nth-child(4).v{left:30%}
+.art-corp .grid-line:nth-child(5).v{left:50%}
+.art-corp .grid-line:nth-child(6).v{left:70%}
+.art-corp .node{position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(157,123,255,.5);box-shadow:0 0 8px rgba(157,123,255,.4)}
+.art-corp .node:nth-child(7){top:25%;left:30%}
+.art-corp .node:nth-child(8){top:50%;left:50%;background:rgba(157,123,255,.8);width:10px;height:10px;box-shadow:0 0 16px rgba(157,123,255,.6)}
+.art-corp .node:nth-child(9){top:75%;left:70%}
+.art-corp .node:nth-child(10){top:25%;left:70%;width:6px;height:6px}
+.art-corp .node:nth-child(11){top:75%;left:30%;width:6px;height:6px}
+.cat-corp{background:rgba(157,123,255,.1);color:#9D7BFF;border:1px solid rgba(157,123,255,.25)}
+
+/* 9. AI — circuit nodes */
+.art-ai{background:linear-gradient(135deg,#0A1420 0%,#0A0C1A 100%)}
+.art-ai .circuit{position:absolute;inset:15%;border:1px solid rgba(125,230,255,.1);border-radius:8px}
+.art-ai .c-node{position:absolute;width:10px;height:10px;border-radius:50%;border:2px solid rgba(125,230,255,.5);background:rgba(125,230,255,.15);animation:cNodePulse 2s ease-in-out infinite}
+.art-ai .c-node:nth-child(2){top:20%;left:20%;animation-delay:0s}
+.art-ai .c-node:nth-child(3){top:20%;right:20%;animation-delay:.4s}
+.art-ai .c-node:nth-child(4){top:50%;left:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-color:rgba(125,230,255,.8);background:rgba(125,230,255,.3);box-shadow:0 0 16px rgba(125,230,255,.5);animation-delay:.2s}
+.art-ai .c-node:nth-child(5){bottom:20%;left:20%;animation-delay:.6s}
+.art-ai .c-node:nth-child(6){bottom:20%;right:20%;animation-delay:.8s}
+.art-ai .c-line{position:absolute;background:rgba(125,230,255,.15);height:1px}
+.art-ai .c-line:nth-child(7){top:25%;left:25%;width:50%;transform:rotate(30deg)}
+.art-ai .c-line:nth-child(8){top:25%;left:25%;width:50%;transform:rotate(-30deg)}
+.art-ai .c-line:nth-child(9){bottom:25%;left:25%;width:50%;transform:rotate(-30deg)}
+.art-ai .c-line:nth-child(10){bottom:25%;left:25%;width:50%;transform:rotate(30deg)}
+.cat-ai{background:rgba(125,230,255,.1);color:#7DE6FF;border:1px solid rgba(125,230,255,.2)}
+@keyframes cNodePulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
+
+/* 10. AI+Corporate — hybrid gradient */
+.art-hybrid{background:linear-gradient(135deg,#0E0A22 0%,#0A1420 50%,#0A0C1A 100%)}
+.art-hybrid .h-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid;transform:translate(-50%,-50%);animation:hRingSpin 12s linear infinite}
+.art-hybrid .h-ring:nth-child(1){width:60px;height:60px;border-color:rgba(157,123,255,.4)}
+.art-hybrid .h-ring:nth-child(2){width:100px;height:100px;border-color:rgba(125,230,255,.25);animation-direction:reverse;animation-duration:16s}
+.art-hybrid .h-ring:nth-child(3){width:140px;height:140px;border-color:rgba(232,187,107,.15);animation-duration:20s}
+.art-hybrid .h-dot{position:absolute;width:6px;height:6px;border-radius:50%}
+.art-hybrid .h-dot:nth-child(4){top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;background:radial-gradient(circle,rgba(125,230,255,.9),rgba(157,123,255,.5));box-shadow:0 0 16px rgba(125,230,255,.5)}
+.art-hybrid .h-dot:nth-child(5){top:25%;left:60%;background:rgba(157,123,255,.7);box-shadow:0 0 8px rgba(157,123,255,.4)}
+.art-hybrid .h-dot:nth-child(6){bottom:30%;right:25%;background:rgba(125,230,255,.7);box-shadow:0 0 8px rgba(125,230,255,.4)}
+.cat-hybrid{background:linear-gradient(110deg,rgba(157,123,255,.1),rgba(125,230,255,.1));color:#9D7BFF;border:1px solid rgba(157,123,255,.2)}
+@keyframes hRingSpin{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+</style>
+
+
+<!-- ═══════════════════════════════════════
+     THE 10 BLOG CARDS — paste into blog.html
+═══════════════════════════════════════ -->
+<div class="blog-grid">
+
+  <!-- 1. Why Affirmations Fail — Manifestation starburst -->
+  <a class="blog-card rv" href="/why-affirmations-fail.html">
+    <div class="card-art art-manifest">
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="orb"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-manifest">Manifestation</span>
+      <h3 class="card-title">Why Your Affirmations <em>Aren't Working</em></h3>
+      <p class="card-sub">The neuroscience behind why repeating positive statements has almost no effect — and the one change that fixes it.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">8 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 2. The 5 AM Myth — Sunrise -->
+  <a class="blog-card rv rv-d1" href="/the-5am-myth.html">
+    <div class="card-art art-morning">
+      <div class="horizon"></div>
+      <div class="sun"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-morning">Daily Routine</span>
+      <h3 class="card-title">The 5 AM Myth: Why Copying Someone Else's <em>Morning</em> Won't Save You</h3>
+      <p class="card-sub">The morning routine industry sells certainty. The truth is more useful — and less photogenic.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">7 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 3. Body Keeps Score — Heartbeat -->
+  <a class="blog-card rv" href="/your-body-keeps-score.html">
+    <div class="card-art art-health">
+      <div class="pulse-line"></div>
+      <div class="pulse"><svg viewBox="0 0 400 60"><polyline points="0,30 80,30 100,10 120,50 140,20 160,40 180,30 400,30"/></svg></div>
+      <div class="heart">♡</div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-health">Health · Nervous System</span>
+      <h3 class="card-title">Your Body Is Keeping <em>Score</em></h3>
+      <p class="card-sub">How unresolved stress quietly rewires your nervous system — and the daily reset that reverses it.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">9 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 4. Attention Is Currency — Target rings -->
+  <a class="blog-card rv rv-d1" href="/attention-is-your-currency.html">
+    <div class="card-art art-focus">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-focus">Focus · Digital Sovereignty</span>
+      <h3 class="card-title">Attention Is the Only Currency <em>You Can't Earn Back</em></h3>
+      <p class="card-sub">You can make more money. You cannot make more attention. A framework for spending it wisely.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">8 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 5. Visualization Without Action — Prism -->
+  <a class="blog-card rv" href="/visualization-without-action.html">
+    <div class="card-art art-prism">
+      <div class="beam-in"></div>
+      <div class="triangle"></div>
+      <div class="beam-r"></div><div class="beam-r"></div><div class="beam-r"></div><div class="beam-r"></div><div class="beam-r"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-prism">Manifestation · Action</span>
+      <h3 class="card-title">Visualization Without Action Is Just <em>Entertainment</em></h3>
+      <p class="card-sub">Why mental rehearsal alone produces nothing — and the bridge between seeing it and building it.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">7 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 6. Evening Routine — Moon -->
+  <a class="blog-card rv rv-d1" href="/the-evening-routine.html">
+    <div class="card-art art-evening">
+      <div class="moon"></div>
+      <div class="e-star"></div><div class="e-star"></div><div class="e-star"></div><div class="e-star"></div><div class="e-star"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-evening">Daily Routine · Sleep</span>
+      <h3 class="card-title">The Evening Routine <em>Nobody</em> Talks About</h3>
+      <p class="card-sub">What you do in the last 90 minutes before sleep determines what kind of person wakes up tomorrow.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">7 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 7. Frequency You Carry — Sound wave -->
+  <a class="blog-card rv" href="/the-frequency-you-carry.html">
+    <div class="card-art art-wave">
+      <div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div>
+      <div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-wave">Manifestation · Frequency</span>
+      <h3 class="card-title">You Don't Attract What You Want. You Attract What You <em>Carry.</em></h3>
+      <p class="card-sub">The uncomfortable truth about like attracts like — and it has nothing to do with magic.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">8 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 8. Corporate Politics — Geometric grid -->
+  <a class="blog-card rv rv-d1" href="/corporate-politics-decoded.html">
+    <div class="card-art art-corp">
+      <div class="grid-line h"></div><div class="grid-line h"></div><div class="grid-line h"></div>
+      <div class="grid-line v"></div><div class="grid-line v"></div><div class="grid-line v"></div>
+      <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-corp">Corporate · Leadership</span>
+      <h3 class="card-title">The Unspoken Rules of <em>Corporate</em> Politics</h3>
+      <p class="card-sub">The invisible dynamics that determine who rises and who stays stuck — nobody teaches this in business school.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">9 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 9. AI Co-Pilot — Circuit nodes -->
+  <a class="blog-card rv" href="/ai-is-your-co-pilot.html">
+    <div class="card-art art-ai">
+      <div class="circuit"></div>
+      <div class="c-node"></div><div class="c-node"></div><div class="c-node"></div><div class="c-node"></div><div class="c-node"></div>
+      <div class="c-line"></div><div class="c-line"></div><div class="c-line"></div><div class="c-line"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-ai">AI · Productivity</span>
+      <h3 class="card-title">AI Won't Replace You. But Someone Using AI <em>Will.</em></h3>
+      <p class="card-sub">How to use AI as a force multiplier — practical frameworks for every professional.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">8 min →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 10. AI-First Employee — Hybrid rings -->
+  <a class="blog-card rv rv-d1" href="/corporate-ai-advantage.html">
+    <div class="card-art art-hybrid">
+      <div class="h-ring"></div><div class="h-ring"></div><div class="h-ring"></div>
+      <div class="h-dot"></div><div class="h-dot"></div><div class="h-dot"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-cat cat-hybrid">Corporate · AI · Career</span>
+      <h3 class="card-title">The AI-First Employee: How to Become <em>Irreplaceable</em></h3>
+      <p class="card-sub">Your company is adopting AI. Be the person who leads that — not the person it replaces.</p>
+      <div class="card-foot">
+        <span class="card-author">Vishal Hingol</span>
+        <span class="card-read">9 min →</span>
+      </div>
+    </div>
+  </a>
+
+</div>
