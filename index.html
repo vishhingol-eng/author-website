@@ -98,67 +98,116 @@
 .brand{font-weight:700!important}
 .brand em{font-style:italic;background:linear-gradient(100deg,#E8BB6B 0%,#F2D49B 40%,#FF9ECF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;transition:filter .3s}
 .brand:hover em{filter:brightness(1.35) drop-shadow(0 0 14px rgba(232,187,107,.7))}
-.hero h1{text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6);overflow:visible;padding-right:.25em;font-weight:800;letter-spacing:-.03em}
-.show-line{text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 60px rgba(5,7,21,.5)}
+.hero h1{
+  text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6);
+  overflow:visible;
+  /* generous padding to prevent clip on V ascender, g descender, italic l overhang */
+  padding:.18em .32em .28em .12em;
+  margin:0 -.12em;
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.05;
+}
+.show-line{text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 60px rgba(5,7,21,.5);color:rgba(244,238,226,.92)}
+.show-line strong{color:#FFFFFF;font-weight:600;text-shadow:0 0 30px rgba(255,255,255,.25)}
 .show-eyebrow{text-shadow:0 1px 12px rgba(0,0,0,.5)}
 .hero .eyebrow{text-shadow:0 1px 16px rgba(0,0,0,.5)}
 /* .hero-meta text-shadow handled in liquid glass block below */
 .hero-quiet a{text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .hv-fade{background:linear-gradient(to bottom,rgba(5,7,21,.45) 0%,rgba(5,7,21,.25) 30%,rgba(5,7,21,.35) 60%,rgba(5,7,21,.75) 100%)!important}
-.grad-name{background:linear-gradient(110deg,#E8BB6B 0%,#F5D080 35%,#FFFFFF 55%,#F5D080 75%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;padding-right:.12em}
-.grad-name-em{font-style:italic;background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 40%,#FF9ECF 80%,#E8BB6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;padding-right:.12em}
-/* glow via h1 wrapper — avoids filter clip on italic descenders */
+.grad-name{
+  background:linear-gradient(110deg,#E8BB6B 0%,#F5D080 35%,#FFFFFF 55%,#F5D080 75%,#E8BB6B 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  display:inline;
+}
+.grad-name-em{
+  font-style:italic;
+  background:linear-gradient(110deg,#F5D080 0%,#FFFFFF 40%,#FF9ECF 80%,#E8BB6B 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  display:inline;
+}
 .hero h1 .grad-name{text-shadow:none}
-.hero-inner{overflow:visible}
-/* ── Liquid glass hero-meta bar ── */
+/* overflow visible on all hero ancestors so nothing clips */
+.hero,.hero .wrap,.hero-inner,.hero .hero-inner{overflow:visible}
+/* ── Apple-style liquid glass stats bar ── */
 .hero-meta{
-  display:flex;align-items:center;gap:0;
+  display:inline-flex;align-items:center;gap:0;
   margin-top:clamp(20px,3vw,28px);
-  background:rgba(5,7,21,.52);
-  backdrop-filter:blur(28px) saturate(180%) brightness(1.08);
-  -webkit-backdrop-filter:blur(28px) saturate(180%) brightness(1.08);
-  border:1px solid rgba(255,255,255,.18);
-  border-top:1px solid rgba(255,255,255,.28);
-  border-radius:100px;
-  padding:12px 28px;
-  width:fit-content;
-  box-shadow:
-    0 8px 40px rgba(0,0,0,.55),
-    0 2px 0 rgba(255,255,255,.08) inset,
-    0 -1px 0 rgba(0,0,0,.35) inset,
-    0 0 0 1px rgba(232,187,107,.08) inset;
+  /* Apple glass: near-transparent with strong blur + slight white tint */
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
+  -webkit-backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
+  /* single hairline border — top slightly brighter = specular highlight */
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:980px;
+  padding:14px 32px;
+  width:auto;
   position:relative;
   overflow:hidden;
   isolation:isolate;
+  /* clean drop shadow — Apple never uses heavy shadows */
+  box-shadow:
+    0 2px 24px rgba(0,0,0,.28),
+    0 1px 0 rgba(255,255,255,.22) inset;
 }
-/* top-edge glass sheen */
+/* specular top-edge sheen — the Apple signature */
 .hero-meta::before{
-  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
-  pointer-events:none;z-index:1;
+  content:"";
+  position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,.5) 40%,
+    rgba(255,255,255,.5) 60%,
+    transparent 100%);
+  pointer-events:none;
 }
-/* subtle inner light */
+/* very subtle upper-half inner glow */
 .hero-meta::after{
-  content:"";position:absolute;inset:0;border-radius:100px;
-  background:linear-gradient(160deg,rgba(255,255,255,.07) 0%,transparent 55%,rgba(232,187,107,.05) 100%);
-  pointer-events:none;z-index:0;
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:50%;
+  border-radius:980px 980px 0 0;
+  background:linear-gradient(to bottom,rgba(255,255,255,.06),transparent);
+  pointer-events:none;
 }
-.hero-meta .stat{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 22px;white-space:nowrap;position:relative;z-index:2}
-.hero-meta .stat b{font-size:clamp(16px,2.2vw,20px);font-weight:700;color:#F4EEE2;letter-spacing:-.01em;text-shadow:0 0 20px rgba(232,187,107,.7),0 1px 3px rgba(0,0,0,.6)}
-.hero-meta .stat span{font-family:'Space Grotesk',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,238,226,.55)}
-/* gold highlight on 17+ and 369 */
+.hero-meta .stat{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:0 26px;white-space:nowrap;position:relative;z-index:2;
+}
+.hero-meta .stat b{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(17px,2.2vw,22px);font-weight:700;
+  color:#FFFFFF;letter-spacing:-.02em;
+  text-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+/* gold on 17+ and 369 */
 .hero-meta .stat:nth-child(1) b,
 .hero-meta .stat:nth-child(3) b{
-  background:linear-gradient(110deg,#E8BB6B,#F2D49B);
+  background:linear-gradient(110deg,#E8BB6B 0%,#F5D490 100%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
-  text-shadow:none;filter:drop-shadow(0 0 10px rgba(232,187,107,.5))
+  text-shadow:none;
 }
-.hero-meta .div{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.22),transparent);flex-shrink:0;position:relative;z-index:2}
-@media(max-width:600px){
-  .hero-meta{border-radius:20px;padding:10px 14px;gap:0;flex-wrap:wrap;justify-content:center}
-  .hero-meta .stat{padding:6px 12px}
-  .hero-meta .stat b{font-size:14px}
+.hero-meta .stat span{
+  font-family:'Space Grotesk',monospace;
+  font-size:9.5px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);
+}
+/* dividers — thin, faded, Apple-style */
+.hero-meta .div{
+  width:1px;height:32px;flex-shrink:0;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255,255,255,.25) 30%,
+    rgba(255,255,255,.25) 70%,
+    transparent 100%);
+  position:relative;z-index:2;
+}
+@media(max-width:640px){
+  .hero-meta{padding:12px 16px;border-radius:24px;flex-wrap:wrap;justify-content:center;gap:0}
+  .hero-meta .stat{padding:6px 14px}
+  .hero-meta .stat b{font-size:15px}
   .hero-meta .div{display:none}
 }
 .vision{padding:clamp(80px,12vw,140px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
@@ -236,19 +285,19 @@
       <h1 class="rv rv-d1"><span class="grad-name">Vishal <em class="grad-name-em">Hingol</em></span></h1>
       <div class="show-stage rv rv-d2">
         <div class="show-slide is-on" aria-hidden="false">
-          <p class="show-eyebrow">// The Library</p>
-          <p class="show-line">Books &amp; 90-day guided journals for people <em>done waiting for change.</em></p>
+          <p class="show-eyebrow">// 19 Books · Mindset · Manifestation · Fiction</p>
+          <p class="show-line"><strong>Rewire your mind.</strong> Books &amp; 90-day journals built on neuroscience, the 369 method, and real identity change — <em>not motivation.</em></p>
           <div class="hero-ctas"><a class="btn btn-gold" href="#library">Browse the Books <span class="arr">→</span></a></div>
         </div>
         <div class="show-slide" aria-hidden="true">
-          <p class="show-eyebrow">⭐ Gold Star Premium · Deep Signal</p>
-          <p class="show-line">Member editions that go <em>deeper than books.</em></p>
-          <div class="hero-ctas"><a class="btn btn-gold" href="#deepsignal">Explore Premium — $5/month <span class="arr">→</span></a></div>
+          <p class="show-eyebrow">⭐ Deep Signal · Premium Editions · $5/month</p>
+          <p class="show-line"><strong>Go deeper.</strong> Long-form member essays on confidence, self-sabotage, and the mechanics of the mind — <em>written for people who are done with surface-level advice.</em></p>
+          <div class="hero-ctas"><a class="btn btn-gold" href="#deepsignal">Explore Premium <span class="arr">→</span></a></div>
         </div>
         <div class="show-slide" aria-hidden="true">
-          <p class="show-eyebrow">// Work With Vishal · 1 : 1</p>
-          <p class="show-line">Reading helped. <em>Talking it through helps more.</em></p>
-          <div class="hero-ctas"><a class="btn btn-gold" href="mentor.html">Book Your Free Intro Call <span class="arr">→</span></a></div>
+          <p class="show-eyebrow">// 1 : 1 Mentorship · Free Intro Call</p>
+          <p class="show-line"><strong>Work with Vishal directly.</strong> Private sessions for people who know their pattern — and are ready to break it <em>with someone who tells you the truth.</em></p>
+          <div class="hero-ctas"><a class="btn btn-gold" href="mentor.html">Book Free Intro Call <span class="arr">→</span></a></div>
         </div>
       </div>
       <div class="show-progress rv rv-d3" role="tablist" aria-label="Hero highlights">
