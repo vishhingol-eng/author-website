@@ -100,14 +100,16 @@
 .brand:hover em{filter:brightness(1.35) drop-shadow(0 0 14px rgba(232,187,107,.7))}
 .hero h1{
   text-shadow:0 2px 40px rgba(0,0,0,.7),0 0 80px rgba(5,7,21,.6);
-  overflow:visible;
-  /* generous padding to prevent clip on V ascender, g descender, italic l overhang */
-  padding:.18em .32em .28em .12em;
-  margin:0 -.12em;
+  overflow:visible!important;
+  padding:.15em .4em .35em .1em!important;
+  margin:0 -.1em;
   font-weight:800;
   letter-spacing:-.02em;
-  line-height:1.05;
+  line-height:1.1;
+  display:block;
 }
+/* overflow visible all the way up the hero stack so nothing clips */
+.hero,.hero .wrap,.hero-inner{overflow:visible!important}
 .show-line{text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 60px rgba(5,7,21,.5);color:rgba(244,238,226,.92)}
 .show-line strong{color:#FFFFFF;font-weight:600;text-shadow:0 0 30px rgba(255,255,255,.25)}
 .show-eyebrow{text-shadow:0 1px 12px rgba(0,0,0,.5)}
@@ -129,86 +131,117 @@
   display:inline;
 }
 .hero h1 .grad-name{text-shadow:none}
-/* overflow visible on all hero ancestors so nothing clips */
-.hero,.hero .wrap,.hero-inner,.hero .hero-inner{overflow:visible}
-/* ── Apple-style liquid glass stats bar ── */
+
+/* ══════════════════════════════════════════
+   APPLE LIQUID GLASS — SVG feDisplacementMap
+   Works in Chrome/Edge fully; Safari/Firefox
+   gracefully degrade to clean backdrop-filter
+   ══════════════════════════════════════════ */
+
+/* Hero stats bar — liquid glass pill */
 .hero-meta{
   display:inline-flex;align-items:center;gap:0;
   margin-top:clamp(20px,3vw,28px);
-  /* Apple glass: near-transparent with strong blur + slight white tint */
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
-  -webkit-backdrop-filter:blur(40px) saturate(200%) brightness(1.12);
-  /* single hairline border — top slightly brighter = specular highlight */
-  border:1px solid rgba(255,255,255,.16);
+  position:relative;overflow:hidden;isolation:isolate;
   border-radius:980px;
   padding:14px 32px;
   width:auto;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-  /* clean drop shadow — Apple never uses heavy shadows */
-  box-shadow:
-    0 2px 24px rgba(0,0,0,.28),
-    0 1px 0 rgba(255,255,255,.22) inset;
+  /* SVG backdrop-filter for Chrome — true displacement refraction */
+  backdrop-filter:url(#lg-filter) blur(0.5px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 2px 20px rgba(0,0,0,.25),0 1px 0 rgba(255,255,255,.2) inset;
 }
-/* specular top-edge sheen — the Apple signature */
+/* specular top edge */
 .hero-meta::before{
-  content:"";
-  position:absolute;top:0;left:12%;right:12%;height:1px;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,.5) 40%,
-    rgba(255,255,255,.5) 60%,
-    transparent 100%);
-  pointer-events:none;
+  content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  pointer-events:none;z-index:3;
 }
-/* very subtle upper-half inner glow */
+/* upper half inner light */
 .hero-meta::after{
-  content:"";
-  position:absolute;top:0;left:0;right:0;height:50%;
+  content:"";position:absolute;top:0;left:0;right:0;height:52%;
   border-radius:980px 980px 0 0;
-  background:linear-gradient(to bottom,rgba(255,255,255,.06),transparent);
-  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(255,255,255,.07),transparent);
+  pointer-events:none;z-index:3;
 }
 .hero-meta .stat{
   display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:0 26px;white-space:nowrap;position:relative;z-index:2;
+  padding:0 24px;white-space:nowrap;position:relative;z-index:4;
 }
 .hero-meta .stat b{
   font-family:'Fraunces',Georgia,serif;
-  font-size:clamp(17px,2.2vw,22px);font-weight:700;
+  font-size:clamp(17px,2.2vw,21px);font-weight:700;
   color:#FFFFFF;letter-spacing:-.02em;
-  text-shadow:0 1px 8px rgba(0,0,0,.4);
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
 }
-/* gold on 17+ and 369 */
 .hero-meta .stat:nth-child(1) b,
 .hero-meta .stat:nth-child(3) b{
-  background:linear-gradient(110deg,#E8BB6B 0%,#F5D490 100%);
+  background:linear-gradient(110deg,#E8BB6B,#F5D490);
   -webkit-background-clip:text;background-clip:text;
-  color:transparent;-webkit-text-fill-color:transparent;
-  text-shadow:none;
+  color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;
 }
 .hero-meta .stat span{
   font-family:'Space Grotesk',monospace;
-  font-size:9.5px;font-weight:500;letter-spacing:.13em;
-  text-transform:uppercase;color:rgba(255,255,255,.5);
+  font-size:9px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.48);
 }
-/* dividers — thin, faded, Apple-style */
 .hero-meta .div{
-  width:1px;height:32px;flex-shrink:0;
-  background:linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255,255,255,.25) 30%,
-    rgba(255,255,255,.25) 70%,
-    transparent 100%);
-  position:relative;z-index:2;
+  width:1px;height:30px;flex-shrink:0;z-index:4;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.24),transparent);
 }
 @media(max-width:640px){
-  .hero-meta{padding:12px 16px;border-radius:24px;flex-wrap:wrap;justify-content:center;gap:0}
-  .hero-meta .stat{padding:6px 14px}
-  .hero-meta .stat b{font-size:15px}
+  .hero-meta{padding:10px 14px;border-radius:24px;flex-wrap:wrap;justify-content:center}
+  .hero-meta .stat{padding:5px 12px}
+  .hero-meta .stat b{font-size:14px}
   .hero-meta .div{display:none}
+}
+
+/* ── NAV liquid glass buttons ── */
+/* All nav links: invisible by default, text white */
+.nav-links li a:not(.nav-cta){
+  position:relative;
+  color:rgba(244,238,226,.78);
+  font-size:11.5px;
+  padding:6px 13px;
+  border-radius:980px;
+  transition:color .22s ease;
+  /* glass pill — hidden until hover */
+}
+.nav-links li a:not(.nav-cta)::before{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:980px;
+  backdrop-filter:url(#lg-filter) blur(0.5px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 1px 12px rgba(0,0,0,.2),0 1px 0 rgba(255,255,255,.18) inset;
+  opacity:0;
+  transform:scale(.88);
+  transition:opacity .22s ease,transform .22s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;
+  z-index:-1;
+}
+/* top specular on nav glass pill */
+.nav-links li a:not(.nav-cta)::after{
+  content:"";
+  position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  border-radius:1px;
+  opacity:0;
+  transition:opacity .22s ease;
+  pointer-events:none;
+}
+.nav-links li a:not(.nav-cta):hover{
+  color:#E8BB6B;
+}
+.nav-links li a:not(.nav-cta):hover::before{
+  opacity:1;transform:scale(1);
+}
+.nav-links li a:not(.nav-cta):hover::after{
+  opacity:1;
 }
 .vision{padding:clamp(80px,12vw,140px) clamp(20px,6vw,72px);max-width:1240px;margin:0 auto;scroll-margin-top:80px}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
@@ -234,6 +267,31 @@
 </head>
 <body>
 
+<!-- ══ LIQUID GLASS SVG FILTER — Apple feDisplacementMap ══ -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <filter id="lg-filter" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <!-- blur the source slightly before displacement -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <!-- generate organic turbulence as displacement map -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="3" seed="5" result="noise"/>
+      <!-- displacement: bends background pixels at edges -->
+      <feDisplacementMap in="blur" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <!-- color matrix: boost saturation + slight brightness -->
+      <feColorMatrix in="displaced" type="saturate" values="1.6" result="saturated"/>
+      <!-- composite displaced with original — glass lens effect -->
+      <feComposite in="saturated" in2="SourceGraphic" operator="over"/>
+    </filter>
+    <!-- smaller version for nav pills — tighter displacement -->
+    <filter id="lg-nav" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.025 0.03" numOctaves="2" seed="8" result="noise"/>
+      <feDisplacementMap in="blur" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <feColorMatrix in="displaced" type="saturate" values="1.5"/>
+    </filter>
+  </defs>
+</svg>
+
 <!-- live background: aurora + star canvas (desktop) + falling-star sky (phones) -->
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -257,7 +315,7 @@
         <li><a href="shop.html">Fashion</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="account.html" id="navAccount">Account</a></li>
-        <li><a href="policies.html" style="color:var(--gold)">Policies</a></li>
+        <li><a href="policies.html">Policies</a></li>
         <li><a class="nav-cta" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon&nbsp;↗</a></li>
       </ul>
     </nav>
@@ -326,6 +384,10 @@
         <div class="stat"><b>∞</b><span>One universe</span></div>
         <div class="div" aria-hidden="true"></div>
         <div class="stat"><b>Worldwide</b><span>Amazon &amp; Kindle</span></div>
+        <div class="div" aria-hidden="true"></div>
+        <div class="stat"><b style="font-size:clamp(10px,1.2vw,12px);letter-spacing:.05em;opacity:.7">Audiobooks</b><span>Coming soon</span></div>
+        <div class="div" aria-hidden="true"></div>
+        <div class="stat"><b style="font-size:clamp(10px,1.2vw,12px);letter-spacing:.05em;opacity:.7">eBooks</b><span>Coming soon</span></div>
       </div>
 
     </div>
