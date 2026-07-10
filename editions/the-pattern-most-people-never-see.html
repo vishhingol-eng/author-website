@@ -585,8 +585,8 @@ function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 
 /* ── PREMIUM GATE — requires isPremium ── */
 (function(){
-  const EP='https://subscribe.vishalhingolauthor.com';
   function applyGate(){
+    if(window._gateOpen){return;}
     const gs=document.getElementById('premiumGatedSection');
     if(!gs)return;
     const wrap=document.createElement('div');wrap.className='gate-blurred';
@@ -601,13 +601,15 @@ function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
     const btn=document.createElement('a');btn.className='btn';btn.href='/newsletter.html#deepSignal';btn.textContent='Join Deep Signal — $5/month';inner.appendChild(btn);
     const price=document.createElement('p');price.className='gate-price';price.textContent='Cancel anytime · Includes every future Gold Star Premium edition';inner.appendChild(price);
     gate.appendChild(inner);gs.appendChild(gate);
-    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
-      .then(r=>r.json()).then(d=>{
-        if(d&&d.loggedIn&&d.isPremium){wrap.classList.remove('gate-blurred');gate.remove();}
-      }).catch(()=>{});
+    function onReady(){
+      if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}
+    }
+    if(window._gateChecked){onReady();}
+    else{document.addEventListener('gateReady',onReady,{once:true});}
   }
-  if(window._gateChecked){_doGate();}else{document.addEventListener('gateReady',_doGate,{once:true});}
-  function _doGate(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',applyGate,{once:true});
+  }else{applyGate();}
 })();
 </script>
 

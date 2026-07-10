@@ -933,23 +933,16 @@ function _clamp(v,a,b){return Math.max(a,Math.min(b,v));}
     const gate=document.createElement('div');gate.className='premium-gate';
     const inner=document.createElement('div');inner.className='premium-gate-inner';
     const glow=document.createElement('div');glow.className='premium-gate-glow';inner.appendChild(glow);
-    const star=document.createElement('span');star.className='gate-star';star.textContent='✦';inner.appendChild(star);
+    const star=document.createElement('span');star.className='gate-star';star.textContent='⭐';inner.appendChild(star);
     const h=document.createElement('h3');h.textContent='This is a Deep Signal Exclusive';inner.appendChild(h);
-    const p=document.createElement('p');p.textContent="You've read the free preview — the 3-6-9 structure and the neurological timing. The full practice — the Frequency-First Principle, the Declaration vs Frequency distinction, the frequency visualization, the 5-step framework, and the 21-day implementation — is reserved for Deep Signal members.";inner.appendChild(p);
+    const p=document.createElement('p');p.textContent="You've read the free preview. The full article — the 48-hour mechanism, the motion vs movement framework, the 4-step practice, and the canvas visualization — is reserved for Deep Signal members.";inner.appendChild(p);
     const btn=document.createElement('a');btn.className='btn';btn.href='/newsletter.html#deepSignal';btn.textContent='Join Deep Signal — $5/month';inner.appendChild(btn);
     const price=document.createElement('p');price.className='gate-price';price.textContent='Cancel anytime · Includes every future Gold Star Premium edition';inner.appendChild(price);
     gate.appendChild(inner);gs.appendChild(gate);
-    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({type:'check_session'})})
-      .then(r=>r.json()).then(d=>{
-        if(d&&d.loggedIn&&d.isPremium){
-          wrap.classList.remove('gate-blurred');
-          gate.remove();
-          gs.scrollIntoView({behavior:'smooth',block:'start'});
-        }
-      }).catch(()=>{});
+    function onReady(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
+    if(window._gateChecked){onReady();}else{document.addEventListener('gateReady',onReady,{once:true});}
   }
-  if(window._gateChecked){applyGateCheck();}else{document.addEventListener('gateReady',applyGateCheck,{once:true});}
-  function applyGateCheck(){if(window._gateOpen){wrap.classList.remove('gate-blurred');gate.remove();window.scrollTo({top:0});}}
+  applyGate();
 })();
 </script>
 
