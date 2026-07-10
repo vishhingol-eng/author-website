@@ -1,30 +1,148 @@
-# vishalhingolauthor.com — LIVE robots.txt
-# Strategy: open to AI search engines for GEO discovery; block bulk training scrapers.
+# robots.txt — vishalhingolauthor.com
+# Last updated: 2026-07-10
+# Strategy: Allow all legitimate crawlers (search + AI answer engines)
+#            Block only bulk-scraper / training-data harvester bots
+#            Point to llms.txt for AI systems that support it
 
-User-agent: *
+# ─────────────────────────────────────────────
+# ALLOW — Standard search engines
+# ─────────────────────────────────────────────
+User-agent: Googlebot
 Allow: /
 
-# --- AI search & answer engines: ALLOWED (so ChatGPT, Claude, Perplexity, Gemini can find & cite you) ---
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ─────────────────────────────────────────────
+# ALLOW — AI answer engines & LLM crawlers
+# (these power ChatGPT, Claude, Perplexity, Gemini,
+#  Copilot, Grok citations — you WANT these)
+# ─────────────────────────────────────────────
+
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
+# Google AI (Gemini / SGE / AI Overviews)
 User-agent: Google-Extended
 Allow: /
 
+User-agent: Googlebot-Extended
+Allow: /
+
+# Microsoft Copilot / Bing AI
 User-agent: Applebot-Extended
 Allow: /
 
-# --- Bulk training scraper: BLOCKED (content protection line) ---
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Amazon Alexa / Bedrock
+User-agent: Amazonbot
+Allow: /
+
+# Bytedance / TikTok AI
+User-agent: Bytespider
+Allow: /
+
+# AI2 (Allen Institute)
+User-agent: AI2Bot
+Allow: /
+
+# Diffbot (structured data for LLM knowledge graphs)
+User-agent: Diffbot
+Allow: /
+
+# Omgili (research / AI)
+User-agent: omgilibot
+Allow: /
+
+# Brave AI
+User-agent: Bravebot
+Allow: /
+
+# You.com AI
+User-agent: YouBot
+Allow: /
+
+# Grok / xAI
+User-agent: xAI-SearchBot
+Allow: /
+
+# ─────────────────────────────────────────────
+# BLOCK — Bulk scrapers / training-data harvesters
+# ─────────────────────────────────────────────
+
+# CCBot (Common Crawl — used for bulk AI training datasets)
 User-agent: CCBot
 Disallow: /
 
+# SemrushBot (SEO competitive scraper)
+User-agent: SemrushBot
+Disallow: /
+
+# AhrefsBot (SEO competitive scraper)
+User-agent: AhrefsBot
+Disallow: /
+
+# MJ12bot (Majestic scraper)
+User-agent: MJ12bot
+Disallow: /
+
+# DotBot (Moz scraper)
+User-agent: DotBot
+Disallow: /
+
+# Petal Search (Huawei mass scraper)
+User-agent: PetalBot
+Disallow: /
+
+# ─────────────────────────────────────────────
+# GLOBAL DEFAULT — allow everything else
+# ─────────────────────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# ─────────────────────────────────────────────
+# SITEMAPS
+# ─────────────────────────────────────────────
 Sitemap: https://vishalhingolauthor.com/sitemap.xml
+Sitemap: https://vishalhingolauthor.com/llms.txt
