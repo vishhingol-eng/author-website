@@ -62,196 +62,333 @@ a{color:inherit;text-decoration:none}
 @keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
+/* nav */
+nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,4vw,60px);background:rgba(7,10,24,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
+.brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-amzn{color:var(--night)!important;background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px;letter-spacing:.08em!important}
+@media(max-width:600px){.nav-links a:not(.nav-amzn){display:none}}
 
-.nav{position:sticky;top:0;z-index:40;background:rgba(7,10,24,.80);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,238,226,.08)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4vw,60px);max-width:1400px;margin:0 auto}
-.brand{font-family:var(--display);font-size:19px;font-weight:700;text-decoration:none;color:var(--paper)}
-.brand em{font-style:italic;background:linear-gradient(100deg,#E8BB6B 0%,#F2D49B 40%,#FF9ECF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:4px;align-items:center;list-style:none;padding:0;margin:0}
-.nav-links li a{font-family:var(--tech);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,238,226,.68);padding:6px 12px;border-radius:100px;border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;text-decoration:none}
-.nav-links li a:hover,.nav-links li a.active{color:var(--gold)}
-.nav-links li a:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
-.nav-links li a.active{color:var(--cyan)}
-.nav-cta{background:linear-gradient(110deg,var(--gold),#F2D49B)!important;color:var(--night)!important;border-color:transparent!important;font-weight:700!important;padding:8px 16px!important}
-.nav-cta:hover{filter:brightness(1.08);background:linear-gradient(110deg,var(--gold),#F2D49B)!important}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:transparent;border:1px solid rgba(244,238,226,.2);border-radius:8px;padding:8px}
-.burger span{width:22px;height:2px;background:var(--paper);border-radius:2px;display:block;transition:all .3s}
-@media(max-width:768px){
-  .burger{display:flex}
-  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:150}
-  .nav-links.open{display:flex}
-  .nav-links li a{font-family:var(--display)!important;font-size:22px!important;letter-spacing:.02em!important;color:var(--paper)!important}
-  .nav-links li a.nav-cta{font-family:var(--tech)!important;font-size:14px!important;padding:14px 32px!important}
+/* page */
+.page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
+
+/* hero */
+.blog-hero{text-align:center;margin-bottom:clamp(48px,7vw,80px)}
+.blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
+.blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
+.blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
+@keyframes sheen{to{background-position:200% center}}
+.blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
+
+/* filter bar */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.fcat{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:100px;cursor:pointer;transition:all .2s}
+.fcat:hover{border-color:var(--cyan);color:var(--cyan)}
+.fcat.active{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border-color:transparent}
+
+/* post grid */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:clamp(18px,3vw,28px);min-height:560px}
+
+/* post card */
+.pcard{
+  position:relative;background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:20px;padding:28px;display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s;cursor:pointer;
 }
+.pcard::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.5),rgba(125,230,255,.15) 40%,rgba(157,123,255,.4) 75%,rgba(232,187,107,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.65;transition:opacity .3s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.pcard:hover::before{opacity:1}
+.pcard-cat{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.pcard h2{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.4vw,22px);line-height:1.22;letter-spacing:-.01em;margin-bottom:12px}
+.pcard h2 a:hover{background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pcard-excerpt{color:var(--mist);font-size:14.5px;line-height:1.65;flex:1;margin-bottom:20px}
+.pcard-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pcard-date{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
+.pcard-read{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
+.pcard:hover .pcard-read{gap:10px}
 
-/* ── Footer matching index.html exactly ── */
+/* related book chip */
+.book-chip{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;background:rgba(232,187,107,.08);border:1px solid rgba(232,187,107,.25);border-radius:100px;font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;transition:background .2s}
+.book-chip:hover{background:rgba(232,187,107,.16)}
+.book-chip span{font-size:10px;opacity:.75}
 
-/* ── Footer ── */
-footer{position:relative;z-index:1;border-top:1px solid rgba(244,238,226,.08);padding:0;margin-top:0}
-footer .wrap{max-width:1260px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(20px,5vw,60px) clamp(32px,4vw,48px)}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,4vw,60px);margin-bottom:clamp(40px,5vw,56px)}
-@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
-.foot-brand .brand{display:inline-block;margin-bottom:14px}
-.foot-brand p{font-size:13px;color:var(--mist);line-height:1.65;max-width:260px}
-footer h5{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-footer ul a{font-family:var(--tech);font-size:12px;color:var(--mist);transition:color .18s;letter-spacing:.04em}
-footer ul a:hover{color:var(--paper)}
-.foot-base{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(244,238,226,.07);font-family:var(--tech);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(154,161,199,.5)}
-@media(max-width:560px){.foot-base{flex-direction:column;gap:8px;text-align:center}}
+/* skeleton loading placeholders — same size/shape as a real .pcard,
+   so there's no visible jump once real content replaces them */
+.pcard-skel{background:var(--glass);border-radius:20px;padding:28px;display:flex;flex-direction:column;min-height:260px}
+.skel-line{background:rgba(244,238,226,.08);border-radius:6px;animation:skelPulse 1.6s ease-in-out infinite}
+@keyframes skelPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+.skel-cat{width:70px;height:11px;margin-bottom:18px}
+.skel-title{width:90%;height:20px;margin-bottom:10px}
+.skel-title-2{width:65%;height:20px;margin-bottom:18px}
+.skel-excerpt{width:100%;height:13px;margin-bottom:8px}
+.skel-excerpt-2{width:85%;height:13px;margin-bottom:24px}
+.skel-meta{width:50%;height:11px;margin-top:auto}
+
+.empty{text-align:center;color:var(--mist);padding:60px 20px;grid-column:1/-1}
+.empty b{font-family:var(--display);font-size:22px;display:block;color:var(--paper);margin-bottom:8px}
+
+/* footer */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:30px clamp(18px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--mist);font-size:13px}
+footer a{color:var(--gold)}
+footer a:hover{text-decoration:underline}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
+.hamburger span{width:24px;height:2px;background:var(--paper);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:100}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:20px;letter-spacing:.2em}
+  .nav-links .nav-amzn{padding:14px 28px;font-size:16px}
+}
+@media(max-width:480px){nav{padding:14px clamp(14px,3vw,28px)}.brand{font-size:17px}}
+
+/* ===== MOBILE NAV v3 ===== */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(244,238,226,.2);border-radius:8px;background:transparent;z-index:200;position:relative}
+.hamburger span{width:22px;height:2px;background:var(--paper);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(0,7px)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-7px)}
+@media(max-width:700px){
+  .hamburger{display:flex}
+  .nav-links{
+    display:flex !important;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(7,10,24,.97);
+    backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:28px;z-index:150;
+    transform:translateX(100%);
+    transition:transform .38s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+    overflow-y:auto;
+    padding:80px 20px;
+  }
+  .nav-links.open{transform:translateX(0);pointer-events:all}
+  .nav-links a{
+    font-family:var(--display) !important;
+    font-size:26px !important;font-weight:400 !important;
+    letter-spacing:.02em !important;color:#F4EEE2 !important;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .3s ease,transform .3s ease;
+    text-decoration:none;
+  }
+  .nav-links.open a{opacity:1 !important;transform:translateY(0) !important}
+  .nav-links.open a:nth-child(2){transition-delay:.06s}
+  .nav-links.open a:nth-child(3){transition-delay:.11s}
+  .nav-links.open a:nth-child(4){transition-delay:.16s}
+  .nav-links.open a:nth-child(5){transition-delay:.21s}
+  .nav-links.open a:nth-child(6){transition-delay:.26s}
+  .nav-links.open a:nth-child(7){transition-delay:.31s}
+  .nav-links.open a:nth-child(8){transition-delay:.36s}
+  .nav-links.open a:nth-child(9){transition-delay:.41s}
+  .nav-links a:hover{color:var(--gold) !important}
+  .nav-links .nav-amzn{
+    font-family:var(--tech) !important;font-size:14px !important;
+    background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;
+    color:#070A18 !important;padding:14px 32px !important;
+    border-radius:100px !important;letter-spacing:.1em !important;
+    font-weight:700 !important;
+  }
+  .nav-close{
+    position:absolute;top:24px;right:24px;
+    background:transparent;border:1px solid rgba(244,238,226,.25);
+    color:#F4EEE2;border-radius:100px;
+    width:42px;height:42px;font-size:20px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s;z-index:160;
+  }
+  .nav-close:hover{border-color:#E8BB6B;color:#E8BB6B}
+}
 /* ===== END MOBILE NAV ===== */
 </style>
-
 <style>
-/* ═══════════════════════════════════════
-   SIGNAL CARDS — Image 2 style redesign
-   Rich gradient art + grain + big stat
-═══════════════════════════════════════ */
-.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 80px}
-@media(max-width:700px){.posts{grid-template-columns:1fr;gap:18px}}
+/* ═══════════════════════════════════════════
+   FULL-BLEED COLORFUL GRADIENT CARDS
+   Image 4 style: rich multicolor gradient
+   fills entire card, text overlaid at bottom
+   Heavy grain texture, big stat, 3D tilt
+═══════════════════════════════════════════ */
 
+/* Card shell */
 .pcard-wrap{perspective:1000px}
-.pcard{
-  position:relative;border-radius:24px;overflow:visible;background:#0A0C1A;
-  cursor:pointer;transform-style:preserve-3d;
-  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;
-  will-change:transform;
-}
-.pcard:hover{box-shadow:0 32px 64px rgba(0,0,0,.55),0 0 48px rgba(255,255,255,.04)}
-.pcard-inner{
-  position:relative;border-radius:24px;overflow:hidden;
-  border:1px solid rgba(244,238,226,.07);
-  background:#0B0D1E;
-  transition:border-color .4s;
-  display:flex;flex-direction:column;
-}
-.pcard:hover .pcard-inner{border-color:rgba(244,238,226,.18)}
+.pcard{position:relative;border-radius:22px;overflow:visible;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;will-change:transform}
+.pcard:hover{box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 60px rgba(255,255,255,.06)}
 
-/* Glare overlay */
-.pcard-glare{
-  position:absolute;inset:0;border-radius:24px;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1),transparent 65%);
-  opacity:0;transition:opacity .3s;pointer-events:none;z-index:10;mix-blend-mode:overlay;
-}
+/* Full-bleed inner */
+.pcard-inner{position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.1);min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;transition:border-color .4s}
+.pcard:hover .pcard-inner{border-color:rgba(255,255,255,.25)}
+
+/* Glare */
+.pcard-glare{position:absolute;inset:0;border-radius:22px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:10;mix-blend-mode:overlay}
 .pcard:hover .pcard-glare{opacity:1}
 
-/* ART AREA — gradient + grain + stat */
-.pcard-art{
-  position:relative;height:190px;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:16px 18px 18px;
-}
+/* Heavy grain — fills whole card */
+.pcard-grain{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.65;mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+background-size:180px 180px}
 
-/* SVG noise grain texture overlay */
-.pcard-noise{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
-  background-size:200px 200px;
-  opacity:.55;
-  mix-blend-mode:overlay;
-}
+/* Bottom scrim for text legibility */
+.pcard-scrim{position:absolute;inset:0;pointer-events:none;z-index:2;
+background:linear-gradient(to bottom,transparent 0%,transparent 25%,rgba(0,0,0,.2) 50%,rgba(0,0,0,.72) 78%,rgba(0,0,0,.92) 100%)}
 
-/* gradient fade at bottom of art into body */
-.pcard-art::after{
-  content:"";position:absolute;bottom:0;left:0;right:0;height:55%;
-  background:linear-gradient(to top,#0B0D1E 0%,transparent 100%);
-  pointer-events:none;z-index:1;
-}
+/* Animated motion element — sits above gradient, below scrim */
+.pcard-motion{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 
-/* Top pill row */
-.pcard-art-top{
-  position:relative;z-index:2;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.pcard-pill{
-  font-family:'Space Grotesk',monospace;
-  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:5px 12px;border-radius:100px;
-  border:1px solid transparent;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-}
-.pcard-pill-rt{font-size:10px}
+/* Category pill — top left */
+.pcard-cat{position:absolute;top:16px;left:16px;z-index:4;padding:5px 13px;border-radius:100px;font-family:var(--tech);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 
-/* Big stat */
-.pcard-stat{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;gap:2px;
-}
-.pcard-stat-num{
-  font-family:'Fraunces',Georgia,serif;
-  font-size:clamp(38px,6vw,52px);font-weight:600;
-  line-height:1;letter-spacing:-.02em;
-  text-shadow:0 2px 24px rgba(0,0,0,.5);
-}
-.pcard-stat-lbl{
-  font-size:11.5px;color:rgba(244,238,226,.55);
-  font-family:'Space Grotesk',monospace;letter-spacing:.04em;
-  line-height:1.3;
-}
+/* Big stat — centre of card */
+.pcard-stat{position:absolute;top:50%;left:0;right:0;transform:translateY(-70%);z-index:3;padding:0 20px;display:flex;flex-direction:column;gap:4px}
+.pcard-stat-num{font-family:var(--display);font-size:clamp(46px,7vw,64px);font-weight:700;line-height:1;letter-spacing:-.03em;text-shadow:0 4px 32px rgba(0,0,0,.4)}
+.pcard-stat-lbl{font-size:11.5px;color:rgba(255,255,255,.6);font-family:var(--tech);letter-spacing:.04em;line-height:1.35}
 
-/* CARD BODY */
-.pcard-body{
-  padding:18px clamp(18px,3vw,24px) clamp(18px,3vw,22px);
-  flex:1;display:flex;flex-direction:column;gap:8px;
-}
-.pcard h2{
-  font-family:'Fraunces',Georgia,serif;
-  font-size:clamp(15.5px,2.1vw,18.5px);
-  font-weight:500;line-height:1.24;
-  color:#F4EEE2;letter-spacing:-.01em;
-  margin:0;
-}
+/* Body — overlaid at bottom */
+.pcard-body{position:relative;z-index:4;padding:18px 20px 22px;display:flex;flex-direction:column;gap:7px}
+.pcard h2{font-size:clamp(15px,2.2vw,18.5px);line-height:1.24;margin:0;color:#F4EEE2}
 .pcard h2 a{color:inherit;text-decoration:none}
 .pcard h2 a:hover{text-decoration:underline;text-underline-offset:3px}
-.pcard-excerpt{
-  font-size:13px;color:rgba(154,161,199,.75);
-  line-height:1.58;flex:1;margin:0;
-}
-.pcard-meta{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:12px;border-top:1px solid rgba(244,238,226,.06);
-  margin-top:4px;
-}
-.pcard-date{font-size:11.5px;color:rgba(154,161,199,.5);font-family:'Space Grotesk',monospace}
-.pcard-read{
-  font-family:'Space Grotesk',monospace;font-size:11px;
-  font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  transition:letter-spacing .3s;
-}
-.pcard:hover .pcard-read{letter-spacing:.18em}
+.pcard-excerpt{font-size:13px;color:rgba(255,255,255,.58);line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pcard-meta{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);margin-top:2px}
+.pcard-date{font-family:var(--tech);font-size:10.5px;color:rgba(255,255,255,.38);letter-spacing:.05em}
+.pcard-read{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:gap .2s,letter-spacing .2s}
+.pcard:hover .pcard-read{gap:10px;letter-spacing:.16em}
 
-@media(prefers-reduced-motion:reduce){
-  .pcard,.pcard-glare,.pcard-read{transition:none}
-  .pcard-noise{display:none}
-}
+/* ── GRADIENT BACKGROUNDS per category ── */
+.art-mindset{background:linear-gradient(145deg,#2D1800 0%,#7C2D12 25%,#C2410C 55%,#EA580C 78%,#FCD34D 100%)}
+.art-manifest{background:linear-gradient(145deg,#1a0533 0%,#6b21a8 35%,#c026d3 65%,#f97316 100%)}
+.art-focus{background:linear-gradient(145deg,#042f2e 0%,#0f766e 30%,#0284c7 60%,#6366f1 100%)}
+.art-health{background:linear-gradient(145deg,#4a0019 0%,#be123c 30%,#e11d48 55%,#f97316 80%,#fbbf24 100%)}
+.art-ai{background:linear-gradient(145deg,#0a0a1a 0%,#1e3a8a 25%,#0284c7 55%,#06b6d4 78%,#10b981 100%)}
+.art-corp{background:linear-gradient(145deg,#0f172a 0%,#1e3a8a 30%,#3730a3 60%,#6d28d9 85%,#9333ea 100%)}
+.art-habits{background:linear-gradient(145deg,#431407 0%,#c2410c 25%,#ea580c 55%,#d97706 80%,#fbbf24 100%)}
+.art-books{background:linear-gradient(145deg,#1c1917 0%,#78350f 25%,#b45309 50%,#ca8a04 75%,#facc15 100%)}
+.art-philosophy{background:linear-gradient(145deg,#0f0a1e 0%,#1e1b4b 25%,#312e81 55%,#4f46e5 80%,#818cf8 100%)}
+.art-growth{background:linear-gradient(145deg,#052e16 0%,#15803d 30%,#16a34a 55%,#4ade80 80%,#a3e635 100%)}
+.art-default{background:linear-gradient(145deg,#2e1065 0%,#6b21a8 25%,#a21caf 50%,#db2777 75%,#f43f5e 100%)}
+
+/* ── MOTION ELEMENTS per class ── */
+
+/* Mindset: drifting star field */
+.art-mindset .pcard-motion::before{content:"";position:absolute;inset:0;
+background-image:radial-gradient(2.5px 2.5px at 15% 25%,rgba(255,255,255,.9) 0%,transparent 100%),radial-gradient(2px 2px at 45% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(2.5px 2.5px at 72% 38%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 30% 58%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(2px 2px at 85% 65%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(3px 3px at 55% 35%,rgba(252,211,77,.6) 0%,transparent 100%),radial-gradient(2px 2px at 20% 70%,rgba(252,211,77,.5) 0%,transparent 100%);
+animation:starDrift 20s linear infinite}
+
+/* Manifestation: glowing orb */
+.art-manifest .pcard-motion::before{content:"";position:absolute;top:30%;left:55%;width:100px;height:100px;border-radius:50%;
+background:radial-gradient(circle,rgba(240,171,252,.7),rgba(196,181,253,.2) 50%,transparent 70%);
+transform:translate(-50%,-50%);animation:orbGlow 3s ease-in-out infinite}
+
+/* Focus: breathing crosshair rings */
+.art-focus .pcard-motion::before{content:"";position:absolute;top:35%;left:50%;width:100px;height:100px;border-radius:50%;
+border:1.5px solid rgba(103,232,249,.5);transform:translate(-50%,-50%);
+box-shadow:0 0 0 24px rgba(103,232,249,.12),0 0 0 48px rgba(103,232,249,.06);
+animation:focusBreath 3s ease-in-out infinite}
+
+/* Health: beating heart */
+.art-health .pcard-motion::before{content:"";position:absolute;top:35%;left:50%;width:44px;height:44px;
+transform:translate(-50%,-50%) rotate(45deg);
+background:rgba(253,164,175,.5);border-radius:50% 50% 50% 0;
+box-shadow:14px -14px 0 rgba(253,164,175,.45);
+animation:heartPump 1s ease-in-out infinite}
+
+/* AI: circuit pulse box */
+.art-ai .pcard-motion::before{content:"";position:absolute;inset:20%;border:1.5px solid rgba(56,189,248,.2);border-radius:14px;animation:circuitPulse 2.5s ease-in-out infinite}
+.art-ai .pcard-motion::after{content:"";position:absolute;top:35%;left:50%;width:16px;height:16px;border-radius:50%;border:2px solid rgba(56,189,248,.7);background:rgba(56,189,248,.25);transform:translate(-50%,-50%);box-shadow:0 0 22px rgba(56,189,248,.6)}
+
+/* Corporate: shifting grid */
+.art-corp .pcard-motion::before{content:"";position:absolute;inset:10%;
+background-image:linear-gradient(rgba(165,180,252,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(165,180,252,.12) 1px,transparent 1px);
+background-size:22% 22%;animation:gridShift 15s linear infinite}
+
+/* Habits: glowing sun rise */
+.art-habits .pcard-motion::before{content:"";position:absolute;bottom:15%;left:50%;width:56px;height:56px;border-radius:50%;
+background:radial-gradient(circle,#FFE0A0,#E8BB6B 55%,transparent 70%);
+transform:translateX(-50%);
+box-shadow:0 0 55px rgba(232,187,107,.55),0 0 110px rgba(232,187,107,.22);
+animation:sunBreathe 4s ease-in-out infinite}
+
+/* Books: floating pages */
+.art-books .pcard-motion::before{content:"";position:absolute;top:32%;left:40%;width:30px;height:40px;
+border:2px solid rgba(253,230,138,.4);border-radius:0 4px 4px 0;
+transform:translate(-50%,-50%) rotateY(-18deg);
+box-shadow:4px 0 0 rgba(253,230,138,.18),8px 0 0 rgba(253,230,138,.08)}
+.art-books .pcard-motion::after{content:"";position:absolute;top:32%;left:60%;width:30px;height:40px;
+border:2px solid rgba(253,230,138,.28);border-radius:0 4px 4px 0;
+transform:translate(-50%,-50%) rotateY(15deg)}
+
+/* Philosophy: infinite loop rings */
+.art-philosophy .pcard-motion::before{content:"";position:absolute;top:35%;left:50%;width:90px;height:45px;
+transform:translate(-50%,-50%);border:2px solid rgba(165,180,252,.28);border-radius:50%;
+animation:infLoop 8s linear infinite}
+.art-philosophy .pcard-motion::after{content:"";position:absolute;top:35%;left:50%;width:90px;height:45px;
+transform:translate(-50%,-50%) rotate(90deg);border:2px solid rgba(165,180,252,.18);border-radius:50%;
+animation:infLoop 8s linear infinite reverse}
+
+/* Growth: glowing crescent moon */
+.art-growth .pcard-motion::before{content:"";position:absolute;top:26%;right:26%;width:44px;height:44px;border-radius:50%;
+box-shadow:inset -14px 4px 0 rgba(255,255,255,.85);
+filter:drop-shadow(0 0 16px rgba(134,239,172,.5));
+animation:moonGlow 5s ease-in-out infinite alternate}
+
+/* Default: pulsing orb */
+.art-default .pcard-motion::before{content:"";position:absolute;top:35%;left:50%;width:70px;height:70px;border-radius:50%;
+border:1.5px solid rgba(232,121,249,.35);transform:translate(-50%,-50%);
+box-shadow:0 0 0 20px rgba(232,121,249,.08);
+animation:defaultPulse 4s ease-in-out infinite}
+
+/* ── PILL COLOURS ── */
+.cat-gold{background:rgba(252,211,77,.18);color:#FCD34D;border:1px solid rgba(252,211,77,.3)}
+.cat-violet{background:rgba(165,180,252,.18);color:#a5b4fc;border:1px solid rgba(165,180,252,.3)}
+.cat-cyan{background:rgba(56,189,248,.18);color:#38bdf8;border:1px solid rgba(56,189,248,.3)}
+.cat-rose{background:rgba(253,164,175,.18);color:#fda4af;border:1px solid rgba(253,164,175,.3)}
+.cat-green{background:rgba(134,239,172,.18);color:#86efac;border:1px solid rgba(134,239,172,.3)}
+.cat-white{background:rgba(244,238,226,.1);color:#F4EEE2;border:1px solid rgba(244,238,226,.15)}
+.cat-purple{background:rgba(232,121,249,.18);color:#e879f9;border:1px solid rgba(232,121,249,.3)}
+.cat-orange{background:rgba(251,146,60,.18);color:#fb923c;border:1px solid rgba(251,146,60,.3)}
+
+/* ── ANIMATIONS ── */
+@keyframes starDrift{0%{transform:translate(0,0)}100%{transform:translate(-10px,-8px)}}
+@keyframes orbGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.65}50%{transform:translate(-50%,-50%) scale(1.35);opacity:1}}
+@keyframes focusBreath{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.1);opacity:1}}
+@keyframes heartPump{0%,100%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}15%{transform:translate(-50%,-50%) rotate(45deg) scale(1.22)}30%{transform:translate(-50%,-50%) rotate(45deg) scale(1)}45%{transform:translate(-50%,-50%) rotate(45deg) scale(1.12)}}
+@keyframes circuitPulse{0%,100%{box-shadow:inset 0 0 20px rgba(56,189,248,.05);border-color:rgba(56,189,248,.15)}50%{box-shadow:inset 0 0 35px rgba(56,189,248,.15);border-color:rgba(56,189,248,.4)}}
+@keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(22%,22%)}}
+@keyframes sunBreathe{0%,100%{transform:translateX(-50%) scale(1);opacity:.85}50%{transform:translateX(-50%) scale(1.18);opacity:1}}
+@keyframes infLoop{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes moonGlow{0%{filter:drop-shadow(0 0 14px rgba(134,239,172,.3))}100%{filter:drop-shadow(0 0 24px rgba(134,239,172,.65))}}
+@keyframes defaultPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.5}50%{transform:translate(-50%,-50%) scale(1.12);opacity:.85}}
+@media(prefers-reduced-motion:reduce){.pcard-motion,.pcard-motion::before,.pcard-motion::after{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="aurora"><i></i><i></i><i></i></div>
 
-<header class="nav" id="nav">
-  <div class="nav-in">
-    <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html#library">Books</a></li>
-        <li><a href="store.html">Store</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="mentor.html">Mentorship</a></li>
-        <li><a href="newsletter.html">Newsletter</a></li>
-        <li><a href="shop.html">Fashion</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="account.html" id="navAccount">Account</a></li>
-        <li><a href="policies.html">Policies</a></li>
-        <li><a class="nav-cta" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon&nbsp;↗</a></li>
-      </ul>
-    </nav>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
+<nav>
+  <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="store.html">Books</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="mentor.html">Mentorship</a>
+    <a href="newsletter.html">Newsletter</a>
+    <a href="shop.html">Signal Fashion</a>
+    <a href="about.html">About</a>
+    <a href="account.html" id="navAccount">Account</a>
+    <a href="policies.html" style="color:var(--gold)">Policies</a>
+    <a class="nav-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
   </div>
-</header>
+</nav>
 
 <main class="page">
   <div class="blog-hero">
@@ -266,894 +403,55 @@ footer ul a:hover{color:var(--paper)}
          JavaScript replaces this with the full interactive blog index.
          All 35 articles are visible to crawlers without JS execution.
     ═══════════════════════════════════════════════════════════════ -->
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='power-of-journalling-for-transformation.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001A0E 0%,#040E06 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">Personal Growth</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">3 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DFFB3">10min</span>
-            <span class="pcard-stat-lbl">daily transforms your identity</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="power-of-journalling-for-transformation.html" onclick="event.stopPropagation()">The Power of Journalling for Personal Transformation (How to Do It Right)</a></h2>
-          <p class="pcard-excerpt">Journalling is one of the most evidence-supported transformation tools available. Vishal Hingol explains why it works, the different types, and the exact method for maximum impact.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 12, 2026</span>
-            <span class="pcard-read" style="color:#7DFFB3">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='unshackled-habits-modern-men.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#220A00 0%,#0E0400 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,140,71,.18);color:#FF8C47;border-color:#FF8C4733">Men's Growth</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,140,71,.18);color:#FF8C47;border-color:#FF8C4733">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FF8C47">3</span>
-            <span class="pcard-stat-lbl">habits holding modern men back</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="unshackled-habits-modern-men.html" onclick="event.stopPropagation()">The Hidden Habits Keeping Modern Men Stuck (And How to Break Free)</a></h2>
-          <p class="pcard-excerpt">Modern men are stagnant, lonely, and financially stuck — not from lack of effort but from invisible habits running beneath awareness. Vishal Hingol identifies the patterns and the path out.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 11, 2026</span>
-            <span class="pcard-read" style="color:#FF8C47">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='lucky-girl-syndrome-does-it-work.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">83%</span>
-            <span class="pcard-stat-lbl">of optimists outperform their peers</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="lucky-girl-syndrome-does-it-work.html" onclick="event.stopPropagation()">Lucky Girl Syndrome: Does It Actually Work? The Science Behind It</a></h2>
-          <p class="pcard-excerpt">Lucky Girl Syndrome went viral on TikTok but is there real science behind it? Vishal Hingol breaks down what works, what does not, and how to make it effective.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 10, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-meditate-for-beginners.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001A1E 0%,#04090A 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">Mindfulness</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DE6FF">8min</span>
-            <span class="pcard-stat-lbl">daily to change brain structure</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-meditate-for-beginners.html" onclick="event.stopPropagation()">How to Meditate for Beginners: The No-Nonsense Complete Guide</a></h2>
-          <p class="pcard-excerpt">Meditation is simpler than the industry around it suggests. Vishal Hingol's no-nonsense guide to starting a meditation practice that actually sticks — for complete beginners.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 9, 2026</span>
-            <span class="pcard-read" style="color:#7DE6FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='ai-is-your-co-pilot.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001C30 0%,#04101E 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">AI &amp; Business</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">8 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DE6FF">10×</span>
-            <span class="pcard-stat-lbl">productivity with the right AI workflow</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="ai-is-your-co-pilot.html" onclick="event.stopPropagation()">AI Won't Replace You. But Someone Using AI Will.</a></h2>
-          <p class="pcard-excerpt">How to use AI as a force multiplier instead of a threat — practical frameworks for professionals.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 9, 2026</span>
-            <span class="pcard-read" style="color:#7DE6FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='corporate-ai-advantage.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001C30 0%,#04101E 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">AI &amp; Business</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">9 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DE6FF">85%</span>
-            <span class="pcard-stat-lbl">of jobs will be augmented, not replaced</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="corporate-ai-advantage.html" onclick="event.stopPropagation()">The AI-First Employee: How to Become Irreplaceable at Work</a></h2>
-          <p class="pcard-excerpt">Your company is adopting AI. Be the person who leads that adoption — not the person it replaces.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 9, 2026</span>
-            <span class="pcard-read" style="color:#7DE6FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-ai-is-changing-business-india-2026.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#100A24 0%,#060410 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">Business</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#9D7BFF">#3</span>
-            <span class="pcard-stat-lbl">India is the 3rd largest AI adopter globally</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-ai-is-changing-business-india-2026.html" onclick="event.stopPropagation()">How AI Is Changing Business in India in 2026 (And What to Do About It)</a></h2>
-          <p class="pcard-excerpt">AI is reshaping Indian business faster than most owners realise. Vishal Hingol explains the key shifts in 2026 and the practical steps Indian businesses need to take now.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 8, 2026</span>
-            <span class="pcard-read" style="color:#9D7BFF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='the-frequency-you-carry.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">8 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">100%</span>
-            <span class="pcard-stat-lbl">of what you attract matches what you carry</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="the-frequency-you-carry.html" onclick="event.stopPropagation()">You Don't Attract What You Want. You Attract What You Carry.</a></h2>
-          <p class="pcard-excerpt">The uncomfortable truth about why like attracts like — and it has nothing to do with magic.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 8, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='corporate-politics-decoded.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#0E0820 0%,#05040E 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">Corporate</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">9 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#9D7BFF">70%</span>
-            <span class="pcard-stat-lbl">of career growth is relationship capital</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="corporate-politics-decoded.html" onclick="event.stopPropagation()">The Unspoken Rules of Corporate Politics</a></h2>
-          <p class="pcard-excerpt">Nobody teaches you this in business school — the invisible dynamics that determine who rises and who stays stuck.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 8, 2026</span>
-            <span class="pcard-read" style="color:#9D7BFF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-build-mental-toughness.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">8</span>
-            <span class="pcard-stat-lbl">practices to build real toughness</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-build-mental-toughness.html" onclick="event.stopPropagation()">How to Build Mental Toughness: 8 Practices That Actually Work</a></h2>
-          <p class="pcard-excerpt">Mental toughness is about maintaining direction despite discomfort. Vishal Hingol shares 8 evidence-based practices to build it permanently.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 7, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='visualization-without-action.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">7 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">0</span>
-            <span class="pcard-stat-lbl">results from mental rehearsal alone</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="visualization-without-action.html" onclick="event.stopPropagation()">Visualization Without Action Is Just Entertainment</a></h2>
-          <p class="pcard-excerpt">Why mental rehearsal alone produces nothing — and the specific bridge between seeing it and building it.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 7, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='the-evening-routine.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2A1400 0%,#0C0700 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">Habits</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">7 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FFB347">90min</span>
-            <span class="pcard-stat-lbl">before sleep shapes who wakes up tomorrow</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="the-evening-routine.html" onclick="event.stopPropagation()">The Evening Routine Nobody Talks About</a></h2>
-          <p class="pcard-excerpt">What you do in the last 90 minutes before sleep determines what kind of person wakes up tomorrow.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 7, 2026</span>
-            <span class="pcard-read" style="color:#FFB347">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='synchronicity-carl-jung-meaning.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1C001E 0%,#0A000C 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">Spirituality</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8A0FF">1952</span>
-            <span class="pcard-stat-lbl">when Jung first named the pattern</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="synchronicity-carl-jung-meaning.html" onclick="event.stopPropagation()">Synchronicity: Carl Jung's Theory and What It Means for Your Life</a></h2>
-          <p class="pcard-excerpt">Carl Jung's concept of synchronicity explained clearly. Vishal Hingol explores what synchronicities are, why they happen, and how to work with them practically.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 6, 2026</span>
-            <span class="pcard-read" style="color:#E8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='your-body-keeps-score.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#30001A 0%,#12000A 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,158,207,.18);color:#FF9ECF;border-color:#FF9ECF33">Health</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,158,207,.18);color:#FF9ECF;border-color:#FF9ECF33">9 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FF9ECF">37T</span>
-            <span class="pcard-stat-lbl">cells storing your unprocessed stress</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="your-body-keeps-score.html" onclick="event.stopPropagation()">Your Body Is Keeping Score</a></h2>
-          <p class="pcard-excerpt">How unresolved stress quietly rewires your nervous system — and the daily reset that reverses it.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 6, 2026</span>
-            <span class="pcard-read" style="color:#FF9ECF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='attention-is-your-currency.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#002030 0%,#060E18 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">Focus</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">8 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DE6FF">4h</span>
-            <span class="pcard-stat-lbl">of focus lost to digital noise daily</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="attention-is-your-currency.html" onclick="event.stopPropagation()">Attention Is the Only Currency You Can't Earn Back</a></h2>
-          <p class="pcard-excerpt">You can make more money. You cannot make more attention. A framework for spending it like it matters.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 6, 2026</span>
-            <span class="pcard-read" style="color:#7DE6FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-develop-emotional-intelligence.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001A0E 0%,#040E06 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">Personal Growth</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DFFB3">90%</span>
-            <span class="pcard-stat-lbl">of top performers have high EQ</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-develop-emotional-intelligence.html" onclick="event.stopPropagation()">How to Develop Emotional Intelligence: A Practical Guide</a></h2>
-          <p class="pcard-excerpt">Emotional intelligence predicts success in relationships and leadership more reliably than IQ. Vishal Hingol explains what it is and exactly how to develop it at any age.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 5, 2026</span>
-            <span class="pcard-read" style="color:#7DFFB3">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='why-affirmations-fail.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">8 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">7%</span>
-            <span class="pcard-stat-lbl">of communication is the actual words</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="why-affirmations-fail.html" onclick="event.stopPropagation()">Why Your Affirmations Aren't Working</a></h2>
-          <p class="pcard-excerpt">The neuroscience behind why repeating positive statements in the mirror has almost no effect — and the one change that fixes everything.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 5, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='the-5am-myth.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2A1400 0%,#0C0700 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">Habits</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">7 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FFB347">5AM</span>
-            <span class="pcard-stat-lbl">is not magic — your biology determines yours</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="the-5am-myth.html" onclick="event.stopPropagation()">The 5 AM Myth: Why Copying Someone Else's Morning Won't Save You</a></h2>
-          <p class="pcard-excerpt">The morning routine industry sells certainty. The truth is more useful — and less photogenic.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 5, 2026</span>
-            <span class="pcard-read" style="color:#FFB347">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='quantum-consciousness-what-it-means.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1C001E 0%,#0A000C 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">Spirituality</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8A0FF">∞</span>
-            <span class="pcard-stat-lbl">layers of consciousness science maps</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="quantum-consciousness-what-it-means.html" onclick="event.stopPropagation()">Quantum Consciousness: What It Is and Why It Matters for Your Reality</a></h2>
-          <p class="pcard-excerpt">Quantum consciousness bridges physics and personal transformation. Vishal Hingol explains what it means, what the science says, and how it relates to changing your experienced reality.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 4, 2026</span>
-            <span class="pcard-read" style="color:#E8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-break-bad-habits-permanently.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2A1400 0%,#0C0700 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">Habits</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FFB347">66d</span>
-            <span class="pcard-stat-lbl">not 21 — real habit change timeline</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-break-bad-habits-permanently.html" onclick="event.stopPropagation()">How to Break Bad Habits Permanently (The Psychology Behind Why They Form)</a></h2>
-          <p class="pcard-excerpt">Bad habits are automated solutions to unmet needs. Vishal Hingol explains the psychology of habit formation and the exact method to break them permanently.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 3, 2026</span>
-            <span class="pcard-read" style="color:#FFB347">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-find-your-purpose-in-life.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001A0E 0%,#040E06 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">Personal Growth</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,255,179,.18);color:#7DFFB3;border-color:#7DFFB333">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DFFB3">1%</span>
-            <span class="pcard-stat-lbl">better daily = 37× in a year</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-find-your-purpose-in-life.html" onclick="event.stopPropagation()">How to Find Your Purpose in Life (Even If You Feel Lost)</a></h2>
-          <p class="pcard-excerpt">Feeling lost and purposeless is a signal, not a flaw. Vishal Hingol explains the practical method for finding your life purpose even when you have no idea where to start.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 2, 2026</span>
-            <span class="pcard-read" style="color:#7DFFB3">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-manifest-money-abundance.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">$0</span>
-            <span class="pcard-stat-lbl">is the cost of the right belief shift</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-manifest-money-abundance.html" onclick="event.stopPropagation()">How to Manifest Money and Financial Abundance (That Actually Works)</a></h2>
-          <p class="pcard-excerpt">Manifesting money requires changing your subconscious money blueprint. Vishal Hingol explains the complete method with the daily 369 practice for financial abundance.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jul 1, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='what-is-limiting-beliefs-how-to-overcome.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">10k</span>
-            <span class="pcard-stat-lbl">hours to overcome a core belief</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="what-is-limiting-beliefs-how-to-overcome.html" onclick="event.stopPropagation()">What Are Limiting Beliefs and How to Overcome Them Permanently</a></h2>
-          <p class="pcard-excerpt">Limiting beliefs are subconscious assumptions that cap your potential. Vishal Hingol explains where they come from, how to identify yours, and the exact method to permanently overcome them.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 30, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-use-ai-tools-for-small-business.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#100A24 0%,#060410 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">Business</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(157,123,255,.18);color:#9D7BFF;border-color:#9D7BFF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#9D7BFF">$0</span>
-            <span class="pcard-stat-lbl">to start automating with free AI tools</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-use-ai-tools-for-small-business.html" onclick="event.stopPropagation()">How to Use AI Tools to Run Your Small Business More Efficiently in 2026</a></h2>
-          <p class="pcard-excerpt">AI tools like ChatGPT, Claude, and Gemini can save small business owners 15 to 20 hours per week. Here is exactly how to use them, based on Vishal Hingol's AI business playbook.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 29, 2026</span>
-            <span class="pcard-read" style="color:#9D7BFF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-build-unshakeable-confidence.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">80%</span>
-            <span class="pcard-stat-lbl">of confidence is competence-built</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-build-unshakeable-confidence.html" onclick="event.stopPropagation()">How to Build Unshakeable Confidence From the Inside Out</a></h2>
-          <p class="pcard-excerpt">Real confidence is not built through achievements or affirmations alone. Vishal Hingol explains the inside-out approach to building confidence that does not collapse under pressure.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 28, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='signs-universe-is-guiding-you.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1C001E 0%,#0A000C 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">Spirituality</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,160,255,.18);color:#E8A0FF;border-color:#E8A0FF33">3 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8A0FF">7</span>
-            <span class="pcard-stat-lbl">synchronicities Jung documented most</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="signs-universe-is-guiding-you.html" onclick="event.stopPropagation()">11 Signs the Universe Is Guiding You (And How to Read Them)</a></h2>
-          <p class="pcard-excerpt">The universe communicates through patterns, synchronicities, and signs most people miss. Vishal Hingol explains 11 specific signs you are being guided and how to decode them.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 27, 2026</span>
-            <span class="pcard-read" style="color:#E8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-raise-your-vibration-permanently.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">3 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">Hz</span>
-            <span class="pcard-stat-lbl">your baseline frequency can permanently shift</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-raise-your-vibration-permanently.html" onclick="event.stopPropagation()">How to Raise Your Vibration Permanently (Not Just for a Day)</a></h2>
-          <p class="pcard-excerpt">Raising your vibration temporarily is easy. Keeping it high is where most people fail. Vishal Hingol explains the real science and a permanent system for elevated emotional frequency.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 26, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='morning-routine-subconscious-reprogramming.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2A1400 0%,#0C0700 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">Habits</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(255,179,71,.18);color:#FFB347;border-color:#FFB34733">3 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#FFB347">20min</span>
-            <span class="pcard-stat-lbl">neurological window right after waking</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="morning-routine-subconscious-reprogramming.html" onclick="event.stopPropagation()">The Best Morning Routine for Subconscious Reprogramming (7 Steps)</a></h2>
-          <p class="pcard-excerpt">The first 60 minutes after waking are your most powerful window for subconscious reprogramming. Vishal Hingol's exact 7-step morning routine to rewire your mind daily.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 25, 2026</span>
-            <span class="pcard-read" style="color:#FFB347">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='law-of-assumption-vs-law-of-attraction.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">2 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">2</span>
-            <span class="pcard-stat-lbl">laws — only one creates identity change</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="law-of-assumption-vs-law-of-attraction.html" onclick="event.stopPropagation()">Law of Assumption vs Law of Attraction: What Actually Works</a></h2>
-          <p class="pcard-excerpt">The law of assumption and law of attraction explained and compared. Which works better and why? Vishal Hingol breaks down the key differences with practical guidance.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 24, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='how-to-rewire-your-brain-for-success.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">3 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">21d</span>
-            <span class="pcard-stat-lbl">to form a new neural pathway</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="how-to-rewire-your-brain-for-success.html" onclick="event.stopPropagation()">How to Rewire Your Brain for Success: A Step-by-Step Guide</a></h2>
-          <p class="pcard-excerpt">Learn how to rewire your brain for success using proven neuroscience techniques. Vishal Hingol explains the exact steps to replace limiting beliefs with success patterns.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 23, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='what-is-subconscious-reprogramming.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">5 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">95%</span>
-            <span class="pcard-stat-lbl">of daily decisions are subconscious</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="what-is-subconscious-reprogramming.html" onclick="event.stopPropagation()">What Is Subconscious Reprogramming? A Science-Based Explainer</a></h2>
-          <p class="pcard-excerpt">Subconscious reprogramming is the process of replacing limiting beliefs with empowering ones at the level below conscious awareness. Here is exactly how it works, backed by neuroscience.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 22, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='best-self-help-books-indian-authors-2026.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#201600 0%,#0C0A00 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Book Recommendations</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">4 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">500+</span>
-            <span class="pcard-stat-lbl">books read by top CEOs every year</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="best-self-help-books-indian-authors-2026.html" onclick="event.stopPropagation()">Best Self-Help Books by Indian Authors in 2026 (Ranked by Transformation)</a></h2>
-          <p class="pcard-excerpt">A curated list of the best self-help books by Indian authors in 2026 — ranked by depth of transformation, not popularity. Mindset, subconscious, spirituality, and purpose.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 21, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='digital-sovereignty-reclaim-your-mind.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#001E2C 0%,#050C14 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">Digital Wellness</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(125,230,255,.18);color:#7DE6FF;border-color:#7DE6FF33">4 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#7DE6FF">96×</span>
-            <span class="pcard-stat-lbl">average phone checks per day</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="digital-sovereignty-reclaim-your-mind.html" onclick="event.stopPropagation()">Digital Sovereignty: How to Take Back Your Mind from Social Media and Algorithms</a></h2>
-          <p class="pcard-excerpt">Social media is designed to own your attention. Digital sovereignty means taking it back. A practical guide by Vishal Hingol on reclaiming your mind in an age of algorithmic control.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 20, 2026</span>
-            <span class="pcard-read" style="color:#7DE6FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='369-manifestation-method-complete-guide.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#1E0A30 0%,#090614 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">Manifestation</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(200,160,255,.18);color:#C8A0FF;border-color:#C8A0FF33">4 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#C8A0FF">369</span>
-            <span class="pcard-stat-lbl">Tesla's pattern that rewires belief</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="369-manifestation-method-complete-guide.html" onclick="event.stopPropagation()">The 369 Manifestation Method: Complete Guide for Beginners (With Daily Template)</a></h2>
-          <p class="pcard-excerpt">The 369 manifestation method explained clearly — what it is, the science behind it, how to use it daily, and a free template to start today. By author Vishal Hingol.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 19, 2026</span>
-            <span class="pcard-read" style="color:#C8A0FF">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-    <div class="pcard-wrap"><article class="pcard" onclick="location.href='why-you-keep-self-sabotaging.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
-      <div class="pcard-glare"></div>
-      <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,#2D1800 0%,#0D0800 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">Mindset</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:rgba(232,187,107,.18);color:#E8BB6B;border-color:#E8BB6B33">5 min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:#E8BB6B">95%</span>
-            <span class="pcard-stat-lbl">of people self-sabotage their own goals</span>
-          </div>
-        </div>
-        <div class="pcard-body">
-          <h2><a href="why-you-keep-self-sabotaging.html" onclick="event.stopPropagation()">Why You Keep Self-Sabotaging (And How to Finally Stop)</a></h2>
-          <p class="pcard-excerpt">Self-sabotage is not a character flaw. It is a subconscious protection pattern. Mindset coach Vishal Hingol explains the real cause and a proven way to break it permanently.</p>
-          <div class="pcard-meta">
-            <span class="pcard-date">Jun 18, 2026</span>
-            <span class="pcard-read" style="color:#E8BB6B">Read →</span>
-          </div>
-        </div>
-      </div>
-    </article></div>
-        <!-- JS replaces the above with the full interactive blog index on load -->
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="why-you-keep-self-sabotaging.html">Why You Keep Self-Sabotaging (And How To Finally Stop)</a></h2><p class="pcard-excerpt">Self-sabotage isn't a character flaw — it's a frequency mismatch between your conscious goals and your subconscious identity. Here's the mechanism and the fix.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="369-manifestation-method-complete-guide.html">The 369 Manifestation Method: Complete Guide</a></h2><p class="pcard-excerpt">The real practice behind the trend — what most people get wrong about Nikola Tesla's 369 method, and the version that actually works for subconscious reprogramming.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 10 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="digital-sovereignty-reclaim-your-mind.html">Digital Sovereignty: Reclaim Your Mind From the Algorithm</a></h2><p class="pcard-excerpt">The average person checks their phone 96 times a day. Digital sovereignty isn't about deleting apps — it's about reclaiming the 4 hours your brain loses daily.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Books</div><h2><a href="best-self-help-books-indian-authors-2026.html">Best Self-Help Books by Indian Authors 2026</a></h2><p class="pcard-excerpt">A curated list of the most impactful mindset, manifestation, and personal development books written by Indian authors — including titles by Vishal Hingol.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="what-is-subconscious-reprogramming.html">What Is Subconscious Reprogramming? A Complete Explanation</a></h2><p class="pcard-excerpt">95% of your daily decisions are made by your subconscious mind. Subconscious reprogramming is the process of updating the beliefs that drive those decisions.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-rewire-your-brain-for-success.html">How To Rewire Your Brain For Success</a></h2><p class="pcard-excerpt">Neuroplasticity is real — your brain physically rewires based on what you repeatedly think, feel, and do. Here's how to use that to your advantage deliberately.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="law-of-assumption-vs-law-of-attraction.html">Law of Assumption vs Law of Attraction: Key Differences</a></h2><p class="pcard-excerpt">The law of attraction says desire it. The law of assumption says become it. One produces wanting, the other produces identity-level change. Here's which one works.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="morning-routine-subconscious-reprogramming.html">Morning Routine for Subconscious Reprogramming</a></h2><p class="pcard-excerpt">The first 20 minutes after waking are the most neurologically open window of the day. Here's exactly how to use them for deep identity-level change.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="how-to-raise-your-vibration-permanently.html">How To Raise Your Vibration Permanently (Not Just Temporarily)</a></h2><p class="pcard-excerpt">Most vibration-raising advice produces a temporary mood shift. Permanent frequency change requires identity-level evidence, not just emotional state management.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="signs-universe-is-guiding-you.html">Signs The Universe Is Guiding You</a></h2><p class="pcard-excerpt">Synchronicities, recurring patterns, and the moments that feel too meaningful to be coincidental — what they are, what they aren't, and how to read them clearly.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-build-unshakeable-confidence.html">How To Build Unshakeable Confidence</a></h2><p class="pcard-excerpt">Confidence isn't a feeling you manufacture — it's a byproduct of competence. Here's the real mechanism, and why most confidence advice keeps you stuck.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="how-to-use-ai-tools-for-small-business.html">How To Use AI Tools For Small Business in 2026</a></h2><p class="pcard-excerpt">The AI tools available today can replace entire departments. Here's a practical guide for small business owners who want to automate without losing their edge.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="what-is-limiting-beliefs-how-to-overcome.html">What Are Limiting Beliefs and How To Overcome Them</a></h2><p class="pcard-excerpt">A limiting belief is a conclusion your brain reached — usually before age 10 — and has been confirming ever since. Here's how to find yours and dismantle them.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="how-to-manifest-money-abundance.html">How To Manifest Money and Abundance</a></h2><p class="pcard-excerpt">Manifesting abundance isn't about wanting money more. It's about becoming the version of you for whom having it is the natural state. Here's the distinction that matters.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-find-your-purpose-in-life.html">How To Find Your Purpose in Life</a></h2><p class="pcard-excerpt">Purpose isn't found — it's built. The question isn't "what is my purpose?" but "what kind of person am I becoming, and is that worth becoming?" Here's the framework.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-break-bad-habits-permanently.html">How To Break Bad Habits Permanently</a></h2><p class="pcard-excerpt">Willpower fails because it fights the habit at the wrong level. Permanent habit change happens at the identity level — when you stop being someone who does that thing.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Philosophy</div><h2><a href="quantum-consciousness-what-it-means.html">Quantum Consciousness: What It Actually Means</a></h2><p class="pcard-excerpt">The intersection of quantum physics and consciousness research — what the science actually says, what it doesn't, and what it means for how you understand reality.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 10 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-develop-emotional-intelligence.html">How To Develop Emotional Intelligence</a></h2><p class="pcard-excerpt">Emotional intelligence isn't about controlling your emotions — it's about understanding them so clearly that they stop controlling you. Here's how to build it deliberately.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Philosophy</div><h2><a href="synchronicity-carl-jung-meaning.html">Synchronicity: What Carl Jung Really Meant</a></h2><p class="pcard-excerpt">Jung's concept of synchronicity is one of the most misunderstood ideas in popular psychology. Here's what he actually said, and why it matters for how you read your life.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-build-mental-toughness.html">8 Practices To Build Mental Toughness</a></h2><p class="pcard-excerpt">Mental toughness isn't the absence of difficulty — it's the trained ability to respond to difficulty without being controlled by it. Here are eight practices that build it.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="how-ai-is-changing-business-india-2026.html">How AI Is Changing Business in India 2026</a></h2><p class="pcard-excerpt">India is one of the fastest AI-adopting economies in the world. Here's what's actually changing for Indian businesses — and what the early movers are doing differently.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-meditate-for-beginners.html">How To Meditate for Beginners: The Honest Guide</a></h2><p class="pcard-excerpt">Most meditation guides set you up to fail. Here's an honest guide to building a practice that actually sticks — without the spiritual bypassing.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="lucky-girl-syndrome-does-it-work.html">Lucky Girl Syndrome: Does It Actually Work?</a></h2><p class="pcard-excerpt">The viral trend of assuming good things will happen — is it manifestation, confirmation bias, or something else? Here's what the evidence and psychology actually say.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="unshackled-habits-modern-men.html">Unshackled: Breaking the Habits Holding Modern Men Back</a></h2><p class="pcard-excerpt">The specific patterns — digital, social, psychological — that are quietly limiting modern men, and the identity-level shifts that break them permanently.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="power-of-journalling-for-transformation.html">The Power of Journalling for Personal Transformation</a></h2><p class="pcard-excerpt">Journalling isn't about recording your day — it's about externalising your thoughts so you can examine them from the outside. Here's how to use it for real change.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+        <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="why-affirmations-fail.html">Why Your Affirmations Aren't Working</a></h2><p class="pcard-excerpt">The neuroscience behind why repeating positive statements in the mirror has almost no effect — and the one change that fixes everything.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-5am-myth.html">The 5 AM Myth: Why Copying Someone Else's Morning Won't Save You</a></h2><p class="pcard-excerpt">The morning routine industry sells certainty. The truth is more useful — and less photogenic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Health</div><h2><a href="your-body-keeps-score.html">Your Body Is Keeping Score</a></h2><p class="pcard-excerpt">How unresolved stress quietly rewires your nervous system — and the daily reset that reverses it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="attention-is-your-currency.html">Attention Is the Only Currency You Can't Earn Back</a></h2><p class="pcard-excerpt">You can make more money. You cannot make more attention.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="visualization-without-action.html">Visualization Without Action Is Just Entertainment</a></h2><p class="pcard-excerpt">Why mental rehearsal alone produces nothing — and the bridge between seeing it and building it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-evening-routine.html">The Evening Routine Nobody Talks About</a></h2><p class="pcard-excerpt">What you do in the last 90 minutes before sleep determines what kind of person wakes up tomorrow.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="the-frequency-you-carry.html">You Don't Attract What You Want. You Attract What You Carry.</a></h2><p class="pcard-excerpt">The uncomfortable truth about why like attracts like — and it has nothing to do with magic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Corporate</div><h2><a href="corporate-politics-decoded.html">The Unspoken Rules of Corporate Politics</a></h2><p class="pcard-excerpt">The invisible dynamics that determine who rises and who stays stuck.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="ai-is-your-co-pilot.html">AI Won't Replace You. But Someone Using AI Will.</a></h2><p class="pcard-excerpt">How to use AI as a force multiplier — practical frameworks for every professional.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="corporate-ai-advantage.html">The AI-First Employee: How to Become Irreplaceable at Work</a></h2><p class="pcard-excerpt">Your company is adopting AI. Be the person who leads that — not the person it replaces.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <!-- JS replaces the above with the full interactive blog index on load -->
   </div>
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
-        <p>Author of mindset, manifestation, visionary fiction and AI for business. Available worldwide on Amazon.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="store.html">Bookstore</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="mentor.html">Mentorship</a></li>
-          <li><a href="shop.html">Signal Fashion</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Connect</h5>
-        <ul>
-          <li><a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a></li>
-          <li><a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener">Instagram ↗</a></li>
-          <li><a href="https://x.com/Authorvhingol" target="_blank" rel="noopener">Twitter ↗</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Account</h5>
-        <ul>
-          <li><a href="account.html">My account</a></li>
-          <li><a href="newsletter.html">Newsletter</a></li>
-          <li><a href="policies.html">Policies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-base">
-      <span>© 2026 Vishal Hingol. All rights reserved.</span>
-      <span>Writing for the world</span>
-    </div>
-  </div>
+  <span>© 2025–<span id="yr"></span> Vishal Hingol · <a href="policies.html" style="color:var(--mist)">Policies</a></span>
+  <span><a href="index.html">Home</a> · <a href="store.html">Books</a> · <a href="mentor.html">Mentorship</a> · <a href="newsletter.html">Newsletter</a> · <a href="shop.html">Signal Fashion</a> · <a href="about.html">About</a> · <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Instagram</a> · <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Twitter</a></span>
 </footer>
 
 <script>
 (async function(){
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-
+  const artClass=c=>({Mindset:'art-mindset',Manifestation:'art-manifest',Focus:'art-focus','Digital Wellness':'art-focus',Health:'art-health','AI & Business':'art-ai',Business:'art-ai',Corporate:'art-corp',Habits:'art-habits',Mindfulness:'art-habits','Personal Growth':'art-growth',"Men's Growth":'art-growth','Book Recommendations':'art-books',Spirituality:'art-philosophy',Philosophy:'art-philosophy'}[c]||'art-default');
+  const catColor=c=>({Mindset:'cat-gold',Manifestation:'cat-gold',Focus:'cat-violet','Digital Wellness':'cat-violet',Health:'cat-rose','AI & Business':'cat-cyan',Business:'cat-cyan',Corporate:'cat-violet',Habits:'cat-cyan',Mindfulness:'cat-cyan','Personal Growth':'cat-gold',"Men's Growth":'cat-gold','Book Recommendations':'cat-white',Spirituality:'cat-violet',Philosophy:'cat-violet'}[c]||'cat-gold');
   let data, activecat = 'All';
   try{
     const res = await fetch('blog.json?v='+Date.now(),{cache:'no-store'});
@@ -1175,57 +473,59 @@ footer ul a:hover{color:var(--paper)}
     render();
   });
 
-  
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function fdate(d){const[y,m,day]=d.split('-');return months[+m-1]+' '+parseInt(day)+', '+y}
-  const DESIGNS={"Mindset": {"g1": "#2D1800", "g2": "#0D0800", "accent": "#E8BB6B", "pill": "rgba(232,187,107,.18)", "ptxt": "#E8BB6B"}, "Manifestation": {"g1": "#1E0A30", "g2": "#090614", "accent": "#C8A0FF", "pill": "rgba(200,160,255,.18)", "ptxt": "#C8A0FF"}, "Focus": {"g1": "#002030", "g2": "#060E18", "accent": "#7DE6FF", "pill": "rgba(125,230,255,.18)", "ptxt": "#7DE6FF"}, "Digital Wellness": {"g1": "#001E2C", "g2": "#050C14", "accent": "#7DE6FF", "pill": "rgba(125,230,255,.18)", "ptxt": "#7DE6FF"}, "Health": {"g1": "#30001A", "g2": "#12000A", "accent": "#FF9ECF", "pill": "rgba(255,158,207,.18)", "ptxt": "#FF9ECF"}, "AI & Business": {"g1": "#001C30", "g2": "#04101E", "accent": "#7DE6FF", "pill": "rgba(125,230,255,.18)", "ptxt": "#7DE6FF"}, "Business": {"g1": "#100A24", "g2": "#060410", "accent": "#9D7BFF", "pill": "rgba(157,123,255,.18)", "ptxt": "#9D7BFF"}, "Corporate": {"g1": "#0E0820", "g2": "#05040E", "accent": "#9D7BFF", "pill": "rgba(157,123,255,.18)", "ptxt": "#9D7BFF"}, "Habits": {"g1": "#2A1400", "g2": "#0C0700", "accent": "#FFB347", "pill": "rgba(255,179,71,.18)", "ptxt": "#FFB347"}, "Mindfulness": {"g1": "#001A1E", "g2": "#04090A", "accent": "#7DE6FF", "pill": "rgba(125,230,255,.18)", "ptxt": "#7DE6FF"}, "Personal Growth": {"g1": "#001A0E", "g2": "#040E06", "accent": "#7DFFB3", "pill": "rgba(125,255,179,.18)", "ptxt": "#7DFFB3"}, "Men's Growth": {"g1": "#220A00", "g2": "#0E0400", "accent": "#FF8C47", "pill": "rgba(255,140,71,.18)", "ptxt": "#FF8C47"}, "Book Recommendations": {"g1": "#201600", "g2": "#0C0A00", "accent": "#E8BB6B", "pill": "rgba(232,187,107,.18)", "ptxt": "#E8BB6B"}, "Spirituality": {"g1": "#1C001E", "g2": "#0A000C", "accent": "#E8A0FF", "pill": "rgba(232,160,255,.18)", "ptxt": "#E8A0FF"}, "Philosophy": {"g1": "#0A0A1E", "g2": "#04040C", "accent": "#A0B4FF", "pill": "rgba(160,180,255,.18)", "ptxt": "#A0B4FF"}};
-const STATS={"power-of-journalling-for-transformation": ["10min", "daily transforms your identity"], "unshackled-habits-modern-men": ["3", "habits holding modern men back"], "lucky-girl-syndrome-does-it-work": ["83%", "of optimists outperform their peers"], "how-to-meditate-for-beginners": ["8min", "daily to change brain structure"], "ai-is-your-co-pilot": ["10×", "productivity with the right AI workflow"], "corporate-ai-advantage": ["85%", "of jobs will be augmented, not replaced"], "how-ai-is-changing-business-india-2026": ["#3", "India is the 3rd largest AI adopter globally"], "the-frequency-you-carry": ["100%", "of what you attract matches what you carry"], "corporate-politics-decoded": ["70%", "of career growth is relationship capital"], "how-to-build-mental-toughness": ["8", "practices to build real toughness"], "visualization-without-action": ["0", "results from mental rehearsal alone"], "the-evening-routine": ["90min", "before sleep shapes who wakes up tomorrow"], "synchronicity-carl-jung-meaning": ["1952", "when Jung first named the pattern"], "your-body-keeps-score": ["37T", "cells storing your unprocessed stress"], "attention-is-your-currency": ["4h", "of focus lost to digital noise daily"], "how-to-develop-emotional-intelligence": ["90%", "of top performers have high EQ"], "why-affirmations-fail": ["7%", "of communication is the actual words"], "the-5am-myth": ["5AM", "is not magic — your biology determines yours"], "quantum-consciousness-what-it-means": ["∞", "layers of consciousness science maps"], "how-to-break-bad-habits-permanently": ["66d", "not 21 — real habit change timeline"], "how-to-find-your-purpose-in-life": ["1%", "better daily = 37× in a year"], "how-to-manifest-money-abundance": ["$0", "is the cost of the right belief shift"], "what-is-limiting-beliefs-how-to-overcome": ["10k", "hours to overcome a core belief"], "how-to-use-ai-tools-for-small-business": ["$0", "to start automating with free AI tools"], "how-to-build-unshakeable-confidence": ["80%", "of confidence is competence-built"], "signs-universe-is-guiding-you": ["7", "synchronicities Jung documented most"], "how-to-raise-your-vibration-permanently": ["Hz", "your baseline frequency can permanently shift"], "morning-routine-subconscious-reprogramming": ["20min", "neurological window right after waking"], "law-of-assumption-vs-law-of-attraction": ["2", "laws — only one creates identity change"], "how-to-rewire-your-brain-for-success": ["21d", "to form a new neural pathway"], "what-is-subconscious-reprogramming": ["95%", "of daily decisions are subconscious"], "best-self-help-books-indian-authors-2026": ["500+", "books read by top CEOs every year"], "digital-sovereignty-reclaim-your-mind": ["96×", "average phone checks per day"], "369-manifestation-method-complete-guide": ["369", "Tesla's pattern that rewires belief"], "why-you-keep-self-sabotaging": ["95%", "of people self-sabotage their own goals"]};
+  function formatDate(d){ return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
 
   function render(){
     const filtered = activecat==='All' ? posts : posts.filter(p=>p.category===activecat);
-    if(!filtered.length){document.getElementById('posts').innerHTML='<div class="empty"><b>No articles in this category yet</b> — check back soon.</div>';return;}
-    document.getElementById('posts').innerHTML = filtered.map((p,i)=>{
-      const d = DESIGNS[p.category]||DESIGNS['Mindset'];
-      const st = STATS[p.id]||['...','read this article'];
-      return `
+    if(!filtered.length){
+      document.getElementById('posts').innerHTML='<div class="empty"><b>No articles yet in this category</b>Check back soon.</div>';
+      return;
+    }
+    document.getElementById('posts').innerHTML = filtered.map(p=>`
     <div class="pcard-wrap">
     <article class="pcard" onclick="location.href='${esc(p.id)}.html'" onmousemove="tilt3D(event,this)" onmouseleave="resetTilt(this)">
       <div class="pcard-glare"></div>
       <div class="pcard-inner">
-        <div class="pcard-art" style="background:linear-gradient(160deg,${d.g1} 0%,${d.g2} 100%)">
-          <div class="pcard-noise"></div>
-          <div class="pcard-art-top">
-            <span class="pcard-pill" style="background:${d.pill};color:${d.ptxt};border-color:${d.ptxt}33">${esc(p.category)}</span>
-            <span class="pcard-pill pcard-pill-rt" style="background:${d.pill};color:${d.ptxt};border-color:${d.ptxt}33">${p.readingTime} min</span>
-          </div>
-          <div class="pcard-stat">
-            <span class="pcard-stat-num" style="color:${d.accent}">${esc(st[0])}</span>
-            <span class="pcard-stat-lbl">${esc(st[1])}</span>
-          </div>
-        </div>
+        <div class="pcard-art ${artClass(p.category)}"></div>
         <div class="pcard-body">
+          <div class="pcard-cat ${catColor(p.category)}">${esc(p.category)}</div>
           <h2><a href="${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
           <p class="pcard-excerpt">${esc(p.excerpt)}</p>
           <div class="pcard-meta">
-            <span class="pcard-date">${fdate(p.published)}</span>
-            <span class="pcard-read" style="color:${d.accent}">Read →</span>
+            <span class="pcard-date">${formatDate(p.published)} \u00b7 ${p.readingTime} min read</span>
+            <span class="pcard-read">Read article \u2192</span>
           </div>
         </div>
       </div>
     </article>
-    </div>`}).join('');
+    </div>`).join('');
   }
   render();
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
-unt.html"], a[href="/account.html"]').forEach(function(link){
-      link.textContent = name;
-      link.href = 'my-account.html';
-    });
-  }
-  applyLoginStateToNav();
-})();
+<script>
+function toggleMenu(){
+  var h=document.getElementById('hamburger');
+  var n=document.getElementById('navLinks');
+  var isOpen=n.classList.contains('open');
+  h.classList.toggle('open',!isOpen);
+  n.classList.toggle('open',!isOpen);
+  document.body.style.overflow=!isOpen?'hidden':'';
+}
+function closeMenu(){
+  var h=document.getElementById('hamburger');
+  var n=document.getElementById('navLinks');
+  if(h) h.classList.remove('open');
+  if(n) n.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click',closeMenu);
+  });
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 </script>
 <div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
   This website uses minimal cookies for analytics. No advertising or tracking cookies. 
