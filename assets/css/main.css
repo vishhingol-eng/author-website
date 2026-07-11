@@ -279,6 +279,22 @@ main,header,footer{position:relative;z-index:1}
 .hero .wrap{position:relative;z-index:2}
 .hero .scroll-hint{z-index:2}
 @media (max-width:700px){.hero-video{display:none}} /* phones keep the CSS universe */
+/* ──────────────────────────────────────────────────────────────────
+   HERO POSTER — mobile-only background image (no video, instant LCP)
+   ────────────────────────────────────────────────────────────────── */
+.hero-poster-mobile{
+  display:none; /* hidden on desktop; JS removes the video on mobile, CSS shows poster */
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  z-index:0;
+}
+@media (max-width:700px){
+  .hero-poster-mobile{display:block}
+  /* hide video element on mobile (JS also removes it, but belt+suspenders) */
+  #heroVid{display:none}
+}
+
 /* ---- phone performance: freeze decorative animation, drop heavy filters ---- */
 @media (max-width:700px){
   .book::before,.step::before,.mentor-close::before,.freq-card::before,
@@ -287,7 +303,10 @@ main,header,footer{position:relative;z-index:1}
   .svc::before{opacity:.55}
   .editions-banner{backdrop-filter:none;-webkit-backdrop-filter:none}
   .hv-fade,.hv-shine{display:none}
-  .hero h1 .grad-name{animation:none}
+  /* gradFlow uses background-position — non-composited, triggers paint on every frame.
+     On mobile freeze it at start position (gradient still looks great, just static) */
+  .hero h1 .grad-name{animation:none;background-position:0% 50%}
+  /* heroPulse is opacity-only (composited) — safe to keep, but disable on very low-end */
 }
 
 @media (prefers-reduced-motion:reduce){.hero-video{display:none}}
