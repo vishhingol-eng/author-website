@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) — load after page paint to not block FCP -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
 <script>
-  /* Defer GA until after first paint to avoid blocking FCP/LCP on mobile */
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-TWQE2GSNBD');
-  window.addEventListener('load', function(){
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD';
-    document.head.appendChild(s);
-  });
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,10 +87,6 @@
 </script>
 
 <!-- Fonts: async pattern (preload + swap) -->
-<!-- Preload hero poster image — critical for mobile LCP (video is removed on mobile; poster IS the visual) -->
-<link rel="preload" as="image" href="hero-poster.jpg" fetchpriority="high">
-<!-- Preload main stylesheet so paint isn't delayed -->
-<link rel="preload" as="style" href="assets/css/main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Albert+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&display=swap">
@@ -350,14 +340,6 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-video" aria-hidden="true">
-    <!-- Mobile: static poster image is the LCP element — loads immediately, no video overhead -->
-    <img id="heroPoster" class="hero-poster-mobile"
-         src="hero-poster.jpg"
-         alt=""
-         fetchpriority="high"
-         decoding="async"
-         width="1280" height="720">
-    <!-- Desktop: video (removed on mobile by JS; img hidden on desktop by CSS) -->
     <video id="heroVid" muted loop playsinline preload="none" poster="hero-poster.jpg">
       <source src="hero-bg-hd.webm" type="video/webm">
       <source src="hero-bg-hd.mp4" type="video/mp4">
@@ -524,7 +506,7 @@
     <!-- BIG: both newsletter editions -->
     <div class="editions-banner rv">
       <p class="eyebrow" style="justify-content:center">One Newsletter · Two Editions</p>
-      <h2>NEWSLETTER — <em>FREE &amp; PREMIUM</em> EDITIONS</h2>
+      <h3>NEWSLETTER — <em>FREE &amp; PREMIUM</em> EDITIONS</h3>
       <p class="eb-sub">The Signal is free every week, forever. ⭐ Gold Star Premium unlocks every full edition of the Elite Archive.</p>
       <div class="hero-ctas" style="justify-content:center">
         <a class="btn btn-ghost" href="#newsletter">Join Free</a>
@@ -541,7 +523,7 @@
   <div class="band-veil" aria-hidden="true"></div>
   <div class="band-text rv">
     <p class="band-eyebrow">// Enter the Library</p>
-    <h2>Eighteen doors.<br><em>One universe.</em></h2>
+    <h3>Eighteen doors.<br><em>One universe.</em></h3>
   </div>
 </section>
 
