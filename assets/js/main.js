@@ -146,14 +146,8 @@
 
   /* ---------- hero video: desktop only — phones never load a byte ---------- */
   var hv = document.getElementById("heroVid");
-  var heroPoster = document.getElementById("heroPoster");
-  var isMobileViewport = window.innerWidth <= 700;
-  if(hv && (isMobileViewport || reduced)){
-    /* Mobile: remove video only (not parent) so poster <img> stays as the LCP element */
-    hv.remove(); hv = null;
-  } else {
-    /* Desktop: hide the static poster img — video handles the visual */
-    if(heroPoster) heroPoster.style.display = "none";
+  if(hv && (window.innerWidth <= 700 || reduced)){
+    hv.parentElement.remove(); hv = null;
   }
   if(!hv){
     startTimerLoop();
