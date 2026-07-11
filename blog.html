@@ -1,398 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TWQE2GSNBD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-TWQE2GSNBD');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signal & Mind — Blog by Vishal Hingol | Mindset, Manifestation & Focus</title>
+<title>Signal &amp; Mind — Blog by Vishal Hingol</title>
 <meta name="description" content="Insights on mindset, manifestation, self-sabotage, digital sovereignty and the mechanics of meaningful change — by author Vishal Hingol.">
 <link rel="canonical" href="https://vishalhingolauthor.com/blog.html">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
-<meta property="og:title" content="Signal & Mind — Blog by Vishal Hingol">
-<meta property="og:description" content="Insights on mindset, manifestation, focus and the mechanics of meaningful change.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://vishalhingolauthor.com/blog.html">
-<meta property="og:image" content="https://vishalhingolauthor.com/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Blog",
-  "name":"Signal & Mind",
-  "description":"Insights on mindset, manifestation, self-sabotage, digital sovereignty and the mechanics of meaningful change",
-  "url":"https://vishalhingolauthor.com/blog.html",
-  "author":{"@type":"Person","name":"Vishal Hingol","url":"https://vishalhingolauthor.com"}
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Albert+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Albert+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Albert+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/main.css">
 <style>
+/* ════════════════════════════════════════════════
+   SIGNAL & MIND — BLOG
+   Design: Constellation of ideas — each card is a
+   different "signal type" with its own visual DNA.
+   Signature: Floating particle field hero + 
+   individual card personalities via CSS custom props
+   ════════════════════════════════════════════════ */
 :root{
-  --night:#070A18;--night-2:#0B1026;--ink:#121A3E;
-  --glass:rgba(18,26,62,.55);--line:rgba(244,238,226,.10);
-  --gold:#E8BB6B;--cyan:#7DE6FF;--violet:#9D7BFF;--rose:#FF9ECF;
-  --paper:#F4EEE2;--mist:#9AA1C7;
-  --display:'Fraunces',Georgia,serif;
-  --body:'Albert Sans',system-ui,sans-serif;
-  --tech:'Space Grotesk',monospace;
+  --night:#050715;--gold:#E8BB6B;--gold-lt:#F5D490;
+  --cream:#F4EEE2;--muted:#9AA1C7;--violet:#9D7BFF;
+  --cyan:#7DE6FF;--rose:#FF9ECF;--emerald:#5DFDCB;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--night);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--gold);color:var(--night)}
 
-/* aurora */
-.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.4}
-.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:50vw;height:50vw;left:-10%;top:-10%;background:radial-gradient(circle,rgba(157,123,255,.45),transparent 65%);animation:a1 28s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:44vw;height:44vw;right:-8%;top:25%;background:radial-gradient(circle,rgba(125,230,255,.3),transparent 65%);animation:a2 34s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:55vw;height:55vw;left:20%;bottom:-20%;background:radial-gradient(circle,rgba(232,187,107,.25),transparent 65%);animation:a3 40s ease-in-out infinite alternate}
-@keyframes a1{to{transform:translate(8vw,6vh) scale(1.12)}}
-@keyframes a2{to{transform:translate(-7vw,9vh) scale(.9)}}
-@keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
+/* ── Reset for blog page ── */
+*,*::before,*::after{box-sizing:border-box}
 
-/* nav */
-nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,4vw,60px);background:rgba(7,10,24,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.brand{font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
-.brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav-links{display:flex;gap:22px;align-items:center}
-.nav-links a{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
-.nav-amzn{color:var(--night)!important;background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px;letter-spacing:.08em!important}
-@media(max-width:600px){.nav-links a:not(.nav-amzn){display:none}}
-
-/* page */
-.page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
-
-/* hero */
-.blog-hero{text-align:center;margin-bottom:clamp(48px,7vw,80px)}
-.blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
-.blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
-.blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
-.blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
-@keyframes sheen{to{background-position:200% center}}
-.blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
-
-/* filter bar */
-.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.fcat{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:100px;cursor:pointer;transition:all .2s}
-.fcat:hover{border-color:var(--cyan);color:var(--cyan)}
-.fcat.active{background:linear-gradient(110deg,var(--gold),#F2D49B);color:var(--night);border-color:transparent}
-
-/* post grid */
-.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr));gap:clamp(18px,3vw,28px);min-height:560px}
-
-/* post card */
-.pcard{
-  position:relative;background:var(--glass);backdrop-filter:blur(16px);
-  border-radius:20px;padding:28px;display:flex;flex-direction:column;
-  transition:transform .3s,box-shadow .3s;cursor:pointer;
+/* ── Blog hero with floating orbs ── */
+.blog-hero{
+  position:relative;overflow:hidden;
+  padding:clamp(100px,14vw,140px) clamp(20px,6vw,72px) clamp(60px,8vw,80px);
+  text-align:center;
 }
-.pcard::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,187,107,.5),rgba(125,230,255,.15) 40%,rgba(157,123,255,.4) 75%,rgba(232,187,107,.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.65;transition:opacity .3s}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.pcard:hover::before{opacity:1}
-.pcard-cat{font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
-.pcard h2{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.4vw,22px);line-height:1.22;letter-spacing:-.01em;margin-bottom:12px}
-.pcard h2 a:hover{background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
-.pcard-excerpt{color:var(--mist);font-size:14.5px;line-height:1.65;flex:1;margin-bottom:20px}
-.pcard-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.pcard-date{font-family:var(--tech);font-size:11px;color:var(--mist);letter-spacing:.06em}
-.pcard-read{display:inline-flex;align-items:center;gap:6px;font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
-.pcard:hover .pcard-read{gap:10px}
-
-/* related book chip */
-.book-chip{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;background:rgba(232,187,107,.08);border:1px solid rgba(232,187,107,.25);border-radius:100px;font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;transition:background .2s}
-.book-chip:hover{background:rgba(232,187,107,.16)}
-.book-chip span{font-size:10px;opacity:.75}
-
-/* skeleton loading placeholders — same size/shape as a real .pcard,
-   so there's no visible jump once real content replaces them */
-.pcard-skel{background:var(--glass);border-radius:20px;padding:28px;display:flex;flex-direction:column;min-height:260px}
-.skel-line{background:rgba(244,238,226,.08);border-radius:6px;animation:skelPulse 1.6s ease-in-out infinite}
-@keyframes skelPulse{0%,100%{opacity:.5}50%{opacity:.9}}
-.skel-cat{width:70px;height:11px;margin-bottom:18px}
-.skel-title{width:90%;height:20px;margin-bottom:10px}
-.skel-title-2{width:65%;height:20px;margin-bottom:18px}
-.skel-excerpt{width:100%;height:13px;margin-bottom:8px}
-.skel-excerpt-2{width:85%;height:13px;margin-bottom:24px}
-.skel-meta{width:50%;height:11px;margin-top:auto}
-
-.empty{text-align:center;color:var(--mist);padding:60px 20px;grid-column:1/-1}
-.empty b{font-family:var(--display);font-size:22px;display:block;color:var(--paper);margin-bottom:8px}
-
-/* footer */
-footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:30px clamp(18px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--mist);font-size:13px}
-footer a{color:var(--gold)}
-footer a:hover{text-decoration:underline}
-
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent}
-.hamburger span{width:24px;height:2px;background:var(--paper);border-radius:2px;transition:all .3s}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-@media(max-width:700px){
-  .hamburger{display:flex}
-  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,10,24,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;z-index:100}
-  .nav-links.open{display:flex}
-  .nav-links a{font-size:20px;letter-spacing:.2em}
-  .nav-links .nav-amzn{padding:14px 28px;font-size:16px}
+.blog-hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
 }
-@media(max-width:480px){nav{padding:14px clamp(14px,3vw,28px)}.brand{font-size:17px}}
-
-/* ===== MOBILE NAV v3 ===== */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(244,238,226,.2);border-radius:8px;background:transparent;z-index:200;position:relative}
-.hamburger span{width:22px;height:2px;background:var(--paper);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);display:block}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(0,7px)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-7px)}
-@media(max-width:700px){
-  .hamburger{display:flex}
-  .nav-links{
-    display:flex !important;
-    position:fixed;top:0;left:0;right:0;bottom:0;
-    background:rgba(7,10,24,.97);
-    backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-    flex-direction:column;align-items:center;justify-content:center;
-    gap:28px;z-index:150;
-    transform:translateX(100%);
-    transition:transform .38s cubic-bezier(.4,0,.2,1);
-    pointer-events:none;
-    overflow-y:auto;
-    padding:80px 20px;
-  }
-  .nav-links.open{transform:translateX(0);pointer-events:all}
-  .nav-links a{
-    font-family:var(--display) !important;
-    font-size:26px !important;font-weight:400 !important;
-    letter-spacing:.02em !important;color:#F4EEE2 !important;
-    opacity:0;transform:translateY(20px);
-    transition:opacity .3s ease,transform .3s ease;
-    text-decoration:none;
-  }
-  .nav-links.open a{opacity:1 !important;transform:translateY(0) !important}
-  .nav-links.open a:nth-child(2){transition-delay:.06s}
-  .nav-links.open a:nth-child(3){transition-delay:.11s}
-  .nav-links.open a:nth-child(4){transition-delay:.16s}
-  .nav-links.open a:nth-child(5){transition-delay:.21s}
-  .nav-links.open a:nth-child(6){transition-delay:.26s}
-  .nav-links.open a:nth-child(7){transition-delay:.31s}
-  .nav-links.open a:nth-child(8){transition-delay:.36s}
-  .nav-links.open a:nth-child(9){transition-delay:.41s}
-  .nav-links a:hover{color:var(--gold) !important}
-  .nav-links .nav-amzn{
-    font-family:var(--tech) !important;font-size:14px !important;
-    background:linear-gradient(110deg,#E8BB6B,#F2D49B) !important;
-    color:#070A18 !important;padding:14px 32px !important;
-    border-radius:100px !important;letter-spacing:.1em !important;
-    font-weight:700 !important;
-  }
-  .nav-close{
-    position:absolute;top:24px;right:24px;
-    background:transparent;border:1px solid rgba(244,238,226,.25);
-    color:#F4EEE2;border-radius:100px;
-    width:42px;height:42px;font-size:20px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:border-color .2s,color .2s;z-index:160;
-  }
-  .nav-close:hover{border-color:#E8BB6B;color:#E8BB6B}
+/* floating gradient orbs */
+.blog-hero-bg::before{
+  content:"";position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(157,123,255,.12) 0%,transparent 70%);
+  top:-100px;left:-100px;
+  animation:orbFloat1 12s ease-in-out infinite;
 }
-/* ===== END MOBILE NAV ===== */
+.blog-hero-bg::after{
+  content:"";position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,187,107,.10) 0%,transparent 70%);
+  bottom:-80px;right:-80px;
+  animation:orbFloat2 15s ease-in-out infinite;
+}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,40px) scale(1.1)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,-50px) scale(1.08)}}
+
+.blog-hero-inner{position:relative;z-index:1;}
+.blog-eyebrow{
+  display:inline-block;margin-bottom:20px;
+  font-family:'Space Grotesk',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(232,187,107,.25);border-radius:100px;
+  padding:5px 18px;
+  background:rgba(232,187,107,.06);
+}
+.blog-hero h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(40px,7vw,72px);font-weight:300;
+  color:var(--cream);line-height:1.08;letter-spacing:-.03em;
+  margin:0 0 20px;
+}
+.blog-hero h1 em{
+  font-style:italic;font-weight:600;
+  background:linear-gradient(110deg,var(--gold),#FFF 50%,var(--rose));
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+.blog-hero-sub{
+  font-size:clamp(14px,1.8vw,17px);color:var(--muted);
+  max-width:520px;margin:0 auto 40px;line-height:1.65;
+}
+
+/* Animated count bar */
+.blog-count-bar{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Grotesk',monospace;font-size:11px;
+  color:rgba(154,161,199,.6);letter-spacing:.1em;
+  border-top:1px solid rgba(244,238,226,.08);
+  padding-top:32px;margin-top:8px;
+}
+.blog-count-bar strong{
+  font-size:32px;font-weight:700;
+  font-family:'Fraunces',serif;
+  background:linear-gradient(110deg,var(--gold),var(--gold-lt));
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  line-height:1;
+}
+
+/* ── Filter tabs ── */
+.blog-filters{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  padding:0 clamp(20px,6vw,72px) 52px;
+}
+.bf{
+  font-family:'Space Grotesk',monospace;font-size:10px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:8px 20px;border-radius:100px;
+  border:1px solid rgba(244,238,226,.10);
+  background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .2s ease;white-space:nowrap;
+}
+.bf:hover{border-color:rgba(244,238,226,.22);color:var(--cream);}
+.bf.on{background:rgba(232,187,107,.1);border-color:rgba(232,187,107,.4);color:var(--gold);}
+
+/* ── CARD GRID ── */
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(16px,2vw,22px);
+  padding:0 clamp(20px,6vw,72px) clamp(80px,10vw,120px);
+  max-width:1320px;margin:0 auto;
+}
+@media(max-width:1024px){.blog-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.blog-grid{grid-template-columns:1fr;padding:0 16px 80px;}}
+
+/* ── BASE CARD ── */
+.bc{
+  position:relative;display:flex;flex-direction:column;
+  border-radius:20px;padding:28px 28px 24px;
+  overflow:hidden;text-decoration:none;
+  background:rgba(244,238,226,.03);
+  border:1px solid rgba(244,238,226,.08);
+  transition:transform .32s cubic-bezier(.34,1.3,.64,1),
+             border-color .25s ease,
+             background .25s ease;
+  /* entry animation */
+  opacity:0;transform:translateY(24px);
+}
+.bc.visible{
+  animation:cardIn .55s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+
+/* stagger delays */
+.bc:nth-child(1){animation-delay:.04s}
+.bc:nth-child(2){animation-delay:.08s}
+.bc:nth-child(3){animation-delay:.12s}
+.bc:nth-child(4){animation-delay:.16s}
+.bc:nth-child(5){animation-delay:.20s}
+.bc:nth-child(6){animation-delay:.24s}
+.bc:nth-child(7){animation-delay:.28s}
+.bc:nth-child(8){animation-delay:.32s}
+.bc:nth-child(9){animation-delay:.36s}
+.bc:nth-child(10){animation-delay:.40s}
+
+.bc:hover{
+  transform:translateY(-6px);
+  border-color:var(--c-accent,rgba(232,187,107,.3));
+  background:rgba(244,238,226,.05);
+}
+
+/* Card "DNA" via custom property per theme */
+.bc::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--c-line,linear-gradient(90deg,transparent,rgba(232,187,107,.4),transparent));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;
+}
+.bc:hover::before{transform:scaleX(1);}
+
+/* Ambient corner glow on hover */
+.bc::after{
+  content:"";position:absolute;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,var(--c-glow,rgba(232,187,107,.08)) 0%,transparent 70%);
+  top:-40px;right:-40px;
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
+}
+.bc:hover::after{opacity:1;}
+
+/* ── CARD THEMES ── */
+/* Mindset — gold */
+.bc[data-cat="Mindset"]{
+  --c-accent:rgba(232,187,107,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(232,187,107,.6),transparent);
+  --c-glow:rgba(232,187,107,.10);
+}
+/* Manifestation — violet */
+.bc[data-cat="Manifestation"]{
+  --c-accent:rgba(157,123,255,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(157,123,255,.6),transparent);
+  --c-glow:rgba(157,123,255,.10);
+}
+/* AI & Business — cyan */
+.bc[data-cat="AI"]{
+  --c-accent:rgba(125,230,255,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(125,230,255,.6),transparent);
+  --c-glow:rgba(125,230,255,.10);
+}
+/* Philosophy — rose */
+.bc[data-cat="Philosophy"]{
+  --c-accent:rgba(255,158,207,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(255,158,207,.6),transparent);
+  --c-glow:rgba(255,158,207,.10);
+}
+/* Focus — emerald */
+.bc[data-cat="Focus"]{
+  --c-accent:rgba(93,253,203,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(93,253,203,.6),transparent);
+  --c-glow:rgba(93,253,203,.10);
+}
+/* Books — rose-gold */
+.bc[data-cat="Books"]{
+  --c-accent:rgba(255,200,150,.35);
+  --c-line:linear-gradient(90deg,transparent,rgba(255,200,150,.6),transparent);
+  --c-glow:rgba(255,200,150,.10);
+}
+
+/* ── FEATURED card ── spans 2 cols */
+.bc.feat{
+  grid-column:span 2;flex-direction:row;gap:32px;align-items:center;
+  padding:36px;
+  background:rgba(244,238,226,.04);
+  border-color:rgba(232,187,107,.12);
+}
+.bc.feat .bc-body{flex:1;}
+.bc.feat .bc-icon{
+  width:100px;height:100px;flex-shrink:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,rgba(232,187,107,.15),rgba(157,123,255,.08));
+  border:1px solid rgba(232,187,107,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+}
+@media(max-width:1024px){.bc.feat{grid-column:span 1;flex-direction:column;}}
+
+/* ── CARD INTERNALS ── */
+.bc-cat{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Space Grotesk',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;
+  border:1px solid currentColor;
+  margin-bottom:14px;width:fit-content;
+  opacity:.75;
+}
+.bc[data-cat="Mindset"] .bc-cat{color:var(--gold);}
+.bc[data-cat="Manifestation"] .bc-cat{color:var(--violet);}
+.bc[data-cat="AI"] .bc-cat{color:var(--cyan);}
+.bc[data-cat="Philosophy"] .bc-cat{color:var(--rose);}
+.bc[data-cat="Focus"] .bc-cat{color:var(--emerald);}
+.bc[data-cat="Books"] .bc-cat{color:#FFB86C;}
+
+.bc-title{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(17px,1.8vw,20px);font-weight:500;
+  color:var(--cream);line-height:1.25;letter-spacing:-.01em;
+  margin:0 0 10px;
+}
+.bc.feat .bc-title{font-size:clamp(20px,2.4vw,26px);}
+
+.bc-exc{
+  font-family:'Albert Sans',sans-serif;
+  font-size:13.5px;color:var(--muted);line-height:1.65;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  margin-bottom:16px;
+  flex:1;
+}
+.bc.feat .bc-exc{-webkit-line-clamp:4;}
+
+.bc-foot{
+  display:flex;align-items:center;gap:10px;
+  margin-top:auto;padding-top:14px;
+  border-top:1px solid rgba(244,238,226,.07);
+}
+.bc-date{
+  font-family:'Space Grotesk',monospace;font-size:9.5px;
+  color:rgba(154,161,199,.5);letter-spacing:.07em;
+}
+.bc-read{
+  margin-left:auto;
+  font-family:'Space Grotesk',monospace;font-size:9.5px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(244,238,226,.3);
+  transition:color .2s ease;
+  display:flex;align-items:center;gap:5px;
+}
+.bc-read svg{
+  width:12px;height:12px;
+  transform:translateX(0);transition:transform .2s ease;
+}
+.bc:hover .bc-read{color:var(--c-accent,var(--gold));}
+.bc:hover .bc-read svg{transform:translateX(4px);}
+
+/* ── Special card variants ── */
+
+/* Gradient border card (every 5th Mindset) */
+.bc.grad-border{
+  background:linear-gradient(var(--night),var(--night)) padding-box,
+             linear-gradient(135deg,rgba(232,187,107,.3),rgba(157,123,255,.2),rgba(255,158,207,.2)) border-box;
+  border:1px solid transparent;
+}
+
+/* Glow card — featured post */
+.bc.glow{
+  box-shadow:0 0 60px rgba(232,187,107,.05),0 8px 40px rgba(0,0,0,.3);
+}
+
+/* Tall card variant */
+.bc.tall{grid-row:span 1;}
+
+/* Number accent for special posts */
+.bc-num{
+  position:absolute;top:20px;right:22px;
+  font-family:'Fraunces',serif;font-size:72px;font-weight:700;
+  line-height:1;letter-spacing:-.04em;
+  color:rgba(244,238,226,.04);
+  pointer-events:none;user-select:none;
+  transition:color .25s ease;
+}
+.bc:hover .bc-num{color:rgba(244,238,226,.06);}
+
+/* Shimmer on hover */
+@keyframes shimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+.bc:hover .bc-title{
+  background:linear-gradient(90deg,var(--cream) 40%,var(--c-accent,var(--gold)) 55%,var(--cream) 70%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+  animation:shimmer 1.8s linear 1;
+}
+
+/* ── No results ── */
+.blog-empty{
+  grid-column:1/-1;text-align:center;
+  padding:80px 20px;color:var(--muted);
+  font-family:'Fraunces',serif;font-size:24px;font-style:italic;
+}
 </style>
 </head>
 <body>
-<div class="aurora"><i></i><i></i><i></i></div>
 
-<nav>
-  <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-    <a href="index.html">Home</a>
-    <a href="store.html">Books</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="mentor.html">Mentorship</a>
-    <a href="newsletter.html">Newsletter</a>
-    <a href="shop.html">Signal Fashion</a>
-    <a href="about.html">About</a>
-    <a href="account.html" id="navAccount">Account</a>
-    <a href="policies.html" style="color:var(--gold)">Policies</a>
-    <a class="nav-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#library">Books</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="blog.html" style="color:var(--gold,#E8BB6B)">Blog</a></li>
+        <li><a href="mentor.html">Mentorship</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="shop.html">Fashion</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="navAccount">Account</a></li>
+        <li><a href="policies.html">Policies</a></li>
+        <li><a class="nav-cta" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon&nbsp;↗</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </div>
-</nav>
+</header>
 
-<main class="page">
-  <div class="blog-hero">
-    <p class="blog-eyebrow">Signal &amp; Mind</p>
-    <h1>Ideas worth<br>reading slowly.</h1>
-    <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
+<main>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-bg" aria-hidden="true"></div>
+  <div class="blog-hero-inner">
+    <span class="blog-eyebrow">Signal &amp; Mind</span>
+    <h1>Ideas worth<br><em>reading slowly.</em></h1>
+    <p class="blog-hero-sub">Mindset, manifestation, focus and the mechanics of meaningful change — written for people done with surface-level advice.</p>
+    <div class="blog-count-bar">
+      <strong id="countNum">35</strong>
+      <span>articles published</span>
+    </div>
   </div>
-  <div class="filter-bar" id="filters"></div>
-  <div class="posts" id="posts">
-    <!-- ═══════════════════════════════════════════════════════════════
-         STATIC PRE-RENDERED CONTENT FOR SEARCH ENGINES & AI CRAWLERS
-         JavaScript replaces this with the full interactive blog index.
-         All 35 articles are visible to crawlers without JS execution.
-    ═══════════════════════════════════════════════════════════════ -->
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="why-you-keep-self-sabotaging.html">Why You Keep Self-Sabotaging (And How To Finally Stop)</a></h2><p class="pcard-excerpt">Self-sabotage isn't a character flaw — it's a frequency mismatch between your conscious goals and your subconscious identity. Here's the mechanism and the fix.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="369-manifestation-method-complete-guide.html">The 369 Manifestation Method: Complete Guide</a></h2><p class="pcard-excerpt">The real practice behind the trend — what most people get wrong about Nikola Tesla's 369 method, and the version that actually works for subconscious reprogramming.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 10 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="digital-sovereignty-reclaim-your-mind.html">Digital Sovereignty: Reclaim Your Mind From the Algorithm</a></h2><p class="pcard-excerpt">The average person checks their phone 96 times a day. Digital sovereignty isn't about deleting apps — it's about reclaiming the 4 hours your brain loses daily.</p><div class="pcard-meta"><span class="pcard-date">Jan 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Books</div><h2><a href="best-self-help-books-indian-authors-2026.html">Best Self-Help Books by Indian Authors 2026</a></h2><p class="pcard-excerpt">A curated list of the most impactful mindset, manifestation, and personal development books written by Indian authors — including titles by Vishal Hingol.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="what-is-subconscious-reprogramming.html">What Is Subconscious Reprogramming? A Complete Explanation</a></h2><p class="pcard-excerpt">95% of your daily decisions are made by your subconscious mind. Subconscious reprogramming is the process of updating the beliefs that drive those decisions.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-rewire-your-brain-for-success.html">How To Rewire Your Brain For Success</a></h2><p class="pcard-excerpt">Neuroplasticity is real — your brain physically rewires based on what you repeatedly think, feel, and do. Here's how to use that to your advantage deliberately.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="law-of-assumption-vs-law-of-attraction.html">Law of Assumption vs Law of Attraction: Key Differences</a></h2><p class="pcard-excerpt">The law of attraction says desire it. The law of assumption says become it. One produces wanting, the other produces identity-level change. Here's which one works.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="morning-routine-subconscious-reprogramming.html">Morning Routine for Subconscious Reprogramming</a></h2><p class="pcard-excerpt">The first 20 minutes after waking are the most neurologically open window of the day. Here's exactly how to use them for deep identity-level change.</p><div class="pcard-meta"><span class="pcard-date">Feb 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="how-to-raise-your-vibration-permanently.html">How To Raise Your Vibration Permanently (Not Just Temporarily)</a></h2><p class="pcard-excerpt">Most vibration-raising advice produces a temporary mood shift. Permanent frequency change requires identity-level evidence, not just emotional state management.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="signs-universe-is-guiding-you.html">Signs The Universe Is Guiding You</a></h2><p class="pcard-excerpt">Synchronicities, recurring patterns, and the moments that feel too meaningful to be coincidental — what they are, what they aren't, and how to read them clearly.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-build-unshakeable-confidence.html">How To Build Unshakeable Confidence</a></h2><p class="pcard-excerpt">Confidence isn't a feeling you manufacture — it's a byproduct of competence. Here's the real mechanism, and why most confidence advice keeps you stuck.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="how-to-use-ai-tools-for-small-business.html">How To Use AI Tools For Small Business in 2026</a></h2><p class="pcard-excerpt">The AI tools available today can replace entire departments. Here's a practical guide for small business owners who want to automate without losing their edge.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="what-is-limiting-beliefs-how-to-overcome.html">What Are Limiting Beliefs and How To Overcome Them</a></h2><p class="pcard-excerpt">A limiting belief is a conclusion your brain reached — usually before age 10 — and has been confirming ever since. Here's how to find yours and dismantle them.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="how-to-manifest-money-abundance.html">How To Manifest Money and Abundance</a></h2><p class="pcard-excerpt">Manifesting abundance isn't about wanting money more. It's about becoming the version of you for whom having it is the natural state. Here's the distinction that matters.</p><div class="pcard-meta"><span class="pcard-date">Mar 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-find-your-purpose-in-life.html">How To Find Your Purpose in Life</a></h2><p class="pcard-excerpt">Purpose isn't found — it's built. The question isn't "what is my purpose?" but "what kind of person am I becoming, and is that worth becoming?" Here's the framework.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-break-bad-habits-permanently.html">How To Break Bad Habits Permanently</a></h2><p class="pcard-excerpt">Willpower fails because it fights the habit at the wrong level. Permanent habit change happens at the identity level — when you stop being someone who does that thing.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Philosophy</div><h2><a href="quantum-consciousness-what-it-means.html">Quantum Consciousness: What It Actually Means</a></h2><p class="pcard-excerpt">The intersection of quantum physics and consciousness research — what the science actually says, what it doesn't, and what it means for how you understand reality.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 10 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-develop-emotional-intelligence.html">How To Develop Emotional Intelligence</a></h2><p class="pcard-excerpt">Emotional intelligence isn't about controlling your emotions — it's about understanding them so clearly that they stop controlling you. Here's how to build it deliberately.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Philosophy</div><h2><a href="synchronicity-carl-jung-meaning.html">Synchronicity: What Carl Jung Really Meant</a></h2><p class="pcard-excerpt">Jung's concept of synchronicity is one of the most misunderstood ideas in popular psychology. Here's what he actually said, and why it matters for how you read your life.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-build-mental-toughness.html">8 Practices To Build Mental Toughness</a></h2><p class="pcard-excerpt">Mental toughness isn't the absence of difficulty — it's the trained ability to respond to difficulty without being controlled by it. Here are eight practices that build it.</p><div class="pcard-meta"><span class="pcard-date">Apr 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="how-ai-is-changing-business-india-2026.html">How AI Is Changing Business in India 2026</a></h2><p class="pcard-excerpt">India is one of the fastest AI-adopting economies in the world. Here's what's actually changing for Indian businesses — and what the early movers are doing differently.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="how-to-meditate-for-beginners.html">How To Meditate for Beginners: The Honest Guide</a></h2><p class="pcard-excerpt">Most meditation guides set you up to fail. Here's an honest guide to building a practice that actually sticks — without the spiritual bypassing.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="lucky-girl-syndrome-does-it-work.html">Lucky Girl Syndrome: Does It Actually Work?</a></h2><p class="pcard-excerpt">The viral trend of assuming good things will happen — is it manifestation, confirmation bias, or something else? Here's what the evidence and psychology actually say.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="unshackled-habits-modern-men.html">Unshackled: Breaking the Habits Holding Modern Men Back</a></h2><p class="pcard-excerpt">The specific patterns — digital, social, psychological — that are quietly limiting modern men, and the identity-level shifts that break them permanently.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="power-of-journalling-for-transformation.html">The Power of Journalling for Personal Transformation</a></h2><p class="pcard-excerpt">Journalling isn't about recording your day — it's about externalising your thoughts so you can examine them from the outside. Here's how to use it for real change.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-        <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="why-affirmations-fail.html">Why Your Affirmations Aren't Working</a></h2><p class="pcard-excerpt">The neuroscience behind why repeating positive statements in the mirror has almost no effect — and the one change that fixes everything.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-5am-myth.html">The 5 AM Myth: Why Copying Someone Else's Morning Won't Save You</a></h2><p class="pcard-excerpt">The morning routine industry sells certainty. The truth is more useful — and less photogenic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Health</div><h2><a href="your-body-keeps-score.html">Your Body Is Keeping Score</a></h2><p class="pcard-excerpt">How unresolved stress quietly rewires your nervous system — and the daily reset that reverses it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="attention-is-your-currency.html">Attention Is the Only Currency You Can't Earn Back</a></h2><p class="pcard-excerpt">You can make more money. You cannot make more attention. A framework for spending it like it matters.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="visualization-without-action.html">Visualization Without Action Is Just Entertainment</a></h2><p class="pcard-excerpt">Why mental rehearsal alone produces nothing — and the specific bridge between seeing it and building it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-evening-routine.html">The Evening Routine Nobody Talks About</a></h2><p class="pcard-excerpt">What you do in the last 90 minutes before sleep determines what kind of person wakes up tomorrow.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="the-frequency-you-carry.html">You Don't Attract What You Want. You Attract What You Carry.</a></h2><p class="pcard-excerpt">The uncomfortable truth about why like attracts like — and it has nothing to do with magic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Corporate</div><h2><a href="corporate-politics-decoded.html">The Unspoken Rules of Corporate Politics</a></h2><p class="pcard-excerpt">Nobody teaches you this in business school — the invisible dynamics that determine who rises and who stays stuck.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="ai-is-your-co-pilot.html">AI Won't Replace You. But Someone Using AI Will.</a></h2><p class="pcard-excerpt">How to use AI as a force multiplier instead of a threat — practical frameworks for every professional.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="corporate-ai-advantage.html">The AI-First Employee: How to Become Irreplaceable at Work</a></h2><p class="pcard-excerpt">Your company is adopting AI whether you like it or not. Here is how to be the person who leads that adoption — not the person it replaces.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <!-- JS replaces the above with the full interactive blog index on load -->
-  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="blog-filters" role="group" aria-label="Filter articles by category">
+  <button class="bf on" data-f="all">All Articles</button>
+  <button class="bf" data-f="Mindset">Mindset</button>
+  <button class="bf" data-f="Manifestation">Manifestation</button>
+  <button class="bf" data-f="AI">AI &amp; Business</button>
+  <button class="bf" data-f="Philosophy">Philosophy</button>
+  <button class="bf" data-f="Focus">Focus</button>
+  <button class="bf" data-f="Books">Books</button>
+</div>
+
+<!-- CARD GRID -->
+<div class="blog-grid" id="blogGrid" role="list">
+
+  <!-- FEATURED -->
+  <a class="bc feat glow" href="why-you-keep-self-sabotaging.html" data-cat="Mindset" role="listitem">
+    <div class="bc-icon" aria-hidden="true">🧠</div>
+    <div class="bc-body">
+      <span class="bc-cat">Mindset · Featured</span>
+      <h2 class="bc-title">Why You Keep Self-Sabotaging (And How To Finally Stop)</h2>
+      <p class="bc-exc">Self-sabotage isn't a character flaw — it's a frequency mismatch between your conscious goals and your subconscious identity. Here's the mechanism and the fix.</p>
+      <div class="bc-foot">
+        <span class="bc-date">Jan 2026 · 8 min</span>
+        <span class="bc-read">Read article <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </div>
+    </div>
+  </a>
+
+  <a class="bc grad-border" href="369-manifestation-method-complete-guide.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-num" aria-hidden="true">369</span>
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">The 369 Manifestation Method: Complete Guide</h2>
+    <p class="bc-exc">The real practice behind the trend — what most people get wrong about Nikola Tesla's 369 method, and the version that actually works for subconscious reprogramming.</p>
+    <div class="bc-foot"><span class="bc-date">Jan 2026 · 10 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="digital-sovereignty-reclaim-your-mind.html" data-cat="Focus" role="listitem">
+    <span class="bc-num" aria-hidden="true">96×</span>
+    <span class="bc-cat">Focus</span>
+    <h2 class="bc-title">Digital Sovereignty: Reclaim Your Mind From the Algorithm</h2>
+    <p class="bc-exc">The average person checks their phone 96 times a day. Digital sovereignty isn't about deleting apps — it's about reclaiming the 4 hours your brain loses daily.</p>
+    <div class="bc-foot"><span class="bc-date">Jan 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="best-self-help-books-indian-authors-2026.html" data-cat="Books" role="listitem">
+    <span class="bc-cat">Books</span>
+    <h2 class="bc-title">Best Self-Help Books by Indian Authors 2026</h2>
+    <p class="bc-exc">A curated list of the most impactful mindset, manifestation, and personal development books written by Indian authors — including titles by Vishal Hingol.</p>
+    <div class="bc-foot"><span class="bc-date">Feb 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="what-is-subconscious-reprogramming.html" data-cat="Mindset" role="listitem">
+    <span class="bc-num" aria-hidden="true">95%</span>
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">What Is Subconscious Reprogramming? A Complete Explanation</h2>
+    <p class="bc-exc">95% of your daily decisions are made by your subconscious mind. Subconscious reprogramming is the process of updating the beliefs that drive those decisions.</p>
+    <div class="bc-foot"><span class="bc-date">Feb 2026 · 9 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-rewire-your-brain-for-success.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Rewire Your Brain For Success</h2>
+    <p class="bc-exc">Neuroplasticity is real — your brain physically rewires based on what you repeatedly think, feel, and do. Here's how to use that to your advantage deliberately.</p>
+    <div class="bc-foot"><span class="bc-date">Feb 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="law-of-assumption-vs-law-of-attraction.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">Law of Assumption vs Law of Attraction: Key Differences</h2>
+    <p class="bc-exc">The law of attraction says desire it. The law of assumption says become it. One produces wanting, the other produces identity-level change. Here's which one works.</p>
+    <div class="bc-foot"><span class="bc-date">Feb 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="morning-routine-subconscious-reprogramming.html" data-cat="Mindset" role="listitem">
+    <span class="bc-num" aria-hidden="true">20'</span>
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">Morning Routine for Subconscious Reprogramming</h2>
+    <p class="bc-exc">The first 20 minutes after waking are the most neurologically open window of the day. Here's exactly how to use them for deep identity-level change.</p>
+    <div class="bc-foot"><span class="bc-date">Feb 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-raise-your-vibration-permanently.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">How To Raise Your Vibration Permanently (Not Just Temporarily)</h2>
+    <p class="bc-exc">Most vibration-raising advice produces a temporary mood shift. Permanent frequency change requires identity-level evidence, not emotional state management.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="signs-universe-is-guiding-you.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">11 Signs The Universe Is Guiding You</h2>
+    <p class="bc-exc">Synchronicities, recurring patterns, and the moments that feel too meaningful to be coincidental — what they are, what they aren't, and how to read them clearly.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-build-unshakeable-confidence.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Build Unshakeable Confidence</h2>
+    <p class="bc-exc">Confidence isn't a feeling you manufacture — it's a byproduct of competence. Here's the real mechanism, and why most confidence advice keeps you stuck.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-use-ai-tools-for-small-business.html" data-cat="AI" role="listitem">
+    <span class="bc-num" aria-hidden="true">AI</span>
+    <span class="bc-cat">AI &amp; Business</span>
+    <h2 class="bc-title">How To Use AI Tools For Small Business in 2026</h2>
+    <p class="bc-exc">The AI tools available today can replace entire departments. A practical guide for small business owners who want to automate without losing their edge.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 9 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="what-is-limiting-beliefs-how-to-overcome.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">What Are Limiting Beliefs and How To Overcome Them</h2>
+    <p class="bc-exc">A limiting belief is a conclusion your brain reached — usually before age 10 — and has been confirming ever since. Here's how to find yours and dismantle them.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-manifest-money-abundance.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">How To Manifest Money and Abundance</h2>
+    <p class="bc-exc">Manifesting abundance isn't about wanting money more. It's about becoming the version of you for whom having it is the natural state. Here's the distinction that matters.</p>
+    <div class="bc-foot"><span class="bc-date">Mar 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-find-your-purpose-in-life.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Find Your Purpose in Life</h2>
+    <p class="bc-exc">Purpose isn't found — it's built. The question isn't "what is my purpose?" but "what kind of person am I becoming, and is that worth becoming?" Here's the framework.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-break-bad-habits-permanently.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Break Bad Habits Permanently</h2>
+    <p class="bc-exc">Willpower fails because it fights the habit at the wrong level. Permanent habit change happens at the identity level — when you stop being someone who does that thing.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="quantum-consciousness-what-it-means.html" data-cat="Philosophy" role="listitem">
+    <span class="bc-num" aria-hidden="true">∿</span>
+    <span class="bc-cat">Philosophy</span>
+    <h2 class="bc-title">Quantum Consciousness: What It Actually Means</h2>
+    <p class="bc-exc">The intersection of quantum physics and consciousness research — what the science actually says, what it doesn't, and what it means for how you understand reality.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 10 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-develop-emotional-intelligence.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Develop Emotional Intelligence</h2>
+    <p class="bc-exc">Emotional intelligence isn't about controlling your emotions — it's about understanding them so clearly that they stop controlling you. Here's how to build it deliberately.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="synchronicity-carl-jung-meaning.html" data-cat="Philosophy" role="listitem">
+    <span class="bc-num" aria-hidden="true">∞</span>
+    <span class="bc-cat">Philosophy</span>
+    <h2 class="bc-title">Synchronicity: What Carl Jung Really Meant</h2>
+    <p class="bc-exc">Jung's concept of synchronicity is one of the most misunderstood ideas in popular psychology. Here's what he actually said, and why it matters for how you read your life.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-build-mental-toughness.html" data-cat="Mindset" role="listitem">
+    <span class="bc-num" aria-hidden="true">8×</span>
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">8 Practices To Build Mental Toughness</h2>
+    <p class="bc-exc">Mental toughness isn't the absence of difficulty — it's the trained ability to respond to difficulty without being controlled by it. Here are eight practices that build it.</p>
+    <div class="bc-foot"><span class="bc-date">Apr 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-ai-is-changing-business-india-2026.html" data-cat="AI" role="listitem">
+    <span class="bc-cat">AI &amp; Business</span>
+    <h2 class="bc-title">How AI Is Changing Business in India 2026</h2>
+    <p class="bc-exc">India is one of the fastest AI-adopting economies in the world. Here's what's actually changing for Indian businesses — and what the early movers are doing differently.</p>
+    <div class="bc-foot"><span class="bc-date">May 2026 · 9 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="how-to-meditate-for-beginners.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">How To Meditate for Beginners: The Honest Guide</h2>
+    <p class="bc-exc">Most meditation guides set you up to fail. Here's an honest guide to building a practice that actually sticks — without the spiritual bypassing or performance.</p>
+    <div class="bc-foot"><span class="bc-date">May 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="lucky-girl-syndrome-does-it-work.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">Lucky Girl Syndrome: Does It Actually Work?</h2>
+    <p class="bc-exc">The viral trend of assuming good things will happen — is it manifestation, confirmation bias, or something else? Here's what the evidence and psychology actually say.</p>
+    <div class="bc-foot"><span class="bc-date">May 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="unshackled-habits-modern-men.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">Unshackled: Breaking the Habits Holding Modern Men Back</h2>
+    <p class="bc-exc">The specific patterns — digital, social, psychological — that are quietly limiting modern men, and the identity-level shifts that break them permanently.</p>
+    <div class="bc-foot"><span class="bc-date">May 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="power-of-journalling-for-transformation.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">The Power of Journalling for Personal Transformation</h2>
+    <p class="bc-exc">Journalling isn't about recording your day — it's about externalising your thoughts so you can examine them from the outside. Here's how to use it for real change.</p>
+    <div class="bc-foot"><span class="bc-date">May 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="why-affirmations-fail.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">Why Affirmations Fail (And What Actually Works)</h2>
+    <p class="bc-exc">Most affirmations fail because they're said at the surface level. Here's the subconscious mechanism they need to target — and how to make them actually rewire you.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="the-5am-myth.html" data-cat="Mindset" role="listitem">
+    <span class="bc-num" aria-hidden="true">5AM</span>
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">The 5AM Myth</h2>
+    <p class="bc-exc">Waking up at 5AM doesn't make you productive. Here's what the high-performance crowd gets wrong about morning routines — and what the research actually says.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="your-body-keeps-score.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">Your Body Keeps Score</h2>
+    <p class="bc-exc">Your body stores unprocessed emotion as physical tension, chronic pain, and nervous system dysregulation. Here's how to read the signals and begin to release them.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="attention-is-your-currency.html" data-cat="Focus" role="listitem">
+    <span class="bc-cat">Focus</span>
+    <h2 class="bc-title">Attention Is Your Currency</h2>
+    <p class="bc-exc">Every app, notification, and algorithm is designed to spend your attention before you can. Here's how to take it back and invest it where it actually compounds.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="visualization-without-action.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">Visualization Without Action</h2>
+    <p class="bc-exc">Visualization alone can make you less likely to achieve your goal. Here's the psychology behind why — and the one shift that makes it actually work.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="the-evening-routine.html" data-cat="Mindset" role="listitem">
+    <span class="bc-cat">Mindset</span>
+    <h2 class="bc-title">The Evening Routine</h2>
+    <p class="bc-exc">Most people optimize the morning and ignore the evening. But how you close the day determines what your brain does overnight — and who you wake up as tomorrow.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 6 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc grad-border" href="the-frequency-you-carry.html" data-cat="Manifestation" role="listitem">
+    <span class="bc-num" aria-hidden="true">∿</span>
+    <span class="bc-cat">Manifestation</span>
+    <h2 class="bc-title">The Frequency You Carry</h2>
+    <p class="bc-exc">You don't attract what you want. You attract what you are. The frequency you carry — your habitual emotional state — determines everything that comes into your life.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="corporate-politics-decoded.html" data-cat="AI" role="listitem">
+    <span class="bc-cat">AI &amp; Business</span>
+    <h2 class="bc-title">Corporate Politics Decoded</h2>
+    <p class="bc-exc">Every office has politics. Most people pretend they don't exist — and get outmanoeuvred by those who understand them. Here's how to navigate without compromising yourself.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="ai-is-your-co-pilot.html" data-cat="AI" role="listitem">
+    <span class="bc-num" aria-hidden="true">AI</span>
+    <span class="bc-cat">AI &amp; Business</span>
+    <h2 class="bc-title">AI Is Your Co-Pilot</h2>
+    <p class="bc-exc">The people winning in 2026 aren't working harder — they're thinking alongside AI. Here's how to make AI your most powerful co-worker without losing your own judgment.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 7 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+  <a class="bc" href="corporate-ai-advantage.html" data-cat="AI" role="listitem">
+    <span class="bc-cat">AI &amp; Business</span>
+    <h2 class="bc-title">Corporate AI Advantage</h2>
+    <p class="bc-exc">Most corporate professionals are using AI to save 10 minutes on emails. Here's how to use it to reposition yourself as irreplaceable in the AI era.</p>
+    <div class="bc-foot"><span class="bc-date">Jul 2026 · 8 min</span><span class="bc-read">Read <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+  </a>
+
+</div>
 </main>
 
-<footer>
-  <span>© 2025–<span id="yr"></span> Vishal Hingol · <a href="policies.html" style="color:var(--mist)">Policies</a></span>
-  <span><a href="index.html">Home</a> · <a href="store.html">Books</a> · <a href="mentor.html">Mentorship</a> · <a href="newsletter.html">Newsletter</a> · <a href="shop.html">Signal Fashion</a> · <a href="about.html">About</a> · <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Instagram</a> · <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Twitter</a></span>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+        <p>Author of mindset, manifestation, visionary fiction and AI for business. Available worldwide on Amazon.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="store.html">Bookstore</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mentor.html">Mentorship</a></li>
+          <li><a href="shop.html">Signal Fashion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a></li>
+          <li><a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="https://x.com/Authorvhingol" target="_blank" rel="noopener">Twitter ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Account</h5>
+        <ul>
+          <li><a href="account.html">My account</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="policies.html">Policies</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-copy">© 2026 Vishal Hingol. All rights reserved. Writing for the world</p>
+  </div>
 </footer>
 
 <script>
-(async function(){
-  const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  let data, activecat = 'All';
-  try{
-    const res = await fetch('blog.json?v='+Date.now(),{cache:'no-store'});
-    data = await res.json();
-  }catch(e){
-    document.getElementById('posts').innerHTML='<div class="empty"><b>Articles unavailable</b>Please check back soon.</div>';
-    return;
-  }
-  const posts = (data.posts||[]).slice().sort((a,b)=>new Date(b.published)-new Date(a.published));
-  const cats = ['All', ...new Set(posts.map(p=>p.category))];
-
-  // filters
-  const fb = document.getElementById('filters');
-  fb.innerHTML = cats.map(c=>`<button class="fcat${c==='All'?' active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
-  fb.addEventListener('click',e=>{
-    const btn=e.target.closest('.fcat'); if(!btn) return;
-    activecat=btn.dataset.cat;
-    fb.querySelectorAll('.fcat').forEach(x=>x.classList.toggle('active',x===btn));
-    render();
-  });
-
-  function formatDate(d){ return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
-
-  function render(){
-    const filtered = activecat==='All' ? posts : posts.filter(p=>p.category===activecat);
-    if(!filtered.length){
-      document.getElementById('posts').innerHTML='<div class="empty"><b>No articles yet in this category</b>Check back soon.</div>';
-      return;
-    }
-    document.getElementById('posts').innerHTML = filtered.map(p=>`
-    <article class="pcard" onclick="location.href='${esc(p.id)}.html'">
-      <div class="pcard-cat">${esc(p.category)}</div>
-      <h2><a href="${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
-      <p class="pcard-excerpt">${esc(p.excerpt)}</p>
-      <div class="pcard-meta">
-        <span class="pcard-date">${formatDate(p.published)} · ${p.readingTime} min read</span>
-        <span class="pcard-read">Read article →</span>
-      </div>
-    </article>`).join('');
-  }
-  render();
-  document.getElementById('yr').textContent = new Date().getFullYear();
-})();
-</script>
-<script>
-function toggleMenu(){
-  var h=document.getElementById('hamburger');
-  var n=document.getElementById('navLinks');
-  var isOpen=n.classList.contains('open');
-  h.classList.toggle('open',!isOpen);
-  n.classList.toggle('open',!isOpen);
-  document.body.style.overflow=!isOpen?'hidden':'';
-}
-function closeMenu(){
-  var h=document.getElementById('hamburger');
-  var n=document.getElementById('navLinks');
-  if(h) h.classList.remove('open');
-  if(n) n.classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('#navLinks a').forEach(function(a){
-    a.addEventListener('click',closeMenu);
-  });
-});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
-</script>
-<div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
-  This website uses minimal cookies for analytics. No advertising or tracking cookies. 
-  <a href="/policies.html#privacy" style="color:#E8BB6B">Privacy Policy</a> · 
-  <button onclick="document.getElementById('cookieBar').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#E8BB6B;color:#070A18;border:none;padding:8px 20px;border-radius:100px;font-family:'Space Grotesk',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-left:12px">Accept</button>
-</div>
-<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBar').style.display='block';</script>
-
-<script>
 (function(){
-  const ENDPOINT = "https://subscribe.vishalhingolauthor.com";
-  function firstName(fullName, email){
-    if (fullName && fullName.trim()) return fullName.trim().split(/\s+/)[0];
-    if (email) return email.split('@')[0];
-    return 'Account';
-  }
-  async function applyLoginStateToNav(){
-    let data;
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST', headers: {'Content-Type':'application/json'}, credentials: 'include',
-        body: JSON.stringify({ type: 'check_session' }),
-      });
-      data = await res.json().catch(function(){ return {}; });
-    } catch (err) { return; }
-    if (!data || !data.loggedIn) return;
-    const name = firstName(data.fullName, data.email);
-    document.querySelectorAll('#navAccount, a[href="account.html"], a[href="/account.html"]').forEach(function(link){
-      link.textContent = name;
-      link.href = 'my-account.html';
+  /* ── Filter logic ── */
+  const filters = document.querySelectorAll('.bf');
+  const cards   = document.querySelectorAll('.bc');
+  const countEl = document.getElementById('countNum');
+
+  function applyFilter(cat){
+    let visible = 0;
+    cards.forEach(c => {
+      const match = cat === 'all' || c.dataset.cat === cat;
+      if(match){
+        c.style.display = '';
+        visible++;
+      } else {
+        c.style.display = 'none';
+      }
     });
+    if(countEl) countEl.textContent = visible;
   }
-  applyLoginStateToNav();
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      applyFilter(btn.dataset.f);
+    });
+  });
+
+  /* ── Scroll-triggered card entrance ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold:0.08});
+
+  cards.forEach(c => observer.observe(c));
+
+  /* ── Respect reduced motion ── */
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    cards.forEach(c => { c.style.opacity=1; c.style.transform='none'; });
+  }
 })();
 </script>
-
+<script defer src="assets/js/main.js"></script>
 </body>
 </html>
