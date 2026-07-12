@@ -62,15 +62,14 @@ a{color:inherit;text-decoration:none}
 @keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
-/* nav */
-nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,4vw,60px);background:rgba(7,10,24,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+/* nav — styled by the .nav/.nav-in block below (matches index.html); inner <nav> is a plain wrapper */
+nav{display:contents}
 .brand{font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
 .brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;gap:22px;align-items:center}
 .nav-links a{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--cyan)}
 .nav-amzn{color:var(--night)!important;background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px;letter-spacing:.08em!important}
-@media(max-width:600px){.nav-links a:not(.nav-amzn){display:none}}
 
 /* page */
 .page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
@@ -272,7 +271,8 @@ footer ul a:hover{color:var(--paper)}
 .gc:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
 .gc-aurora{position:absolute;inset:0;z-index:0;background:var(--au);transition:transform 1.5s ease}
 .gc:hover .gc-aurora{transform:scale(1.08)}
-.gc-grain{position:absolute;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");background-size:160px 160px;opacity:.75;mix-blend-mode:overlay;pointer-events:none}
+.gc-grain{position:absolute;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");background-size:110px 110px;opacity:.85;mix-blend-mode:overlay;pointer-events:none}
+.gc-grain::after{content:"";position:absolute;inset:0;background-image:inherit;background-size:230px 230px;opacity:.6;mix-blend-mode:soft-light}
 .gc-sweep{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 45%,transparent 55%);background-size:250% 100%;animation:sweep 6s ease-in-out infinite;opacity:0;transition:opacity .4s}
 .gc:hover .gc-sweep{opacity:1}
 .gc-glare{position:absolute;inset:0;z-index:8;pointer-events:none;border-radius:24px;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.15),transparent 50%);opacity:0;transition:opacity .3s;mix-blend-mode:overlay}
@@ -286,6 +286,7 @@ footer ul a:hover{color:var(--paper)}
 .gc-pill-time{color:rgba(255,255,255,.85)}
 .gc-pill-time svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .gc-icon{position:relative;z-index:5;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,18px) 20px;min-height:150px}
+.gc-icon::before{content:"";position:absolute;top:50%;left:50%;width:min(260px,80%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--ig,rgba(232,187,107,.35)) 0%,transparent 62%);filter:blur(6px);pointer-events:none}
 .gc-icon img{width:clamp(120px,17vw,170px);height:clamp(120px,17vw,170px);object-fit:contain;animation:iFloat 4.5s ease-in-out infinite;filter:drop-shadow(0 14px 30px rgba(0,0,0,.45));transition:transform .35s,filter .35s}
 .gc:hover .gc-icon img{transform:scale(1.1) translateY(-6px);filter:drop-shadow(0 20px 44px rgba(0,0,0,.55)) drop-shadow(0 0 24px var(--ig,rgba(232,187,107,.28)))}
 .gc-text{position:relative;z-index:5;padding:0 clamp(16px,3vw,22px) clamp(16px,3vw,22px);margin-top:auto}
@@ -298,18 +299,18 @@ footer ul a:hover{color:var(--paper)}
 .gc-arrow{display:flex;align-items:center;justify-content:center;transition:transform .3s}
 .gc:hover .gc-arrow{transform:translateX(6px)}
 .gc-arrow svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-/* Vibrant aurora gradients — matched to reference card art */
-.au-mindset{--au:linear-gradient(155deg,#2BE07A 0%,#14A868 16%,#33268F 46%,#8B3DFF 66%,#C05CFF 80%,#0A0518 100%);--dt:#C05CFF;--ac:#C05CFF;--ig:rgba(192,92,255,.3)}
-.au-manifest{--au:linear-gradient(155deg,#FFE03B 0%,#F0C000 22%,#A88600 48%,#4A3A00 74%,#100C02 100%);--dt:#FFD43B;--ac:#FFD43B;--ig:rgba(255,212,59,.3)}
-.au-focus{--au:linear-gradient(150deg,#2E7BFF 0%,#4A4AF0 24%,#B92DD6 52%,#E93A8C 70%,#5A1A8F 84%,#0E0420 100%);--dt:#7DAFFF;--ac:#7DAFFF;--ig:rgba(125,175,255,.3)}
-.au-health{--au:linear-gradient(150deg,#FF2FB4 0%,#D81FD0 26%,#7A1FE0 52%,#3A1A9E 72%,#0A0420 100%);--dt:#FF7ACF;--ac:#FF7ACF;--ig:rgba(255,122,207,.3)}
-.au-ai{--au:linear-gradient(155deg,#2FE060 0%,#16B87A 22%,#2A6AB0 48%,#8A2ED0 68%,#D63AA8 82%,#0C0416 100%);--dt:#4AE87F;--ac:#4AE87F;--ig:rgba(74,232,127,.3)}
-.au-corp{--au:linear-gradient(155deg,#5FE04A 0%,#1FC98A 24%,#12A8C8 50%,#1550D8 74%,#0A1030 92%,#04081E 100%);--dt:#3FD9C0;--ac:#3FD9C0;--ig:rgba(63,217,192,.3)}
-.au-habits{--au:linear-gradient(150deg,#7A3DF0 0%,#B03AC8 26%,#E85A2A 56%,#C82020 74%,#3A0A12 92%,#140406 100%);--dt:#FF8A4A;--ac:#FF8A4A;--ig:rgba(255,138,74,.3)}
-.au-books{--au:linear-gradient(150deg,#E82AA0 0%,#B22ADF 30%,#7A2AC8 50%,#D8542A 74%,#F0A02A 86%,#160410 100%);--dt:#F0A02A;--ac:#F0A02A;--ig:rgba(240,160,42,.3)}
-.au-philosophy{--au:linear-gradient(155deg,#4A2AE8 0%,#8A3AE0 28%,#C84AD8 54%,#FF7AB8 72%,#4A1A6E 88%,#0A0416 100%);--dt:#D89AFF;--ac:#D89AFF;--ig:rgba(216,154,255,.3)}
-.au-growth{--au:linear-gradient(150deg,#38D8FF 0%,#2A8AF0 26%,#5A3AE8 52%,#9D4EFF 72%,#1A1050 90%,#060418 100%);--dt:#7DE6FF;--ac:#7DE6FF;--ig:rgba(125,230,255,.3)}
-.au-default{--au:linear-gradient(150deg,#8B3DFF 0%,#5A2AC8 30%,#2A1A80 55%,#E8BB6B 80%,#140E28 100%);--dt:#E8BB6B;--ac:#E8BB6B;--ig:rgba(232,187,107,.3)}
+/* Layered radial "bloom" gradients — matched to reference card art */
+.au-mindset{--au:radial-gradient(90% 70% at 12% 8%,#2BE07A 0%,rgba(43,224,122,0) 52%),radial-gradient(95% 80% at 88% 62%,#A44BFF 0%,rgba(164,75,255,0) 58%),radial-gradient(70% 60% at 55% 100%,rgba(0,0,0,.9) 10%,transparent 70%),linear-gradient(160deg,#0E4A32,#1A0B38 60%,#0A0518);--dt:#C05CFF;--ac:#C05CFF;--ig:rgba(164,75,255,.4)}
+.au-manifest{--au:radial-gradient(100% 80% at 78% 10%,#FFE03B 0%,rgba(255,224,59,0) 60%),radial-gradient(90% 75% at 15% 45%,#E8B400 0%,rgba(232,180,0,0) 55%),radial-gradient(80% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(165deg,#8A6E00,#2A2000 65%,#0C0900);--dt:#FFD43B;--ac:#FFD43B;--ig:rgba(255,224,59,.4)}
+.au-focus{--au:radial-gradient(85% 65% at 72% 6%,#2E7BFF 0%,rgba(46,123,255,0) 55%),radial-gradient(90% 75% at 15% 50%,#E93A8C 0%,rgba(233,58,140,0) 55%),radial-gradient(80% 70% at 88% 78%,#7A1FE0 0%,rgba(122,31,224,0) 58%),linear-gradient(160deg,#101040,#0C0322);--dt:#7DAFFF;--ac:#7DAFFF;--ig:rgba(125,175,255,.4)}
+.au-health{--au:radial-gradient(95% 75% at 14% 10%,#FF4FA3 0%,rgba(255,79,163,0) 55%),radial-gradient(95% 85% at 86% 48%,#8B2FE0 0%,rgba(139,47,224,0) 60%),radial-gradient(75% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(155deg,#4A0E4E,#160528);--dt:#FF7ACF;--ac:#FF7ACF;--ig:rgba(255,122,207,.42)}
+.au-ai{--au:radial-gradient(90% 75% at 14% 22%,#2FD060 0%,rgba(47,208,96,0) 55%),radial-gradient(90% 75% at 88% 16%,#1550D8 0%,rgba(21,80,216,0) 58%),radial-gradient(85% 70% at 70% 72%,#0A8AC0 0%,rgba(10,138,192,0) 55%),linear-gradient(160deg,#063020,#04101E);--dt:#4AE87F;--ac:#4AE87F;--ig:rgba(74,232,127,.38)}
+.au-corp{--au:radial-gradient(90% 70% at 10% 8%,#5FE04A 0%,rgba(95,224,74,0) 52%),radial-gradient(95% 80% at 62% 45%,#12A8C8 0%,rgba(18,168,200,0) 58%),radial-gradient(85% 75% at 92% 88%,#1550D8 0%,rgba(21,80,216,0) 58%),linear-gradient(160deg,#0A3028,#040C1E);--dt:#3FD9C0;--ac:#3FD9C0;--ig:rgba(63,217,192,.38)}
+.au-habits{--au:radial-gradient(90% 70% at 26% 4%,#FF3D9E 0%,rgba(255,61,158,0) 52%),radial-gradient(90% 80% at 14% 62%,#FF7A2A 0%,rgba(255,122,42,0) 55%),radial-gradient(90% 80% at 88% 34%,#8B2FE0 0%,rgba(139,47,224,0) 58%),linear-gradient(160deg,#3A1030,#14060E);--dt:#FF8A4A;--ac:#FF8A4A;--ig:rgba(255,138,74,.4)}
+.au-books{--au:radial-gradient(90% 70% at 12% 12%,#FF2F7A 0%,rgba(255,47,122,0) 55%),radial-gradient(90% 80% at 86% 28%,#8B2FE0 0%,rgba(139,47,224,0) 58%),radial-gradient(90% 80% at 80% 88%,#FF8A2A 0%,rgba(255,138,42,0) 55%),linear-gradient(160deg,#3A0A22,#140410);--dt:#F0A02A;--ac:#F0A02A;--ig:rgba(240,160,42,.4)}
+.au-philosophy{--au:radial-gradient(95% 75% at 18% 14%,#9D4EFF 0%,rgba(157,78,255,0) 58%),radial-gradient(95% 80% at 82% 58%,#FF7AB8 0%,rgba(255,122,184,0) 55%),radial-gradient(75% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(160deg,#2A1058,#0C0418);--dt:#D89AFF;--ac:#D89AFF;--ig:rgba(216,154,255,.4)}
+.au-growth{--au:radial-gradient(90% 70% at 14% 10%,#38D8FF 0%,rgba(56,216,255,0) 55%),radial-gradient(95% 80% at 82% 52%,#5A3AE8 0%,rgba(90,58,232,0) 58%),radial-gradient(85% 70% at 55% 92%,#9D4EFF 0%,rgba(157,78,255,0) 52%),linear-gradient(160deg,#0A2A48,#060418);--dt:#7DE6FF;--ac:#7DE6FF;--ig:rgba(125,230,255,.4)}
+.au-default{--au:radial-gradient(90% 70% at 16% 12%,#8B3DFF 0%,rgba(139,61,255,0) 55%),radial-gradient(90% 80% at 84% 60%,#E8BB6B 0%,rgba(232,187,107,0) 55%),linear-gradient(160deg,#22104A,#0C0618);--dt:#E8BB6B;--ac:#E8BB6B;--ig:rgba(232,187,107,.4)}
 @keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
 @keyframes iFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media(max-width:480px){.gc{min-height:400px}.gc-icon img{width:110px;height:110px}}
