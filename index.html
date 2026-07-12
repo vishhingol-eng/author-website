@@ -296,22 +296,6 @@
 .v-quote{margin-top:24px;padding:20px 24px;border-left:2px solid #E8BB6B;border-radius:0 12px 12px 0;background:rgba(232,187,107,.04)}
 .v-quote p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(15px,2vw,17px);color:#F4EEE2;line-height:1.55;font-weight:300}
 .v-quote span{display:block;margin-top:10px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#E8BB6B;font-style:normal}
-/* ── ABOUT STAR — Framer-style grainy 4-point star behind "// About the Author" ── */
-.origin{overflow:hidden}
-.origin .wrap{position:relative;z-index:1}
-.about-star{position:absolute;top:68%;left:71%;width:min(660px,84vw);aspect-ratio:1;transform:translate(-50%,-50%);z-index:0;pointer-events:none;animation:asBreathe 9s ease-in-out infinite}
-.about-star svg{width:100%;height:100%;display:block;animation:asHue 18s ease-in-out infinite}
-.as-glow{position:absolute;width:34%;aspect-ratio:1;border-radius:50%;filter:blur(38px);mix-blend-mode:screen;animation:asTravel 14s ease-in-out infinite;will-change:transform,background-color,opacity}
-@keyframes asHue{0%,100%{filter:hue-rotate(0deg)}30%{filter:hue-rotate(-38deg)}65%{filter:hue-rotate(26deg)}}
-@keyframes asTravel{
-  0%,100%{top:2%;left:50%;transform:translate(-50%,-50%);background:rgba(120,225,255,.55);opacity:.85}
-  25%{top:50%;left:96%;transform:translate(-50%,-50%);background:rgba(170,130,255,.5);opacity:.9}
-  50%{top:96%;left:50%;transform:translate(-50%,-50%);background:rgba(80,140,255,.55);opacity:.85}
-  75%{top:50%;left:4%;transform:translate(-50%,-50%);background:rgba(90,235,215,.5);opacity:.9}
-}
-@keyframes asBreathe{0%,100%{opacity:.8;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}}
-@media (max-width:900px){.about-star{left:50%;top:62%;width:min(520px,115vw)}}
-@media (prefers-reduced-motion:reduce){.about-star,.about-star svg,.as-glow{animation:none}}
 </style>
 </head>
 <body>
@@ -946,31 +930,6 @@
 
 <!-- ================= ORIGIN ================= -->
 <section class="origin" id="about">
-  <div class="about-star" aria-hidden="true">
-    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="animation:asSway 16s ease-in-out infinite alternate">
-      <defs>
-        <radialGradient id="asGrad" cx="50%" cy="47%" r="62%">
-          <stop offset="0%" stop-color="#A8F1FF"/>
-          <stop offset="28%" stop-color="#3AC6F2"/>
-          <stop offset="58%" stop-color="#1D5FE8"/>
-          <stop offset="100%" stop-color="#0A1240"/>
-        </radialGradient>
-        <filter id="asBlur" x="-45%" y="-45%" width="190%" height="190%">
-          <feGaussianBlur stdDeviation="30"/>
-        </filter>
-        <filter id="asGrain" x="-45%" y="-45%" width="190%" height="190%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="soft"/>
-          <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch" result="n"/>
-          <feColorMatrix in="n" type="matrix" values="0 0 0 0 .72 0 0 0 0 .93 0 0 0 0 1 0 0 0 1.6 -.55" result="speck"/>
-          <feComposite in="speck" in2="soft" operator="in"/>
-        </filter>
-        <style>@keyframes asSway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}svg *{transform-origin:400px 400px}</style>
-      </defs>
-      <path d="M400 12 C 428 270, 480 345, 758 400 C 480 455, 428 530, 400 788 C 372 530, 320 455, 42 400 C 320 345, 372 270, 400 12 Z" fill="url(#asGrad)" filter="url(#asBlur)" opacity=".9"/>
-      <path d="M400 12 C 428 270, 480 345, 758 400 C 480 455, 428 530, 400 788 C 372 530, 320 455, 42 400 C 320 345, 372 270, 400 12 Z" fill="#9BE8FF" filter="url(#asGrain)" opacity=".85"/>
-    </svg>
-    <span class="as-glow"></span>
-  </div>
   <div class="wrap">
     <div class="about-grid">
       <div class="about-photo rv">
