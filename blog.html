@@ -51,15 +51,70 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:var(--night)}
 
-/* aurora */
-.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.4}
-.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:50vw;height:50vw;left:-10%;top:-10%;background:radial-gradient(circle,rgba(157,123,255,.45),transparent 65%);animation:a1 28s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:44vw;height:44vw;right:-8%;top:25%;background:radial-gradient(circle,rgba(125,230,255,.3),transparent 65%);animation:a2 34s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:55vw;height:55vw;left:20%;bottom:-20%;background:radial-gradient(circle,rgba(232,187,107,.25),transparent 65%);animation:a3 40s ease-in-out infinite alternate}
-@keyframes a1{to{transform:translate(8vw,6vh) scale(1.12)}}
-@keyframes a2{to{transform:translate(-7vw,9vh) scale(.9)}}
-@keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
+/* ── silk ribbon hero background ── */
+.blog-hero{
+  text-align:center;
+  margin-bottom:clamp(48px,7vw,80px);
+  position:relative;
+  padding-top:clamp(48px,6vw,80px);
+  padding-bottom:clamp(48px,6vw,80px);
+  margin-top:calc(-1 * clamp(44px,7vw,90px)); /* bleed into page top padding */
+}
+/* the silk image container */
+.blog-hero-silk{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+}
+.blog-hero-silk img{
+  position:absolute;
+  width:70vmax;
+  height:70vmax;
+  top:50%;
+  left:62%;
+  transform:translate(-50%,-50%) rotate(-20deg);
+  opacity:0.28;
+  filter:blur(1px) saturate(1.3);
+  animation:silkDrift 50s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes silkDrift{
+  0%  {transform:translate(-50%,-50%) rotate(-20deg) scale(1)}
+  50% {transform:translate(-48%,-52%) rotate(-16deg) scale(1.05)}
+  100%{transform:translate(-52%,-48%) rotate(-23deg) scale(0.97)}
+}
+/* top fade — transparent at top, shows image in middle */
+.blog-hero-silk::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to bottom,
+    #070A18 0%,
+    rgba(7,10,24,0.5) 20%,
+    rgba(7,10,24,0) 40%,
+    rgba(7,10,24,0) 60%,
+    rgba(7,10,24,0.6) 80%,
+    #070A18 100%
+  );
+}
+/* left & right edge fades */
+.blog-hero-silk::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to right,
+    #070A18 0%,
+    rgba(7,10,24,0.3) 18%,
+    rgba(7,10,24,0) 35%,
+    rgba(7,10,24,0) 65%,
+    rgba(7,10,24,0.3) 82%,
+    #070A18 100%
+  );
+}
+/* hero text sits above the image */
+.blog-hero-content{position:relative;z-index:2}
+
+/* keep original aurora for rest of page — just hide it */
+.aurora{display:none}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
 /* nav — styled by the .nav/.nav-in block below (matches index.html); inner <nav> is a plain wrapper */
@@ -319,7 +374,7 @@ footer ul a:hover{color:var(--paper)}
 </style>
 </head>
 <body>
-<div class="aurora"><i></i><i></i><i></i></div>
+
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
 <script>
 /* ── Creative background: star field + shooting stars + nebula wisps ── */
@@ -409,9 +464,14 @@ footer ul a:hover{color:var(--paper)}
 
 <main class="page">
   <div class="blog-hero">
+    <div class="blog-hero-silk">
+      <img src="silk-ribbon-bg.webp" alt="" fetchpriority="high" decoding="async">
+    </div>
+    <div class="blog-hero-content">
     <p class="blog-eyebrow">Signal &amp; Mind</p>
     <h1>Ideas worth<br>reading slowly.</h1>
     <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
+    </div>
   </div>
   <div class="filter-bar" id="filters"></div>
   <div class="posts" id="posts">
