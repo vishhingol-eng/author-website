@@ -296,6 +296,22 @@
 .v-quote{margin-top:24px;padding:20px 24px;border-left:2px solid #E8BB6B;border-radius:0 12px 12px 0;background:rgba(232,187,107,.04)}
 .v-quote p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(15px,2vw,17px);color:#F4EEE2;line-height:1.55;font-weight:300}
 .v-quote span{display:block;margin-top:10px;font-family:'Space Grotesk',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#E8BB6B;font-style:normal}
+/* ── ABOUT STAR — Framer-style grainy 4-point star behind "// About the Author" ── */
+.origin{overflow:hidden}
+.origin .wrap{position:relative;z-index:1}
+.about-star{position:absolute;top:68%;left:71%;width:min(660px,84vw);aspect-ratio:1;transform:translate(-50%,-50%);z-index:0;pointer-events:none;animation:asBreathe 9s ease-in-out infinite}
+.about-star svg{width:100%;height:100%;display:block;animation:asHue 18s ease-in-out infinite}
+.as-glow{position:absolute;width:34%;aspect-ratio:1;border-radius:50%;filter:blur(38px);mix-blend-mode:screen;animation:asTravel 14s ease-in-out infinite;will-change:transform,background-color,opacity}
+@keyframes asHue{0%,100%{filter:hue-rotate(0deg)}30%{filter:hue-rotate(-38deg)}65%{filter:hue-rotate(26deg)}}
+@keyframes asTravel{
+  0%,100%{top:2%;left:50%;transform:translate(-50%,-50%);background:rgba(120,225,255,.55);opacity:.85}
+  25%{top:50%;left:96%;transform:translate(-50%,-50%);background:rgba(170,130,255,.5);opacity:.9}
+  50%{top:96%;left:50%;transform:translate(-50%,-50%);background:rgba(80,140,255,.55);opacity:.85}
+  75%{top:50%;left:4%;transform:translate(-50%,-50%);background:rgba(90,235,215,.5);opacity:.9}
+}
+@keyframes asBreathe{0%,100%{opacity:.8;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}}
+@media (max-width:900px){.about-star{left:50%;top:62%;width:min(520px,115vw)}}
+@media (prefers-reduced-motion:reduce){.about-star,.about-star svg,.as-glow{animation:none}}
 </style>
 </head>
 <body>
@@ -413,6 +429,8 @@
     <p class="lede rv rv-d2">Books, premium editions, coaching, the blog, the Inner Circle and affirmation clothing — every part of one mission: raising your frequency.</p>
     <div class="soon-chips rv rv-d2">
       <span class="chip">Coming soon · Audiobooks</span>
+      <span class="chip" style="border-color:rgba(232,187,107,.55);color:var(--gold)">Coming soon · eBook Library</span>
+      <span class="chip">Coming soon · The Signal Library subscription</span>
     </div>
 
     <div class="svc-grid">
@@ -546,7 +564,7 @@
         <p class="feat-sub">When the Universe Chooses a Child to Change the World</p>
         <p class="feat-desc">Vishal's most ambitious work — a girl, an old radio, and a signal that should not exist. How the signal works, what the noise costs, and what becomes possible when you choose to transmit what you actually are.</p>
         <div class="feat-cta">
-          <a class="btn btn-gold" href="https://amzn.to/4f9XCCD" target="_blank" rel="noopener">Get the Book</a>
+          <a class="btn btn-gold" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Get the Book</a>
           <span class="feat-fmt">Kindle · Paperback</span>
         </div>
         <p style="margin-top:1.3rem;font-size:.88rem;color:#CFC9EE">A scene was cut from this book. <a href="#newsletter" style="color:var(--gold);border-bottom:1px solid rgba(232,187,107,.4)">Get the Lost Chapter free →</a></p>
@@ -560,7 +578,7 @@
       <div class="shelf-nav"><button data-rail="prev" aria-label="Scroll shelf left">←</button><button data-rail="next" aria-label="Scroll shelf right">→</button></div>
       <div class="rail">
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/4v0A2xM" target="_blank" rel="noopener" aria-label="Buy The Architecture of Destiny on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Architecture of Destiny on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-architecture-of-destiny.jpg" alt="Cover of The Architecture of Destiny by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Architecture of Destiny</div>
@@ -576,7 +594,7 @@
           </a>
         </article>
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/4f9XCCD" target="_blank" rel="noopener" aria-label="Buy Zara and the Divine Signal on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy Zara and the Divine Signal on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/zara-and-the-divine-signal.jpg" alt="Cover of Zara and the Divine Signal by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">Zara and the Divine Signal</div>
@@ -592,7 +610,7 @@
           </a>
         </article>
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/4v4u27t" target="_blank" rel="noopener" aria-label="Buy The Mechanic of Redemption on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Mechanic of Redemption on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/The%20Mechanic%20Paperdover%20ebook.jpg" alt="Cover of The Mechanic of Redemption by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Mechanic of Redemption</div>
@@ -608,7 +626,7 @@
           </a>
         </article>
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/4uVWmsn" target="_blank" rel="noopener" aria-label="Buy The Real Resonance Threshold on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Real Resonance Threshold on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-real-resonance-threshold.jpg" alt="Cover of The Real Resonance Threshold by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Real Resonance Threshold</div>
@@ -624,7 +642,7 @@
           </a>
         </article>
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/4vacNSg" target="_blank" rel="noopener" aria-label="Buy The Real Frequency of Origins on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Real Frequency of Origins on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-real-frequency-of-origins.jpg" alt="Cover of The Real Frequency of Origins by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Real Frequency of Origins</div>
@@ -640,7 +658,7 @@
           </a>
         </article>
         <article class="book" data-cat="fiction">
-          <a href="https://amzn.to/3SnKcLx" target="_blank" rel="noopener" aria-label="Buy The Real Architect of Echoes on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Real Architect of Echoes on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-real-architect-of-echoes.jpg" alt="Cover of The Real Architect of Echoes by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Real Architect of Echoes</div>
@@ -665,7 +683,7 @@
       <div class="shelf-nav"><button data-rail="prev" aria-label="Scroll shelf left">←</button><button data-rail="next" aria-label="Scroll shelf right">→</button></div>
       <div class="rail">
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/44DqzSd" target="_blank" rel="noopener" aria-label="Buy Why You Keep Holding Yourself Back on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy Why You Keep Holding Yourself Back on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/why-you-keep-holding-yourself-back.jpg" alt="Cover of Why You Keep Holding Yourself Back by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">Why You Keep Holding Yourself Back</div>
@@ -681,7 +699,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/3R5OXsD" target="_blank" rel="noopener" aria-label="Buy The Unconditioned Mind on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Unconditioned Mind on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-unconditioned-mind.jpg" alt="Cover of The Unconditioned Mind by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Unconditioned Mind</div>
@@ -697,7 +715,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4oTNTEO" target="_blank" rel="noopener" aria-label="Buy Your Mind Is the Blueprint on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy Your Mind Is the Blueprint on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/your-mind-is-the-blueprint.jpg" alt="Cover of Your Mind Is the Blueprint by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">Your Mind Is the Blueprint</div>
@@ -713,7 +731,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4xTjZo7" target="_blank" rel="noopener" aria-label="Buy The Quiet Revolution on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Quiet Revolution on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-quiet-revolution.jpg" alt="Cover of The Quiet Revolution by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Quiet Revolution</div>
@@ -729,7 +747,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4parJyp" target="_blank" rel="noopener" aria-label="Buy UNSHACKLED on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy UNSHACKLED on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/unshackled.jpg" alt="Cover of UNSHACKLED by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">UNSHACKLED</div>
@@ -745,7 +763,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4oTNIJE" target="_blank" rel="noopener" aria-label="Buy Digital Sovereignty on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy Digital Sovereignty on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/digital-sovereignty.jpg" alt="Cover of Digital Sovereignty by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">Digital Sovereignty</div>
@@ -761,7 +779,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4eQxDjf" target="_blank" rel="noopener" aria-label="Buy The Universe is Whispering to You on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Universe is Whispering to You on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-universe-is-whispering-to-you.jpg" alt="Cover of The Universe is Whispering to You by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Universe is Whispering to You</div>
@@ -777,7 +795,7 @@
           </a>
         </article>
         <article class="book" data-cat="mindset">
-          <a href="https://amzn.to/4gs16CL" target="_blank" rel="noopener" aria-label="Buy The Signal on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Signal on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-signal.jpg" alt="Cover of The Signal by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Signal</div>
@@ -802,7 +820,7 @@
       <div class="shelf-nav"><button data-rail="prev" aria-label="Scroll shelf left">←</button><button data-rail="next" aria-label="Scroll shelf right">→</button></div>
       <div class="rail">
         <article class="book" data-cat="manifest">
-          <a href="https://amzn.to/4oMyWUQ" target="_blank" rel="noopener" aria-label="Buy The Divine 3-6-9 Manifestation Method on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Divine 3-6-9 Manifestation Method on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-divine-369-manifestation-method.jpg" alt="Cover of The Divine 3-6-9 Manifestation Method by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Divine 3-6-9 Manifestation Method</div>
@@ -818,7 +836,7 @@
           </a>
         </article>
         <article class="book" data-cat="manifest">
-          <a href="https://amzn.to/4eMkUhx" target="_blank" rel="noopener" aria-label="Buy Lucky Girl Evidence Journal on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy Lucky Girl Evidence Journal on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/lucky-girl-evidence-journal.jpg" alt="Cover of Lucky Girl Evidence Journal by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">Lucky Girl Evidence Journal</div>
@@ -843,7 +861,7 @@
       <div class="shelf-nav"><button data-rail="prev" aria-label="Scroll shelf left">←</button><button data-rail="next" aria-label="Scroll shelf right">→</button></div>
       <div class="rail">
         <article class="book" data-cat="ai">
-          <a href="https://amzn.to/3SOf8Vb" target="_blank" rel="noopener" aria-label="Buy The Run-Your-Business-On-AI Playbook on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The Run-Your-Business-On-AI Playbook on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/run-your-business-on-ai-playbook.jpg" alt="Cover of The Run-Your-Business-On-AI Playbook by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The Run-Your-Business-On-AI Playbook</div>
@@ -859,7 +877,7 @@
           </a>
         </article>
         <article class="book" data-cat="ai">
-          <a href="https://amzn.to/440A6CH" target="_blank" rel="noopener" aria-label="Buy The AI-First Competitor on Amazon">
+          <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener" aria-label="Buy The AI-First Competitor on Amazon">
             <div class="cover">
               <img loading="lazy" src="https://vishalhingolauthor.com/covers/the-ai-first-competitor.jpg" alt="Cover of The AI-First Competitor by Vishal Hingol" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <div class="cover-fb" style="display:none">The AI-First Competitor</div>
@@ -928,6 +946,31 @@
 
 <!-- ================= ORIGIN ================= -->
 <section class="origin" id="about">
+  <div class="about-star" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="animation:asSway 16s ease-in-out infinite alternate">
+      <defs>
+        <radialGradient id="asGrad" cx="50%" cy="47%" r="62%">
+          <stop offset="0%" stop-color="#A8F1FF"/>
+          <stop offset="28%" stop-color="#3AC6F2"/>
+          <stop offset="58%" stop-color="#1D5FE8"/>
+          <stop offset="100%" stop-color="#0A1240"/>
+        </radialGradient>
+        <filter id="asBlur" x="-45%" y="-45%" width="190%" height="190%">
+          <feGaussianBlur stdDeviation="30"/>
+        </filter>
+        <filter id="asGrain" x="-45%" y="-45%" width="190%" height="190%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="soft"/>
+          <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch" result="n"/>
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 .72 0 0 0 0 .93 0 0 0 0 1 0 0 0 1.6 -.55" result="speck"/>
+          <feComposite in="speck" in2="soft" operator="in"/>
+        </filter>
+        <style>@keyframes asSway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}svg *{transform-origin:400px 400px}</style>
+      </defs>
+      <path d="M400 12 C 428 270, 480 345, 758 400 C 480 455, 428 530, 400 788 C 372 530, 320 455, 42 400 C 320 345, 372 270, 400 12 Z" fill="url(#asGrad)" filter="url(#asBlur)" opacity=".9"/>
+      <path d="M400 12 C 428 270, 480 345, 758 400 C 480 455, 428 530, 400 788 C 372 530, 320 455, 42 400 C 320 345, 372 270, 400 12 Z" fill="#9BE8FF" filter="url(#asGrain)" opacity=".85"/>
+    </svg>
+    <span class="as-glow"></span>
+  </div>
   <div class="wrap">
     <div class="about-grid">
       <div class="about-photo rv">
@@ -1041,13 +1084,6 @@
           <li><a href="policies.html">Policies</a></li>
         </ul>
       </div>
-      <div>
-        <h5>Coming Soon</h5>
-        <ul>
-          <li style="color:var(--text-secondary);font-size:.875rem">eBook Library</li>
-          <li style="color:var(--text-secondary);font-size:.875rem">Signal Library subscription</li>
-        </ul>
-      </div>
     </div>
     <div class="foot-base">
       <span>© 2026 Vishal Hingol. All rights reserved.</span>
@@ -1147,23 +1183,5 @@ neuroscience, guided journals, and breaking self-limiting beliefs.
 </div>
 
 <script defer src="assets/js/main.js"></script>
-<script>
-/* GA4 — track every Amazon buy link click with book title as label */
-document.addEventListener('click', function(e) {
-  var a = e.target.closest('a[href*="amzn.to"], a[href*="amazon.com/dp"]');
-  if (!a) return;
-  var label = a.getAttribute('aria-label') || a.textContent.trim() || 'unknown';
-  /* Strip "Buy ... on Amazon" wrapper if present */
-  label = label.replace(/^Buy\s+/i, '').replace(/\s+on Amazon\s*$/i, '').trim();
-  if (typeof gtag === 'function') {
-    gtag('event', 'book_buy_click', {
-      event_category: 'Amazon',
-      event_label: label,
-      book_title: label,
-      link_url: a.href
-    });
-  }
-});
-</script>
 </body>
 </html>
