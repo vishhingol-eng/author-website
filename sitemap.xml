@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/blog.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,15 +51,15 @@
   <!-- BLOG ARTICLES — all 35 verified live -->
   <url>
     <loc>https://vishalhingolauthor.com/why-you-keep-self-sabotaging.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/369-manifestation-method-complete-guide.html</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/digital-sovereignty-reclaim-your-mind.html</loc>
@@ -75,9 +75,9 @@
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/what-is-subconscious-reprogramming.html</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/how-to-rewire-your-brain-for-success.html</loc>
@@ -87,9 +87,9 @@
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/law-of-assumption-vs-law-of-attraction.html</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/morning-routine-subconscious-reprogramming.html</loc>
@@ -99,9 +99,9 @@
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/how-to-raise-your-vibration-permanently.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vishalhingolauthor.com/signs-universe-is-guiding-you.html</loc>
@@ -395,9 +395,29 @@
   <!-- LLM DISCOVERY FILE -->
   <url>
     <loc>https://vishalhingolauthor.com/llms.txt</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <!-- NEW BLOG ARTICLES — Phase 3 (added 2026-07-13) -->
+  <url>
+    <loc>https://vishalhingolauthor.com/does-369-method-actually-work.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/subconscious-reprogramming-for-beginners.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/best-manifestation-books-india-2026.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
