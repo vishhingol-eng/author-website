@@ -51,11 +51,16 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:var(--night)}
 
-/* ── silk ribbon hero ── */
+/* ══════════════════════════════════════════
+   SILK HERO — z-index stack:
+   0 = image (behind everything)
+   2 = dark overlay (text readability)
+   3 = bottom/top/edge gradient fades
+   4 = text content (always on top)
+   ══════════════════════════════════════════ */
 .blog-hero{
   position:relative;
   text-align:center;
-  /* bleed out of .page padding on all sides */
   margin-top:calc(-1 * clamp(44px,7vw,90px));
   margin-left:calc(-1 * clamp(18px,4vw,60px));
   margin-right:calc(-1 * clamp(18px,4vw,60px));
@@ -63,48 +68,71 @@ a{color:inherit;text-decoration:none}
   padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(90px,11vw,150px);
   overflow:hidden;
   isolation:isolate;
+  background:#070A18;
 }
-/* image layer — full bleed */
+/* z-index 0 — silk image container */
 .blog-hero-silk{
   position:absolute;
   inset:0;
   z-index:0;
+  overflow:hidden;
 }
-.blog-hero-silk img{
+/* image — behind everything, mask fades all 4 edges */
+#silkImg{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:40% 60%;
-  opacity:0.92;
-  filter:saturate(1.3) brightness(0.95);
+  object-position:50% 45%;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
+  animation: silkLive 20s ease-in-out infinite;
   will-change:transform;
-  transform:translateY(0px);
 }
-/* Single mask pseudo-element — NO multiple backgrounds (that caused the white line).
-   Uses a radial gradient to fade all 4 edges cleanly into #070A18 */
+@keyframes silkLive{
+  0%   { transform: scale(1.0)  translate( 0%,    0%); }
+  25%  { transform: scale(1.05) translate(-1.2%,  1%); }
+  50%  { transform: scale(1.08) translate( 1.5%,  0.8%); }
+  75%  { transform: scale(1.05) translate( 0.5%,  1.8%); }
+  100% { transform: scale(1.0)  translate( 0%,    0%); }
+}
+/* z-index 2 — dark overlay: 45% black for text readability */
+.blog-hero-silk::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:rgba(7,10,24,0.45);
+  pointer-events:none;
+}
+/* z-index 3 — strong bottom gradient + top fade: blends hero into page */
 .blog-hero-silk::after{
   content:"";
   position:absolute;
   inset:0;
-  z-index:1;
-  /* Ellipse mask: transparent centre, solid #070A18 at edges.
-     Wider horizontally (90%) so left/right fades are subtle.
-     Tighter vertically (65%) so top/bottom fades are stronger. */
-  background:radial-gradient(
-    ellipse 92% 68% at 50% 50%,
-    rgba(7,10,24,0)    0%,
-    rgba(7,10,24,0)   40%,
-    rgba(7,10,24,0.25) 58%,
-    rgba(7,10,24,0.72) 75%,
-    #070A18            92%
-  );
+  z-index:3;
+  background:
+    linear-gradient(to bottom,
+      rgba(7,10,24,0.55) 0%,
+      rgba(7,10,24,0)    15%,
+      rgba(7,10,24,0)    45%,
+      rgba(7,10,24,0.6)  65%,
+      rgba(7,10,24,0.92) 80%,
+      #070A18            90%
+    );
+  pointer-events:none;
 }
-/* text above everything */
+/* z-index 4 — text always on top */
 .blog-hero-content{
   position:relative;
-  z-index:2;
+  z-index:4;
 }
 .aurora{display:none}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
@@ -120,15 +148,6 @@ nav{display:contents}
 
 /* page */
 .page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
-
-/* hero */
-.blog-hero{text-align:center;margin-bottom:clamp(48px,7vw,80px)}
-.blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
-.blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
-.blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
-.blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
-@keyframes sheen{to{background-position:200% center}}
-.blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
 
 /* filter bar */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
@@ -671,15 +690,22 @@ function gT(e,c){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-
 function gR(c){c.style.transform=''}
 </script>
 <script>
-/* Parallax — silk image moves at 40% scroll speed for depth */
+/* Parallax + fade out — silk wrapper moves slower than scroll AND fades to 0
+   before the box edge is ever visible */
 (function(){
-  var img  = document.getElementById('silkImg');
-  var hero = img && img.closest('.blog-hero');
-  if(!img || !hero) return;
+  var wrap = document.querySelector('.blog-hero-silk');
+  var hero = wrap && wrap.closest('.blog-hero');
+  if(!wrap || !hero) return;
   function tick(){
-    var s = window.scrollY || window.pageYOffset;
-    if(s < hero.offsetHeight + 120)
-      img.style.transform = 'translateY(' + (s * 0.4) + 'px)';
+    var s     = window.scrollY || window.pageYOffset;
+    var heroH = hero.offsetHeight;
+    /* Parallax: moves at 35% scroll speed */
+    wrap.style.transform = 'translateY(' + (s * 0.35) + 'px)';
+    /* Fade: start at 30% scrolled, fully gone at 75% */
+    var fadeStart = heroH * 0.30;
+    var fadeEnd   = heroH * 0.75;
+    var opacity   = 1 - Math.max(0, Math.min(1, (s - fadeStart) / (fadeEnd - fadeStart)));
+    wrap.style.opacity = opacity;
   }
   window.addEventListener('scroll', tick, {passive:true});
   tick();
