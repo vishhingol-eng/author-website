@@ -51,17 +51,11 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:var(--night)}
 
-/* ══════════════════════════════════════════
-   SILK HERO — z-index stack:
-   0 = image (behind everything)
-   1 = mask fades (on image)
-   2 = dark overlay (for text readability)
-   3 = extra bottom fade (merges into page bg)
-   4 = text content (always on top)
-   ══════════════════════════════════════════ */
+/* ── silk ribbon hero ── */
 .blog-hero{
   position:relative;
   text-align:center;
+  /* bleed out of .page padding on all sides */
   margin-top:calc(-1 * clamp(44px,7vw,90px));
   margin-left:calc(-1 * clamp(18px,4vw,60px));
   margin-right:calc(-1 * clamp(18px,4vw,60px));
@@ -69,80 +63,49 @@ a{color:inherit;text-decoration:none}
   padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(90px,11vw,150px);
   overflow:hidden;
   isolation:isolate;
-  background:#070A18;
 }
-
-/* z-index 0 — silk image container */
+/* image layer — full bleed */
 .blog-hero-silk{
   position:absolute;
   inset:0;
   z-index:0;
-  overflow:hidden;
 }
-
-/* image — behind everything, fades applied via mask */
-#silkImg{
+.blog-hero-silk img{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:50% 45%;
-  /* Edge fades: strong top+bottom (0→28%, 72%→100%), subtle left+right (0→10%, 90%→100%) */
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
-    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
-    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
-  mask-composite: intersect;
-  /* slow living motion */
-  animation: silkLive 20s ease-in-out infinite;
+  object-position:40% 60%;
+  opacity:0.92;
+  filter:saturate(1.3) brightness(0.95);
   will-change:transform;
+  transform:translateY(0px);
 }
-@keyframes silkLive{
-  0%   { transform: scale(1.0)  translate( 0%,    0%); }
-  25%  { transform: scale(1.05) translate(-1.2%,  1%); }
-  50%  { transform: scale(1.08) translate( 1.5%,  0.8%); }
-  75%  { transform: scale(1.05) translate( 0.5%,  1.8%); }
-  100% { transform: scale(1.0)  translate( 0%,    0%); }
-}
-
-/* z-index 2 — dark overlay: makes text readable (45% black) */
-.blog-hero-silk::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:2;
-  background:rgba(7,10,24,0.45);
-  pointer-events:none;
-}
-
-/* z-index 3 — strong bottom gradient: blends hero into page background */
+/* Single mask pseudo-element — NO multiple backgrounds (that caused the white line).
+   Uses a radial gradient to fade all 4 edges cleanly into #070A18 */
 .blog-hero-silk::after{
   content:"";
   position:absolute;
   inset:0;
-  z-index:3;
-  background:
-    linear-gradient(to bottom,
-      rgba(7,10,24,0.55) 0%,
-      rgba(7,10,24,0)    15%,
-      rgba(7,10,24,0)    45%,
-      rgba(7,10,24,0.6)  65%,
-      rgba(7,10,24,0.92) 80%,
-      #070A18            90%
-    );
-  pointer-events:none;
+  z-index:1;
+  /* Ellipse mask: transparent centre, solid #070A18 at edges.
+     Wider horizontally (90%) so left/right fades are subtle.
+     Tighter vertically (65%) so top/bottom fades are stronger. */
+  background:radial-gradient(
+    ellipse 92% 68% at 50% 50%,
+    rgba(7,10,24,0)    0%,
+    rgba(7,10,24,0)   40%,
+    rgba(7,10,24,0.25) 58%,
+    rgba(7,10,24,0.72) 75%,
+    #070A18            92%
+  );
 }
-
-/* z-index 4 — text always on top */
+/* text above everything */
 .blog-hero-content{
   position:relative;
-  z-index:4;
+  z-index:2;
 }
-
 .aurora{display:none}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
@@ -544,6 +507,9 @@ footer ul a:hover{color:var(--paper)}
     <article class="pcard"><div class="pcard-cat">Corporate</div><h2><a href="corporate-politics-decoded.html">The Unspoken Rules of Corporate Politics</a></h2><p class="pcard-excerpt">The invisible dynamics that determine who rises and who stays stuck.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="ai-is-your-co-pilot.html">AI Won't Replace You. But Someone Using AI Will.</a></h2><p class="pcard-excerpt">How to use AI as a force multiplier — practical frameworks for every professional.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="corporate-ai-advantage.html">The AI-First Employee: How to Become Irreplaceable at Work</a></h2><p class="pcard-excerpt">Your company is adopting AI. Be the person who leads that — not the person it replaces.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Books</div><h2><a href="best-manifestation-books-india-2026.html">Best Manifestation Books in India (2026 Edition)</a></h2><p class="pcard-excerpt">A curated 2026 guide to the manifestation books worth your time in India — ranked by depth of transformation, not popularity. From classics to new Indian voices.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="subconscious-reprogramming-for-beginners.html">Subconscious Reprogramming for Beginners: A Step-by-Step Start</a></h2><p class="pcard-excerpt">New to subconscious work? This beginner's roadmap explains what actually rewires the mind — and the exact first steps to take — without jargon or overwhelm.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="does-369-method-actually-work.html">Does the 369 Method Actually Work? An Honest Answer</a></h2><p class="pcard-excerpt">Millions swear by the 369 method. Skeptics call it placebo. Here's what the evidence actually says — and the exact conditions under which it genuinely works.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
     <!-- JS replaces the above with the full interactive blog index on load -->
   </div>
 </main>
@@ -705,22 +671,15 @@ function gT(e,c){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-
 function gR(c){c.style.transform=''}
 </script>
 <script>
-/* Parallax + fade out — silk wrapper moves slower than scroll AND fades to 0
-   before the box edge is ever visible */
+/* Parallax — silk image moves at 40% scroll speed for depth */
 (function(){
-  var wrap = document.querySelector('.blog-hero-silk');
-  var hero = wrap && wrap.closest('.blog-hero');
-  if(!wrap || !hero) return;
+  var img  = document.getElementById('silkImg');
+  var hero = img && img.closest('.blog-hero');
+  if(!img || !hero) return;
   function tick(){
     var s = window.scrollY || window.pageYOffset;
-    var heroH = hero.offsetHeight;
-    /* Parallax: moves at 35% scroll speed */
-    wrap.style.transform = 'translateY(' + (s * 0.35) + 'px)';
-    /* Fade: start fading at 30% of hero scrolled, fully invisible at 75% */
-    var fadeStart = heroH * 0.30;
-    var fadeEnd   = heroH * 0.75;
-    var opacity   = 1 - Math.max(0, Math.min(1, (s - fadeStart) / (fadeEnd - fadeStart)));
-    wrap.style.opacity = opacity;
+    if(s < hero.offsetHeight + 120)
+      img.style.transform = 'translateY(' + (s * 0.4) + 'px)';
   }
   window.addEventListener('scroll', tick, {passive:true});
   tick();
