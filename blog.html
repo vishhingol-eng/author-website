@@ -51,7 +51,14 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:var(--night)}
 
-/* ── silk ribbon hero ── */
+/* ══════════════════════════════════════════
+   SILK HERO — z-index stack:
+   0 = image (behind everything)
+   1 = mask fades (on image)
+   2 = dark overlay (for text readability)
+   3 = extra bottom fade (merges into page bg)
+   4 = text content (always on top)
+   ══════════════════════════════════════════ */
 .blog-hero{
   position:relative;
   text-align:center;
@@ -62,59 +69,79 @@ a{color:inherit;text-decoration:none}
   padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(90px,11vw,150px);
   overflow:hidden;
   isolation:isolate;
+  background:#070A18;
 }
+
+/* z-index 0 — silk image container */
 .blog-hero-silk{
   position:absolute;
   inset:0;
   z-index:0;
+  overflow:hidden;
 }
-/* The image itself — full bleed, no blur, natural colours */
-.blog-hero-silk img{
+
+/* image — behind everything, fades applied via mask */
+#silkImg{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:50% 50%;
-  opacity:1;
+  object-position:50% 45%;
+  /* Edge fades: strong top+bottom (0→28%, 72%→100%), subtle left+right (0→10%, 90%→100%) */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 28%, black 72%, transparent 100%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 28%, black 72%, transparent 100%),
+    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
+  /* slow living motion */
+  animation: silkLive 20s ease-in-out infinite;
   will-change:transform;
-  transform:translateY(0px);
 }
-/* Layer 1 — dark tint overlay (20%) so text stays readable */
+@keyframes silkLive{
+  0%   { transform: scale(1.0)  translate( 0%,    0%); }
+  25%  { transform: scale(1.05) translate(-1.2%,  1%); }
+  50%  { transform: scale(1.08) translate( 1.5%,  0.8%); }
+  75%  { transform: scale(1.05) translate( 0.5%,  1.8%); }
+  100% { transform: scale(1.0)  translate( 0%,    0%); }
+}
+
+/* z-index 2 — dark overlay: makes text readable (45% black) */
 .blog-hero-silk::before{
   content:"";
   position:absolute;
   inset:0;
-  z-index:1;
-  background:rgba(7,10,24,0.22);
-}
-/* Layer 2 — edge fades: strong top+bottom, subtle left+right
-   Using mask-image so the fade is applied to the IMAGE not painted over it.
-   This avoids pixelation / hard edges entirely. */
-.blog-hero-silk img{
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%,   black 22%, black 78%, transparent 100%),
-    linear-gradient(to right,  transparent 0%,   black 12%, black 88%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, transparent 0%,   black 22%, black 78%, transparent 100%),
-    linear-gradient(to right,  transparent 0%,   black 12%, black 88%, transparent 100%);
-  mask-composite: intersect;
-}
-/* silk living motion — slow breathe + gentle drift */
-@keyframes silkLive{
-  0%   { transform:translateY(0px) scale(1.0)  translate(0%,   0%); }
-  25%  { transform:translateY(0px) scale(1.04) translate(-1%,  1%); }
-  50%  { transform:translateY(0px) scale(1.07) translate(1.5%, 0.5%); }
-  75%  { transform:translateY(0px) scale(1.04) translate(0.5%, 1.5%); }
-  100% { transform:translateY(0px) scale(1.0)  translate(0%,   0%); }
-}
-#silkImg{
-  animation: silkLive 18s ease-in-out infinite;
-}
-  position:relative;
   z-index:2;
+  background:rgba(7,10,24,0.45);
+  pointer-events:none;
 }
+
+/* z-index 3 — strong bottom gradient: blends hero into page background */
+.blog-hero-silk::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  background:
+    linear-gradient(to bottom,
+      rgba(7,10,24,0.55) 0%,
+      rgba(7,10,24,0)    18%,
+      rgba(7,10,24,0)    60%,
+      rgba(7,10,24,0.8)  80%,
+      #070A18            100%
+    );
+  pointer-events:none;
+}
+
+/* z-index 4 — text always on top */
+.blog-hero-content{
+  position:relative;
+  z-index:4;
+}
+
 .aurora{display:none}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
