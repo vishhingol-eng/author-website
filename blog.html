@@ -61,11 +61,13 @@ a{color:inherit;text-decoration:none}
 .blog-hero{
   position:relative;
   text-align:center;
-  margin-top:calc(-1 * clamp(44px,7vw,90px));
-  margin-left:calc(-1 * clamp(18px,4vw,60px));
-  margin-right:calc(-1 * clamp(18px,4vw,60px));
+  /* Full viewport bleed — escapes the max-width:1160px .page container */
+  width:100vw;
+  margin-left:50%;
+  transform:translateX(-50%);
   margin-bottom:clamp(48px,7vw,80px);
-  padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(90px,11vw,150px);
+  margin-top:calc(-1 * clamp(44px,7vw,90px));
+  padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(110px,13vw,170px);
   overflow:hidden;
   isolation:isolate;
   background:#070A18;
@@ -86,12 +88,12 @@ a{color:inherit;text-decoration:none}
   object-fit:cover;
   object-position:50% 45%;
   -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
-    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, black 18%, black 42%, transparent 80%),
+    linear-gradient(to right,  transparent 0%, black 8%,  black 92%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to bottom, transparent 0%, black 22%, black 50%, transparent 88%),
-    linear-gradient(to right,  transparent 0%, black 10%, black 90%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, black 18%, black 42%, transparent 80%),
+    linear-gradient(to right,  transparent 0%, black 8%,  black 92%, transparent 100%);
   mask-composite: intersect;
   animation: silkLive 20s ease-in-out infinite;
   will-change:transform;
@@ -120,12 +122,13 @@ a{color:inherit;text-decoration:none}
   z-index:3;
   background:
     linear-gradient(to bottom,
-      rgba(7,10,24,0.55) 0%,
-      rgba(7,10,24,0)    15%,
-      rgba(7,10,24,0)    45%,
-      rgba(7,10,24,0.6)  65%,
-      rgba(7,10,24,0.92) 80%,
-      #070A18            90%
+      rgba(7,10,24,0.65) 0%,
+      rgba(7,10,24,0)    12%,
+      rgba(7,10,24,0)    38%,
+      rgba(7,10,24,0.55) 55%,
+      rgba(7,10,24,0.85) 72%,
+      #070A18            84%,
+      #070A18            100%
     );
   pointer-events:none;
 }
@@ -150,6 +153,12 @@ nav{display:contents}
 .page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
 
 /* filter bar */
+.blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
+.blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
+.blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
+@keyframes sheen{to{background-position:200% center}}
+.blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
 .fcat{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:100px;cursor:pointer;transition:all .2s}
 .fcat:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -701,9 +710,9 @@ function gR(c){c.style.transform=''}
     var heroH = hero.offsetHeight;
     /* Parallax: moves at 35% scroll speed */
     wrap.style.transform = 'translateY(' + (s * 0.35) + 'px)';
-    /* Fade: start at 30% scrolled, fully gone at 75% */
-    var fadeStart = heroH * 0.30;
-    var fadeEnd   = heroH * 0.75;
+    /* Fade: start at 20% scrolled, fully gone at 60% */
+    var fadeStart = heroH * 0.20;
+    var fadeEnd   = heroH * 0.60;
     var opacity   = 1 - Math.max(0, Math.min(1, (s - fadeStart) / (fadeEnd - fadeStart)));
     wrap.style.opacity = opacity;
   }
