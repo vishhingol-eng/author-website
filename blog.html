@@ -51,40 +51,114 @@ body{background:var(--night);color:var(--paper);font-family:var(--body);font-siz
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:var(--night)}
 
-/* aurora */
-.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(110px);opacity:.4}
-.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:50vw;height:50vw;left:-10%;top:-10%;background:radial-gradient(circle,rgba(157,123,255,.45),transparent 65%);animation:a1 28s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:44vw;height:44vw;right:-8%;top:25%;background:radial-gradient(circle,rgba(125,230,255,.3),transparent 65%);animation:a2 34s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:55vw;height:55vw;left:20%;bottom:-20%;background:radial-gradient(circle,rgba(232,187,107,.25),transparent 65%);animation:a3 40s ease-in-out infinite alternate}
-@keyframes a1{to{transform:translate(8vw,6vh) scale(1.12)}}
-@keyframes a2{to{transform:translate(-7vw,9vh) scale(.9)}}
-@keyframes a3{to{transform:translate(-5vw,-8vh) scale(1.1)}}
+/* ══════════════════════════════════════════
+   SILK HERO — z-index stack:
+   0 = image (behind everything)
+   2 = dark overlay (text readability)
+   3 = bottom/top/edge gradient fades
+   4 = text content (always on top)
+   ══════════════════════════════════════════ */
+.blog-hero{
+  position:relative;
+  text-align:center;
+  /* Full viewport bleed — escapes the max-width:1160px .page container */
+  width:100vw;
+  margin-left:50%;
+  transform:translateX(-50%);
+  margin-bottom:clamp(48px,7vw,80px);
+  margin-top:calc(-1 * clamp(44px,7vw,90px));
+  padding:clamp(90px,11vw,150px) clamp(18px,4vw,60px) clamp(110px,13vw,170px);
+  overflow:hidden;
+  isolation:isolate;
+  background:#070A18;
+}
+/* z-index 0 — silk image container */
+.blog-hero-silk{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+/* image — behind everything, mask fades all 4 edges */
+#silkImg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 45%;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 42%, transparent 80%),
+    linear-gradient(to right,  transparent 0%, black 8%,  black 92%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 42%, transparent 80%),
+    linear-gradient(to right,  transparent 0%, black 8%,  black 92%, transparent 100%);
+  mask-composite: intersect;
+  animation: silkLive 20s ease-in-out infinite;
+  will-change:transform;
+}
+@keyframes silkLive{
+  0%   { transform: scale(1.0)  translate( 0%,    0%); }
+  25%  { transform: scale(1.05) translate(-1.2%,  1%); }
+  50%  { transform: scale(1.08) translate( 1.5%,  0.8%); }
+  75%  { transform: scale(1.05) translate( 0.5%,  1.8%); }
+  100% { transform: scale(1.0)  translate( 0%,    0%); }
+}
+/* z-index 2 — dark overlay: 45% black for text readability */
+.blog-hero-silk::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:rgba(7,10,24,0.45);
+  pointer-events:none;
+}
+/* z-index 3 — strong bottom gradient + top fade: blends hero into page */
+.blog-hero-silk::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  background:
+    linear-gradient(to bottom,
+      rgba(7,10,24,0.65) 0%,
+      rgba(7,10,24,0)    12%,
+      rgba(7,10,24,0)    38%,
+      rgba(7,10,24,0.55) 55%,
+      rgba(7,10,24,0.85) 72%,
+      #070A18            84%,
+      #070A18            100%
+    );
+  pointer-events:none;
+}
+/* z-index 4 — text always on top */
+.blog-hero-content{
+  position:relative;
+  z-index:4;
+}
+.aurora{display:none}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background:linear-gradient(rgba(244,238,226,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(244,238,226,.5) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000,transparent 75%)}
 
-/* nav */
-nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,4vw,60px);background:rgba(7,10,24,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+/* nav — styled by the .nav/.nav-in block below (matches index.html); inner <nav> is a plain wrapper */
+nav{display:contents}
 .brand{font-family:var(--display);font-size:19px;font-weight:500;text-decoration:none}
 .brand em{font-style:italic;background:linear-gradient(100deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;gap:22px;align-items:center}
 .nav-links a{font-family:var(--tech);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--cyan)}
 .nav-amzn{color:var(--night)!important;background:linear-gradient(110deg,var(--gold),#F2D49B);padding:9px 16px;border-radius:100px;letter-spacing:.08em!important}
-@media(max-width:600px){.nav-links a:not(.nav-amzn){display:none}}
 
 /* page */
 .page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,60px) 100px}
 
-/* hero */
-.blog-hero{text-align:center;margin-bottom:clamp(48px,7vw,80px)}
+/* filter bar */
 .blog-eyebrow{font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
 .blog-eyebrow::before,.blog-eyebrow::after{content:"";width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan))}
 .blog-eyebrow::after{background:linear-gradient(90deg,var(--cyan),transparent)}
 .blog-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1.06;letter-spacing:-.015em;background:linear-gradient(115deg,var(--paper) 30%,var(--gold) 55%,var(--rose) 75%,var(--paper) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s linear infinite}
 @keyframes sheen{to{background-position:200% center}}
 .blog-hero p{color:var(--mist);font-size:clamp(15px,2vw,18px);max-width:520px;margin:18px auto 0}
-
-/* filter bar */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
 .fcat{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--tech);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;border-radius:100px;cursor:pointer;transition:all .2s}
 .fcat:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -209,34 +283,215 @@ footer a:hover{text-decoration:underline}
 }
 /* ===== END MOBILE NAV ===== */
 </style>
+<style>
+.pcard-art{position:relative;height:140px;overflow:hidden}.pcard-art::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(18,26,62,.55),transparent)}
+.art-mindset{background:radial-gradient(circle at 40% 40%,#12101E,#0A0C1A 65%)}.art-mindset::before{content:"";position:absolute;inset:0;background-image:radial-gradient(2px 2px at 20% 30%,rgba(232,187,107,.7) 0%,transparent 100%),radial-gradient(2px 2px at 50% 20%,rgba(232,187,107,.5) 0%,transparent 100%),radial-gradient(2px 2px at 70% 45%,rgba(232,187,107,.6) 0%,transparent 100%),radial-gradient(2px 2px at 35% 60%,rgba(232,187,107,.4) 0%,transparent 100%),radial-gradient(2px 2px at 80% 70%,rgba(232,187,107,.5) 0%,transparent 100%)}
+.art-manifest{background:radial-gradient(circle at 50% 55%,#1A1200,#0A0C1A 65%)}.art-manifest::before{content:"";position:absolute;top:50%;left:50%;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(232,187,107,.6),transparent 70%);transform:translate(-50%,-50%);animation:artP 3s ease-in-out infinite}
+.art-focus{background:radial-gradient(circle at 50%,#120E28,#0A0C1A 65%)}.art-focus::before{content:"";position:absolute;top:50%;left:50%;width:80px;height:80px;border-radius:50%;border:1px solid rgba(157,123,255,.3);transform:translate(-50%,-50%);box-shadow:0 0 0 20px rgba(157,123,255,.1),0 0 0 40px rgba(157,123,255,.05)}
+.art-health{background:linear-gradient(145deg,#1A0A15,#0A0C1A)}.art-health::before{content:"\2661";position:absolute;top:35%;right:25%;font-size:32px;color:rgba(255,158,207,.35);animation:artB 1.2s ease-in-out infinite}
+.art-ai{background:linear-gradient(135deg,#0A1420,#0A0C1A)}.art-ai::before{content:"";position:absolute;inset:20%;border:1px solid rgba(125,230,255,.12);border-radius:8px}.art-ai::after{content:"";position:absolute;top:50%;left:50%;width:12px;height:12px;border-radius:50%;border:2px solid rgba(125,230,255,.5);background:rgba(125,230,255,.15);transform:translate(-50%,-50%);box-shadow:0 0 16px rgba(125,230,255,.4)}
+.art-corp{background:linear-gradient(145deg,#0E0A22,#0A0C1A)}.art-corp::before{content:"";position:absolute;inset:15%;background-image:linear-gradient(rgba(157,123,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(157,123,255,.08) 1px,transparent 1px);background-size:25% 25%}
+.art-habits{background:linear-gradient(180deg,#0A0C1A,#1A1545 55%,#6B3528)}.art-habits::before{content:"";position:absolute;bottom:20%;left:50%;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#FFD080,#E8BB6B);transform:translateX(-50%);box-shadow:0 0 30px rgba(232,187,107,.4)}
+.art-books{background:linear-gradient(145deg,#141008,#0A0C1A)}.art-books::before{content:"\1F4D6";position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);font-size:36px;opacity:.5}
+.art-philosophy{background:radial-gradient(circle,#0D0A18,#0A0C1A 65%)}.art-philosophy::before{content:"\221E";position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(157,123,255,.15);font-family:serif}
+.art-growth{background:linear-gradient(180deg,#05071A,#0D1030)}.art-growth::before{content:"";position:absolute;top:30%;right:30%;width:35px;height:35px;border-radius:50%;box-shadow:inset -10px 3px 0 rgba(244,238,226,.7)}
+.art-default{background:radial-gradient(circle,#0E0B1A,#0A0C1A 65%)}.art-default::before{content:"";position:absolute;top:50%;left:50%;width:50px;height:50px;border-radius:50%;border:1px solid rgba(232,187,107,.2);transform:translate(-50%,-50%)}
+.pcard-cat.cat-gold{background:rgba(232,187,107,.1);color:#E8BB6B;border:1px solid rgba(232,187,107,.2)}.pcard-cat.cat-violet{background:rgba(157,123,255,.1);color:#9D7BFF;border:1px solid rgba(157,123,255,.2)}.pcard-cat.cat-cyan{background:rgba(125,230,255,.1);color:#7DE6FF;border:1px solid rgba(125,230,255,.2)}.pcard-cat.cat-rose{background:rgba(255,158,207,.1);color:#FF9ECF;border:1px solid rgba(255,158,207,.2)}.pcard-cat.cat-white{background:rgba(244,238,226,.06);color:#F4EEE2;border:1px solid rgba(244,238,226,.1)}
+.pcard-cat{margin-top:-10px;position:relative;z-index:2;width:fit-content;padding:4px 12px;border-radius:100px;font-family:var(--tech);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+@keyframes artP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.3);opacity:.9}}@keyframes artB{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+
+/* ── NAV (matches index.html) ── */
+.nav{position:sticky;top:0;z-index:40;background:rgba(7,10,24,.80);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,4vw,60px);max-width:1400px;margin:0 auto}
+.brand{font-family:var(--display);font-size:19px;font-weight:700;text-decoration:none;color:var(--paper)}
+.brand em{font-style:italic;background:linear-gradient(100deg,#E8BB6B 0%,#F2D49B 40%,#FF9ECF 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2px;align-items:center;list-style:none;padding:0;margin:0}
+.nav-links li a{font-family:var(--tech);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,238,226,.65);padding:6px 11px;border-radius:100px;border:1px solid transparent;transition:color .18s,background .18s,border-color .18s;text-decoration:none;display:block}
+.nav-links li a:hover{color:var(--gold);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12)}
+.nav-links li a.active{color:var(--cyan)}
+.nav-cta{background:linear-gradient(110deg,var(--gold),#F2D49B)!important;color:var(--night)!important;border-color:transparent!important;font-weight:700!important}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:transparent;border:1px solid rgba(244,238,226,.2);border-radius:8px;padding:8px}
+.burger span{width:22px;height:2px;background:var(--paper);border-radius:2px;display:block;transition:all .3s}
+
+/* ── FOOTER (matches index.html) ── */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:0;padding:0}
+footer .wrap{max-width:1260px;margin:0 auto;padding:clamp(48px,6vw,72px) clamp(20px,5vw,60px) clamp(28px,4vw,40px)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(28px,4vw,56px);margin-bottom:clamp(36px,5vw,48px)}
+.foot-brand p{font-size:13px;color:var(--mist);line-height:1.65;max-width:240px;margin-top:12px}
+footer h5{font-family:var(--tech);font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+footer ul a{font-family:var(--tech);font-size:12px;color:var(--mist);transition:color .18s;letter-spacing:.04em}
+footer ul a:hover{color:var(--paper)}
+.foot-base{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(244,238,226,.07);font-family:var(--tech);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(154,161,199,.45)}
+
+/* ── ENHANCED BACKGROUND ── */
+#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ── MOBILE NAV ── */
+@media(max-width:768px){
+  .burger{display:flex}
+  .nav-links{display:none;position:fixed;inset:0;background:rgba(7,10,24,.97);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:150;padding:60px 20px}
+  .nav-links.open{display:flex}
+  .nav-links li a{font-family:var(--display)!important;font-size:22px!important;letter-spacing:.02em!important;color:var(--paper)!important;padding:8px 0!important;border:none!important;background:transparent!important}
+  .nav-links li a.nav-cta{font-family:var(--tech)!important;font-size:14px!important;background:linear-gradient(110deg,var(--gold),#F2D49B)!important;color:var(--night)!important;padding:14px 32px!important;border-radius:100px!important}
+}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}.foot-base{flex-direction:column;gap:6px;text-align:center}}
+</style>
+<style>
+/* PREMIUM 3D BLOG CARDS */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:clamp(20px,3vw,28px);min-height:400px}
+.cw{perspective:1000px}
+.gc{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;min-height:440px;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;will-change:transform}
+.gc:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+.gc-aurora{position:absolute;inset:0;z-index:0;background:var(--au);transition:transform 1.5s ease}
+.gc:hover .gc-aurora{transform:scale(1.08)}
+.gc-grain{position:absolute;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 2.6 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:120px 120px;opacity:.5;mix-blend-mode:overlay;pointer-events:none}
+.gc-grain::before{content:"";position:absolute;inset:0;background-image:inherit;background-size:90px 90px;opacity:.35;mix-blend-mode:screen}
+.gc-grain::after{content:"";position:absolute;inset:0;background-image:inherit;background-size:260px 260px;opacity:.55;mix-blend-mode:soft-light}
+.gc-sweep{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 45%,transparent 55%);background-size:250% 100%;animation:sweep 6s ease-in-out infinite;opacity:0;transition:opacity .4s}
+.gc:hover .gc-sweep{opacity:1}
+.gc-glare{position:absolute;inset:0;z-index:8;pointer-events:none;border-radius:24px;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.15),transparent 50%);opacity:0;transition:opacity .3s;mix-blend-mode:overlay}
+.gc:hover .gc-glare{opacity:1}
+.gc-overlay{position:absolute;bottom:0;left:0;right:0;height:62%;z-index:4;background:linear-gradient(to top,rgba(0,0,0,.96),rgba(0,0,0,.82) 30%,rgba(0,0,0,.35) 62%,transparent);pointer-events:none}
+.gc-top{position:relative;z-index:5;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:clamp(16px,3vw,22px) clamp(16px,3vw,22px) 0}
+.gc-num{font-family:'Albert Sans',sans-serif;font-size:clamp(34px,4.5vw,46px);font-weight:600;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.gc-pills{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.gc-pill{font-family:'Albert Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.01em;padding:6px 13px;border-radius:100px;background:rgba(10,10,14,.55);backdrop-filter:blur(12px);color:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.gc-pill-ico{width:17px;height:17px;border-radius:5px;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+.gc-pill-time{color:rgba(255,255,255,.85)}
+.gc-pill-time svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gc-icon{position:relative;z-index:5;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(8px,2vw,18px) 20px;min-height:150px}
+.gc-icon::before{content:"";position:absolute;top:50%;left:50%;width:min(260px,80%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,var(--ig,rgba(232,187,107,.35)) 0%,transparent 62%);filter:blur(6px);pointer-events:none}
+.gc-icon img{width:clamp(120px,17vw,170px);height:clamp(120px,17vw,170px);object-fit:contain;animation:iFloat 4.5s ease-in-out infinite;filter:drop-shadow(0 14px 30px rgba(0,0,0,.45));transition:transform .35s,filter .35s}
+.gc:hover .gc-icon img{transform:scale(1.1) translateY(-6px);filter:drop-shadow(0 20px 44px rgba(0,0,0,.55)) drop-shadow(0 0 24px var(--ig,rgba(232,187,107,.28)))}
+.gc-text{position:relative;z-index:5;padding:0 clamp(16px,3vw,22px) clamp(16px,3vw,22px);margin-top:auto}
+.gc-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(20px,2.9vw,26px);font-weight:500;color:#fff;line-height:1.16;letter-spacing:-.015em;margin-bottom:10px}
+.gc-title a{color:inherit;text-decoration:none}
+.gc:hover .gc-title{text-shadow:0 0 20px rgba(255,255,255,.15)}
+.gc-desc{font-family:'Albert Sans',sans-serif;font-size:14px;color:rgba(255,255,255,.66);line-height:1.55;margin-bottom:18px}
+.gc-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.gc-read{font-family:'Albert Sans',sans-serif;font-size:14.5px;font-weight:500;color:#fff;letter-spacing:.01em}
+.gc-arrow{display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.gc:hover .gc-arrow{transform:translateX(6px)}
+.gc-arrow svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* Layered radial "bloom" gradients — matched to reference card art */
+.au-mindset{--au:radial-gradient(90% 70% at 12% 8%,#2BE07A 0%,rgba(43,224,122,0) 52%),radial-gradient(95% 80% at 88% 62%,#A44BFF 0%,rgba(164,75,255,0) 58%),radial-gradient(70% 60% at 55% 100%,rgba(0,0,0,.9) 10%,transparent 70%),linear-gradient(160deg,#0E4A32,#1A0B38 60%,#0A0518);--dt:#C05CFF;--ac:#C05CFF;--ig:rgba(164,75,255,.4)}
+.au-manifest{--au:radial-gradient(100% 80% at 78% 10%,#FFE03B 0%,rgba(255,224,59,0) 60%),radial-gradient(90% 75% at 15% 45%,#E8B400 0%,rgba(232,180,0,0) 55%),radial-gradient(80% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(165deg,#8A6E00,#2A2000 65%,#0C0900);--dt:#FFD43B;--ac:#FFD43B;--ig:rgba(255,224,59,.4)}
+.au-focus{--au:radial-gradient(85% 65% at 72% 6%,#2E7BFF 0%,rgba(46,123,255,0) 55%),radial-gradient(90% 75% at 15% 50%,#E93A8C 0%,rgba(233,58,140,0) 55%),radial-gradient(80% 70% at 88% 78%,#7A1FE0 0%,rgba(122,31,224,0) 58%),linear-gradient(160deg,#101040,#0C0322);--dt:#7DAFFF;--ac:#7DAFFF;--ig:rgba(125,175,255,.4)}
+.au-health{--au:radial-gradient(95% 75% at 14% 10%,#FF4FA3 0%,rgba(255,79,163,0) 55%),radial-gradient(95% 85% at 86% 48%,#8B2FE0 0%,rgba(139,47,224,0) 60%),radial-gradient(75% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(155deg,#4A0E4E,#160528);--dt:#FF7ACF;--ac:#FF7ACF;--ig:rgba(255,122,207,.42)}
+.au-ai{--au:radial-gradient(90% 75% at 14% 22%,#2FD060 0%,rgba(47,208,96,0) 55%),radial-gradient(90% 75% at 88% 16%,#1550D8 0%,rgba(21,80,216,0) 58%),radial-gradient(85% 70% at 70% 72%,#0A8AC0 0%,rgba(10,138,192,0) 55%),linear-gradient(160deg,#063020,#04101E);--dt:#4AE87F;--ac:#4AE87F;--ig:rgba(74,232,127,.38)}
+.au-corp{--au:radial-gradient(90% 70% at 10% 8%,#5FE04A 0%,rgba(95,224,74,0) 52%),radial-gradient(95% 80% at 62% 45%,#12A8C8 0%,rgba(18,168,200,0) 58%),radial-gradient(85% 75% at 92% 88%,#1550D8 0%,rgba(21,80,216,0) 58%),linear-gradient(160deg,#0A3028,#040C1E);--dt:#3FD9C0;--ac:#3FD9C0;--ig:rgba(63,217,192,.38)}
+.au-habits{--au:radial-gradient(90% 70% at 26% 4%,#FF3D9E 0%,rgba(255,61,158,0) 52%),radial-gradient(90% 80% at 14% 62%,#FF7A2A 0%,rgba(255,122,42,0) 55%),radial-gradient(90% 80% at 88% 34%,#8B2FE0 0%,rgba(139,47,224,0) 58%),linear-gradient(160deg,#3A1030,#14060E);--dt:#FF8A4A;--ac:#FF8A4A;--ig:rgba(255,138,74,.4)}
+.au-books{--au:radial-gradient(90% 70% at 12% 12%,#FF2F7A 0%,rgba(255,47,122,0) 55%),radial-gradient(90% 80% at 86% 28%,#8B2FE0 0%,rgba(139,47,224,0) 58%),radial-gradient(90% 80% at 80% 88%,#FF8A2A 0%,rgba(255,138,42,0) 55%),linear-gradient(160deg,#3A0A22,#140410);--dt:#F0A02A;--ac:#F0A02A;--ig:rgba(240,160,42,.4)}
+.au-philosophy{--au:radial-gradient(95% 75% at 18% 14%,#9D4EFF 0%,rgba(157,78,255,0) 58%),radial-gradient(95% 80% at 82% 58%,#FF7AB8 0%,rgba(255,122,184,0) 55%),radial-gradient(75% 60% at 50% 105%,rgba(0,0,0,.95) 15%,transparent 70%),linear-gradient(160deg,#2A1058,#0C0418);--dt:#D89AFF;--ac:#D89AFF;--ig:rgba(216,154,255,.4)}
+.au-growth{--au:radial-gradient(90% 70% at 14% 10%,#38D8FF 0%,rgba(56,216,255,0) 55%),radial-gradient(95% 80% at 82% 52%,#5A3AE8 0%,rgba(90,58,232,0) 58%),radial-gradient(85% 70% at 55% 92%,#9D4EFF 0%,rgba(157,78,255,0) 52%),linear-gradient(160deg,#0A2A48,#060418);--dt:#7DE6FF;--ac:#7DE6FF;--ig:rgba(125,230,255,.4)}
+.au-default{--au:radial-gradient(90% 70% at 16% 12%,#8B3DFF 0%,rgba(139,61,255,0) 55%),radial-gradient(90% 80% at 84% 60%,#E8BB6B 0%,rgba(232,187,107,0) 55%),linear-gradient(160deg,#22104A,#0C0618);--dt:#E8BB6B;--ac:#E8BB6B;--ig:rgba(232,187,107,.4)}
+@keyframes sweep{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes iFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:480px){.gc{min-height:400px}.gc-icon img{width:110px;height:110px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
 </head>
 <body>
-<div class="aurora"><i></i><i></i><i></i></div>
 
-<nav>
-  <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links" id="navLinks"><button class="nav-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-    <a href="index.html">Home</a>
-    <a href="store.html">Books</a>
-    <a href="blog.html" class="active">Blog</a>
-    <a href="mentor.html">Mentorship</a>
-    <a href="newsletter.html">Newsletter</a>
-    <a href="shop.html">Signal Fashion</a>
-    <a href="about.html">About</a>
-    <a href="account.html" id="navAccount">Account</a>
-    <a href="policies.html" style="color:var(--gold)">Policies</a>
-    <a class="nav-amzn" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a>
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+<script>
+/* ── Creative background: star field + shooting stars + nebula wisps ── */
+(function(){
+  const c=document.getElementById('bgCanvas'),ctx=c.getContext('2d');
+  let W,H,stars=[],shooters=[],wisps=[];
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;init()}
+  function init(){
+    stars=Array.from({length:200},()=>({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*.9+.15,
+      o:Math.random()*.6+.1,
+      sp:Math.random()*.5+.1,
+      d:Math.random()>.5?1:-1,
+      col:['rgba(244,238,226,','rgba(125,230,255,','rgba(157,123,255,','rgba(232,187,107,'][Math.floor(Math.random()*4)]
+    }));
+    wisps=Array.from({length:5},()=>mkWisp());
+  }
+  function mkWisp(){return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*180+80,o:0,maxO:Math.random()*.06+.02,sp:Math.random()*.003+.001,phase:Math.random()*Math.PI*2,col:['rgba(157,123,255,','rgba(125,230,255,','rgba(232,187,107,'][Math.floor(Math.random()*3)]}}
+  function mkShooter(){return{x:Math.random()*W*.7,y:Math.random()*H*.4,len:Math.random()*120+60,speed:Math.random()*8+6,angle:Math.PI/6+Math.random()*.3,alpha:1,trail:[]}}
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    /* nebula wisps */
+    wisps.forEach(w=>{
+      w.phase+=w.sp;w.o=w.maxO*(Math.sin(w.phase)*.5+.5);
+      const g=ctx.createRadialGradient(w.x,w.y,0,w.x,w.y,w.r);
+      g.addColorStop(0,w.col+w.o+')');g.addColorStop(1,w.col+'0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(w.x,w.y,w.r,0,Math.PI*2);ctx.fill();
+    });
+    /* stars */
+    stars.forEach(s=>{
+      s.o+=s.sp*.006*s.d;if(s.o>0.75||s.o<0.08)s.d*=-1;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col+s.o+')';ctx.fill();
+    });
+    /* shooting stars */
+    if(Math.random()<.004&&shooters.length<3)shooters.push(mkShooter());
+    shooters=shooters.filter(s=>{
+      s.trail.push({x:s.x,y:s.y});if(s.trail.length>18)s.trail.shift();
+      s.x+=Math.cos(s.angle)*s.speed;s.y+=Math.sin(s.angle)*s.speed;
+      s.alpha-=.028;
+      if(s.alpha<=0)return false;
+      /* draw trail */
+      s.trail.forEach((p,i)=>{
+        const t=i/s.trail.length;
+        ctx.beginPath();ctx.arc(p.x,p.y,.8,0,Math.PI*2);
+        ctx.fillStyle=`rgba(244,238,226,${t*s.alpha*.7})`;ctx.fill();
+      });
+      /* draw head */
+      const grd=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,3);
+      grd.addColorStop(0,`rgba(255,255,255,${s.alpha})`);
+      grd.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(s.x,s.y,3,0,Math.PI*2);ctx.fill();
+      return s.x<W+50&&s.y<H+50;
+    });
+    frame++;requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){c.style.display='none';return}
+  resize();draw();
+})();
+</script>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#library">Books</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="mentor.html">Mentorship</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="shop.html">Fashion</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="account.html" id="navAccount">Account</a></li>
+        <li><a href="policies.html">Policies</a></li>
+        <li><a class="nav-cta" href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon&nbsp;↗</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</nav>
+</header>
 
 <main class="page">
   <div class="blog-hero">
-    <p class="blog-eyebrow">Signal &amp; Mind</p>
-    <h1>Ideas worth<br>reading slowly.</h1>
-    <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
+    <div class="blog-hero-silk">
+      <img id="silkImg" src="silk-ribbon-bg.webp" alt="" fetchpriority="high" decoding="async">
+    </div>
+    <div class="blog-hero-content">
+      <p class="blog-eyebrow">Signal &amp; Mind</p>
+      <h1>Ideas worth<br>reading slowly.</h1>
+      <p>Insights on mindset, manifestation, focus and the mechanics of meaningful change — by Vishal Hingol.</p>
+    </div>
   </div>
   <div class="filter-bar" id="filters"></div>
   <div class="posts" id="posts">
@@ -270,31 +525,69 @@ footer a:hover{text-decoration:underline}
     <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="lucky-girl-syndrome-does-it-work.html">Lucky Girl Syndrome: Does It Actually Work?</a></h2><p class="pcard-excerpt">The viral trend of assuming good things will happen — is it manifestation, confirmation bias, or something else? Here's what the evidence and psychology actually say.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="unshackled-habits-modern-men.html">Unshackled: Breaking the Habits Holding Modern Men Back</a></h2><p class="pcard-excerpt">The specific patterns — digital, social, psychological — that are quietly limiting modern men, and the identity-level shifts that break them permanently.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="power-of-journalling-for-transformation.html">The Power of Journalling for Personal Transformation</a></h2><p class="pcard-excerpt">Journalling isn't about recording your day — it's about externalising your thoughts so you can examine them from the outside. Here's how to use it for real change.</p><div class="pcard-meta"><span class="pcard-date">May 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="why-affirmations-fail.html">Why Your Affirmations Aren't Working</a></h2><p class="pcard-excerpt">The neuroscience behind why repeating positive statements in the mirror has almost no effect — and the one change that fixes everything.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+        <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="why-affirmations-fail.html">Why Your Affirmations Aren't Working</a></h2><p class="pcard-excerpt">The neuroscience behind why repeating positive statements in the mirror has almost no effect — and the one change that fixes everything.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-5am-myth.html">The 5 AM Myth: Why Copying Someone Else's Morning Won't Save You</a></h2><p class="pcard-excerpt">The morning routine industry sells certainty. The truth is more useful — and less photogenic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Health</div><h2><a href="your-body-keeps-score.html">Your Body Is Keeping Score</a></h2><p class="pcard-excerpt">How unresolved stress quietly rewires your nervous system — and the daily reset that reverses it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="attention-is-your-currency.html">Attention Is the Only Currency You Can't Earn Back</a></h2><p class="pcard-excerpt">You can make more money. You cannot make more attention. A framework for spending it like it matters.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="visualization-without-action.html">Visualization Without Action Is Just Entertainment</a></h2><p class="pcard-excerpt">Why mental rehearsal alone produces nothing — and the specific bridge between seeing it and building it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Focus</div><h2><a href="attention-is-your-currency.html">Attention Is the Only Currency You Can't Earn Back</a></h2><p class="pcard-excerpt">You can make more money. You cannot make more attention.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="visualization-without-action.html">Visualization Without Action Is Just Entertainment</a></h2><p class="pcard-excerpt">Why mental rehearsal alone produces nothing — and the bridge between seeing it and building it.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Habits</div><h2><a href="the-evening-routine.html">The Evening Routine Nobody Talks About</a></h2><p class="pcard-excerpt">What you do in the last 90 minutes before sleep determines what kind of person wakes up tomorrow.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 7 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="the-frequency-you-carry.html">You Don't Attract What You Want. You Attract What You Carry.</a></h2><p class="pcard-excerpt">The uncomfortable truth about why like attracts like — and it has nothing to do with magic.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Corporate</div><h2><a href="corporate-politics-decoded.html">The Unspoken Rules of Corporate Politics</a></h2><p class="pcard-excerpt">Nobody teaches you this in business school — the invisible dynamics that determine who rises and who stays stuck.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="ai-is-your-co-pilot.html">AI Won't Replace You. But Someone Using AI Will.</a></h2><p class="pcard-excerpt">How to use AI as a force multiplier instead of a threat — practical frameworks for professionals.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="corporate-ai-advantage.html">The AI-First Employee: How to Become Irreplaceable at Work</a></h2><p class="pcard-excerpt">Your company is adopting AI. Be the person who leads that adoption — not the person it replaces.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="does-369-method-actually-work.html">Does the 369 Method Actually Work? An Honest Answer</a></h2><p class="pcard-excerpt">Millions swear by the 369 method. Skeptics call it placebo. Vishal Hingol breaks down what the evidence actually says — and the exact conditions under which it genuinely works.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Corporate</div><h2><a href="corporate-politics-decoded.html">The Unspoken Rules of Corporate Politics</a></h2><p class="pcard-excerpt">The invisible dynamics that determine who rises and who stays stuck.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="ai-is-your-co-pilot.html">AI Won't Replace You. But Someone Using AI Will.</a></h2><p class="pcard-excerpt">How to use AI as a force multiplier — practical frameworks for every professional.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 8 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">AI &amp; Business</div><h2><a href="corporate-ai-advantage.html">The AI-First Employee: How to Become Irreplaceable at Work</a></h2><p class="pcard-excerpt">Your company is adopting AI. Be the person who leads that — not the person it replaces.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 9 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Books</div><h2><a href="best-manifestation-books-india-2026.html">Best Manifestation Books in India (2026 Edition)</a></h2><p class="pcard-excerpt">A curated 2026 guide to the manifestation books worth your time in India — ranked by depth of transformation, not popularity. From classics to new Indian voices.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
     <article class="pcard"><div class="pcard-cat">Mindset</div><h2><a href="subconscious-reprogramming-for-beginners.html">Subconscious Reprogramming for Beginners: A Step-by-Step Start</a></h2><p class="pcard-excerpt">New to subconscious work? This beginner's roadmap explains what actually rewires the mind — and the exact first steps to take — without jargon or overwhelm.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 6 min read</span><span class="pcard-read">Read article →</span></div></article>
-    <article class="pcard"><div class="pcard-cat">Book Recommendations</div><h2><a href="best-manifestation-books-india-2026.html">Best Manifestation Books in India (2026 Edition)</a></h2><p class="pcard-excerpt">A curated 2026 guide to the manifestation books worth your time in India — ranked by depth of transformation, not popularity.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
+    <article class="pcard"><div class="pcard-cat">Manifestation</div><h2><a href="does-369-method-actually-work.html">Does the 369 Method Actually Work? An Honest Answer</a></h2><p class="pcard-excerpt">Millions swear by the 369 method. Skeptics call it placebo. Here's what the evidence actually says — and the exact conditions under which it genuinely works.</p><div class="pcard-meta"><span class="pcard-date">Jul 2026 · 5 min read</span><span class="pcard-read">Read article →</span></div></article>
     <!-- JS replaces the above with the full interactive blog index on load -->
   </div>
 </main>
 
 <footer>
-  <span>© 2025–<span id="yr"></span> Vishal Hingol · <a href="policies.html" style="color:var(--mist)">Policies</a></span>
-  <span><a href="index.html">Home</a> · <a href="store.html">Books</a> · <a href="mentor.html">Mentorship</a> · <a href="newsletter.html">Newsletter</a> · <a href="shop.html">Signal Fashion</a> · <a href="about.html">About</a> · <a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon</a> · <a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Instagram</a> · <a href="https://x.com/Authorvhingol" target="_blank" rel="noopener" style="color:var(--cyan)">Twitter</a></span>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">Vishal <em>Hingol</em></a>
+        <p>Author of mindset, manifestation, visionary fiction and AI for business. Available worldwide on Amazon.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="store.html">Bookstore</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mentor.html">Mentorship</a></li>
+          <li><a href="shop.html">Signal Fashion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://www.amazon.com/stores/Vishal-Hingol/author/B0H28TNG37" target="_blank" rel="noopener">Amazon ↗</a></li>
+          <li><a href="https://www.instagram.com/authorvishalhingol" target="_blank" rel="noopener">Instagram ↗</a></li>
+          <li><a href="https://x.com/Authorvhingol" target="_blank" rel="noopener">Twitter ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Account</h5>
+        <ul>
+          <li><a href="account.html">My account</a></li>
+          <li><a href="newsletter.html">Newsletter</a></li>
+          <li><a href="policies.html">Policies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span id="yr">2026</span> Vishal Hingol. All rights reserved.</span>
+      <span>Writing for the world</span>
+    </div>
+  </div>
 </footer>
 
 <script>
 (async function(){
   const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const auClass=c=>({Mindset:'au-mindset',Manifestation:'au-manifest',Focus:'au-focus','Digital Wellness':'au-focus',Health:'au-health','AI & Business':'au-ai',Business:'au-ai',Corporate:'au-corp',Habits:'au-habits',Mindfulness:'au-habits','Personal Growth':'au-growth',"Men's Growth":'au-growth','Book Recommendations':'au-books',Spirituality:'au-philosophy',Philosophy:'au-philosophy'}[c]||'au-default');
+  const auIconMap={Mindset:'3dicons-bulb-dynamic-color.webp',Manifestation:'3dicons-star-dynamic-premium.webp',Focus:'3dicons-target-dynamic-gradient.webp','Digital Wellness':'3dicons-target-dynamic-gradient.webp',Health:'3dicons-heart-dynamic-gradient.webp','AI & Business':'3dicons-computer-dynamic-color.webp',Business:'3dicons-computer-dynamic-color.webp',Corporate:'3dicons-chart-dynamic-color.webp',Habits:'3dicons-clock-iso-color.webp',Mindfulness:'3dicons-clock-iso-color.webp','Book Recommendations':'3dicons-notebook-dynamic-color.webp',Books:'3dicons-notebook-dynamic-color.webp',Philosophy:'3dicons-sphere-iso-premium.webp',Spirituality:'3dicons-sphere-iso-premium.webp','Personal Growth':'3dicons-rocket-dynamic-color.webp',"Men's Growth":'3dicons-rocket-dynamic-color.webp'};
+  const auIcon=c=>'icon/'+(auIconMap[c]||'3dicons-bulb-dynamic-color.webp');
   let data, activecat = 'All';
   try{
     const res = await fetch('blog.json?v='+Date.now(),{cache:'no-store'});
@@ -324,43 +617,46 @@ footer a:hover{text-decoration:underline}
       document.getElementById('posts').innerHTML='<div class="empty"><b>No articles yet in this category</b>Check back soon.</div>';
       return;
     }
-    document.getElementById('posts').innerHTML = filtered.map(p=>`
-    <article class="pcard" onclick="location.href='${esc(p.id)}.html'">
-      <div class="pcard-cat">${esc(p.category)}</div>
-      <h2><a href="${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
-      <p class="pcard-excerpt">${esc(p.excerpt)}</p>
-      <div class="pcard-meta">
-        <span class="pcard-date">${formatDate(p.published)} · ${p.readingTime} min read</span>
-        <span class="pcard-read">Read article →</span>
+    document.getElementById('posts').innerHTML = filtered.map((p,i)=>`
+    <div class="cw">
+    <article class="gc ${auClass(p.category)}" onclick="location.href='${esc(p.id)}.html'" onmousemove="gT(event,this)" onmouseleave="gR(this)">
+      <div class="gc-aurora"></div>
+      <div class="gc-grain"></div>
+      <div class="gc-sweep"></div>
+      <div class="gc-glare"></div>
+      <div class="gc-overlay"></div>
+      <div class="gc-top">
+        <span class="gc-num">${String(i+1).padStart(2,'0')}</span>
+        <div class="gc-pills">
+          <span class="gc-pill"><img class="gc-pill-ico" src="${auIcon(p.category)}" alt="" width="17" height="17" loading="lazy" decoding="async">${esc(p.category)}</span>
+          <span class="gc-pill gc-pill-time"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>${p.readingTime} min</span>
+        </div>
       </div>
-    </article>`).join('');
+      <div class="gc-icon"><img src="${auIcon(p.category)}" alt="" width="500" height="500" loading="${i<4?'eager':'lazy'}" decoding="async"></div>
+      <div class="gc-text">
+        <h2 class="gc-title"><a href="${esc(p.id)}.html" onclick="event.stopPropagation()">${esc(p.title)}</a></h2>
+        <p class="gc-desc">${esc(p.excerpt)}</p>
+        <div class="gc-foot">
+          <span class="gc-read">Read more</span>
+          <span class="gc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </div>
+    </article>
+    </div>`).join('');
   }
   render();
-  document.getElementById('yr').textContent = new Date().getFullYear();
+  var yrEl=document.getElementById('yr'); if(yrEl) yrEl.textContent = new Date().getFullYear();
 })();
 </script>
 <script>
-function toggleMenu(){
-  var h=document.getElementById('hamburger');
-  var n=document.getElementById('navLinks');
-  var isOpen=n.classList.contains('open');
-  h.classList.toggle('open',!isOpen);
-  n.classList.toggle('open',!isOpen);
-  document.body.style.overflow=!isOpen?'hidden':'';
-}
-function closeMenu(){
-  var h=document.getElementById('hamburger');
-  var n=document.getElementById('navLinks');
-  if(h) h.classList.remove('open');
-  if(n) n.classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('#navLinks a').forEach(function(a){
-    a.addEventListener('click',closeMenu);
-  });
-});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+/* Burger nav — matches index.html */
+(function(){
+  var b=document.getElementById('burger'),n=document.getElementById('navLinks');
+  if(!b||!n)return;
+  b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&n.classList.contains('open')){n.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''}});
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})});
+})();
 </script>
 <div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
   This website uses minimal cookies for analytics. No advertising or tracking cookies. 
@@ -397,5 +693,32 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();
 })();
 </script>
 
+
+<script>
+function gT(e,c){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,mx=((x/r.width)-.5)*2,my=((y/r.height)-.5)*2;c.style.transform='translateY(-8px) scale(1.02) rotateX('+(my*-6)+'deg) rotateY('+(mx*6)+'deg)';var g=c.querySelector('.gc-glare');if(g){g.style.setProperty('--gx',(x/r.width*100)+'%');g.style.setProperty('--gy',(y/r.height*100)+'%')}}
+function gR(c){c.style.transform=''}
+</script>
+<script>
+/* Parallax + fade out — silk wrapper moves slower than scroll AND fades to 0
+   before the box edge is ever visible */
+(function(){
+  var wrap = document.querySelector('.blog-hero-silk');
+  var hero = wrap && wrap.closest('.blog-hero');
+  if(!wrap || !hero) return;
+  function tick(){
+    var s     = window.scrollY || window.pageYOffset;
+    var heroH = hero.offsetHeight;
+    /* Parallax: moves at 35% scroll speed */
+    wrap.style.transform = 'translateY(' + (s * 0.35) + 'px)';
+    /* Fade: start at 20% scrolled, fully gone at 60% */
+    var fadeStart = heroH * 0.20;
+    var fadeEnd   = heroH * 0.60;
+    var opacity   = 1 - Math.max(0, Math.min(1, (s - fadeStart) / (fadeEnd - fadeStart)));
+    wrap.style.opacity = opacity;
+  }
+  window.addEventListener('scroll', tick, {passive:true});
+  tick();
+})();
+</script>
 </body>
 </html>
