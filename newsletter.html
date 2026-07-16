@@ -151,106 +151,94 @@ footer{border-top:1px solid var(--line);padding:4rem 0 2.5rem;background:linear-
 
 main{max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 80px}
 
-/* ── VIDEO HERO — full viewport width, text pinned to bottom ── */
+/* ── VIDEO HERO — full viewport width, video natural size, text below ── */
 .hero-section{
   position:relative;
-  text-align:center;
-  margin-bottom:clamp(48px,8vw,80px);
-  /* Break out of main's 900px container — go full viewport */
   width:100vw;
   margin-left:calc(-50vw + 50%);
   margin-right:calc(-50vw + 50%);
-  height:clamp(520px,85vh,780px);
-  display:flex;
-  align-items:flex-end; /* text anchored to bottom */
-  justify-content:center;
+  /* No fixed height — let the video dictate its own height */
+  line-height:0; /* kill inline gap under video */
   overflow:hidden;
+  margin-bottom:0;
 }
 
-/* full-bleed video layer */
+/* Video fills full width, natural aspect ratio — NO zoom, NO crop */
 .hero-video-wrap{
-  position:absolute;
-  inset:0;
-  z-index:0;
-  overflow:hidden;
+  position:relative;
+  width:100%;
+  line-height:0;
 }
 .hero-video-wrap video{
+  display:block;
   width:100%;
-  height:100%;
-  object-fit:cover;
-  /* Crop slightly from top & bottom to keep the postcard centred */
-  object-position:center 40%;
-  /* Scale up a touch so left/right edges are never letterboxed */
-  transform:scale(1.04);
-  transform-origin:center center;
+  height:auto;       /* natural aspect ratio preserved */
+  object-fit:fill;   /* no cropping at all */
 }
 
-/* ── TOP gradient fade — bleeds into --night ── */
+/* ── TOP gradient fade — nav area blends in ── */
 .hero-fade-top{
   position:absolute;
   top:0; left:0; right:0;
-  height:38%;
+  height:22%;
   background:linear-gradient(
     180deg,
     rgba(7,10,24,1)   0%,
-    rgba(7,10,24,.80) 35%,
-    rgba(7,10,24,.30) 70%,
+    rgba(7,10,24,.70) 45%,
     transparent       100%
   );
   z-index:1;
   pointer-events:none;
 }
 
-/* ── BOTTOM gradient fade — bleeds into --night ── */
+/* ── BOTTOM gradient fade — slim, just kills the watermark strip ── */
 .hero-fade-bottom{
   position:absolute;
   bottom:0; left:0; right:0;
-  height:45%;
+  height:12%;          /* small — just enough to cover watermark row */
   background:linear-gradient(
     0deg,
     rgba(7,10,24,1)   0%,
-    rgba(7,10,24,.88) 30%,
-    rgba(7,10,24,.45) 65%,
+    rgba(7,10,24,.95) 40%,
     transparent       100%
   );
   z-index:1;
   pointer-events:none;
 }
 
-/* ── Watermark cover — bottom-right corner ── */
+/* Watermark: extra solid block at very bottom-right for safety */
 .hero-video-mask{
   position:absolute;
-  bottom:0;
-  right:0;
-  width:220px;
-  height:80px;
-  background:linear-gradient(
-    135deg,
-    transparent       0%,
-    rgba(7,10,24,.92) 45%,
-    rgba(7,10,24,1)   100%
-  );
+  bottom:0; right:0;
+  width:260px;
+  height:10%;
+  background:rgba(7,10,24,1);
   z-index:2;
   pointer-events:none;
 }
 
-/* ── Mid scrim — subtle darkening so video isn't blown-out ── */
-.hero-video-scrim{
+/* Light left/right side fades so edges blend smoothly */
+.hero-fade-left{
   position:absolute;
-  inset:0;
-  z-index:1;
-  background:rgba(7,10,24,.18);
-  pointer-events:none;
+  top:0; left:0; bottom:0;
+  width:8%;
+  background:linear-gradient(90deg, rgba(7,10,24,.65) 0%, transparent 100%);
+  z-index:1; pointer-events:none;
+}
+.hero-fade-right{
+  position:absolute;
+  top:0; right:0; bottom:0;
+  width:8%;
+  background:linear-gradient(270deg, rgba(7,10,24,.65) 0%, transparent 100%);
+  z-index:1; pointer-events:none;
 }
 
-/* ── Text content — sits at the bottom above fades ── */
+/* ── TEXT — sits BELOW the video, inside normal flow ── */
 .hero-content{
-  position:relative;
-  z-index:3;
-  width:100%;
-  max-width:860px;
-  padding:0 clamp(24px,5vw,56px) clamp(44px,6vw,64px);
   text-align:center;
+  padding:clamp(32px,5vw,56px) clamp(20px,5vw,48px) clamp(48px,7vw,72px);
+  max-width:720px;
+  margin:0 auto;
 }
 
 .hero-eyebrow{
@@ -263,17 +251,15 @@ main{max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 80px}
   font-family:var(--display);
   font-size:clamp(34px,5.5vw,58px);
   font-weight:400;line-height:1.08;
-  margin-bottom:14px;
-  text-shadow:0 2px 24px rgba(7,10,24,.6);
+  margin-bottom:16px;
 }
 .hero-title em{font-style:italic;color:var(--gold)}
 .hero-sub{
-  color:rgba(244,238,226,.78);
+  color:var(--mist);
   font-size:clamp(15px,1.8vw,18px);
   max-width:580px;
   margin:0 auto;
   line-height:1.65;
-  text-shadow:0 1px 12px rgba(7,10,24,.5);
 }
 
 /* Tier cards */
@@ -585,40 +571,30 @@ main{max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 80px}
 </header>
 
 <main>
+  <!-- ══ VIDEO HERO — full viewport width, natural aspect ratio ══ -->
   <div class="hero-section">
-
-    <!-- ① Looping background video — full viewport width -->
     <div class="hero-video-wrap">
       <video
         src="Postcard_flips_into_envelope_202607161159.webm"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        aria-hidden="true"
+        autoplay muted loop playsinline preload="auto" aria-hidden="true"
       ></video>
     </div>
-
-    <!-- ② Subtle mid-scrim (very light overall darkening) -->
-    <div class="hero-video-scrim"></div>
-
-    <!-- ③ Top fade — bleeds into page background -->
+    <!-- Top fade: nav blends in smoothly -->
     <div class="hero-fade-top"></div>
-
-    <!-- ④ Bottom fade — bleeds into page background -->
+    <!-- Bottom fade: slim — just kills the watermark strip -->
     <div class="hero-fade-bottom"></div>
-
-    <!-- ⑤ Watermark cover — bottom-right corner -->
+    <!-- Solid block over bottom-right watermark -->
     <div class="hero-video-mask"></div>
+    <!-- Left / right edge fades -->
+    <div class="hero-fade-left"></div>
+    <div class="hero-fade-right"></div>
+  </div>
 
-    <!-- ⑥ Text pinned to bottom of hero -->
-    <div class="hero-content">
-      <p class="hero-eyebrow">// The Signal Newsletter</p>
-      <h1 class="hero-title">Most newsletters add noise. <em>This one cuts through it.</em></h1>
-      <p class="hero-sub">Weekly mindset frameworks, manifestation techniques, and behind-the-book stories from the author of 17+ books — read by people in 47+ countries who are done scrolling and ready to think. Free forever. Five minutes a week. No fluff, no filler, no algorithm deciding what you see.</p>
-    </div>
-
+  <!-- ══ HERO TEXT — below the video, in normal document flow ══ -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">// The Signal Newsletter</p>
+    <h1 class="hero-title">Most newsletters add noise. <em>This one cuts through it.</em></h1>
+    <p class="hero-sub">Weekly mindset frameworks, manifestation techniques, and behind-the-book stories from the author of 17+ books — read by people in 47+ countries who are done scrolling and ready to think. Free forever. Five minutes a week. No fluff, no filler, no algorithm deciding what you see.</p>
   </div>
 
   <!-- Two Archives — animated chooser -->
