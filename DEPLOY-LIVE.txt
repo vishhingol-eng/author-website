@@ -13,7 +13,7 @@ UPLOAD everything in this package to the repo ROOT (alongside your existing file
   the-comfort-zone-trap.html                        (dead-link fix → redirects to blog)
   morning-routines-that-actually-work.html          (dead-link fix → redirects to blog)
 
-DO NOT delete: covers/, editions/, shop/, blog.json, editions.json, or any other existing page.
+DO NOT delete: covers/, editions/, blog.json, editions.json, or any other existing page.
 
 AFTER:
 1. Cloudflare dashboard -> Caching -> Purge Everything.

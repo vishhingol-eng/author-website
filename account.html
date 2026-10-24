@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In or Create Account | Vishal Hingol</title>
-<meta name="description" content="Sign in to your account or create a new one to track your orders with Signal Fashion.">
+<meta name="description" content="Sign in to your account or create a new one to read full-length articles and manage your details.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://vishalhingolauthor.com/account.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
@@ -97,7 +97,7 @@ footer a{color:var(--gold)}
 <nav>
   <a class="brand" href="/">Vishal <em>Hingol</em></a>
   <div class="nav-links">
-    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/shop.html">Signal Fashion</a><a href="/about.html">About</a><a href="/policies.html">Policies</a>
+    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/about.html">About</a><a href="/policies.html">Policies</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -108,14 +108,13 @@ footer a{color:var(--gold)}
   <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
   <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')">Newsletter</a>
-  <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">Signal Fashion</a>
   <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
   <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
 </div>
 
 <main>
   <div class="back-bar">
-    <a class="back-btn" href="/shop.html">&larr; Back to Shop</a>
+    <a class="back-btn" href="/">&larr; Back to Home</a>
   </div>
 
   <div class="auth-card">
@@ -128,7 +127,7 @@ footer a{color:var(--gold)}
       <!-- SIGNUP FORM -->
       <div id="signupPanel">
         <h1 class="auth-title">Create your account</h1>
-        <p class="auth-sub">Save your details once, check out faster every time.</p>
+        <p class="auth-sub">Save your details once and unlock full-length articles.</p>
 
         <form id="signupForm" novalidate>
           <div class="field">
@@ -170,13 +169,13 @@ footer a{color:var(--gold)}
         <div class="divider">or</div>
         <div class="google-note">Sign up with Google is coming soon — use email for now.</div>
 
-        <p class="privacy-note">By creating an account, you agree to our <a href="/policies.html">Privacy Policy</a>. We store your name, email, and order details only to process orders and contact you about them — nothing else.</p>
+        <p class="privacy-note">By creating an account, you agree to our <a href="/policies.html">Privacy Policy</a>. We store your name and email only to run your account and contact you about it — nothing else.</p>
       </div>
 
       <!-- LOGIN FORM -->
       <div id="loginPanel" style="display:none">
         <h1 class="auth-title">Welcome back</h1>
-        <p class="auth-sub">Sign in to view your orders and saved details.</p>
+        <p class="auth-sub">Sign in to view your saved details.</p>
 
         <form id="loginForm" novalidate>
           <div class="field">
@@ -203,13 +202,13 @@ footer a{color:var(--gold)}
     <div class="success-panel" id="successPanel">
       <h3>&#10003; You're In</h3>
       <p id="successMsg">Your account is ready.</p>
-      <a class="submit-btn" href="/shop.html" style="text-decoration:none;display:block">Continue Shopping</a>
+      <a class="submit-btn" href="/blog.html" style="text-decoration:none;display:block">Continue Reading</a>
     </div>
   </div>
 </main>
 
 <footer>
-  <p>&copy; 2025&ndash;<script>document.write(new Date().getFullYear())</script> Vishal Hingol &middot; <a href="/policies.html">Policies</a> &middot; <a href="/shop.html">Back to Shop</a></p>
+  <p>&copy; 2025&ndash;<script>document.write(new Date().getFullYear())</script> Vishal Hingol &middot; <a href="/policies.html">Policies</a> &middot; <a href="/">Back to Home</a></p>
 </footer>
 
 <div id="cookieBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(7,10,24,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(244,238,226,.1);padding:16px clamp(20px,5vw,40px);font-size:14px;color:#9AA1C7;text-align:center">
@@ -249,7 +248,7 @@ footer a{color:var(--gold)}
     signupPanel.style.display = 'none';
   });
 
-  // Allow ?mode=login to deep-link straight to the login tab (useful from checkout)
+  // Allow ?mode=login to deep-link straight to the login tab
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('mode') === 'login') {
     tabLogin.click();
@@ -265,7 +264,7 @@ footer a{color:var(--gold)}
       const continueLink = successPanel.querySelector('a');
       if (continueLink) {
         continueLink.href = nextUrl;
-        continueLink.textContent = 'Continue to Your Order';
+        continueLink.textContent = 'Continue';
       }
       setTimeout(function(){ window.location.href = nextUrl; }, 1200);
     }

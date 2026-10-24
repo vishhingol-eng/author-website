@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Account | Vishal Hingol</title>
-<meta name="description" content="View your order history, update your details, or manage your account.">
+<meta name="description" content="Update your details or manage your account.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://vishalhingolauthor.com/my-account.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23070A18'/><text x='16' y='23' text-anchor='middle' font-size='20' font-family='Georgia,serif' fill='%23E8BB6B'>V</text></svg>">
@@ -76,12 +76,6 @@ main{max-width:760px;margin:0 auto;padding:130px clamp(20px,5vw,48px) 80px}
 .form-msg.error{color:#FF9B9B}
 .form-msg.success{color:var(--cyan)}
 
-.order-list{display:flex;flex-direction:column;gap:12px}
-.order-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:16px 18px;background:rgba(244,238,226,.03);border:1px solid var(--line);border-radius:14px;align-items:center}
-.order-item-name{font-family:var(--display);font-size:15px;color:var(--paper);margin-bottom:4px}
-.order-item-meta{font-size:12.5px;color:var(--mist)}
-.order-item-ref{font-family:var(--tech);font-size:11px;color:rgba(154,161,199,.6);text-align:right}
-.order-empty{text-align:center;color:var(--mist);font-size:14px;padding:30px 10px}
 
 .danger-zone{border-color:rgba(255,155,155,.2)}
 .danger-zone p{color:var(--mist);font-size:13.5px;margin-bottom:18px;line-height:1.6}
@@ -102,7 +96,7 @@ footer a{color:var(--gold)}
 <nav>
   <a class="brand" href="/">Vishal <em>Hingol</em></a>
   <div class="nav-links">
-    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/shop.html">Signal Fashion</a><a href="/about.html">About</a><a href="/my-account.html" class="active">My Account</a><a href="/policies.html">Policies</a>
+    <a href="/">Home</a><a href="/store.html">Books</a><a href="/blog.html">Blog</a><a href="/mentor.html">Mentorship</a><a href="/newsletter.html">Newsletter</a><a href="/about.html">About</a><a href="/my-account.html" class="active">My Account</a><a href="/policies.html">Policies</a>
   </div>
   <button class="hamburger" onclick="document.getElementById('mobNav').classList.add('open')" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -113,7 +107,6 @@ footer a{color:var(--gold)}
   <a href="/blog.html" onclick="document.getElementById('mobNav').classList.remove('open')">Blog</a>
   <a href="/mentor.html" onclick="document.getElementById('mobNav').classList.remove('open')">Mentorship</a>
   <a href="/newsletter.html" onclick="document.getElementById('mobNav').classList.remove('open')">Newsletter</a>
-  <a href="/shop.html" onclick="document.getElementById('mobNav').classList.remove('open')">Signal Fashion</a>
   <a href="/about.html" onclick="document.getElementById('mobNav').classList.remove('open')">About</a>
   <a href="/my-account.html" onclick="document.getElementById('mobNav').classList.remove('open')" style="color:var(--gold)">My Account</a>
   <a href="/policies.html" onclick="document.getElementById('mobNav').classList.remove('open')">Policies</a>
@@ -121,7 +114,7 @@ footer a{color:var(--gold)}
 
 <main>
   <h1 class="page-title">My Account</h1>
-  <p class="page-sub">Your details, your orders, all in one place.</p>
+  <p class="page-sub">Your details, all in one place.</p>
 
   <div class="checking-msg" id="checkingMsg">Checking your account&hellip;</div>
 
@@ -168,14 +161,6 @@ footer a{color:var(--gold)}
       </form>
     </div>
 
-    <!-- ORDER HISTORY -->
-    <div class="section-card">
-      <h2 class="section-title"><span><span class="eyebrow">// Orders</span>Order History</span></h2>
-      <div class="order-list" id="orderList">
-        <p class="order-empty">Loading your orders&hellip;</p>
-      </div>
-    </div>
-
     <!-- LOGOUT -->
     <div class="section-card" style="text-align:center">
       <button class="btn btn-ghost" id="logoutBtn">Sign Out</button>
@@ -184,7 +169,7 @@ footer a{color:var(--gold)}
     <!-- DANGER ZONE -->
     <div class="section-card danger-zone">
       <h2 class="section-title"><span><span class="eyebrow" style="color:#FF9B9B">// Danger Zone</span>Delete Account</span></h2>
-      <p>This permanently deletes your account and saved details. Your past orders are kept on file for our records, but will no longer be linked to an account you can access.</p>
+      <p>This permanently deletes your account and saved details.</p>
       <button class="btn btn-danger" id="deleteAccountBtn">Delete My Account</button>
     </div>
 
@@ -260,22 +245,6 @@ footer a{color:var(--gold)}
           input.closest('.topic-chip').classList.add('checked');
         }
       });
-
-      // Render order history
-      const orderList = document.getElementById('orderList');
-      const orders = data.orders || [];
-      if (!orders.length) {
-        orderList.innerHTML = '<p class="order-empty">No orders yet. <a href="/shop.html">Browse Signal Fashion &rarr;</a></p>';
-      } else {
-        orderList.innerHTML = orders.map(function(o){
-          const date = o.created_at ? new Date(o.created_at).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'}) : '';
-          return '<div class="order-item">' +
-            '<div><div class="order-item-name">' + escapeHtml(o.product_name) + '</div>' +
-            '<div class="order-item-meta">' + escapeHtml(o.color || '') + (o.size ? ' &middot; ' + escapeHtml(o.size) : '') + (o.product_price ? ' &middot; ' + escapeHtml(o.product_price) : '') + '</div></div>' +
-            '<div class="order-item-ref">' + escapeHtml(o.order_ref || '') + '<br>' + date + '</div>' +
-          '</div>';
-        }).join('');
-      }
     } catch (err) {
       checkingMsg.style.display = 'none';
       notLoggedIn.style.display = 'block';
