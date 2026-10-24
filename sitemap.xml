@@ -414,4 +414,30 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- BLOG ARTICLES — live but previously missing from sitemap (added 2026-10-24) -->
+  <url>
+    <loc>https://vishalhingolauthor.com/posts/how-369-manifestation-method-works.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/posts/how-to-stop-self-sabotage-permanently.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/posts/signs-from-universe-how-to-recognize.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vishalhingolauthor.com/posts/what-is-lucky-girl-syndrome.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
